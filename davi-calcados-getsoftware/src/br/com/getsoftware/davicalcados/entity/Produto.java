@@ -11,20 +11,27 @@ package br.com.getsoftware.davicalcados.entity;
  */
 public class Produto {
 
-    private Long id;
+    private Long idProduto;
+    private Long idUsuario;
     private String descricao;
     private Integer quantidade;
     private Double valorUnitario;
     private Double valorVenda;
 
-    //GETTERS AND SETTERS
-    
-    public Long getId() {
-        return id;
+    public Long getIdProduto() {
+        return idProduto;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getDescricao() {
@@ -58,4 +65,6 @@ public class Produto {
     public void setValorVenda(Double valorVenda) {
         this.valorVenda = valorVenda;
     }
+
+    
 }
