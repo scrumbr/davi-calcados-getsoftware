@@ -47,9 +47,8 @@ public class RestaurarBackUP {
                 String[] cmd = new String[3];
                 cmd[0] = "cmd.exe";
                 cmd[1] = "/C";
-                cmd[2] = "C:/Users/JUNIOR/Documents/NetBeansProjects/ProjetoAtlas/src/Utilitarios/mysql -u root -p -h localhost " + bd + " < " + arq;
+                cmd[2] = "src/br/com/getsoftware/davicalcados/util/mysql -u root -p -h localhost " + bd + " < " + arq;
 
-                //C:/Users/JUNIOR/Documents/NetBeansProjects/ProjetoAtlas/src/Utilitarios
                 Runtime rt = Runtime.getRuntime();
                 System.out.println("Executando " + cmd[0] + " " + cmd[1]);
                 proc = rt.exec(cmd);

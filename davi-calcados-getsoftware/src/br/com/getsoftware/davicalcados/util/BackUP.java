@@ -47,8 +47,8 @@ public class BackUP {
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if (opcao == JOptionPane.YES_OPTION) {
                         Runtime bck = Runtime.getRuntime();
-                        bck.exec("TIBD/gerenciadorDeAcademia/util/mysqldump.exe -v -v -v --host=localhost --user=root --password= --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases Projeto Atlas");
-                        JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Tudo OK!", 1);
+                        bck.exec("src/br/com/getsoftware/davicalcados/util/mysqldump.exe -v -v -v --host=localhost --user=root --password= --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases Projeto Atlas");
+                        JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Backup", 1);
                     } else {
                         backUp(JFC_Salvar_Backup);
 
