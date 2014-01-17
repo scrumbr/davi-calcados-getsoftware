@@ -37,12 +37,6 @@ public class SplashGetSoftwareGUI extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
-        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
-            public void onTime(java.awt.event.ActionEvent evt) {
-                timer1OnTime(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
