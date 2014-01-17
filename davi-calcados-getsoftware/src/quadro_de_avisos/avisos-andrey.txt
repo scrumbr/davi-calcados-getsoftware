@@ -1,2 +1,9 @@
 Andrey Gois
+Atualizado em (17/01/2014)
+
+Primo, Fiz o bloqueio da tela de traz, das janelas existentes,
+na tela de cadastro de funcionario, deu nullpointerexception, axo que é do banco,
+ai so fiz comentar aquela linha de codigo do construtor, depois vamos ver isso ai...
+
+
 Atualizado em (DD/MM/AA)

@@ -6,7 +6,12 @@
 
 package br.com.getsoftware.davicalcados.gui.acesso;
 
+import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
+import br.com.getsoftware.davicalcados.util.MyDate;
+import br.com.getsoftware.davicalcados.util.MyHours;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +27,10 @@ public class TelaMenuGUI extends javax.swing.JFrame {
      */
     public TelaMenuGUI() {
         initComponents();
+        timer1.start();
+        jLData.setText(MyDate.getDataAtual());
+        jLHora.setText(MyHours.getHoraAtual());
+        
     }
 
     /**
@@ -33,21 +42,128 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        timer1 = new org.netbeans.examples.lib.timerbean.Timer();
+        jBCadFuncionario = new javax.swing.JButton();
+        jBCadUsuario = new javax.swing.JButton();
+        jBCadProduto = new javax.swing.JButton();
+        jBCadCliente = new javax.swing.JButton();
+        jLData = new javax.swing.JLabel();
+        jLHora = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMFuncionario = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMUsuario = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMProduto = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMCliente = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setExtendedState(6);
-        setType(java.awt.Window.Type.POPUP);
-
-        jButton1.setText("CadFuncionario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
+            public void onTime(java.awt.event.ActionEvent evt) {
+                timer1OnTime(evt);
             }
         });
 
-        jButton2.setText("CadUsuario");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setExtendedState(6);
+        setType(java.awt.Window.Type.POPUP);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        jBCadFuncionario.setText("CadFuncionario");
+        jBCadFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadFuncionarioActionPerformed(evt);
+            }
+        });
+
+        jBCadUsuario.setText("CadUsuario");
+        jBCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadUsuarioActionPerformed(evt);
+            }
+        });
+
+        jBCadProduto.setText("CadProduto");
+        jBCadProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadProdutoActionPerformed(evt);
+            }
+        });
+
+        jBCadCliente.setText("CadCliente");
+        jBCadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadClienteActionPerformed(evt);
+            }
+        });
+
+        jLData.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLData.setText("jLabel1");
+
+        jLHora.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLHora.setText("jLabel2");
+
+        jMenuBar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jMenu3.setText("CADASTRO");
+
+        jMFuncionario.setText("Funcionario");
+        jMFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMFuncionarioActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMFuncionario);
+        jMenu3.add(jSeparator1);
+
+        jMUsuario.setText("Usuario");
+        jMUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMUsuario);
+        jMenu3.add(jSeparator2);
+
+        jMProduto.setText("Produto");
+        jMProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMProdutoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMProduto);
+        jMenu3.add(jSeparator3);
+
+        jMCliente.setText("Cliente");
+        jMCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMClienteActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMCliente);
+        jMenu3.add(jSeparator4);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu1.setText("SERVIÇOS");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("ULTILITÁRIOS");
+        jMenuBar2.add(jMenu2);
+
+        jMenu4.setText("SOBRE");
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,32 +171,102 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBCadFuncionario)
+                    .addComponent(jBCadUsuario)
+                    .addComponent(jBCadProduto)
+                    .addComponent(jBCadCliente))
+                .addContainerGap(592, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLData, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLHora, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadCliente, jBCadFuncionario, jBCadProduto, jBCadUsuario});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(109, 109, 109)
+                .addComponent(jBCadCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBCadProduto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBCadUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBCadFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(341, Short.MAX_VALUE))
+                    .addComponent(jLData)
+                    .addComponent(jLHora))
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(600, 413));
+        setSize(new java.awt.Dimension(725, 464));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            new CadFuncionarioGUI().setVisible(true);
+    private void jBCadFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadFuncionarioActionPerformed
+        this.setEnabled(false);
+        try {        
+            new CadFuncionarioGUI(this).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jBCadFuncionarioActionPerformed
+
+    private void jBCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadUsuarioActionPerformed
+        this.setEnabled(false);
+        new CadUsuarioGUI(this).setVisible(true);
+       
+    }//GEN-LAST:event_jBCadUsuarioActionPerformed
+
+    private void jBCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadProdutoActionPerformed
+       this.setEnabled(false);
+       new CadProdutoGUI(this).setVisible(true);
+    }//GEN-LAST:event_jBCadProdutoActionPerformed
+
+    private void jBCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadClienteActionPerformed
+        this.setEnabled(false);
+        new CadClienteGUI(this).setVisible(true);
+    }//GEN-LAST:event_jBCadClienteActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        dispose();
+        new LoginGUI().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jMClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMClienteActionPerformed
+         this.setEnabled(false);
+        new CadClienteGUI(this).setVisible(true);
+    }//GEN-LAST:event_jMClienteActionPerformed
+
+    private void jMFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFuncionarioActionPerformed
+        this.setEnabled(false);
+        try {        
+            new CadFuncionarioGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMFuncionarioActionPerformed
+
+    private void jMUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMUsuarioActionPerformed
+        this.setEnabled(false);
+        new CadUsuarioGUI(this).setVisible(true);
+    }//GEN-LAST:event_jMUsuarioActionPerformed
+
+    private void jMProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMProdutoActionPerformed
+       this.setEnabled(false);
+       new CadProdutoGUI(this).setVisible(true);
+    }//GEN-LAST:event_jMProdutoActionPerformed
+
+    private void timer1OnTime(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timer1OnTime
+     jLHora.setText(MyHours.getHoraAtual());
+    }//GEN-LAST:event_timer1OnTime
 
     /**
      * @param args the command line arguments
@@ -118,7 +304,25 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBCadCliente;
+    private javax.swing.JButton jBCadFuncionario;
+    private javax.swing.JButton jBCadProduto;
+    private javax.swing.JButton jBCadUsuario;
+    private javax.swing.JLabel jLData;
+    private javax.swing.JLabel jLHora;
+    private javax.swing.JMenuItem jMCliente;
+    private javax.swing.JMenuItem jMFuncionario;
+    private javax.swing.JMenuItem jMProduto;
+    private javax.swing.JMenuItem jMUsuario;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables
 }
