@@ -6,6 +6,7 @@
 
 package br.com.getsoftware.davicalcados.main;
 
+import br.com.getsoftware.davicalcados.gui.acesso.LoginGUI;
 import br.com.getsoftware.davicalcados.gui.splash.SplashGetSoftwareGUI;
 
 /**
@@ -40,7 +41,8 @@ public class PrincipalClass {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SplashGetSoftwareGUI().setVisible(true);
+                //new SplashGetSoftwareGUI().setVisible(true);
+                new LoginGUI().setVisible(true);
             }
         });
     }
