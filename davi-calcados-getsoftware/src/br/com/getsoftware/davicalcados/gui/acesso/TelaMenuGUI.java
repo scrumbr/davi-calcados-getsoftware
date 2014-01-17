@@ -7,6 +7,9 @@
 package br.com.getsoftware.davicalcados.gui.acesso;
 
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,7 +75,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new CadFuncionarioGUI().setVisible(true);
+        try {
+            new CadFuncionarioGUI().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
