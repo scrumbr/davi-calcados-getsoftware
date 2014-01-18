@@ -100,9 +100,9 @@ constraint fk_fornecedor foreign key fornecedor(id_usuario) references usuario(i
 
 
 CREATE TABLE PRODUTO(
-		id_produto bigint auto_increment not null,
+	id_produto bigint auto_increment not null,
         id_usuario bigint not null,
-		id_fornecedor bigint not null,
+	id_fornecedor bigint not null,
         descricao varchar(30) not null,
         quantidade int not null,
         valor_unitario numeric(9,2) not null,

@@ -6,4 +6,10 @@ na tela de cadastro de funcionario, deu nullpointerexception, axo que é do banc
 ai so fiz comentar aquela linha de codigo do construtor, depois vamos ver isso ai...
 
 
+Atualizado em (18/01/2014)
+
+Primo na entidade produto, coloquei mais tres atributos, nome, fornecedor e qtd_minima
+e fiz algumas telas, e coloquei uns icones no menu inicial, para ficar mais manuzeavel, quando estivermos desenvolvento 
+fazer teste, por ultimo, nois ajeitamos a questão do design...
+
 Atualizado em (DD/MM/AA)

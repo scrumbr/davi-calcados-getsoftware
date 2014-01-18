@@ -17,7 +17,38 @@ public class Produto {
     private Integer quantidade;
     private Double valorUnitario;
     private Double valorVenda;
+    private String nome;
+    private Funcionario funcionario;
+    private Integer quantidadeMinima;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Integer getQuantidadeMinima() {
+        return quantidadeMinima;
+    }
+
+    public void setQuantidadeMinima(Integer quantidadeMinima) {
+        this.quantidadeMinima = quantidadeMinima;
+    }
+    
+    
+    
+    
+    
     public Long getIdProduto() {
         return idProduto;
     }
