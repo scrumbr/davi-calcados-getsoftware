@@ -3,6 +3,9 @@
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="org.netbeans.examples.lib.timerbean.Timer" name="timer1">
+      <Events>
+        <EventHandler event="onTime" listener="org.netbeans.examples.lib.timerbean.TimerListener" parameters="java.awt.event.ActionEvent" handler="timer1OnTime"/>
+      </Events>
     </Component>
   </NonVisualComponents>
   <Properties>
