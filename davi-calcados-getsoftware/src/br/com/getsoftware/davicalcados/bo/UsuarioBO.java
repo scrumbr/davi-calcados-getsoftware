@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.getsoftware.davicalcados.bo;
 
-import br.com.getsoftware.davicalcados.dao.FuncionarioDAO;
-import br.com.getsoftware.davicalcados.entity.Funcionario;
+import br.com.getsoftware.davicalcados.dao.UsuarioDAO;
+import br.com.getsoftware.davicalcados.entity.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,44 +16,43 @@ import javax.swing.JOptionPane;
  *
  * @author Junior Oliveira
  */
-public class FuncionarioBO {
-
-    public static Funcionario getById(Integer id) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        Funcionario funcionario = null;
+public class UsuarioBO {
+    public static Usuario getById(Integer id) throws SQLException {
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario usuario = null;
         try {
-            funcionario = dao.getById(id);
+            usuario = dao.getById(id);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não localizou o registro\n" + e, "erro", 0);
         }
-        return funcionario;
+        return usuario;
     }
 
-    public static void save(Funcionario funcionario) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
+    public static void save(Usuario usuario) throws SQLException {
+        UsuarioDAO dao = new UsuarioDAO();
         try {
-            validator(funcionario);
-            dao.save(funcionario);
+            validator(usuario);
+            dao.save(usuario);
             JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o registro\n" + e, "erro", 0);
         }
     }
 
-    public static void update(Funcionario funcionario) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
+    public static void update(Usuario usuario) throws SQLException {
+        UsuarioDAO dao = new UsuarioDAO();
         try {
-            validator(funcionario);
-            dao.update(funcionario);
+            validator(usuario);
+            dao.update(usuario);
             JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Atualizado com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro\n" + e, "erro", 0);
         }
     }
 
-    public static ArrayList<Funcionario> listAll() throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        ArrayList<Funcionario> minhaLista = null;
+    public static ArrayList<Usuario> listAll() throws SQLException {
+        UsuarioDAO dao = new UsuarioDAO();
+        ArrayList<Usuario> minhaLista = null;
         try {
             minhaLista = dao.listAll();
         } catch (SQLException e) {
@@ -61,20 +61,9 @@ public class FuncionarioBO {
 
         return minhaLista;
     }
-     public static ArrayList<Funcionario> listAll(String table, String filtro) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        ArrayList<Funcionario> minhaLista = null;
-        try {
-            minhaLista = dao.listAll(table, filtro);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Não foi possível filtrar e listar os registros\n" + e, "erro", 0);
-        }
-
-        return minhaLista;
-    }
 
     public static void delete(int id) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
+        UsuarioDAO dao = new UsuarioDAO();
         try {
             int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
             if (opc == JOptionPane.YES_OPTION) {
@@ -86,7 +75,7 @@ public class FuncionarioBO {
         }
     }
 
-    public static void validator(Funcionario funcionario) {
-        
+    public static void validator(Usuario usuario) {
+
     }
 }

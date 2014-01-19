@@ -20,8 +20,7 @@ public class SplashGetSoftwareGUI extends javax.swing.JFrame {
      */
     public SplashGetSoftwareGUI() {
         initComponents();
-        timer1.start();
-        
+//        timer1.start();
     }
 
     /**
@@ -36,6 +35,12 @@ public class SplashGetSoftwareGUI extends javax.swing.JFrame {
         timer1 = new org.netbeans.examples.lib.timerbean.Timer();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
+
+        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
+            public void onTime(java.awt.event.ActionEvent evt) {
+                timer1OnTime(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -54,14 +59,14 @@ public class SplashGetSoftwareGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void timer1OnTime(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timer1OnTime
-        Random r = new Random();
-        int num = r.nextInt(25);
-        jProgressBar1.setValue(jProgressBar1.getValue()+num);
-        if(jProgressBar1.getValue()>=100){
-            new LoginGUI().setVisible(true);
-            this.dispose();
-            timer1.stop();
-        }
+//        Random r = new Random();
+//        int num = r.nextInt(25);
+//        jProgressBar1.setValue(jProgressBar1.getValue()+num);
+//        if(jProgressBar1.getValue()>=100){
+//            new LoginGUI().setVisible(true);
+//            this.dispose();
+//            timer1.stop();
+//        }
     }//GEN-LAST:event_timer1OnTime
 
     /**

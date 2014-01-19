@@ -12,7 +12,6 @@ import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
-import com.mysql.jdbc.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,8 +74,8 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
     @Override
     public void save(Funcionario funcionario) throws SQLException {
         String sql = "insert into funcionario(nome,data_nascimento,cpf,rg,telefone,telefone2, "
-                + " email,salario,contrato, recisao, ativo, rua,numero,complemento,bairro,cidade,CEP,estado) "
-                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " email,salario,contrato, ativo, rua,numero,complemento,bairro,cidade,CEP,estado) "
+                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -89,15 +88,14 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(7, funcionario.getEmail());
         stmt.setDouble(8, funcionario.getSalario());
         stmt.setString(9, funcionario.getContrato());
-        stmt.setString(10, funcionario.getRecisao());
-        stmt.setBoolean(11, funcionario.isAtivo());
-        stmt.setString(12, funcionario.getEndereco().getRua());
-        stmt.setLong(13, funcionario.getEndereco().getNumero());
-        stmt.setString(14, funcionario.getEndereco().getComplemento());
-        stmt.setString(15, funcionario.getEndereco().getBairro());
-        stmt.setString(16, funcionario.getEndereco().getCidade());
-        stmt.setString(17, funcionario.getEndereco().getCEP());
-        stmt.setString(18, funcionario.getEndereco().getEstado());
+        stmt.setBoolean(10, funcionario.isAtivo());
+        stmt.setString(11, funcionario.getEndereco().getRua());
+        stmt.setLong(12, funcionario.getEndereco().getNumero());
+        stmt.setString(13, funcionario.getEndereco().getComplemento());
+        stmt.setString(14, funcionario.getEndereco().getBairro());
+        stmt.setString(15, funcionario.getEndereco().getCidade());
+        stmt.setString(16, funcionario.getEndereco().getCEP());
+        stmt.setString(17, funcionario.getEndereco().getEstado());
 
         stmt.execute();
         stmt.close();
@@ -137,7 +135,47 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
 
     @Override
     public ArrayList<Funcionario> listAll() throws SQLException {
-        String sql = "select * from funcionario order by descricao";
+        String sql = "select * from funcionario";
+
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        ResultSet res = stmt.executeQuery();
+
+        ArrayList<Funcionario> minhaLista = new ArrayList<>();
+        while (res.next()) {
+            Funcionario funcionario = new Funcionario();
+            Endereco end = new Endereco();
+            funcionario.setAtivo(res.getBoolean("ativo"));
+            funcionario.setContrato(TransformDate.transformDate(res.getString("contrato")));
+            funcionario.setCpf(TransformCpf.transformCpf(res.getString("cpf")));
+            funcionario.setDataNascimento(TransformDate.transformDate(res.getString("data_nascimento")));
+            funcionario.setEmail(res.getString("email"));
+            funcionario.setIdFuncionario(res.getLong("id_funcionario"));
+            funcionario.setNome(res.getString("nome"));
+            funcionario.setRecisao(TransformDate.transformDate(res.getString("recisao")));
+            funcionario.setRg(res.getString("rg"));
+            funcionario.setSalario(res.getDouble("salario"));
+            funcionario.setTelefone(TransformTelefone.transformTelefone(res.getString("telefone")));
+            funcionario.setTelefone2(TransformTelefone.transformTelefone(res.getString("telefone2")));
+
+            end.setBairro(res.getString("bairro"));
+            end.setCEP(res.getString("cep"));
+            end.setCidade(res.getString("cidade"));
+            end.setComplemento(res.getString("complemento"));
+            end.setEstado(res.getString("estado"));
+            end.setNumero(res.getInt("numero"));
+            end.setRua(res.getString("rua"));
+            funcionario.setEndereco(end);
+
+            minhaLista.add(funcionario);
+        }
+        res.close();
+        stmt.close();
+        return minhaLista;
+    }
+    
+    public ArrayList<Funcionario> listAll(String table, String filtro) throws SQLException {
+        String sql = "select * from funcionario where "+table +" like %'"+filtro+"%'";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
