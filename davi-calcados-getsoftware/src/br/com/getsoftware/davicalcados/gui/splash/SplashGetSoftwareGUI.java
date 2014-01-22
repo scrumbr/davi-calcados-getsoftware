@@ -32,15 +32,8 @@ public class SplashGetSoftwareGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        timer1 = new org.netbeans.examples.lib.timerbean.Timer();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
-
-        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
-            public void onTime(java.awt.event.ActionEvent evt) {
-                timer1OnTime(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -107,6 +100,5 @@ public class SplashGetSoftwareGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar1;
-    private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables
 }

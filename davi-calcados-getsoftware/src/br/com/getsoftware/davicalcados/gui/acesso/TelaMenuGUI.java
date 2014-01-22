@@ -28,7 +28,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
      */
     public TelaMenuGUI() {
         initComponents();
-        timer1.start();
+       // timer1.start();
         jLData.setText(MyDate.getDataAtual());
         jLHora.setText(MyHours.getHoraAtual());
         
@@ -43,7 +43,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        timer1 = new org.netbeans.examples.lib.timerbean.Timer();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLData = new javax.swing.JLabel();
@@ -72,12 +71,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-
-        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
-            public void onTime(java.awt.event.ActionEvent evt) {
-                timer1OnTime(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setExtendedState(6);
@@ -350,6 +343,5 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
-    private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables
 }
