@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package br.com.getsoftware.davicalcados.entity;
 
@@ -20,8 +15,18 @@ public class Fornecedor {
     private String telefone;
     private String telefone2;
     private String email;
+    private String observacao;
     private boolean status;
 
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    
     public Long getIdFornecedor() {
         return idFornecedor;
     }

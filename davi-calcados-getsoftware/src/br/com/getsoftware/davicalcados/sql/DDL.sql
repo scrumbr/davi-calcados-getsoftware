@@ -17,7 +17,7 @@ CREATE TABLE FUNCIONARIO(
         contrato date not null,
         recisao date,
         ativo boolean not null,
-	    rua varchar(50) not null,
+        rua varchar(50) not null,
         numero int not null,
         complemento varchar(20),
         bairro varchar(50) not null,
@@ -28,7 +28,7 @@ constraint pk_funcionario primary key funcionario(id_funcionario)
 );
 
 CREATE TABLE USUARIO(
-	    id_usuario bigint auto_increment not null,
+        id_usuario bigint auto_increment not null,
         id_funcionario bigint not null,
         username varchar(30) not null,
         senha varchar(30) not null,
@@ -39,7 +39,7 @@ constraint fk_usuario foreign key usuario(id_funcionario) references funcionario
 );
 
 CREATE TABLE CLIENTE(
-	    id_cliente bigint auto_increment not null,
+        id_cliente bigint auto_increment not null,
         id_usuario bigint not null,
         nome varchar(150) not null,
         profissao varchar(150) not null,
@@ -79,7 +79,7 @@ CREATE TABLE VENDA(
 */
 
 CREATE TABLE FORNECEDOR(
-	    id_fornecedor bigint auto_increment not null,
+	id_fornecedor bigint auto_increment not null,
         id_usuario bigint not null,
         nome varchar(150) not null,
         fisica_juridica varchar(18) not null, -- CNPJ (99.999.999/0001-99) ou CPF (999.999.999-99)
@@ -87,7 +87,7 @@ CREATE TABLE FORNECEDOR(
         telefone2 varchar(13), -- (88)8888-8888
         email varchar(150),
         ativo boolean not null,
-	    rua varchar(50) not null,
+	rua varchar(50) not null,
         numero int not null,
         complemento varchar(20),
         bairro varchar(50) not null,
@@ -114,7 +114,7 @@ constraint fk_produto foreign key produto(id_usuario) references usuario(id_usua
 
 
 CREATE TABLE SAIDA(
-	    id_usuario bigint not null,
+	id_usuario bigint not null,
         id_saida bigint auto_increment not null,
         descricao longtext not null,
         valor_Saida numeric(9,2) not null,
@@ -124,7 +124,7 @@ constraint fk_saida foreign key saida(id_usuario) references usuario(id_usuario)
 );
 
 CREATE TABLE ENTRADA(
-		id_usuario bigint not null,
+        id_usuario bigint not null,
         id_entrada bigint auto_increment not null,
         descricao_entrada longtext not null,
         valor_entrada numeric(9,2) not null,
