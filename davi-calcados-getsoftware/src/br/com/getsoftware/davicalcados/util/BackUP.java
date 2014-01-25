@@ -16,19 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class BackUP {
     // Botão Backup
-
-    private Connection conexao;
-
-    public BackUP(JFileChooser JFC_Salvar_Backup) {
-        try {
-            this.conexao = Conexao.getConexao();//Conecta ao banco de dados 
-            JFC_Salvar_Backup.setVisible(false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
-        }
-    }
-
-    public void backUp(JFileChooser JFC_Salvar_Backup) {
+ 
+    public static void backUp(String user, String senha, String dbName) {
+        JFileChooser JFC_Salvar_Backup = new JFileChooser();
         try {
             String arquivo = null;
 
@@ -47,17 +37,17 @@ public class BackUP {
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if (opcao == JOptionPane.YES_OPTION) {
                         Runtime bck = Runtime.getRuntime();
-                        bck.exec("src/br/com/getsoftware/davicalcados/util/mysqldump.exe -v -v -v --host=localhost --user=root --password= --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases Projeto Atlas");
+                        bck.exec("mysqldump.exe -v -v -v --host=localhost --user="+user+" --password="+senha+" --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases="+dbName);
                         JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Backup", 1);
                     } else {
-                        backUp(JFC_Salvar_Backup);
+                        backUp(user, senha, dbName);
 
                     }
                 } else {
 
                     Runtime bck = Runtime.getRuntime();
-                    bck.exec("TIBD/gerenciadorDeAcademia/util/mysqldump.exe -v -v -v --host=localhost --user=root --password= --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases Projeto Atlas");
-                    JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Tudo OK!", 1);
+                    bck.exec("mysqldump  -v -v -v --host=localhost --user="+user+" --password="+senha+" --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases="+dbName);
+                    JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "backup", 1);
                 }
 
             }

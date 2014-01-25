@@ -27,7 +27,15 @@ CREATE TABLE FUNCIONARIO(
 constraint pk_funcionario primary key funcionario(id_funcionario)
 );
 
- 
+CREATE TABLE USUARIO(
+        id_usuario bigint auto_increment not null,
+        username varchar(30) not null,
+        senha varchar(30) not null,
+        nivel int not null,
+        ativo boolean not null,
+constraint pk_usuario primary key usuario(id_usuario),
+constraint fk_usuario foreign key usuario(id_usuario) references funcionario(id_funcionario)
+);
 
 CREATE TABLE CLIENTE(
         id_cliente bigint auto_increment not null,

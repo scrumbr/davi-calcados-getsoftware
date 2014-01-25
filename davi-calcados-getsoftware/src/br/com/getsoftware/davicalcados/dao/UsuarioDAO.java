@@ -6,12 +6,8 @@
 package br.com.getsoftware.davicalcados.dao;
 
 import br.com.getsoftware.davicalcados.connection.Conexao;
-import br.com.getsoftware.davicalcados.entity.Endereco;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
-import br.com.getsoftware.davicalcados.util.TransformCpf;
-import br.com.getsoftware.davicalcados.util.TransformDate;
-import br.com.getsoftware.davicalcados.util.TransformTelefone;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,10 +25,6 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
     public UsuarioDAO() throws SQLException {
         this.conexao = Conexao.getConexao();
     }
-    /*
-     *id_usuario, nome,data_nascimento,cpf,rg,telefone,telefone2,
-     *email,salario,contrato,recisao,ativo,rua,numero,complemento,bairro,cidade,CEP,estado
-     */
 
     @Override
     public Usuario getById(Integer id) throws SQLException {
@@ -41,16 +33,16 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         ResultSet res = stmt.executeQuery();
 
-        Usuario usuario = new Usuario();
-
-        usuario.setActive(res.getBoolean("ativo"));
-        usuario.setIdFuncionario(res.getInt("id_funcionario"));
-        usuario.setNivel(res.getInt("nivel"));
-        usuario.setSenha(res.getString("senha"));
-        usuario.setUserName(res.getString("username "));
-        usuario.setIdUsuario(res.getInt("id_usuario"));
-
-        stmt.execute();
+        Usuario usuario = null;
+        if (res.next()) {
+            usuario = new Usuario();
+            usuario.setActive(res.getBoolean("ativo"));
+            usuario.setIdUsuario(res.getLong("id_usuario"));
+            usuario.setNivel(res.getInt("nivel"));
+            usuario.setSenha(res.getString("senha"));
+            usuario.setUserName(res.getString("username"));
+        }
+        res.close();
         stmt.close();
 
         return usuario;
@@ -58,16 +50,16 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
 
     @Override
     public void save(Usuario usuario) throws SQLException {
-        String sql = "insert into usuario(nome,data_nascimento,cpf,rg,telefone,telefone2, "
-                + " email,salario,contrato, recisao, ativo, rua,numero,complemento,bairro,cidade,CEP,estado) "
-                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into usuario(senha, username, id_usuario, nivel, ativo) "
+                + " values (?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
         stmt.setString(1, usuario.getSenha());
         stmt.setString(2, usuario.getUserName());
-        stmt.setLong(3, usuario.getIdFuncionario());
+        stmt.setLong(3, usuario.getIdUsuario());
         stmt.setLong(4, usuario.getNivel());
+        stmt.setBoolean(5, usuario.isActive());
 
         stmt.execute();
         stmt.close();
@@ -75,16 +67,14 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
 
     @Override
     public void update(Usuario usuario) throws SQLException {
-        String sql = "update usuario set nome=?,data_nascimento=?,cpf=?,rg=?,telefone=?,telefone2=?, "
-                + " email=?,salario=?,contrato=?, recisao=?, ativo=?, rua=?,numero=?,complemento=?,bairro=?,cidade=?,CEP=?,estado=?"
-                + " where id_usuario=?";
+        String sql = "update usuario set senha=?, username=?, nivel=?, ativo=? where id_usuario=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
         stmt.setString(1, usuario.getSenha());
         stmt.setString(2, usuario.getUserName());
-        stmt.setLong(3, usuario.getIdFuncionario());
-        stmt.setLong(4, usuario.getNivel());
+        stmt.setLong(3, usuario.getNivel());
+        stmt.setBoolean(4, usuario.isActive());
         stmt.setLong(5, usuario.getIdUsuario());
 
         stmt.execute();
@@ -93,7 +83,7 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
 
     @Override
     public ArrayList<Usuario> listAll() throws SQLException {
-        String sql = "select * from usuario order by descricao";
+        String sql = "select * from usuario";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -104,11 +94,10 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
             Usuario usuario = new Usuario();
 
             usuario.setActive(res.getBoolean("ativo"));
-            usuario.setIdFuncionario(res.getInt("id_funcionario"));
+            usuario.setIdUsuario(res.getLong("id_usuarrio"));
             usuario.setNivel(res.getInt("nivel"));
             usuario.setSenha(res.getString("senha"));
             usuario.setUserName(res.getString("username "));
-            usuario.setIdUsuario(res.getInt("id_usuario"));
 
             minhaLista.add(usuario);
         }

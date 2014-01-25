@@ -11,27 +11,18 @@ package br.com.getsoftware.davicalcados.entity;
  */
 public class Usuario {
 
-    private Integer idUsuario;
-    private Integer idFuncionario;
+    private Long idUsuario;
     private String userName;
     private String senha;
     private Integer nivel;
     private Boolean active;
 
-    public Integer getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Integer getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(Integer idFuncionario) {
-        this.idFuncionario = idFuncionario;
     }
 
     public String getUserName() {

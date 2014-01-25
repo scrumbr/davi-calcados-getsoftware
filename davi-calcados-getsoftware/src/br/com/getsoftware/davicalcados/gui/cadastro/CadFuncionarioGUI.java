@@ -30,7 +30,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
             
     public CadFuncionarioGUI() throws SQLException {
         initComponents();
-       // jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
+        jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
     }
      public CadFuncionarioGUI(TelaMenuGUI telaMenu) throws SQLException{
          this();
@@ -618,7 +618,9 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
             FuncionarioBO.save(funcionario);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar salvar o Funcionário","Erro",0);
-        }
+        } catch (Exception ex) {
+            Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
