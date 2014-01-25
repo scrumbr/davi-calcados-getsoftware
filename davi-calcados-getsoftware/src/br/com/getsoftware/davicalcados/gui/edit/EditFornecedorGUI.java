@@ -2,23 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.getsoftware.davicalcados.gui.cadastro;
+package br.com.getsoftware.davicalcados.gui.edit;
 
+import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 
 /**
  *
  * @author Andrey Gois
  */
-public class CadFornecedorGUI extends javax.swing.JFrame {
+public class EditFornecedorGUI extends javax.swing.JFrame {
 
     private TelaMenuGUI telaMenu;
     
-    public CadFornecedorGUI() {
+    public EditFornecedorGUI() {
         initComponents();
     }
 
-    public CadFornecedorGUI(TelaMenuGUI telaMenu){
+    public EditFornecedorGUI(TelaMenuGUI telaMenu){
         this();
         this.telaMenu = telaMenu;
     }
@@ -81,16 +82,16 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro de Fornecedor");
+        jLabel1.setText("Editar Fornecedor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(210, 210, 210)
                 .addComponent(jLabel1)
-                .addGap(200, 200, 200))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
