@@ -11,12 +11,17 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
+import br.com.getsoftware.davicalcados.util.BackUP;
+import br.com.getsoftware.davicalcados.util.Backup1;
+import br.com.getsoftware.davicalcados.util.BackupAndRestore;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.MyHours;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,6 +67,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMlistFuncionarios = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -78,6 +84,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -188,6 +196,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Search-icon.png"))); // NOI18N
         jMenu5.setText("CONSULTAR");
+
+        jMlistFuncionarios.setText("Listar Funcionáios");
+        jMlistFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistFuncionariosActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMlistFuncionarios);
+
         jMenuBar2.add(jMenu5);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/document-icon.png"))); // NOI18N
@@ -261,6 +278,20 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Backup-Seagate.png"))); // NOI18N
         jMenu8.setText("BACKUP");
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Blue-Backup-B-icon.png"))); // NOI18N
+        jMenuItem6.setText("backup");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem6);
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/restaurar-Backup-B-icon.png"))); // NOI18N
+        jMenuItem9.setText("restaurar backup");
+        jMenu8.add(jMenuItem9);
+
         jMenuBar2.add(jMenu8);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Information-icon.png"))); // NOI18N
@@ -368,6 +399,18 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        BackUP.backUp("root", "", "davi_calcados");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMlistFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistFuncionariosActionPerformed
+        try {
+            new ListFuncionariosGUI().setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar os funcionários", "Erro", 0);
+        }
+    }//GEN-LAST:event_jMlistFuncionariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,8 +469,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMlistFuncionarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;

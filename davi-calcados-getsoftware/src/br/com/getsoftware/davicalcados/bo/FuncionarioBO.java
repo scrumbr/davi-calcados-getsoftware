@@ -28,7 +28,7 @@ public class FuncionarioBO {
         return funcionario;
     }
 
-    public static void save(Funcionario funcionario) throws SQLException {
+    public static void save(Funcionario funcionario) throws SQLException, Exception {
         FuncionarioDAO dao = new FuncionarioDAO();
         try {
             validator(funcionario);
@@ -39,7 +39,7 @@ public class FuncionarioBO {
         }
     }
 
-    public static void update(Funcionario funcionario) throws SQLException {
+    public static void update(Funcionario funcionario) throws SQLException, Exception {
         FuncionarioDAO dao = new FuncionarioDAO();
         try {
             validator(funcionario);
@@ -86,7 +86,9 @@ public class FuncionarioBO {
         }
     }
 
-    public static void validator(Funcionario funcionario) {
-        
+    public static void validator(Funcionario funcionario) throws Exception {
+        if(funcionario.getNome().isEmpty() || funcionario.getNome()==null){
+            JOptionPane.showMessageDialog(null, "");
+        }
     }
 }

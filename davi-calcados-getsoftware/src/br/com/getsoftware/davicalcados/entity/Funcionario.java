@@ -129,5 +129,10 @@ public class Funcionario {
         this.ativo = ativo;
     }
 
+    @Override
+    public String toString() {
+        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", cpf=" + cpf + ", rg=" + rg + ", telefone=" + telefone + ", telefone2=" + telefone2 + ", email=" + email + ", salario=" + salario + ", contrato=" + contrato + ", recisao=" + recisao + ", endereco=" + endereco + ", ativo=" + ativo + '}';
+    }
+
     
 }

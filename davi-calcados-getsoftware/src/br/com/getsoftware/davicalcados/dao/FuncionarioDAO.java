@@ -37,11 +37,13 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
     @Override
     public Funcionario getById(Integer id) throws SQLException {
 
-        String sql = "select * from funcionario where id_funcionario = " + id;
+        String sql = "select * from funcionario where (id_funcionario = " + id+")";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         ResultSet res = stmt.executeQuery();
-
+        
+        
         Funcionario funcionario = new Funcionario();
+        if(res.next()){
         Endereco end = new Endereco();
         funcionario.setAtivo(res.getBoolean("ativo"));
         funcionario.setContrato(TransformDate.transformDate(res.getString("contrato")));
@@ -50,7 +52,9 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         funcionario.setEmail(res.getString("email"));
         funcionario.setIdFuncionario(res.getLong("id_funcionario"));
         funcionario.setNome(res.getString("nome"));
+        if(res.getString("recisao") != null){
         funcionario.setRecisao(TransformDate.transformDate(res.getString("recisao")));
+        }
         funcionario.setRg(res.getString("rg"));
         funcionario.setSalario(res.getDouble("salario"));
         funcionario.setTelefone(TransformTelefone.transformTelefone(res.getString("telefone")));
@@ -64,8 +68,8 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         end.setNumero(res.getInt("numero"));
         end.setRua(res.getString("rua"));
         funcionario.setEndereco(end);
-
-        stmt.execute();
+        }
+        res.close();
         stmt.close();
 
         return funcionario;
@@ -152,7 +156,9 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
             funcionario.setEmail(res.getString("email"));
             funcionario.setIdFuncionario(res.getLong("id_funcionario"));
             funcionario.setNome(res.getString("nome"));
+            if(res.getString("recisao")!=null){
             funcionario.setRecisao(TransformDate.transformDate(res.getString("recisao")));
+            }
             funcionario.setRg(res.getString("rg"));
             funcionario.setSalario(res.getDouble("salario"));
             funcionario.setTelefone(TransformTelefone.transformTelefone(res.getString("telefone")));
