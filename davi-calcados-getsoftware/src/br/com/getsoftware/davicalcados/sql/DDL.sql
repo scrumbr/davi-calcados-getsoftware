@@ -5,7 +5,7 @@ use davi_calcados;
 -- drop database davi_calcados;
 
 CREATE TABLE FUNCIONARIO(
-		id_funcionario bigint auto_increment,
+	id_funcionario bigint auto_increment,
         nome varchar(150) not null,
         data_nascimento date not null,
         cpf varchar(14) not null,
@@ -27,16 +27,7 @@ CREATE TABLE FUNCIONARIO(
 constraint pk_funcionario primary key funcionario(id_funcionario)
 );
 
-CREATE TABLE USUARIO(
-        id_usuario bigint auto_increment not null,
-        id_funcionario bigint not null,
-        username varchar(30) not null,
-        senha varchar(30) not null,
-        nivel int not null,
-        ativo boolean not null,
-constraint pk_usuario primary key usuario(id_usuario),
-constraint fk_usuario foreign key usuario(id_funcionario) references funcionario(id_funcionario)
-);
+ 
 
 CREATE TABLE CLIENTE(
         id_cliente bigint auto_increment not null,
@@ -55,8 +46,8 @@ CREATE TABLE CLIENTE(
         data_ultima_compra date,
         preferencia longtext,
         numero_boleto bigint ,
-		ativo boolean not null,
-	    rua varchar(50) not null,
+        ativo boolean not null,
+	rua varchar(50) not null,
         numero int not null,
         complemento varchar(20),
         bairro varchar(50) not null,

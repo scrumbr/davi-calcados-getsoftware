@@ -130,7 +130,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenuBar2.setBackground(new java.awt.Color(0, 0, 0));
         jMenuBar2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/user-48.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/registrar-48.png"))); // NOI18N
         jMenu3.setText("CADASTRO");
 
         jMFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/funcionario-16.png"))); // NOI18N
