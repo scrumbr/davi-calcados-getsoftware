@@ -199,6 +199,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Idade");
 
+        jTidade.setEditable(false);
         jTidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         try {

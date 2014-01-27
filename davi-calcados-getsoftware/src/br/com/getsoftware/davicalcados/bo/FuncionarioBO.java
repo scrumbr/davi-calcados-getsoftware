@@ -61,18 +61,7 @@ public class FuncionarioBO {
 
         return minhaLista;
     }
-     public static ArrayList<Funcionario> listAll(String table, String filtro) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        ArrayList<Funcionario> minhaLista = null;
-        try {
-            minhaLista = dao.listAll(table, filtro);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Não foi possível filtrar e listar os registros\n" + e, "erro", 0);
-        }
-
-        return minhaLista;
-    }
-
+    
     public static void delete(int id) throws SQLException {
         FuncionarioDAO dao = new FuncionarioDAO();
         try {

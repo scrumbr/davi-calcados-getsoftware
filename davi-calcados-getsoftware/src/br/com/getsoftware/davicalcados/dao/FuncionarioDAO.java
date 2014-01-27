@@ -179,47 +179,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.close();
         return minhaLista;
     }
-    
-    public ArrayList<Funcionario> listAll(String table, String filtro) throws SQLException {
-        String sql = "select * from funcionario where "+table +" like %'"+filtro+"%'";
-
-        PreparedStatement stmt = this.conexao.prepareStatement(sql);
-
-        ResultSet res = stmt.executeQuery();
-
-        ArrayList<Funcionario> minhaLista = new ArrayList<>();
-        while (res.next()) {
-            Funcionario funcionario = new Funcionario();
-            Endereco end = new Endereco();
-            funcionario.setAtivo(res.getBoolean("ativo"));
-            funcionario.setContrato(TransformDate.transformDate(res.getString("contrato")));
-            funcionario.setCpf(TransformCpf.transformCpf(res.getString("cpf")));
-            funcionario.setDataNascimento(TransformDate.transformDate(res.getString("data_nascimento")));
-            funcionario.setEmail(res.getString("email"));
-            funcionario.setIdFuncionario(res.getLong("id_funcionario"));
-            funcionario.setNome(res.getString("nome"));
-            funcionario.setRecisao(TransformDate.transformDate(res.getString("recisao")));
-            funcionario.setRg(res.getString("rg"));
-            funcionario.setSalario(res.getDouble("salario"));
-            funcionario.setTelefone(TransformTelefone.transformTelefone(res.getString("telefone")));
-            funcionario.setTelefone2(TransformTelefone.transformTelefone(res.getString("telefone2")));
-
-            end.setBairro(res.getString("bairro"));
-            end.setCEP(res.getString("cep"));
-            end.setCidade(res.getString("cidade"));
-            end.setComplemento(res.getString("complemento"));
-            end.setEstado(res.getString("estado"));
-            end.setNumero(res.getInt("numero"));
-            end.setRua(res.getString("rua"));
-            funcionario.setEndereco(end);
-
-            minhaLista.add(funcionario);
-        }
-        res.close();
-        stmt.close();
-        return minhaLista;
-    }
-
+     
     @Override
     public void delete(Integer id) throws SQLException {
         String sql = "delete from funcionario where id_funcionario=?";
