@@ -617,8 +617,19 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         funcionario.setEndereco(end);
         try {
             FuncionarioBO.save(funcionario);
+            JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
+
+             int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo funcionario ?", "Novo funcionario", JOptionPane.YES_NO_OPTION);
+                if(escolha == 0) {
+                    limpaCampos();
+                   jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
+                } else {
+                     telaMenu.setEnabled(true);
+                     dispose();
+                }   
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar salvar o Funcionário","Erro",0);
+           
         } catch (Exception ex) {
             Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -744,4 +755,31 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
             return false;
         }
     }
+    
+    public void limpaCampos(){
+        jFcpf.setText(null);
+        jTnome.setText(null);
+        jFdataNascimento.setText(null);
+        jTrg.setText(null);
+        jTemail.setText(null);
+        jTidade.setText(null);
+        jFtel1.setText(null);
+        jFtel2.setText(null);
+        jFcontrato.setText(null);
+        jFrecisao.setText(null);
+        jTsalario.setText(null);
+        jRativo.setSelected(true);
+        jTcidade.setText(null);
+        jTbairro.setText(null);
+        jCestado.setSelectedIndex(0);
+        jFcep.setText(null);
+        jTrua.setText(null);
+        jTnumero.setText(null);
+        jTcomplemento.setText(null);  
+        
+    }
+    
+    
+    
+    
 }

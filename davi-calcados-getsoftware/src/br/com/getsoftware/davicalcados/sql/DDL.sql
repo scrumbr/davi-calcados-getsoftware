@@ -39,10 +39,9 @@ constraint fk_usuario foreign key usuario(id_usuario) references funcionario(id_
 
 CREATE TABLE CLIENTE(
         id_cliente bigint auto_increment not null,
-        id_usuario bigint not null,
         nome varchar(150) not null,
         profissao varchar(150) not null,
-        sexo char(1) not null,
+        sexo varchar(12) not null,
         data_nascimento date not null,
         estado_civil varchar(20),
         cpf varchar(14) not null, -- 111.111.111-11
@@ -50,20 +49,18 @@ CREATE TABLE CLIENTE(
         telefone varchar(13), -- (88)8888-8888
         telefone2 varchar(13), -- (88)8888-8888
         email varchar(40), 
-        dataVenda date not null,
         data_ultima_compra date,
         preferencia longtext,
         numero_boleto bigint ,
         ativo boolean not null,
-	rua varchar(50) not null,
+	    rua varchar(50) not null,
         numero int not null,
         complemento varchar(20),
         bairro varchar(50) not null,
         cidade varchar(50) not null,
         CEP varchar(10), -- 99.999-999
         estado char(2) not null,
-constraint pk_cliente primary key cliente(id_cliente),
-constraint fk_cliente foreign key cliente(id_usuario) references usuario(id_usuario)
+constraint pk_cliente primary key cliente(id_cliente)
 );
 
 /*

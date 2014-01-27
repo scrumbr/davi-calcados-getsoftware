@@ -1,58 +1,56 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.com.getsoftware.davicalcados.bo;
 
-import br.com.getsoftware.davicalcados.dao.FuncionarioDAO;
-import br.com.getsoftware.davicalcados.entity.Funcionario;
+import br.com.getsoftware.davicalcados.dao.ClienteDAO;
+import br.com.getsoftware.davicalcados.entity.Cliente;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Junior Oliveira
+ * @author Andrey Gois
  */
-public class FuncionarioBO {
-
-    public static Funcionario getById(Integer id) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        Funcionario funcionario = null;
+public class ClienteBO {
+      public static Cliente getById(Integer id) throws SQLException {
+        ClienteDAO dao = new ClienteDAO();
+        Cliente cliente = null;
         try {
-            funcionario = dao.getById(id);
+            cliente = dao.getById(id);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não localizou o registro\n" + e, "erro", 0);
         }
-        return funcionario;
+        return cliente;
     }
 
-    public static void save(Funcionario funcionario) throws SQLException, Exception {
-        FuncionarioDAO dao = new FuncionarioDAO();
+    public static void save(Cliente cliente) throws SQLException, Exception {
+        ClienteDAO dao = new ClienteDAO();
         try {
-            validator(funcionario);
-            dao.save(funcionario);
+            validator(cliente);
+            dao.save(cliente);
             //JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o registro\n" + e, "erro", 0);
         }
     }
 
-    public static void update(Funcionario funcionario) throws SQLException, Exception {
-        FuncionarioDAO dao = new FuncionarioDAO();
+    public static void update(Cliente cliente) throws SQLException, Exception {
+        ClienteDAO dao = new ClienteDAO();
         try {
-            validator(funcionario);
-            dao.update(funcionario);
+            validator(cliente);
+            dao.update(cliente);
            // JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Atualizado com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro\n" + e, "erro", 0);
         }
     }
 
-    public static ArrayList<Funcionario> listAll() throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        ArrayList<Funcionario> minhaLista = null;
+    public static ArrayList<Cliente> listAll() throws SQLException {
+        ClienteDAO dao = new ClienteDAO();
+        ArrayList<Cliente> minhaLista = null;
         try {
             minhaLista = dao.listAll();
         } catch (SQLException e) {
@@ -63,7 +61,7 @@ public class FuncionarioBO {
     }
     
     public static void delete(int id) throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
+        ClienteDAO dao = new ClienteDAO();
         try {
             int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
             if (opc == JOptionPane.YES_OPTION) {
@@ -75,9 +73,10 @@ public class FuncionarioBO {
         }
     }
 
-    public static void validator(Funcionario funcionario) throws Exception {
-        if(funcionario.getNome().isEmpty() || funcionario.getNome()==null){
+    public static void validator(Cliente cliente) throws Exception {
+        if(cliente.getNome().isEmpty() || cliente.getNome()==null){
             JOptionPane.showMessageDialog(null, "");
         }
     }
+    
 }
