@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.getsoftware.davicalcados.gui.lista;
 
 import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
@@ -11,6 +10,9 @@ import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
+import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
+import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -28,12 +30,18 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
      * Creates new form ListFuncionariosGUI
      */
     private ArrayList<Funcionario> listFuncionarios;
-    private int linhaSelecionada;
+    private int linhaSelecionada = 0;
+
     public ListFuncionariosGUI() throws SQLException {
         initComponents();
-        listFuncionarios = FuncionarioBO.listAll();
         dadosTabela();
         jTable1.setAutoCreateRowSorter(true);
+        atualizaLinhaSelecionada();
+    }
+
+    public void atualizaLinhaSelecionada() {
+        linhaSelecionada = 0;
+        jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
     }
 
     /**
@@ -60,6 +68,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jBexcluir = new javax.swing.JButton();
         jBvisualizar = new javax.swing.JButton();
         jBcadUser = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -224,7 +233,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
-        jBvisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Eye-icon.png"))); // NOI18N
+        jBvisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/visualizar_cliente-24.png"))); // NOI18N
         jBvisualizar.setText("Visualizar");
         jBvisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,12 +249,17 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
+        jButton1.setText("Cad Funcionário");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(283, Short.MAX_VALUE)
+                .addContainerGap(140, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBcadUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBvisualizar)
@@ -264,12 +278,14 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBcancelar)
-                    .addComponent(jBeditar)
-                    .addComponent(jBexcluir)
-                    .addComponent(jBvisualizar)
-                    .addComponent(jBcadUser))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBcancelar)
+                        .addComponent(jBeditar)
+                        .addComponent(jBexcluir)
+                        .addComponent(jBvisualizar)
+                        .addComponent(jBcadUser))
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -292,19 +308,19 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(950, 468));
+        setSize(new java.awt.Dimension(950, 473));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBcadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadUserActionPerformed
         try {
             Usuario user = UsuarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-            if(user==null){
+            if (user == null) {
                 Funcionario funcionario;
                 try {
                     funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
@@ -312,37 +328,46 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "funcionário já possui usuário", "Atenção", 2);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível verificar se o funcionário já possui um login", "Erro", 0);
         }
-        
-        
-        
     }//GEN-LAST:event_jBcadUserActionPerformed
 
     private void jBvisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvisualizarActionPerformed
-        // TODO add your handling code here:
+       this.setEnabled(false);
+                try {
+                    Funcionario funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                    new ViewFuncionarioGUI(this, funcionario).setVisible(true);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
+                }
     }//GEN-LAST:event_jBvisualizarActionPerformed
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
-        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o Funcionário "+jTable1.getValueAt(linhaSelecionada, 1)+" ?","Excluir Registro",JOptionPane.YES_NO_OPTION);
-        if(opc == JOptionPane.YES_OPTION){
-            System.out.println(linhaSelecionada);
-            System.out.println(jTable1.getValueAt(linhaSelecionada, 0));
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o Funcionário " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
             try {
                 FuncionarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
+                dadosTabela();
+                atualizaLinhaSelecionada();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro",0);
+                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
             }
-           JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso",1);
         }
     }//GEN-LAST:event_jBexcluirActionPerformed
 
     private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
-        // TODO add your handling code here:
+        Funcionario funcionario;
+        try {
+            funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            new EditFuncionarioGUI(this, funcionario).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);
+        }
     }//GEN-LAST:event_jBeditarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
@@ -353,69 +378,74 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 //        dadosPesquisa();
     }//GEN-LAST:event_jTpesquisaKeyPressed
 
-    public void dadosPesquisaPorNome(){
+    public void dadosPesquisaPorNome() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        
-        for(int i = 0; i < listFuncionarios.size(); i++){
-            if(listFuncionarios.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
-                    || listFuncionarios.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())){
-        modelo.addRow(new Object[]{
-            listFuncionarios.get(i).getIdFuncionario(),
-            listFuncionarios.get(i).getNome(),
-            listFuncionarios.get(i).getCpf(),
-            listFuncionarios.get(i).getRg(),
-            listFuncionarios.get(i).getTelefone(),
-            listFuncionarios.get(i).getTelefone2(),
-            listFuncionarios.get(i).getEmail()
-        });}
-             
+
+        for (int i = 0; i < listFuncionarios.size(); i++) {
+            if (listFuncionarios.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
+                    || listFuncionarios.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listFuncionarios.get(i).getIdFuncionario(),
+                    listFuncionarios.get(i).getNome(),
+                    listFuncionarios.get(i).getCpf(),
+                    listFuncionarios.get(i).getRg(),
+                    listFuncionarios.get(i).getTelefone(),
+                    listFuncionarios.get(i).getTelefone2(),
+                    listFuncionarios.get(i).getEmail()
+                });
+            }
+
         }
     }
-    public void dadosPesquisaPorID(){
+
+    public void dadosPesquisaPorID() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        
-        for(int i = 0; i < listFuncionarios.size(); i++){
-            if(listFuncionarios.get(i).getIdFuncionario().toString().startsWith(jTpesquisa.getText())){
-        modelo.addRow(new Object[]{
-            listFuncionarios.get(i).getIdFuncionario(),
-            listFuncionarios.get(i).getNome(),
-            listFuncionarios.get(i).getCpf(),
-            listFuncionarios.get(i).getRg(),
-            listFuncionarios.get(i).getTelefone(),
-            listFuncionarios.get(i).getTelefone2(),
-            listFuncionarios.get(i).getEmail()
-        });}
-             
+
+        for (int i = 0; i < listFuncionarios.size(); i++) {
+            if (listFuncionarios.get(i).getIdFuncionario().toString().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listFuncionarios.get(i).getIdFuncionario(),
+                    listFuncionarios.get(i).getNome(),
+                    listFuncionarios.get(i).getCpf(),
+                    listFuncionarios.get(i).getRg(),
+                    listFuncionarios.get(i).getTelefone(),
+                    listFuncionarios.get(i).getTelefone2(),
+                    listFuncionarios.get(i).getEmail()
+                });
+            }
+
         }
     }
-    public void dadosPesquisaPorCPF(){
+
+    public void dadosPesquisaPorCPF() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        
-        for(int i = 0; i < listFuncionarios.size(); i++){
-            if( listFuncionarios.get(i).getCpf().replace(".", "").startsWith(jTpesquisa.getText())
-                    || listFuncionarios.get(i).getCpf().startsWith(jTpesquisa.getText())){
-        modelo.addRow(new Object[]{
-            listFuncionarios.get(i).getIdFuncionario(),
-            listFuncionarios.get(i).getNome(),
-            listFuncionarios.get(i).getCpf(),
-            listFuncionarios.get(i).getRg(),
-            listFuncionarios.get(i).getTelefone(),
-            listFuncionarios.get(i).getTelefone2(),
-            listFuncionarios.get(i).getEmail()
-        });}
-             
+
+        for (int i = 0; i < listFuncionarios.size(); i++) {
+            if (listFuncionarios.get(i).getCpf().replace(".", "").startsWith(jTpesquisa.getText())
+                    || listFuncionarios.get(i).getCpf().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listFuncionarios.get(i).getIdFuncionario(),
+                    listFuncionarios.get(i).getNome(),
+                    listFuncionarios.get(i).getCpf(),
+                    listFuncionarios.get(i).getRg(),
+                    listFuncionarios.get(i).getTelefone(),
+                    listFuncionarios.get(i).getTelefone2(),
+                    listFuncionarios.get(i).getEmail()
+                });
+            }
+
         }
     }
-    
+
     private void jTpesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesquisaFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jTpesquisaFocusLost
 
     private void jTpesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyTyped
-        
+
     }//GEN-LAST:event_jTpesquisaKeyTyped
 
     private void jTpesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyReleased
@@ -423,8 +453,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaKeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-         linhaSelecionada = jTable1.getSelectedRow();
-        
+        linhaSelecionada = jTable1.getSelectedRow();
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jRnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnomeActionPerformed
@@ -440,7 +470,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jRcpfActionPerformed
 
     private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
-         
+
     }//GEN-LAST:event_jTable1FocusLost
 
     /**
@@ -488,6 +518,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBexcluir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -500,30 +531,34 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTpesquisa;
     // End of variables declaration//GEN-END:variables
 
-    public void filter(){
-        if(jRnome.isSelected()){
-           dadosPesquisaPorNome();
-        }else if(jRid.isSelected()){
-           dadosPesquisaPorID();
-        }else if(jRcpf.isSelected()){
-           dadosPesquisaPorCPF();
+    public void filter() {
+        if (jRnome.isSelected()) {
+            dadosPesquisaPorNome();
+        } else if (jRid.isSelected()) {
+            dadosPesquisaPorID();
+        } else if (jRcpf.isSelected()) {
+            dadosPesquisaPorCPF();
         }
+        atualizaLinhaSelecionada();
     }
-     
-    public void dadosTabela() throws SQLException{
+
+    public void dadosTabela() throws SQLException {
+
+        listFuncionarios = FuncionarioBO.listAll();
+
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        
-        for(int i = 0; i < listFuncionarios.size(); i++){
-        modelo.addRow(new Object[]{
-            listFuncionarios.get(i).getIdFuncionario(),
-            listFuncionarios.get(i).getNome(),
-            listFuncionarios.get(i).getCpf(),
-            listFuncionarios.get(i).getRg(),
-            listFuncionarios.get(i).getTelefone(),
-            listFuncionarios.get(i).getTelefone2(),
-            listFuncionarios.get(i).getEmail()
-        });
+
+        for (int i = 0; i < listFuncionarios.size(); i++) {
+            modelo.addRow(new Object[]{
+                listFuncionarios.get(i).getIdFuncionario(),
+                listFuncionarios.get(i).getNome(),
+                listFuncionarios.get(i).getCpf(),
+                listFuncionarios.get(i).getRg(),
+                listFuncionarios.get(i).getTelefone(),
+                listFuncionarios.get(i).getTelefone2(),
+                listFuncionarios.get(i).getEmail()
+            });
         }
     }
 

@@ -11,6 +11,7 @@ import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.entity.Endereco;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
@@ -26,19 +27,26 @@ import javax.swing.JOptionPane;
  * @author Junior Oliveira
  */
 public class EditFuncionarioGUI extends javax.swing.JFrame {
-
-    private TelaMenuGUI telaMenu;
-            
+    
     public EditFuncionarioGUI() throws SQLException {
         initComponents();
-       // jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
+        // jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
     }
-     public EditFuncionarioGUI(TelaMenuGUI telaMenu) throws SQLException{
-         this();
-         this.telaMenu = telaMenu;         
-         
-     }
-    
+    private Funcionario funcionario;
+    private ListFuncionariosGUI listFuncionarios;
+
+    public EditFuncionarioGUI(ListFuncionariosGUI telaMenu, Funcionario funcionario) throws SQLException {
+        this();
+        this.listFuncionarios = telaMenu;
+        this.funcionario = funcionario;
+        refreshCampos();
+    }
+    public EditFuncionarioGUI( Funcionario funcionario) throws SQLException {
+        this();
+        this.funcionario = funcionario;
+        refreshCampos();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -170,7 +178,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         }
         jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
-        jFrecisao.setEditable(false);
         try {
             jFrecisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -190,6 +197,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Idade");
 
+        jTidade.setEditable(false);
         jTidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         try {
@@ -266,7 +274,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel20))
-                                .addGap(0, 261, Short.MAX_VALUE))
+                                .addGap(0, 263, Short.MAX_VALUE))
                             .addComponent(jTnome))))
                 .addContainerGap())
         );
@@ -414,7 +422,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+                                .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -496,7 +504,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
+                .addContainerGap(430, Short.MAX_VALUE)
                 .addComponent(jBsalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jBcancel)
@@ -575,45 +583,24 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFdataNascimentoFocusLost
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
-        telaMenu.setEnabled(true);
+        listFuncionarios.setEnabled(true);
         this.dispose();        
     }//GEN-LAST:event_jBcancelActionPerformed
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
-        Funcionario funcionario = new Funcionario();
-        Endereco end = new Endereco();
-        funcionario.setAtivo(status());
-        funcionario.setContrato(TransformDate.transformDate(jFcontrato.getText()));
-        funcionario.setCpf(TransformCpf.transformCpf(jFcpf.getText()));
-        funcionario.setDataNascimento(TransformDate.transformDate(jFdataNascimento.getText()));
-        funcionario.setEmail(jTemail.getText());
-//        funcionario.setIdFuncionario(Long.valueOf(jTid.getText()));
-        funcionario.setNome(jTnome.getText());
-        funcionario.setRecisao(TransformDate.transformDate(jFrecisao.getText()));
-        funcionario.setRg(jTrg.getText());
-        funcionario.setSalario(Double.valueOf(jTsalario.getText()));
-        funcionario.setTelefone(TransformTelefone.transformTelefone(jFtel1.getText()));
-        funcionario.setTelefone2(TransformTelefone.transformTelefone(jFtel2.getText()));
-
-        end.setBairro(jTbairro.getText());
-        end.setCEP(jFcep.getText());
-        end.setCidade(jTcidade.getText());
-        end.setComplemento(jTcomplemento.getText());
-        end.setEstado(jCestado.getSelectedItem().toString());
-        end.setNumero(Integer.valueOf(jTnumero.getText()));
-        end.setRua(jTrua.getText());
-        funcionario.setEndereco(end);
-        try {
-            FuncionarioBO.save(funcionario);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar salvar o Funcionário","Erro",0);
-        } catch (Exception ex) {
-            Logger.getLogger(EditFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            
+            try {
+                refreshFuncionario();
+                FuncionarioBO.update(funcionario);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar editar o Funcionário","Erro",0);
+            } catch (Exception ex) {
+                Logger.getLogger(EditFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        telaMenu.setEnabled(true);
+        listFuncionarios.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -718,5 +705,63 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         } else {
             return false;
         }
+    }
+    public void refreshFuncionario(){
+        
+        Endereco end = new Endereco();
+        funcionario.setAtivo(status());
+        funcionario.setContrato(TransformDate.transformDate(jFcontrato.getText()));
+        funcionario.setCpf(TransformCpf.transformCpf(jFcpf.getText()));
+        funcionario.setDataNascimento(TransformDate.transformDate(jFdataNascimento.getText()));
+        funcionario.setEmail(jTemail.getText());
+        funcionario.setIdFuncionario(Long.valueOf(jTid.getText()));
+        funcionario.setNome(jTnome.getText());
+        if (jFrecisao.getText().equals("  /  /    ")) {
+            funcionario.setRecisao(null);
+        } else {
+            funcionario.setRecisao(TransformDate.transformDate(jFrecisao.getText()));
+        }
+        funcionario.setRg(jTrg.getText());
+        funcionario.setSalario(Double.valueOf(jTsalario.getText()));
+        funcionario.setTelefone(TransformTelefone.transformTelefone(jFtel1.getText()));
+        funcionario.setTelefone2(TransformTelefone.transformTelefone(jFtel2.getText()));
+
+        end.setBairro(jTbairro.getText());
+        end.setCEP(jFcep.getText());
+        end.setCidade(jTcidade.getText());
+        end.setComplemento(jTcomplemento.getText());
+        end.setEstado(jCestado.getSelectedItem().toString());
+        end.setNumero(Integer.valueOf(jTnumero.getText()));
+        end.setRua(jTrua.getText());
+        funcionario.setEndereco(end);
+    }
+    
+    public void refreshCampos() {
+        funcionario.setAtivo(status());
+        if(funcionario.isAtivo()){
+            jRativo.setSelected(true);
+        }else{
+            jRinativo.setSelected(true);
+        }
+        jFcontrato.setText(funcionario.getContrato());
+        jFcpf.setText(funcionario.getCpf());
+        jFdataNascimento.setText(funcionario.getDataNascimento());
+        jTemail.setText(funcionario.getEmail());
+        jTid.setText("" + funcionario.getIdFuncionario());
+        jTnome.setText(funcionario.getNome());
+        jFrecisao.setText(funcionario.getRecisao());
+        jTrg.setText(funcionario.getRg());
+        jTsalario.setText("" + funcionario.getSalario());
+        jFtel1.setText(funcionario.getTelefone());
+        jFtel2.setText(funcionario.getTelefone2());
+        int ano = Integer.valueOf(jFdataNascimento.getText().substring(jFdataNascimento.getText().length()-4, jFdataNascimento.getText().length()));
+        jTidade.setText(""+(MyDate.getAno()-ano));
+        jTbairro.setText(funcionario.getEndereco().getBairro());
+        jFcep.setText(funcionario.getEndereco().getCEP());
+        jTcidade.setText(funcionario.getEndereco().getCidade());
+        jTcomplemento.setText(funcionario.getEndereco().getComplemento());
+        jCestado.setSelectedItem(funcionario.getEndereco().getEstado());
+        jTnumero.setText("" + funcionario.getEndereco().getNumero());
+        jTrua.setText(funcionario.getEndereco().getRua());
     }
 }
