@@ -71,7 +71,6 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         }
         res.close();
         stmt.close();
-
         return funcionario;
     }
 

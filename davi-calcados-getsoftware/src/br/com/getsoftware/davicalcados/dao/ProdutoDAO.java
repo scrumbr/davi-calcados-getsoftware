@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -31,21 +31,23 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
 
     @Override
     public Produto getById(Integer id) throws SQLException {
-        Produto produto = new Produto();
+      
         String sql = "select * from produto where id_produto = " + id;
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         ResultSet res = stmt.executeQuery();
+    
+        Produto produto = new Produto();
 
+        if(res.next()){
         produto.setDescricao(res.getString("descricao"));
         produto.setIdProduto(res.getLong("id_produto"));
         produto.setIdUsuario(res.getLong("id_usuario"));
         produto.setQuantidade(res.getInt("quantidade"));
         produto.setValorUnitario(res.getDouble("valor_unitario"));
         produto.setValorVenda(res.getDouble("valor_venda"));
-
-        stmt.execute();
+        }
+        res.close();
         stmt.close();
-
         return produto;
     }
 

@@ -3,6 +3,9 @@ package br.com.getsoftware.davicalcados.gui.edit;
 
 import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -579,7 +582,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadClienteGUI().setVisible(true);
+                try {
+                    new CadClienteGUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
