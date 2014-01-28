@@ -366,7 +366,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         this.setEnabled(false);
-        new CadFornecedorGUI(this).setVisible(true);
+        try {
+            new CadFornecedorGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -4,7 +4,18 @@
  */
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import br.com.getsoftware.davicalcados.bo.FornecedorBO;
+import br.com.getsoftware.davicalcados.entity.Endereco;
+import br.com.getsoftware.davicalcados.entity.Fornecedor;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.util.LastID;
+import br.com.getsoftware.davicalcados.util.TransformCnpj;
+import br.com.getsoftware.davicalcados.util.TransformCpf;
+import br.com.getsoftware.davicalcados.util.TransformTelefone;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +25,12 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
 
     private TelaMenuGUI telaMenu;
     
-    public CadFornecedorGUI() {
+    public CadFornecedorGUI() throws SQLException {
         initComponents();
+       jTextField1.setText(""+LastID.atualizaId("id_fornecedor", "fornecedor"));
     }
 
-    public CadFornecedorGUI(TelaMenuGUI telaMenu){
+    public CadFornecedorGUI(TelaMenuGUI telaMenu) throws SQLException{
         this();
         this.telaMenu = telaMenu;
     }
@@ -400,6 +412,11 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         jBSalvar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         jBCancelar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
@@ -491,6 +508,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
       if(jRCpf.isSelected()){
           jFCpf.setEditable(true);
           jFCnpj.setEditable(false);
+          jFCnpj.setText(null);
       }
     }//GEN-LAST:event_jRCpfActionPerformed
 
@@ -498,8 +516,54 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         if(jRCnpj.isSelected()){
             jFCnpj.setEditable(true);
             jFCpf.setEditable(false);
+            jFCpf.setText(null);
         }
     }//GEN-LAST:event_jRCnpjActionPerformed
+
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+        Fornecedor fornecedor = new Fornecedor();
+        Endereco end = new Endereco();
+
+        fornecedor.setNome(jTNome.getText());
+        if (jRCpf.isSelected()) {
+            fornecedor.setFisicaJuridica(TransformCpf.transformCpf(jFCpf.getText()));
+        } else if (jRCnpj.isSelected()) {
+            fornecedor.setFisicaJuridica(TransformCnpj.transformCnpj(jFCnpj.getText()));
+        }
+        fornecedor.setTelefone(TransformTelefone.transformTelefone(jFTelefone.getText()));
+        fornecedor.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
+        fornecedor.setEmail(jTEmail.getText());
+        fornecedor.setStatus(status());
+        fornecedor.setObservacao(jTObservacao.getText());
+
+        end.setRua(jTRua.getText());
+        end.setNumero(Integer.valueOf(jTNumero.getText()));
+        end.setComplemento(jTComplemento.getText());
+        end.setBairro(jTBairro.getText());
+        end.setCidade(jTCidade.getText());
+        end.setCEP(jFCep.getText());
+        end.setEstado(jCEstado.getSelectedItem().toString());
+        fornecedor.setEndereco(end);
+                
+        try {
+            FornecedorBO.save(fornecedor);
+            JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
+
+             int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo fornecedor ?", "Novo fornecedor", JOptionPane.YES_NO_OPTION);
+                if(escolha == 0) {
+                    limpaCampos();
+                    jTextField1.setText(""+LastID.atualizaId("id_fornecedor", "fornecedor"));
+                } else {
+                     telaMenu.setEnabled(true);
+                     dispose();
+                }   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar salvar o Funcionário","Erro",0);
+           
+        } catch (Exception ex) {
+            Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -531,7 +595,11 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadFornecedorGUI().setVisible(true);
+                try {
+                    new CadFornecedorGUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadFornecedorGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -601,6 +669,31 @@ public void DesbloqueiaCampos(){
     jTComplemento.setEnabled(true);
 }
 
+public void limpaCampos(){
+    jTNome.setText(null);
+    jTEmail.setText(null);
+    jFCpf.setText(null);
+    jFCnpj.setText(null);
+    jFTelefone.setText(null);
+    jFTelefone2.setText(null);
+    jTObservacao.setText(null);
+    jTCidade.setText(null);
+    jTBairro.setText(null);
+    jCEstado.setSelectedIndex(0);
+    jFCep.setText(null);
+    jTRua.setText(null);
+    jTNumero.setText(null);
+    jTComplemento.setText(null);
+}
 
+
+
+ public boolean status() {
+        if (jRAtivo.isSelected()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
