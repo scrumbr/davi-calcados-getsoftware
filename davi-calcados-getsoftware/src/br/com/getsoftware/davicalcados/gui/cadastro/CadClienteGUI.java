@@ -6,6 +6,7 @@ import br.com.getsoftware.davicalcados.entity.Cliente;
 import br.com.getsoftware.davicalcados.entity.Endereco;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
+import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
@@ -228,7 +229,6 @@ public class CadClienteGUI extends javax.swing.JFrame {
         }
         jFDataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
-        jFUltimaCompra.setEditable(false);
         try {
             jFUltimaCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -751,7 +751,7 @@ public void DesbloqueiaCampos(){
     jRStatusAtivo.setEnabled(true);
     jRStatusInativo.setEnabled(true);
     jFDataNascimento.setEnabled(true);
-    jFUltimaCompra.setEnabled(true);
+    //jTextField1.setEnabled(true);
 };
 
 public void LimpaCampos(){
@@ -772,10 +772,9 @@ public void LimpaCampos(){
     jTRua.setText(null);
     jTNumero.setText(null);
     jTComplemento.setText(null);
-    jRStatusAtivo.setText(null);
-    jRStatusInativo.setText(null);
+    jTPreferencias.setText(null);
     jFDataNascimento.setText(null);
-    jFUltimaCompra.setText(null);
+    jTBoleto.setText(null);
 }
 
  public boolean status() {

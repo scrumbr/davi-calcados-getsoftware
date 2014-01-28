@@ -52,9 +52,7 @@ import java.util.ArrayList;
         cliente.setTelefone(TransformTelefone.transformTelefone(res.getString("telefone")));
         cliente.setTelefone2(TransformTelefone.transformTelefone(res.getString("telefone2")));
         cliente.setEmail(res.getString("email"));
-        if(res.getString("recisao") != null){
-       cliente.setDataUltimCompra(TransformDate.transformDate(res.getString("data_ultima_compra")));
-        }        
+        cliente.setDataUltimCompra(TransformDate.transformDate(res.getString("data_ultima_compra")));   
         cliente.setPreferencia(res.getString("preferencia"));
         cliente.setNumeroBoleto(res.getLong("numero_boleto"));
         cliente.setStatus(res.getBoolean("ativo"));
