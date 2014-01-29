@@ -7,7 +7,7 @@ use davi_calcados;
 CREATE TABLE FUNCIONARIO(
 		id_funcionario bigint auto_increment,
         nome varchar(150) not null,
-		sexo char(1) not null,
+        sexo char(1) not null,
         data_nascimento date not null,
         cpf varchar(14) not null,
         rg varchar(30),
@@ -50,7 +50,6 @@ CREATE TABLE CLIENTE(
         telefone varchar(13), -- (88)8888-8888
         telefone2 varchar(13), -- (88)8888-8888
         email varchar(40), 
-        data_ultima_compra date,
         preferencia longtext,
         numero_boleto bigint ,
         ativo boolean not null,

@@ -28,6 +28,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     public CadFornecedorGUI() throws SQLException {
         initComponents();
        jTextField1.setText(""+LastID.atualizaId("id_fornecedor", "fornecedor"));
+       jFCnpj.setEditable(false);
     }
 
     public CadFornecedorGUI(TelaMenuGUI telaMenu) throws SQLException{
@@ -521,6 +522,50 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jRCnpjActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+      
+        if (jTNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'NOME' está vazio!", "Atenção", 2);
+            jTNome.requestFocus();
+        } else if (jTEmail.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'E-MAIL' está vazio!", "Atenção", 2);
+            jTEmail.requestFocus();
+        } else if (jRCpf.isSelected() && jFCpf.getText().equals("   .   .   -  ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CPF' está vazio!", "Atenção", 2);
+            jFCpf.requestFocus();
+        } else if (jRCnpj.isSelected() && jFCnpj.getText().equals("  .   .   /    -  ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CNPJ' está vazio!", "Atenção", 2);
+            jFCnpj.requestFocus();
+        } else if (jFTelefone.getText().equals("(  )    -    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE' está vazio!", "Atenção", 2);
+            jFTelefone.requestFocus();
+        } else if (jFTelefone2.getText().equals("(  )    -    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 2' está vazio!", "Atenção", 2);
+            jFTelefone2.requestFocus();
+        } else if (jTObservacao.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'OBSERVAÇÃO' está vazio!", "Atenção", 2);
+             jTObservacao.requestFocus();
+        } else if (jTCidade.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'CIDADE' está vazio!", "Atenção", 2);
+            jTCidade.requestFocus();
+        } else if (jTBairro.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'BAIRRO' está vazio!", "Atenção", 2);
+            jTBairro.requestFocus();
+        } else if (jCEstado.getSelectedIndex() == 0) {
+             JOptionPane.showMessageDialog(null, "Campo 'ESTADO' está vazio!", "Atenção", 2);
+            jCEstado.requestFocus();
+        } else if (jFCep.getText().equals("     -   ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CEP' está vazio!", "Atenção", 2);
+            jFCep.requestFocus();
+        } else if (jTRua.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'RUA' está vazio!", "Atenção", 2);
+            jTRua.requestFocus();
+        } else if (jTNumero.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'NÚMERO' está vazio!", "Atenção", 2);
+            jTNumero.requestFocus();
+        } else if (jTComplemento.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'COMPLEMENTO' está vazio!", "Atenção", 2);
+            jTComplemento.requestFocus();
+        } else {       
         Fornecedor fornecedor = new Fornecedor();
         Endereco end = new Endereco();
 
@@ -563,6 +608,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }    
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     /**
