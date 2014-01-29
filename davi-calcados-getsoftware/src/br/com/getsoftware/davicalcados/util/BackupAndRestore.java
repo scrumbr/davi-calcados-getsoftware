@@ -13,7 +13,7 @@ package br.com.getsoftware.davicalcados.util;
 public class BackupAndRestore {
     public boolean backupDB(String dbName, String dbUserName, String dbPassword, String path) {
  
-        String executeCmd = "mysqldump -u " + dbUserName + " -p" + dbPassword + " --add-drop-database -B " + dbName + " -r " + path;
+        String executeCmd = "mysqldump -u " + dbUserName +  " --add-drop-database -B " + dbName + " -r " + path;
         Process runtimeProcess;
         try {
  

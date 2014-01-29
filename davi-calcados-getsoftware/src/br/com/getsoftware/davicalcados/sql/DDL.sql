@@ -5,8 +5,9 @@ use davi_calcados;
 -- drop database davi_calcados;
 
 CREATE TABLE FUNCIONARIO(
-	id_funcionario bigint auto_increment,
+		id_funcionario bigint auto_increment,
         nome varchar(150) not null,
+		sexo char(1) not null,
         data_nascimento date not null,
         cpf varchar(14) not null,
         rg varchar(30),

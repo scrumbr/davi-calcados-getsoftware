@@ -13,6 +13,7 @@ public class Funcionario {
 
     private Long idFuncionario;
     private String nome;
+    private String sexo;
     private String dataNascimento;
     private String cpf;
     private String rg;
@@ -40,7 +41,14 @@ public class Funcionario {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public String getSexo() {
+        return sexo;
+    }
 
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
     public String getDataNascimento() {
         return dataNascimento;
     }

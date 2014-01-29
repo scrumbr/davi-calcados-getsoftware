@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class BackUP {
     // Botão Backup
  
-    public static void backUp(String user, String senha, String dbName) {
+    public static void backUp(String user, String dbName) {
         JFileChooser JFC_Salvar_Backup = new JFileChooser();
         try {
             String arquivo = null;
@@ -37,16 +37,17 @@ public class BackUP {
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if (opcao == JOptionPane.YES_OPTION) {
                         Runtime bck = Runtime.getRuntime();
-                        bck.exec("mysqldump.exe -v -v -v --host=localhost --user="+user+" --password="+senha+" --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases="+dbName);
+                        bck.exec("mysqldump.exe "+user+"  "+dbName+" >  --result-file=" + arquivo);
+                        System.out.println(arquivo);
                         JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Backup", 1);
                     } else {
-                        backUp(user, senha, dbName);
-
+                        backUp(user, dbName);
                     }
                 } else {
 
                     Runtime bck = Runtime.getRuntime();
-                    bck.exec("mysqldump  -v -v -v --host=localhost --user="+user+" --password="+senha+" --port=3306 --protocol=tcp --force --allow-keywords --compress  --add-drop-table --default-character-set=latin1 --hex-blob  --result-file=" + arquivo + " --databases="+dbName);
+                     bck.exec("mysqldump.exe "+user+"  "+dbName+" >  " + arquivo);
+                     System.out.println(arquivo);
                     JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "backup", 1);
                 }
 

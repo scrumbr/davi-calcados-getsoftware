@@ -22,12 +22,12 @@ public class Backup1 {
     // Objeto da classe JFileChooser
     JFileChooser fl;
     // Instancia a classe Conecta, criando o objeto con
-     
+
     public Backup1(String user, String senha, String dbName) {
 
         try {
             // Conecta com o banco de dados
-             
+
             // Cria uma pasta chamada Configuração do Banco, e dentro cria uma arquivo txt chamado Configuração
             BufferedReader ler = new BufferedReader(new FileReader("Configuração do Banco/Configuração.txt"));
             // String que recebe a linha lida no arquivo txt
@@ -52,7 +52,7 @@ public class Backup1 {
                     // Se a escolha for sim
                     if (escolha == JOptionPane.YES_OPTION) {
                         // Cria o objeto da classe ProcessBuilder, passando para seu construtor os dados para realizar o backup
-                        ProcessBuilder pb = new ProcessBuilder(caminho, "--user="+user, "--password=" + senha + "", dbName, "--result-file=" + arquivo);
+                        ProcessBuilder pb = new ProcessBuilder(caminho, "--user=" + user, "--password=" + senha + "", dbName, "--result-file=" + arquivo);
                         // Executa o backup
                         pb.start();
                         JOptionPane.showMessageDialog(null, "Backup realizado com sucesso !");
@@ -61,16 +61,14 @@ public class Backup1 {
                     }
                 } // Se não existir, ele cria direto
                 else {
-                    ProcessBuilder pb = new ProcessBuilder(caminho, "--user="+user, "--password=" + senha + "", dbName, "--result-file=" + arquivo);
+                    ProcessBuilder pb = new ProcessBuilder(caminho, "--user=" + user, "--password=" + senha + "", dbName, "--result-file=" + arquivo);
                     pb.start();
                     JOptionPane.showMessageDialog(null, "Backup realizado com sucesso !");
                 }
             } else {
             }
-
         } catch (IOException | HeadlessException e) {
             e.printStackTrace();
-
         }
     }
 }
