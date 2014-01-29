@@ -54,14 +54,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMFuncionario = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMUsuario = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMProduto = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMCliente = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMlistFuncionarios = new javax.swing.JMenuItem();
@@ -150,15 +148,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu3.add(jMFuncionario);
         jMenu3.add(jSeparator1);
 
-        jMUsuario.setText("Usuário");
-        jMUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMUsuarioActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMUsuario);
-        jMenu3.add(jSeparator2);
-
         jMProduto.setText("Produto");
         jMProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +155,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMProduto);
-        jMenu3.add(jSeparator3);
+        jMenu3.add(jSeparator2);
 
         jMCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cliente-16.png"))); // NOI18N
         jMCliente.setText("Cliente");
@@ -176,8 +165,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMCliente);
-        jMenu3.add(jSeparator4);
+        jMenu3.add(jSeparator3);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/fornecedor-16.png"))); // NOI18N
         jMenuItem4.setText("Fornecedor");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +175,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem4);
-        jMenu3.add(jSeparator7);
+        jMenu3.add(jSeparator4);
 
         jMenuBar2.add(jMenu3);
 
@@ -193,7 +183,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu1.setText("SERVIÇOS");
         jMenuBar2.add(jMenu1);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Search-icon.png"))); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/ConsultarNovo-4.png"))); // NOI18N
         jMenu5.setText("CONSULTAR");
 
         jMlistFuncionarios.setText("Listar Funcionáios");
@@ -293,7 +283,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu8);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Information-icon.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/sobre-48.png"))); // NOI18N
         jMenu4.setText("SOBRE");
         jMenuBar2.add(jMenu4);
 
@@ -350,11 +340,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMFuncionarioActionPerformed
-
-    private void jMUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMUsuarioActionPerformed
-        this.setEnabled(false);
-        new CadUsuarioGUI(this).setVisible(true);
-    }//GEN-LAST:event_jMUsuarioActionPerformed
 
     private void jMProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMProdutoActionPerformed
        this.setEnabled(false);
@@ -486,7 +471,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMCliente;
     private javax.swing.JMenuItem jMFuncionario;
     private javax.swing.JMenuItem jMProduto;
-    private javax.swing.JMenuItem jMUsuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -515,7 +499,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
-    private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     // End of variables declaration//GEN-END:variables

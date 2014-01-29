@@ -214,6 +214,11 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFdataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFdataNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFdataNascimentoActionPerformed(evt);
+            }
+        });
         jFdataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jFdataNascimentoFocusLost(evt);
@@ -272,17 +277,26 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel10))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6))
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jRativo))
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jRinativo))))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRativo)
+                                            .addComponent(jLabel12))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRinativo))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel22)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jRmasc)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jRfem)))))))
+                        .addGap(8, 8, 8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -303,16 +317,8 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel20)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(120, 120, 120)
-                                        .addComponent(jLabel22))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(184, 184, 184)
-                                        .addComponent(jRmasc)))
-                                .addGap(23, 23, 23)
-                                .addComponent(jRfem)
-                                .addGap(0, 54, Short.MAX_VALUE)))))
+                                    .addComponent(jLabel8))
+                                .addGap(0, 297, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
@@ -321,6 +327,10 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFdataNascimento, jTid});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFcontrato, jTidade});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRativo, jRmasc});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRfem, jRinativo});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,12 +472,10 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)))
+                            .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(205, 205, 205))
+                            .addComponent(jLabel13)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jTrua, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -503,7 +511,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(26, 26, 26)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
@@ -545,7 +552,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(432, Short.MAX_VALUE)
+                .addContainerGap(464, Short.MAX_VALUE)
                 .addComponent(jBsalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jBcancel)
@@ -613,7 +620,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(704, 542));
+        setSize(new java.awt.Dimension(740, 542));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -693,14 +700,14 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         funcionario.setCpf(TransformCpf.transformCpf(jFcpf.getText()));
         funcionario.setDataNascimento(TransformDate.transformDate(jFdataNascimento.getText()));
         funcionario.setEmail(jTemail.getText());
-//        funcionario.setIdFuncionario(Long.valueOf(jTid.getText()));
+        funcionario.setSexo(sexo);
         funcionario.setNome(jTnome.getText());
         funcionario.setRecisao(TransformDate.transformDate(jFrecisao.getText()));
         funcionario.setRg(jTrg.getText());
         funcionario.setSalario(Double.valueOf(jTsalario.getText()));
         funcionario.setTelefone(TransformTelefone.transformTelefone(jFtel1.getText()));
         funcionario.setTelefone2(TransformTelefone.transformTelefone(jFtel2.getText()));
-
+        
         end.setBairro(jTbairro.getText());
         end.setCEP(jFcep.getText());
         end.setCidade(jTcidade.getText());
@@ -742,7 +749,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private void jRinativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinativoActionPerformed
         if(jRinativo.isSelected()){
             jFrecisao.setEnabled(true);
-            status = true;
+            status = false;
         }
     }//GEN-LAST:event_jRinativoActionPerformed
 
@@ -750,7 +757,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         if(jRativo.isSelected()){
             jFrecisao.setEnabled(false);
             jFrecisao.setText(null);
-            status = false;
+            status = true;
         }
     }//GEN-LAST:event_jRativoActionPerformed
 
@@ -761,6 +768,10 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private void jRfemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRfemActionPerformed
         sexo = "F";
     }//GEN-LAST:event_jRfemActionPerformed
+
+    private void jFdataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFdataNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFdataNascimentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -880,4 +891,12 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jRmasc.setSelected(false);
         jRfem.setSelected(false);
     }   
+    
+    public boolean status() {
+        if (jRativo.isSelected()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

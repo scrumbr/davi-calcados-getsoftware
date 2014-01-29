@@ -18,7 +18,7 @@ public class Produto {
     private Double valorUnitario;
     private Double valorVenda;
     private String nome;
-    private Funcionario funcionario;
+    private Fornecedor fornecedor;
     private Integer quantidadeMinima;
 
     public String getNome() {
@@ -29,13 +29,15 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
+
+   
 
     public Integer getQuantidadeMinima() {
         return quantidadeMinima;
