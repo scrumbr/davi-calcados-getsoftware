@@ -32,6 +32,8 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         initComponents();
         // jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
     }
+    private Boolean status = null;
+    private String sexo = "";
     private Funcionario funcionario;
     private ListFuncionariosGUI listFuncionarios;
 
@@ -39,11 +41,13 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         this();
         this.listFuncionarios = telaMenu;
         this.funcionario = funcionario;
+        status = funcionario.isAtivo();
         refreshCampos();
     }
     public EditFuncionarioGUI( Funcionario funcionario) throws SQLException {
         this();
         this.funcionario = funcionario;
+        status = funcionario.isAtivo();
         refreshCampos();
     }
 
@@ -80,6 +84,9 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTemail = new javax.swing.JTextField();
+        jRfem = new javax.swing.JRadioButton();
+        jLabel22 = new javax.swing.JLabel();
+        jRmasc = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jTcidade = new javax.swing.JTextField();
@@ -189,10 +196,20 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jRativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jRativo.setSelected(true);
         jRativo.setText("Ativo");
+        jRativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRativoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRinativo);
         jRinativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jRinativo.setText("Inativo");
+        jRinativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRinativoActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Idade");
@@ -220,6 +237,23 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
         jTemail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
+        jRfem.setText("F");
+        jRfem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRfemActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel22.setText("Sexo");
+
+        jRmasc.setText("M");
+        jRmasc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRmascActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,7 +277,14 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel10))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel22)
+                                            .addComponent(jRmasc))
+                                        .addGap(23, 23, 23)
+                                        .addComponent(jRfem))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,18 +355,29 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jRmasc)
+                                .addComponent(jRfem))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(28, 28, 28)))
+                        .addGap(3, 3, 3)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -522,9 +574,9 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(204, 0, 0));
 
-        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Editar Funcionario");
+        jLabel21.setText("Editar Funcionário");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -537,9 +589,10 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel21)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -565,15 +618,16 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(696, 505));
+        setSize(new java.awt.Dimension(706, 543));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -588,7 +642,64 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcancelActionPerformed
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
-            
+             //cpf, nome, data nasc, rg, email, tel1, tel2,sexo , contrato, recisão, salario , ativo, 
+        //cidde, bairro, estado, cep, rua, numero, complermento 
+        
+        if (jFcpf.getText().equals("   .   .   -  ")) {
+            JOptionPane.showMessageDialog(null, "Campo 'CPF' está vazio!", "Atenção", 2);
+            jFcpf.requestFocus();
+        } else if (jTnome.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'NOME' está vazio!", "Atenção", 2);
+            jTnome.requestFocus();
+        } else if (jFdataNascimento.getText().equals("  /  /    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'DATA DE NASCIMENTO' está vazio!", "Atenção", 2);
+            jFdataNascimento.requestFocus();
+        } else if (jTrg.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'RG' está vazio!", "Atenção", 2);
+            jTrg.requestFocus();
+        } else if (jTemail.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'E-MAIL' está vazio!", "Atenção", 2);
+            jTemail.requestFocus();
+        } else if (jFtel1.getText().equals("(  )    -    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 1' está vazio!", "Atenção", 2);
+            jFtel1.requestFocus();
+        } else if (jFtel2.getText().equals("(  )    -    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 2' está vazio!", "Atenção", 2);
+            jFtel2.requestFocus();
+        } else if (!jRmasc.isSelected() && !jRfem.isSelected()) {
+             JOptionPane.showMessageDialog(null, "Campo 'SEXO' está vazio!", "Atenção", 2);
+        }else if (jFcontrato.getText().equals("  /  /    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CONTRATO' está vazio!", "Atenção", 2);
+            jFcontrato.requestFocus();
+        } else if (jFrecisao.getText().equals("  /  /    ") && jRinativo.isSelected()) {
+             JOptionPane.showMessageDialog(null, "Campo 'RECISÃO' está vazio!", "Atenção", 2);
+            jFrecisao.requestFocus();
+        } else if (jTsalario.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'SALÁRIO' está vazio!", "Atenção", 2);
+            jTsalario.requestFocus();
+        } else if (jTcidade.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'CIDADE' está vazio!", "Atenção", 2);
+            jTcidade.requestFocus();
+        } else if (jTbairro.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'BAIRRO' está vazio!", "Atenção", 2);
+            jTbairro.requestFocus();
+        } else if (jCestado.getSelectedIndex() == 0) {
+             JOptionPane.showMessageDialog(null, "Campo 'ESTADO' está vazio!", "Atenção", 2);
+            jCestado.requestFocus();
+        } else if (jFcep.getText().equals("")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CEP' está vazio!", "Atenção", 2);
+            jFcep.requestFocus();
+        } else if (jTrua.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'RUA' está vazio!", "Atenção", 2);
+            jTrua.requestFocus();
+        } else if (jTnumero.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'NÚMERO' está vazio!", "Atenção", 2);
+            jTnumero.requestFocus();
+        } else if (jTcomplemento.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'COMPLEMENTO' está vazio!", "Atenção", 2);
+            jTcomplemento.requestFocus();
+        } else {
+
             try {
                 refreshFuncionario();
                 FuncionarioBO.update(funcionario);
@@ -597,6 +708,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(EditFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -607,6 +719,22 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private void jCestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCestadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCestadoActionPerformed
+
+    private void jRfemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRfemActionPerformed
+        sexo = "F";
+    }//GEN-LAST:event_jRfemActionPerformed
+
+    private void jRmascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRmascActionPerformed
+        sexo = "M";
+    }//GEN-LAST:event_jRmascActionPerformed
+
+    private void jRativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRativoActionPerformed
+        status = true;
+    }//GEN-LAST:event_jRativoActionPerformed
+
+    private void jRinativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinativoActionPerformed
+        status = false;
+    }//GEN-LAST:event_jRinativoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -673,6 +801,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -685,7 +814,9 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRativo;
+    private javax.swing.JRadioButton jRfem;
     private javax.swing.JRadioButton jRinativo;
+    private javax.swing.JRadioButton jRmasc;
     private javax.swing.JTextField jTbairro;
     private javax.swing.JTextField jTcidade;
     private javax.swing.JTextField jTcomplemento;
@@ -698,18 +829,13 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTrua;
     private javax.swing.JTextField jTsalario;
     // End of variables declaration//GEN-END:variables
-
-    public boolean status() {
-        if (jRativo.isSelected()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+ 
     public void refreshFuncionario(){
         
         Endereco end = new Endereco();
-        funcionario.setAtivo(status());
+        funcionario.setAtivo(status);
+        jRativo.setSelected(status);
+        jRinativo.setSelected(status);
         funcionario.setContrato(TransformDate.transformDate(jFcontrato.getText()));
         funcionario.setCpf(TransformCpf.transformCpf(jFcpf.getText()));
         funcionario.setDataNascimento(TransformDate.transformDate(jFdataNascimento.getText()));
@@ -737,11 +863,18 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     }
     
     public void refreshCampos() {
-        funcionario.setAtivo(status());
+        funcionario.setAtivo(status);
         if(funcionario.isAtivo()){
             jRativo.setSelected(true);
         }else{
             jRinativo.setSelected(true);
+        }
+        if(funcionario.getSexo().equals("M")){
+            jRmasc.setSelected(true);
+            jRfem.setSelected(false);
+        }else{
+            jRmasc.setSelected(false);
+             jRfem.setSelected(true);
         }
         jFcontrato.setText(funcionario.getContrato());
         jFcpf.setText(funcionario.getCpf());

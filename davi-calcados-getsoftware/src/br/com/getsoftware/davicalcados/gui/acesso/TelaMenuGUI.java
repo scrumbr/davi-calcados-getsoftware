@@ -12,9 +12,6 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
-import br.com.getsoftware.davicalcados.util.BackUP;
-import br.com.getsoftware.davicalcados.util.Backup1;
-import br.com.getsoftware.davicalcados.util.BackupAndRestore;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.MyHours;
 import java.io.IOException;
@@ -137,12 +134,14 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuBar2.setBackground(new java.awt.Color(0, 0, 0));
         jMenuBar2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jMenuBar2.setBorderPainted(false);
+        jMenuBar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/registrar-48.png"))); // NOI18N
         jMenu3.setText("CADASTRO");
 
         jMFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/funcionario-16.png"))); // NOI18N
-        jMFuncionario.setText("Funcionario");
+        jMFuncionario.setText("Funcionário");
         jMFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMFuncionarioActionPerformed(evt);
@@ -151,7 +150,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu3.add(jMFuncionario);
         jMenu3.add(jSeparator1);
 
-        jMUsuario.setText("Usuario");
+        jMUsuario.setText("Usuário");
         jMUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMUsuarioActionPerformed(evt);
@@ -300,6 +299,16 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Action-exit-icon.png"))); // NOI18N
         jMenu7.setText("SAIR");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenu7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu7ActionPerformed(evt);
+            }
+        });
         jMenuBar2.add(jMenu7);
 
         setJMenuBar(jMenuBar2);
@@ -378,7 +387,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+         try {        
+            Runtime.getRuntime().exec("cmd.exe /C start Stikynot.exe");
+        } catch (IOException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -408,7 +421,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        BackUP.backUp("root", "", "davi_calcados");
+        //
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMlistFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistFuncionariosActionPerformed
@@ -418,6 +431,17 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi possível listar os funcionários", "Erro", 0);
         }
     }//GEN-LAST:event_jMlistFuncionariosActionPerformed
+
+    private void jMenu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu7ActionPerformed
+        
+    }//GEN-LAST:event_jMenu7ActionPerformed
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair do sistema ?", "Logout", JOptionPane.YES_NO_OPTION);
+        if(opc == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenu7MouseClicked
 
     /**
      * @param args the command line arguments

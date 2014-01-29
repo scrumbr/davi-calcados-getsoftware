@@ -46,6 +46,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         if(res.next()){
         Endereco end = new Endereco();
         funcionario.setAtivo(res.getBoolean("ativo"));
+        funcionario.setSexo(res.getString("sexo"));
         funcionario.setContrato(TransformDate.transformDate(res.getString("contrato")));
         funcionario.setCpf(TransformCpf.transformCpf(res.getString("cpf")));
         funcionario.setDataNascimento(TransformDate.transformDate(res.getString("data_nascimento")));
@@ -76,52 +77,22 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
 
     @Override
     public void save(Funcionario funcionario) throws SQLException {
-        String sql = "insert into funcionario(nome,data_nascimento,cpf,rg,telefone,telefone2, "
+        String sql = "insert into funcionario(nome, sexo, data_nascimento,cpf,rg,telefone,telefone2, "
                 + " email,salario,contrato, ativo, rua,numero,complemento,bairro,cidade,CEP,estado) "
-                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
         stmt.setString(1, funcionario.getNome());
-        stmt.setString(2, funcionario.getDataNascimento());
-        stmt.setString(3, funcionario.getCpf());
-        stmt.setString(4, funcionario.getRg());
-        stmt.setString(5, funcionario.getTelefone());
-        stmt.setString(6, funcionario.getTelefone2());
-        stmt.setString(7, funcionario.getEmail());
-        stmt.setDouble(8, funcionario.getSalario());
-        stmt.setString(9, funcionario.getContrato());
-        stmt.setBoolean(10, funcionario.isAtivo());
-        stmt.setString(11, funcionario.getEndereco().getRua());
-        stmt.setLong(12, funcionario.getEndereco().getNumero());
-        stmt.setString(13, funcionario.getEndereco().getComplemento());
-        stmt.setString(14, funcionario.getEndereco().getBairro());
-        stmt.setString(15, funcionario.getEndereco().getCidade());
-        stmt.setString(16, funcionario.getEndereco().getCEP());
-        stmt.setString(17, funcionario.getEndereco().getEstado());
-
-        stmt.execute();
-        stmt.close();
-    }
-
-    @Override
-    public void update(Funcionario funcionario) throws SQLException {
-        String sql = "update funcionario set nome=?,data_nascimento=?,cpf=?,rg=?,telefone=?,telefone2=?, "
-                + " email=?,salario=?,contrato=?, recisao=?, ativo=?, rua=?,numero=?,complemento=?,bairro=?,cidade=?,CEP=?,estado=?"
-                + " where id_funcionario=?";
-
-        PreparedStatement stmt = this.conexao.prepareStatement(sql);
-
-        stmt.setString(1, funcionario.getNome());
-        stmt.setString(2, funcionario.getDataNascimento());
-        stmt.setString(3, funcionario.getCpf());
-        stmt.setString(4, funcionario.getRg());
-        stmt.setString(5, funcionario.getTelefone());
-        stmt.setString(6, funcionario.getTelefone2());
-        stmt.setString(7, funcionario.getEmail());
-        stmt.setDouble(8, funcionario.getSalario());
-        stmt.setString(9, funcionario.getContrato());
-        stmt.setString(10, funcionario.getRecisao());
+        stmt.setString(2, funcionario.getSexo());
+        stmt.setString(3, funcionario.getDataNascimento());
+        stmt.setString(4, funcionario.getCpf());
+        stmt.setString(5, funcionario.getRg());
+        stmt.setString(6, funcionario.getTelefone());
+        stmt.setString(7, funcionario.getTelefone2());
+        stmt.setString(8, funcionario.getEmail());
+        stmt.setDouble(9, funcionario.getSalario());
+        stmt.setString(10, funcionario.getContrato());
         stmt.setBoolean(11, funcionario.isAtivo());
         stmt.setString(12, funcionario.getEndereco().getRua());
         stmt.setLong(13, funcionario.getEndereco().getNumero());
@@ -130,7 +101,39 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(16, funcionario.getEndereco().getCidade());
         stmt.setString(17, funcionario.getEndereco().getCEP());
         stmt.setString(18, funcionario.getEndereco().getEstado());
-        stmt.setLong(19, funcionario.getIdFuncionario());
+
+        stmt.execute();
+        stmt.close();
+    }
+
+    @Override
+    public void update(Funcionario funcionario) throws SQLException {
+        String sql = "update funcionario set nome=?, sexo=?, data_nascimento=?,cpf=?,rg=?,telefone=?,telefone2=?, "
+                + " email=?,salario=?,contrato=?, recisao=?, ativo=?, rua=?,numero=?,complemento=?,bairro=?,cidade=?,CEP=?,estado=?"
+                + " where id_funcionario=?";
+
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        stmt.setString(1, funcionario.getNome());
+        stmt.setString(2, funcionario.getDataNascimento());
+        stmt.setString(3, funcionario.getSexo());
+        stmt.setString(4, funcionario.getCpf());
+        stmt.setString(5, funcionario.getRg());
+        stmt.setString(6, funcionario.getTelefone());
+        stmt.setString(7, funcionario.getTelefone2());
+        stmt.setString(8, funcionario.getEmail());
+        stmt.setDouble(9, funcionario.getSalario());
+        stmt.setString(10, funcionario.getContrato());
+        stmt.setString(11, funcionario.getRecisao());
+        stmt.setBoolean(12, funcionario.isAtivo());
+        stmt.setString(13, funcionario.getEndereco().getRua());
+        stmt.setLong(14, funcionario.getEndereco().getNumero());
+        stmt.setString(15, funcionario.getEndereco().getComplemento());
+        stmt.setString(16, funcionario.getEndereco().getBairro());
+        stmt.setString(17, funcionario.getEndereco().getCidade());
+        stmt.setString(18, funcionario.getEndereco().getCEP());
+        stmt.setString(19, funcionario.getEndereco().getEstado());
+        stmt.setLong(20, funcionario.getIdFuncionario());
 
         stmt.execute();
         stmt.close();
@@ -153,6 +156,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
             funcionario.setCpf(TransformCpf.transformCpf(res.getString("cpf")));
             funcionario.setDataNascimento(TransformDate.transformDate(res.getString("data_nascimento")));
             funcionario.setEmail(res.getString("email"));
+            funcionario.setSexo(res.getString("sexo"));
             funcionario.setIdFuncionario(res.getLong("id_funcionario"));
             funcionario.setNome(res.getString("nome"));
             if(res.getString("recisao")!=null){
