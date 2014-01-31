@@ -36,8 +36,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     }
      public CadFuncionarioGUI(TelaMenuGUI telaMenu) throws SQLException{
          this();
-         this.telaMenu = telaMenu;         
-         
+         this.telaMenu = telaMenu;            
      }
     
     @SuppressWarnings("unchecked")

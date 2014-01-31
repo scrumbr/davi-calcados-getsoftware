@@ -11,6 +11,7 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.MyHours;
@@ -54,15 +55,21 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMFuncionario = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMProduto = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMCliente = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMProduto = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMlistFuncionarios = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -148,15 +155,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu3.add(jMFuncionario);
         jMenu3.add(jSeparator1);
 
-        jMProduto.setText("Produto");
-        jMProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMProdutoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMProduto);
-        jMenu3.add(jSeparator2);
-
         jMCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cliente-16.png"))); // NOI18N
         jMCliente.setText("Cliente");
         jMCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +163,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMCliente);
-        jMenu3.add(jSeparator3);
+        jMenu3.add(jSeparator2);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/fornecedor-16.png"))); // NOI18N
         jMenuItem4.setText("Fornecedor");
@@ -175,6 +173,16 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem4);
+        jMenu3.add(jSeparator3);
+
+        jMProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/CadProduto-16.png"))); // NOI18N
+        jMProduto.setText("Produto");
+        jMProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMProdutoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMProduto);
         jMenu3.add(jSeparator4);
 
         jMenuBar2.add(jMenu3);
@@ -186,13 +194,34 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/ConsultarNovo-4.png"))); // NOI18N
         jMenu5.setText("CONSULTAR");
 
-        jMlistFuncionarios.setText("Listar Funcionáios");
+        jMlistFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/PesquisarFuncionario-16.png"))); // NOI18N
+        jMlistFuncionarios.setText("Lista de Funcionários");
         jMlistFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMlistFuncionariosActionPerformed(evt);
             }
         });
         jMenu5.add(jMlistFuncionarios);
+        jMenu5.add(jSeparator7);
+
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarCliente-16.png"))); // NOI18N
+        jMenuItem10.setText("Lista de Clientes");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem10);
+        jMenu5.add(jSeparator12);
+
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"))); // NOI18N
+        jMenuItem11.setText("Lista de Fornecedor");
+        jMenu5.add(jMenuItem11);
+        jMenu5.add(jSeparator13);
+
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"))); // NOI18N
+        jMenuItem12.setText("Lista de Produtos");
+        jMenu5.add(jMenuItem12);
 
         jMenuBar2.add(jMenu5);
 
@@ -410,8 +439,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMlistFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistFuncionariosActionPerformed
+        this.setEnabled(false);
         try {
-            new ListFuncionariosGUI().setVisible(true);
+            new ListFuncionariosGUI(this).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível listar os funcionários", "Erro", 0);
         }
@@ -427,6 +457,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        this.setEnabled(false);       
+        try {
+            new ListClientesGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar os funcionários", "Erro", 0);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,6 +520,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -494,11 +536,14 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     // End of variables declaration//GEN-END:variables
