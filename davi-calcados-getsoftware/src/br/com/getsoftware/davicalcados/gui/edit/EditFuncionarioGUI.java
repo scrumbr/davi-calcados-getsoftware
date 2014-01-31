@@ -44,7 +44,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         status = funcionario.isAtivo();
         refreshCampos();
     }
-    public EditFuncionarioGUI( Funcionario funcionario) throws SQLException {
+    public EditFuncionarioGUI(Funcionario funcionario) throws SQLException {
         this();
         this.funcionario = funcionario;
         status = funcionario.isAtivo();
@@ -872,7 +872,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         if(funcionario.getSexo().equals("M")){
             jRmasc.setSelected(true);
             jRfem.setSelected(false);
-        }else{
+        }else if(funcionario.getSexo().equals("F")){
             jRmasc.setSelected(false);
              jRfem.setSelected(true);
         }

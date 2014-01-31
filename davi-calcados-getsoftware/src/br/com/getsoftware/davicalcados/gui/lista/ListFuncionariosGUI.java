@@ -9,6 +9,7 @@ import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.entity.Usuario;
+import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
@@ -31,12 +32,17 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
      */
     private ArrayList<Funcionario> listFuncionarios;
     private int linhaSelecionada = 0;
-
+    private TelaMenuGUI telaMenu;
+    
     public ListFuncionariosGUI() throws SQLException {
         initComponents();
         dadosTabela();
         jTable1.setAutoCreateRowSorter(true);
         atualizaLinhaSelecionada();
+    }
+      public ListFuncionariosGUI(TelaMenuGUI telaMenu) throws SQLException{
+      this();
+      this.telaMenu = telaMenu;
     }
 
     public void atualizaLinhaSelecionada() {
@@ -74,6 +80,11 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -158,7 +169,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         );
 
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -194,22 +205,20 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
-        }
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(5).setResizable(false);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(6).setResizable(false);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -295,7 +304,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Lista de funcionários");
 
@@ -304,16 +313,13 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(325, 325, 325)
+                .addGap(332, 332, 332)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -336,7 +342,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -390,7 +396,9 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBexcluirActionPerformed
 
     private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
-        Funcionario funcionario;
+       
+        Funcionario funcionario;  
+         this.setEnabled(false);
         try {
             funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
             new EditFuncionarioGUI(this, funcionario).setVisible(true);
@@ -400,7 +408,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBeditarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
-        this.dispose();
+        telaMenu.setEnabled(true);
+        dispose();
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     private void jTpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyPressed
@@ -483,7 +492,6 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         linhaSelecionada = jTable1.getSelectedRow();
-
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jRnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnomeActionPerformed
@@ -501,6 +509,11 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
 
     }//GEN-LAST:event_jTable1FocusLost
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        telaMenu.setEnabled(true);
+        dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

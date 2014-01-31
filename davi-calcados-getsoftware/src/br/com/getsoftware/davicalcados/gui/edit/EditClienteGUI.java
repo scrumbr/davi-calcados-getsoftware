@@ -1,8 +1,10 @@
 
 package br.com.getsoftware.davicalcados.gui.edit;
 
+import br.com.getsoftware.davicalcados.entity.Cliente;
 import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,15 +15,29 @@ import java.util.logging.Logger;
  */
 public class EditClienteGUI extends javax.swing.JFrame {
 
-    private TelaMenuGUI telaMenu;
+   private Boolean status = null;
+     private Cliente cliente;
+    private ListClientesGUI listClientes;
+    
     public EditClienteGUI() {
         initComponents();
     }
     
-    public EditClienteGUI(TelaMenuGUI telaMenu){
-      this();
-      this.telaMenu = telaMenu;
+     public EditClienteGUI(ListClientesGUI listClientes, Cliente cliente) throws SQLException {
+        this();
+        this.listClientes = listClientes;
+        this.cliente = cliente;
+        status = cliente.isStatus();
+       // refreshCampos();
     }
+    public EditClienteGUI(Cliente cliente) throws SQLException {
+        this();
+        this.cliente = cliente;
+        status = cliente.isStatus();
+        //refreshCampos();
+    }
+    
+    
     
 
     @SuppressWarnings("unchecked")
@@ -535,7 +551,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        telaMenu.setEnabled(true);
+        listClientes.setEnabled(true);
         dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -548,8 +564,8 @@ public class EditClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTComplementoActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        telaMenu.setEnabled(true);
-        dispose();
+        listClientes.setEnabled(true);
+        this.dispose();   
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     /**
@@ -645,29 +661,6 @@ public class EditClienteGUI extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTtelefone;
     // End of variables declaration//GEN-END:variables
 
-public void DesbloqueiaCampos(){
-    jFCpf.setEnabled(true);
-    jTestadoCivil.setEnabled(true);
-    jTUltimaCompra.setEnabled(true);
-    jCSexo.setEnabled(true);
-    jTemail.setEnabled(true);
-    jFTelefone2.setEnabled(true);
-    jTtelefone.setEnabled(true);
-    jTid.setEnabled(true);
-    jTnome.setEnabled(true);
-    jTprofissao.setEnabled(true);
-    jTCidade.setEnabled(true);
-    jTBairro.setEnabled(true);
-    jCEstado.setEnabled(true);
-    jFCep.setEnabled(true);
-    jTRua.setEnabled(true);
-    jTNumero.setEnabled(true);
-    jTComplemento.setEnabled(true);
-    jRStatusAtivo.setEnabled(true);
-    jRStatusInativo.setEnabled(true);
-    jTDataNascimento.setEnabled(true);
-    jTUltimaCompra.setEnabled(true);
-};
 
 
 
