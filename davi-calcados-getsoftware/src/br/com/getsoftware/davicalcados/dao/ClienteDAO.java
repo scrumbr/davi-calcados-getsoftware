@@ -69,10 +69,7 @@ import java.util.ArrayList;
         stmt.close();
         return cliente;
     }
-//        id_cliente bigint auto_increment not null,
-//        nome , profissao , sexo , data_nascimento , estado_civil , cpf , rg , telefone ,
-//        telefone2 , email, data_ultima_compra , preferencia, numero_boleto,
-//        ativo,rua,numero,complemento,bairro, cidade, CEP,estado 
+
     @Override
     public void save(Cliente cliente) throws SQLException {
         String sql = "insert into cliente(nome,profissao,sexo,data_nascimento,estado_civil,cpf,"

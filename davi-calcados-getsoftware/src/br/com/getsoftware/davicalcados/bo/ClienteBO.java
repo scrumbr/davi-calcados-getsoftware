@@ -63,11 +63,11 @@ public class ClienteBO {
     public static void delete(int id) throws SQLException {
         ClienteDAO dao = new ClienteDAO();
         try {
-            int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
-            if (opc == JOptionPane.YES_OPTION) {
+            //int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
+            //if (opc == JOptionPane.YES_OPTION) {
                 dao.delete(id);
-                JOptionPane.showMessageDialog(null, "Sucesso ao excluir o registro\n", "Excluido com sucesso", 1);
-            }
+//                JOptionPane.showMessageDialog(null, "Sucesso ao excluir o registro\n", "Excluido com sucesso", 1);
+           // }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro\n" + e, "erro", 0);
         }

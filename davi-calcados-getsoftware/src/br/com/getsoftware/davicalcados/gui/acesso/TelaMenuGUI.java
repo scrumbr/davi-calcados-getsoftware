@@ -12,7 +12,9 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListProdutosGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.MyHours;
 import java.io.IOException;
@@ -214,13 +216,23 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu5.add(jMenuItem10);
         jMenu5.add(jSeparator12);
 
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"))); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"))); // NOI18N
         jMenuItem11.setText("Lista de Fornecedor");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem11);
         jMenu5.add(jSeparator13);
 
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"))); // NOI18N
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"))); // NOI18N
         jMenuItem12.setText("Lista de Produtos");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem12);
 
         jMenuBar2.add(jMenu5);
@@ -470,6 +482,16 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi possível listar os funcionários", "Erro", 0);
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+       this.setEnabled(false);
+       new ListFornecedorGUI(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        this.setEnabled(false);
+        new ListProdutosGUI(this).setVisible(true);          
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
