@@ -75,38 +75,36 @@ CREATE TABLE VENDA(
 */
 
 CREATE TABLE FORNECEDOR(
-	id_fornecedor bigint auto_increment not null,
-        id_usuario bigint not null,
+		id_fornecedor bigint auto_increment not null,
         nome varchar(150) not null,
         fisica_juridica varchar(18) not null, -- CNPJ (99.999.999/0001-99) ou CPF (999.999.999-99)
         telefone varchar(13), -- (88)8888-8888
         telefone2 varchar(13), -- (88)8888-8888
         email varchar(150),
         ativo boolean not null,
-	rua varchar(50) not null,
+		rua varchar(50) not null,
         numero int not null,
         complemento varchar(20),
         bairro varchar(50) not null,
         cidade varchar(50) not null,
         CEP varchar(10) , -- 99.999-999
         estado char(2) not null,
-constraint pk_fornecedor primary key fornecedor(id_fornecedor),
-constraint fk_fornecedor foreign key fornecedor(id_usuario) references usuario(id_usuario)
+		observacao longtext,
+constraint pk_fornecedor primary key fornecedor(id_fornecedor)
 );
 
-
 CREATE TABLE PRODUTO(
-	id_produto bigint auto_increment not null,
-        id_usuario bigint not null,
-	id_fornecedor bigint not null,
+		id_produto bigint auto_increment not null,
+		id_fornecedor bigint not null,
+		nome varchar(255) not null,
         descricao varchar(30) not null,
         quantidade int not null,
+		quantidade_minima int not null,
         valor_unitario numeric(9,2) not null,
         valor_venda numeric(9,2) not null,
 constraint pk_produto primary key produto(id_produto),
-constraint fk_produto foreign key produto(id_usuario) references usuario(id_usuario)
-
-);
+constraint fk_produto_fornecedorr foreign key produto(id_fornecedor) references fornecedor(id_fornecedor)
+); 
 
 
 CREATE TABLE SAIDA(
