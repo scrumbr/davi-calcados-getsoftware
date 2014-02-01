@@ -4,11 +4,14 @@
  */
 package br.com.getsoftware.davicalcados.gui.view;
 
+import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -95,6 +98,7 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLclose = new javax.swing.JLabel();
         jLeditar = new javax.swing.JLabel();
+        jLexcluir = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
         jLcontrato = new javax.swing.JLabel();
@@ -517,14 +521,29 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
             }
         });
 
+        jLexcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/icone_view_delete.png"))); // NOI18N
+        jLexcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLexcluirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLexcluirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLexcluirMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLexcluir)
+                .addGap(18, 18, 18)
                 .addComponent(jLeditar)
                 .addGap(26, 26, 26)
                 .addComponent(jLclose)
@@ -534,11 +553,14 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLeditar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLexcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1)
-                        .addComponent(jLclose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLclose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLeditar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -694,6 +716,33 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRativoActionPerformed
 
+    private void jLexcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLexcluirMouseClicked
+        int opt = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o registro ?", "Excluir",JOptionPane.YES_NO_OPTION);
+        if(opt == JOptionPane.YES_OPTION){
+            try {
+                FuncionarioBO.delete(Integer.valueOf(""+funcionario.getIdFuncionario()));
+                listFunc.setEnabled(true);
+                listFunc.dadosTabela();
+                listFunc.atualizaLinhaSelecionada();
+                this.dispose();
+                 JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro!", "Erro", 0);
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_jLexcluirMouseClicked
+
+    private void jLexcluirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLexcluirMouseEntered
+         ImageIcon icon = new ImageIcon("src\\br\\com\\getsoftware\\davicalcados\\icons\\icone_view_delete_enter.png");
+        jLexcluir.setIcon(icon);
+    }//GEN-LAST:event_jLexcluirMouseEntered
+
+    private void jLexcluirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLexcluirMouseExited
+         ImageIcon icon = new ImageIcon("src\\br\\com\\getsoftware\\davicalcados\\icons\\icone_view_delete.png");
+        jLexcluir.setIcon(icon);
+    }//GEN-LAST:event_jLexcluirMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -767,6 +816,7 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLeditar;
     private javax.swing.JLabel jLemail;
     private javax.swing.JLabel jLestado;
+    private javax.swing.JLabel jLexcluir;
     private javax.swing.JLabel jLid;
     private javax.swing.JLabel jLidade;
     private javax.swing.JLabel jLnasc;
