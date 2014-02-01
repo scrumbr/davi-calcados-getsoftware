@@ -10,15 +10,15 @@ package br.com.getsoftware.davicalcados.entity;
  * @author Junior Oliveira
  */
 public class Produto {
+//id_produto, id_usuario ,id_fornecedor,nome, descricao, quantidade, quantidade_minima, valor_unitario ,valor_venda 
 
     private Long idProduto;
-    private Long idUsuario;
     private String descricao;
     private Integer quantidade;
     private Double valorUnitario;
     private Double valorVenda;
     private String nome;
-    private Fornecedor fornecedor;
+    private Long fornecedor;
     private Integer quantidadeMinima;
 
     public String getNome() {
@@ -29,11 +29,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Fornecedor getFornecedor() {
+    public Long getIdFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
+    public void setIdFornecedor(Long fornecedor) {
         this.fornecedor = fornecedor;
     }
 
@@ -46,25 +46,13 @@ public class Produto {
     public void setQuantidadeMinima(Integer quantidadeMinima) {
         this.quantidadeMinima = quantidadeMinima;
     }
-    
-    
-    
-    
-    
+     
     public Long getIdProduto() {
         return idProduto;
     }
 
     public void setIdProduto(Long idProduto) {
         this.idProduto = idProduto;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getDescricao() {

@@ -112,7 +112,7 @@ public class FornecedorDAO implements InterfaceCRUD<Fornecedor> {
         stmt.setString(12, fornecedor.getEndereco().getCidade());
         stmt.setString(13, fornecedor.getEndereco().getCEP());
         stmt.setString(14, fornecedor.getEndereco().getEstado());
-        stmt.setLong(19, fornecedor.getIdFornecedor());
+        stmt.setLong(15, fornecedor.getIdFornecedor());
 
         stmt.execute();
         stmt.close();
