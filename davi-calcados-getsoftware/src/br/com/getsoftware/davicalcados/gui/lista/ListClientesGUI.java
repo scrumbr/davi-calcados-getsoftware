@@ -173,6 +173,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -354,17 +355,17 @@ public class ListClientesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBvisualizarActionPerformed
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
-//        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o Funcionário " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
-//        if (opc == JOptionPane.YES_OPTION) {
-//            try {
-//                FuncionarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-//                JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
-//                dadosTabela();
-//                atualizaLinhaSelecionada();
-//            } catch (SQLException ex) {
-//                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
-//            }
-//        }
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o cliente " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+            try {
+                ClienteBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
+                dadosTabela();
+                atualizaLinhaSelecionada();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
+            }
+        }
     }//GEN-LAST:event_jBexcluirActionPerformed
 
     private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed

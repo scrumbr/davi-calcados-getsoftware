@@ -125,20 +125,26 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"/>
+                  <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Fornecedor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem11ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator13">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"/>
+                  <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Produtos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem12ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

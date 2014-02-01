@@ -1,13 +1,19 @@
-
 package br.com.getsoftware.davicalcados.gui.edit;
 
+import br.com.getsoftware.davicalcados.bo.ClienteBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
+import br.com.getsoftware.davicalcados.entity.Endereco;
 import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
+import br.com.getsoftware.davicalcados.util.MyDate;
+import br.com.getsoftware.davicalcados.util.TransformCpf;
+import br.com.getsoftware.davicalcados.util.TransformDate;
+import br.com.getsoftware.davicalcados.util.TransformTelefone;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,30 +21,29 @@ import java.util.logging.Logger;
  */
 public class EditClienteGUI extends javax.swing.JFrame {
 
-   private Boolean status = null;
-     private Cliente cliente;
+    private String sexo = "";
+    private Boolean status = null;
+    private Cliente cliente;
     private ListClientesGUI listClientes;
-    
+
     public EditClienteGUI() {
         initComponents();
     }
-    
-     public EditClienteGUI(ListClientesGUI listClientes, Cliente cliente) throws SQLException {
+
+    public EditClienteGUI(ListClientesGUI listClientes, Cliente cliente) throws SQLException {
         this();
         this.listClientes = listClientes;
         this.cliente = cliente;
         status = cliente.isStatus();
-       // refreshCampos();
+        refreshCampos();
     }
+
     public EditClienteGUI(Cliente cliente) throws SQLException {
         this();
         this.cliente = cliente;
         status = cliente.isStatus();
-        //refreshCampos();
+        refreshCampos();
     }
-    
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,6 +51,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -59,18 +65,14 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTDataNascimento = new javax.swing.JTextField();
         jTestadoCivil = new javax.swing.JTextField();
         jFCpf = new javax.swing.JFormattedTextField();
         jTemail = new javax.swing.JTextField();
-        jTUltimaCompra = new javax.swing.JTextField();
-        jCSexo = new javax.swing.JComboBox();
         jFTelefone2 = new javax.swing.JFormattedTextField();
-        jTtelefone = new javax.swing.JFormattedTextField();
+        jFTelefone = new javax.swing.JFormattedTextField();
         jTid = new javax.swing.JTextField();
         jRStatusAtivo = new javax.swing.JRadioButton();
         jRStatusInativo = new javax.swing.JRadioButton();
@@ -78,6 +80,13 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jTprofissao = new javax.swing.JTextField();
         jTBoleto = new javax.swing.JTextField();
         jTPreferencias = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTIdade = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jRM = new javax.swing.JRadioButton();
+        jRF = new javax.swing.JRadioButton();
+        jTrG = new javax.swing.JTextField();
+        jFDataNascimento = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -117,10 +126,10 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(242, 242, 242)
                 .addComponent(jLabel1)
-                .addGap(249, 249, 249))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +148,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jLabel4.setText("Profissão");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Sexo");
+        jLabel5.setText("RG");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Data Nascimento");
@@ -159,9 +168,6 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("E-mail");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("Ultima Compra");
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("Preferências");
 
@@ -170,8 +176,6 @@ public class EditClienteGUI extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Status");
-
-        jTDataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         jTestadoCivil.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
@@ -184,11 +188,6 @@ public class EditClienteGUI extends javax.swing.JFrame {
 
         jTemail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
-        jTUltimaCompra.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-
-        jCSexo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jCSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sou do sexo", "Masculino", "Feminino", "Outro" }));
-
         try {
             jFTelefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
@@ -197,11 +196,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         try {
-            jTtelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            jFTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jTtelefone.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFTelefone.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         jTid.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTid.setEnabled(false);
@@ -219,6 +218,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
         buttonGroup1.add(jRStatusInativo);
         jRStatusInativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jRStatusInativo.setText("Inativo");
+        jRStatusInativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRStatusInativoActionPerformed(evt);
+            }
+        });
 
         jTnome.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
@@ -227,6 +231,47 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jTBoleto.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         jTPreferencias.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("Idade");
+
+        jTIdade.setEditable(false);
+        jTIdade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel23.setText("Sexo");
+
+        buttonGroup2.add(jRM);
+        jRM.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRM.setText("M");
+        jRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRMActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(jRF);
+        jRF.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRF.setText("F");
+        jRF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRFActionPerformed(evt);
+            }
+        });
+
+        jTrG.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        try {
+            jFDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFDataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFDataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFDataNascimentoFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -240,12 +285,12 @@ public class EditClienteGUI extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(jLabel8)))
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                                        .addGap(7, 7, 7)))
                                 .addGap(117, 117, 117))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -253,16 +298,23 @@ public class EditClienteGUI extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jTestadoCivil)
-                                                .addComponent(jTtelefone)
+                                                .addComponent(jFTelefone)
                                                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel6))
-                                        .addGap(18, 18, 18)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jFDataNascimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel10)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel10)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTrG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -270,38 +322,47 @@ public class EditClienteGUI extends javax.swing.JFrame {
                                 .addGap(0, 3, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
                             .addComponent(jLabel11)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jTnome, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                             .addComponent(jTprofissao)
                             .addComponent(jTemail)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jRStatusAtivo)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRStatusInativo))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jRStatusAtivo)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jRStatusInativo)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addComponent(jTBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTPreferencias)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(jTUltimaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTPreferencias))))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jTIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(25, 25, 25)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel23)
+                                            .addComponent(jRM))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCSexo, jFCpf, jFTelefone2, jTUltimaCompra});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFCpf, jFTelefone2});
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTBoleto, jTDataNascimento, jTestadoCivil, jTid, jTtelefone});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFDataNascimento, jFTelefone, jTBoleto, jTestadoCivil, jTid});
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTemail, jTnome, jTprofissao});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTIdade, jTrG});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,10 +386,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTprofissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTestadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTprofissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTestadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTrG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -336,20 +398,23 @@ public class EditClienteGUI extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTtelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
+                    .addComponent(jLabel16)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTUltimaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRStatusAtivo)
-                    .addComponent(jRStatusInativo))
+                    .addComponent(jRStatusInativo)
+                    .addComponent(jTIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRM)
+                    .addComponent(jRF)
+                    .addComponent(jFDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -360,6 +425,10 @@ public class EditClienteGUI extends javax.swing.JFrame {
                     .addComponent(jTPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTIdade, jTrG});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFDataNascimento, jFTelefone});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Endereço"));
 
@@ -483,6 +552,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jBSalvar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         jBCancelar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
@@ -556,7 +630,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jRStatusAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRStatusAtivoActionPerformed
-        // TODO add your handling code here:
+        status = true;
     }//GEN-LAST:event_jRStatusAtivoActionPerformed
 
     private void jTComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTComplementoActionPerformed
@@ -565,8 +639,97 @@ public class EditClienteGUI extends javax.swing.JFrame {
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
         listClientes.setEnabled(true);
-        this.dispose();   
+        this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRMActionPerformed
+        sexo = "M";
+    }//GEN-LAST:event_jRMActionPerformed
+
+    private void jRFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRFActionPerformed
+        sexo = "F";
+    }//GEN-LAST:event_jRFActionPerformed
+
+    private void jRStatusInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRStatusInativoActionPerformed
+        status = false;
+    }//GEN-LAST:event_jRStatusInativoActionPerformed
+
+    private void jFDataNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFDataNascimentoFocusLost
+        int ano = Integer.valueOf(jFDataNascimento.getText().substring(jFDataNascimento.getText().length() - 4, jFDataNascimento.getText().length()));
+        jTIdade.setText("" + (MyDate.getAno() - ano));
+    }//GEN-LAST:event_jFDataNascimentoFocusLost
+
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+  if (jFCpf.getText().equals("   .   .   -  ")) {
+            JOptionPane.showMessageDialog(null, "Campo 'CPF' está vazio!", "Atenção", 2);
+            jFCpf.requestFocus();
+        } else if (jTnome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'NOME' está vazio!", "Atenção", 2);
+            jTnome.requestFocus();
+        } else if (jTestadoCivil.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'ESTADO CIVIL' está vazio!", "Atenção", 2);
+            jTestadoCivil.requestFocus();
+        } else if (jTrG.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'RG' está vazio!", "Atenção", 2);
+            jTrG.requestFocus();
+        } else if (jTprofissao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'PROSISSÃO' está vazio!", "Atenção", 2);
+            jTprofissao.requestFocus();
+        } else if (jFTelefone.getText().equals("(  )    -    ")) {
+            JOptionPane.showMessageDialog(null, "Campo 'TELEFONE' está vazio!", "Atenção", 2);
+            jFTelefone.requestFocus();
+        } else if (jFTelefone2.getText().equals("(  )    -    ")) {
+            JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 2' está vazio!", "Atenção", 2);
+            jFTelefone2.requestFocus();
+        } else if (jTemail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'E-MAIL' está vazio!", "Atenção", 2);
+            jTemail.requestFocus();
+        } else if (jFDataNascimento.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(null, "Campo 'DATA NASCIMENTO' está vazio!", "Atenção", 2);
+            jFDataNascimento.requestFocus();
+        }else if(!jRM.isSelected() && !jRF.isSelected()){
+             JOptionPane.showMessageDialog(null, "Campo 'SEXO' está vazio!", "Atenção", 2);
+        } else if(jTBoleto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo 'BOLETO' está vazio!", "Atenção", 2);
+            jTBoleto.requestFocus();
+        } else if(jTPreferencias.getText().isEmpty()){
+             JOptionPane.showMessageDialog(null, "Campo 'PREFERÊNCIAS' está vazio!", "Atenção", 2);
+            jTPreferencias.requestFocus();            
+        } else if (jTCidade.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'CIDADE' está vazio!", "Atenção", 2);
+            jTCidade.requestFocus();
+        } else if (jTBairro.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'BAIRRO' está vazio!", "Atenção", 2);
+            jTBairro.requestFocus();
+        } else if (jCEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Campo 'ESTADO' está vazio!", "Atenção", 2);
+            jCEstado.requestFocus();
+        } else if (jFCep.getText().equals("     -   ")) {
+            JOptionPane.showMessageDialog(null, "Campo 'CEP' está vazio!", "Atenção", 2);
+            jFCep.requestFocus();
+        } else if (jTRua.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'RUA' está vazio!", "Atenção", 2);
+            jTRua.requestFocus();
+        } else if (jTNumero.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'NÚMERO' está vazio!", "Atenção", 2);
+            jTNumero.requestFocus();
+        } else if (jTComplemento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'COMPLEMENTO' está vazio!", "Atenção", 2);
+            jTComplemento.requestFocus();
+        } else {
+
+            try {
+                refreshFuncionario();
+                ClienteBO.update(cliente); 
+                JOptionPane.showMessageDialog(null, "Sucesso ao editar o registro\n", "Editado com sucesso", 1);
+                listClientes.setEnabled(true);
+                 this.dispose();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar editar o Cliente", "Erro", 0);
+            } catch (Exception ex) {
+                Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }    }//GEN-LAST:event_jBSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -608,12 +771,14 @@ public class EditClienteGUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBSalvar;
     private javax.swing.JComboBox jCEstado;
-    private javax.swing.JComboBox jCSexo;
     private javax.swing.JFormattedTextField jFCep;
     private javax.swing.JFormattedTextField jFCpf;
+    private javax.swing.JFormattedTextField jFDataNascimento;
+    private javax.swing.JFormattedTextField jFTelefone;
     private javax.swing.JFormattedTextField jFTelefone2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -630,6 +795,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -641,30 +807,91 @@ public class EditClienteGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRF;
+    private javax.swing.JRadioButton jRM;
     private javax.swing.JRadioButton jRStatusAtivo;
     private javax.swing.JRadioButton jRStatusInativo;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTBoleto;
     private javax.swing.JTextField jTCidade;
     private javax.swing.JTextField jTComplemento;
-    private javax.swing.JTextField jTDataNascimento;
+    private javax.swing.JTextField jTIdade;
     private javax.swing.JTextField jTNumero;
     private javax.swing.JTextField jTPreferencias;
     private javax.swing.JTextField jTRua;
-    private javax.swing.JTextField jTUltimaCompra;
     private javax.swing.JTextField jTemail;
     private javax.swing.JTextField jTestadoCivil;
     private javax.swing.JTextField jTid;
     private javax.swing.JTextField jTnome;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField jTprofissao;
-    private javax.swing.JFormattedTextField jTtelefone;
+    private javax.swing.JTextField jTrG;
     // End of variables declaration//GEN-END:variables
 
+    public void refreshFuncionario() {
 
+        Endereco end = new Endereco();
+        cliente.setStatus(status);
+        jRStatusAtivo.setSelected(status);
+        jRStatusInativo.setSelected(status);
+        cliente.setIdCiente(Long.valueOf(jTid.getText()));
+        cliente.setNome(jTnome.getText());
+        cliente.setProfissao(jTprofissao.getText());
+        cliente.setDataNascimento(TransformDate.transformDate(jFDataNascimento.getText()));
+        cliente.setEstadoCivil(jTestadoCivil.getText());
+        cliente.setCpf(TransformCpf.transformCpf(jFCpf.getText()));
+        cliente.setEmail(jTemail.getText());
+        cliente.setRg(jTrG.getText());
+        cliente.setTelefone(TransformTelefone.transformTelefone(jFTelefone.getText()));
+        cliente.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
+        cliente.setPreferencia(jTPreferencias.getText());
+        cliente.setNumeroBoleto(Long.valueOf(jTBoleto.getText()));
 
+        end.setBairro(jTBairro.getText());
+        end.setCEP(jFCep.getText());
+        end.setCidade(jTCidade.getText());
+        end.setComplemento(jTComplemento.getText());
+        end.setEstado(jCEstado.getSelectedItem().toString());
+        end.setNumero(Integer.valueOf(jTNumero.getText()));
+        end.setRua(jTRua.getText());
+        cliente.setEndereco(end);
+    }
 
+    public void refreshCampos() {
+        cliente.setStatus(status);
+        if (cliente.isStatus()) {
+            jRStatusAtivo.setSelected(true);
+        } else {
+            jRStatusInativo.setSelected(true);
+        }
+        if (cliente.getSexo().equals("M")) {
+            jRM.setSelected(true);
+            jRF.setSelected(false);
+        } else if (cliente.getSexo().equals("F")) {
+            jRM.setSelected(false);
+            jRF.setSelected(true);
+        }
+        jTid.setText("" + cliente.getIdCiente());
+        jTnome.setText(cliente.getNome());
+        jTprofissao.setText(cliente.getProfissao());
+        jFDataNascimento.setText(cliente.getDataNascimento());
+        jTestadoCivil.setText(cliente.getEstadoCivil());
+        jFCpf.setText(cliente.getCpf());
+        jTrG.setText(cliente.getRg());
+        jFTelefone.setText(cliente.getTelefone());
+        jFTelefone2.setText(cliente.getTelefone2());
+        jTemail.setText(cliente.getEmail());
+        jTPreferencias.setText(cliente.getPreferencia());
+        jTBoleto.setText("" + cliente.getNumeroBoleto());
+        int ano = Integer.valueOf(jFDataNascimento.getText().substring(jFDataNascimento.getText().length() - 4, jFDataNascimento.getText().length()));
+        jTIdade.setText("" + (MyDate.getAno() - ano));
 
-
-
+        jTRua.setText(cliente.getEndereco().getRua());
+        jTNumero.setText("" + cliente.getEndereco().getNumero());
+        jTComplemento.setText(cliente.getEndereco().getComplemento());
+        jTBairro.setText(cliente.getEndereco().getBairro());
+        jTCidade.setText(cliente.getEndereco().getCidade());
+        jFCep.setText(cliente.getEndereco().getCEP());
+        jCEstado.setSelectedItem(cliente.getEndereco().getEstado());
+    }
 }

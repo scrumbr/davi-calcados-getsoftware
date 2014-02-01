@@ -703,6 +703,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             try {
                 refreshFuncionario();
                 FuncionarioBO.update(funcionario);
+               
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar editar o Funcionário","Erro",0);
             } catch (Exception ex) {
@@ -717,7 +718,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jCestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCestadoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jCestadoActionPerformed
 
     private void jRfemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRfemActionPerformed
@@ -872,7 +872,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         if(funcionario.getSexo().equals("M")){
             jRmasc.setSelected(true);
             jRfem.setSelected(false);
-        }else if(funcionario.getSexo().equals("F")){
+        }else{
             jRmasc.setSelected(false);
              jRfem.setSelected(true);
         }
