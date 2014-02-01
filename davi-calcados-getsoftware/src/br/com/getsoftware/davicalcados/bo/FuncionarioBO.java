@@ -33,7 +33,6 @@ public class FuncionarioBO {
         try {
             validator(funcionario);
             dao.save(funcionario);
-            //JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o registro\n" + e, "erro", 0);
         }
@@ -44,7 +43,6 @@ public class FuncionarioBO {
         try {
             validator(funcionario);
             dao.update(funcionario);
-           // JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Atualizado com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro\n" + e, "erro", 0);
         }
@@ -65,11 +63,7 @@ public class FuncionarioBO {
     public static void delete(int id) throws SQLException {
         FuncionarioDAO dao = new FuncionarioDAO();
         try {
-            int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
-            if (opc == JOptionPane.YES_OPTION) {
-                dao.delete(id);
-                JOptionPane.showMessageDialog(null, "Sucesso ao excluir o registro\n", "Excluido com sucesso", 1);
-            }
+            dao.delete(id);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro\n" + e, "erro", 0);
         }

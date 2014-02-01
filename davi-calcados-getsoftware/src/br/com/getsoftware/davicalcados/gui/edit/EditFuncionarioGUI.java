@@ -56,6 +56,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTid = new javax.swing.JTextField();
@@ -237,6 +238,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
         jTemail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
+        buttonGroup2.add(jRfem);
         jRfem.setText("F");
         jRfem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,6 +249,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setText("Sexo");
 
+        buttonGroup2.add(jRmasc);
         jRmasc.setText("M");
         jRmasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -703,7 +706,11 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             try {
                 refreshFuncionario();
                 FuncionarioBO.update(funcionario);
-               
+                listFuncionarios.setEnabled(true);
+                this.dispose();
+                listFuncionarios.dadosTabela();
+                listFuncionarios.atualizaLinhaSelecionada();
+                JOptionPane.showMessageDialog(null, "Sucesso ao atualizar os registros!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar editar o Funcionário","Erro",0);
             } catch (Exception ex) {
@@ -777,6 +784,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBcancel;
     private javax.swing.JButton jBsalvar;
     private javax.swing.JComboBox jCestado;

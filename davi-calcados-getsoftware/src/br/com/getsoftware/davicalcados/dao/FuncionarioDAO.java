@@ -78,8 +78,8 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
     @Override
     public void save(Funcionario funcionario) throws SQLException {
         String sql = "insert into funcionario(nome, sexo, data_nascimento,cpf,rg,telefone,telefone2, "
-                + " email,salario,contrato, ativo, rua,numero,complemento,bairro,cidade,CEP,estado) "
-                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " email,salario,contrato, ativo, rua,numero,complemento,bairro,cidade,CEP,estado, recisao) "
+                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -101,6 +101,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(16, funcionario.getEndereco().getCidade());
         stmt.setString(17, funcionario.getEndereco().getCEP());
         stmt.setString(18, funcionario.getEndereco().getEstado());
+        stmt.setString(19, funcionario.getRecisao());
 
         stmt.execute();
         stmt.close();

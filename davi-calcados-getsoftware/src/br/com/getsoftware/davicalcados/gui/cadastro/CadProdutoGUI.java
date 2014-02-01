@@ -208,7 +208,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                     .addComponent(jTValorUnitario)
                     .addComponent(jLabel6)
                     .addComponent(jTValorVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

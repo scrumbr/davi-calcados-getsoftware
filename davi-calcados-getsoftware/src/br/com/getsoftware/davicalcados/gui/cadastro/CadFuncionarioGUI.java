@@ -10,6 +10,7 @@ import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.entity.Endereco;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
@@ -37,6 +38,11 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
      public CadFuncionarioGUI(TelaMenuGUI telaMenu) throws SQLException{
          this();
          this.telaMenu = telaMenu;            
+     }
+     private ListFuncionariosGUI listFunc;
+     public CadFuncionarioGUI(ListFuncionariosGUI listFunc) throws SQLException{
+         this();
+         this.listFunc = listFunc;            
      }
     
     @SuppressWarnings("unchecked")
@@ -629,8 +635,12 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFdataNascimentoFocusLost
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
-        telaMenu.setEnabled(true);
-        this.dispose();        
+        if (telaMenu != null) {
+            telaMenu.setEnabled(true);
+        } else if (listFunc != null) {
+            listFunc.setEnabled(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_jBcancelActionPerformed
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
@@ -701,7 +711,11 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         funcionario.setEmail(jTemail.getText());
         funcionario.setSexo(sexo);
         funcionario.setNome(jTnome.getText());
-        funcionario.setRecisao(TransformDate.transformDate(jFrecisao.getText()));
+        if(jRinativo.isSelected()==false){
+            funcionario.setRecisao(null);
+        }else{
+            funcionario.setRecisao(TransformDate.transformDate(jFrecisao.getText()));
+        }
         funcionario.setRg(jTrg.getText());
         funcionario.setSalario(Double.valueOf(jTsalario.getText()));
         funcionario.setTelefone(TransformTelefone.transformTelefone(jFtel1.getText()));
@@ -724,8 +738,14 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                     limpaCampos();
                    jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
                 } else {
-                     telaMenu.setEnabled(true);
-                     dispose();
+                    if(telaMenu != null){
+                        telaMenu.setEnabled(true);
+                    }else  if(listFunc != null) {
+                        listFunc.setEnabled(true);
+                        listFunc.dadosTabela();
+                        listFunc.atualizaLinhaSelecionada();
+                    }
+                     this.dispose();
                 }   
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar salvar o Funcionário","Erro",0);
@@ -737,7 +757,12 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        telaMenu.setEnabled(true);
+         if(telaMenu != null){
+             telaMenu.setEnabled(true);
+         }else  if(listFunc != null){
+             listFunc.setEnabled(true);
+         }
+        
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
