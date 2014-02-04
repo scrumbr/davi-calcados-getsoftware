@@ -86,10 +86,10 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(165, 165, 165)
                 .addComponent(jLabel1)
-                .addGap(146, 146, 146))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +290,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             Saida saida = new Saida();
             saida.setDataSaida(jFdata.getText());
             saida.setDescricao(jTdescricao.getText());
-//            saida.setIdSaida();
+//          saida.setIdSaida();
             saida.setIdUsuario(idUsuarios.get(jCusuarios.getSelectedIndex()-1));
             saida.setValorSaida(Double.valueOf(jTvalor.getText()));
             try {

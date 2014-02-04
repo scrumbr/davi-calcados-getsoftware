@@ -94,12 +94,12 @@ constraint pk_fornecedor primary key fornecedor(id_fornecedor)
 );
 
 CREATE TABLE PRODUTO(
-		id_produto bigint auto_increment not null,
-		id_fornecedor bigint not null,
-		nome varchar(255) not null,
+	id_produto bigint auto_increment not null,
+        id_fornecedor bigint not null,
+	nome varchar(255) not null,
         descricao varchar(30) not null,
         quantidade int not null,
-		quantidade_minima int not null,
+        quantidade_minima int not null,
         valor_unitario numeric(9,2) not null,
         valor_venda numeric(9,2) not null,
 constraint pk_produto primary key produto(id_produto),
