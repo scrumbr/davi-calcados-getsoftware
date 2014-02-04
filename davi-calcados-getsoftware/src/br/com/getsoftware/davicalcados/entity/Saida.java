@@ -12,25 +12,25 @@ package br.com.getsoftware.davicalcados.entity;
  */
 public class Saida {
 
-    private Integer idUsuario;
-    private Integer idSaida;
+    private Long idUsuario;
+    private Long idSaida;
     private String descricao;
     private Double valorSaida;
     private String dataSaida;
 
-    public Integer getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public Integer getIdSaida() {
+    public Long getIdSaida() {
         return idSaida;
     }
 
-    public void setIdSaida(Integer id) {
+    public void setIdSaida(Long id) {
         this.idSaida = id;
     }
 

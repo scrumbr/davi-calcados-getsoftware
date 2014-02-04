@@ -4,7 +4,6 @@
  */
 package br.com.getsoftware.davicalcados.util;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -23,6 +22,17 @@ public class MyDate {
         String diaAtual = dia+data.getDate();
          
         return diaAtual;
+
+    }
+    
+    public static String getMes() {
+        String mes = "0";
+        if(data.getDate()>9){
+            mes = "";
+        }
+        String mesAtual = mes+data.getMonth();
+         
+        return mesAtual;
 
     }
 
@@ -46,7 +56,7 @@ public class MyDate {
         return dia;
     }
 
-    public static String getMes() {
+    public static String getMesDetalhe() {
         String mes = null;
         if (data.getMonth() == 0) {
             mes = "Janeiro";
@@ -81,12 +91,12 @@ public class MyDate {
     }
 
     public static String getDataAtual() {
-        return " " + getDiaSemana() + ", " + getDia() + " de " + getMes() + " de " + getAno();
+        return " " + getDiaSemana() + ", " + getDia() + " de " + getMesDetalhe()+ " de " + getAno();
     }
 
     public static String dataFormatada() {
         
-        return getDia() + "/" + data.getMonth() + "/" + getAno();
+        return getDia() + "/" + getMes()+ "/" + getAno();
     }
 
     public static void main(String[]args){

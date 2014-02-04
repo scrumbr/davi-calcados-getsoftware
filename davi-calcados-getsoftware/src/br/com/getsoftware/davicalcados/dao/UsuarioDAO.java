@@ -94,10 +94,10 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
             Usuario usuario = new Usuario();
 
             usuario.setActive(res.getBoolean("ativo"));
-            usuario.setIdUsuario(res.getLong("id_usuarrio"));
+            usuario.setIdUsuario(res.getLong("id_usuario"));
             usuario.setNivel(res.getInt("nivel"));
             usuario.setSenha(res.getString("senha"));
-            usuario.setUserName(res.getString("username "));
+            usuario.setUserName(res.getString("username"));
 
             minhaLista.add(usuario);
         }

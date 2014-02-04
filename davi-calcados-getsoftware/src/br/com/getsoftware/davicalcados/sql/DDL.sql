@@ -108,9 +108,9 @@ constraint fk_produto_fornecedorr foreign key produto(id_fornecedor) references 
 
 
 CREATE TABLE SAIDA(
-	id_usuario bigint not null,
+		id_usuario bigint not null,
         id_saida bigint auto_increment not null,
-        descricao longtext not null,
+        descricao_saida longtext not null,
         valor_Saida numeric(9,2) not null,
         data_saida date not null,
 constraint pk_saida primary key saida(id_saida),
@@ -137,4 +137,3 @@ constraint fk_prod_produto_fornecido foreign key produto_fornecido(id_produto) r
 constraint fk_forn_produto_fornecido foreign key produto_fornecido(id_fornecedor) references fornecedor(id_fornecedor)
 
 );
-

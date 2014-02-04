@@ -15,12 +15,11 @@ import java.sql.SQLException;
  */
 public class LastID {
     public static Integer atualizaId(String atributo, String tabela) throws SQLException {
-        GenericSQLBO.genericQuery("select max("+atributo+") as lastid from "+tabela);
-//        GenericSQLBO.genericResultSet().last();
+        GenericSQLBO.genericQuery("select "+atributo+" from "+tabela+" order by "+atributo+" desc limit 1");
         if (GenericSQLBO.genericResultSet().last() == false) {
             return 1;
         } else {
-            return (GenericSQLBO.genericResultSet().getInt("lastid") + 1);
+            return (GenericSQLBO.genericResultSet().getInt(atributo) + 1);
         }
     }
 }

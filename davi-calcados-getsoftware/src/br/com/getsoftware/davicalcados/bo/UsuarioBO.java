@@ -33,7 +33,7 @@ public class UsuarioBO {
         try {
             validator(usuario);
             dao.save(usuario);
-            JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
+//            JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o registro\n" + e, "erro", 0);
         }
@@ -44,7 +44,7 @@ public class UsuarioBO {
         try {
             validator(usuario);
             dao.update(usuario);
-            JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Atualizado com sucesso", 1);
+//            JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Atualizado com sucesso", 1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro\n" + e, "erro", 0);
         }
@@ -65,11 +65,11 @@ public class UsuarioBO {
     public static void delete(int id) throws SQLException {
         UsuarioDAO dao = new UsuarioDAO();
         try {
-            int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
-            if (opc == JOptionPane.YES_OPTION) {
+//            int opc = JOptionPane.showConfirmDialog(null, "Deseja Excluir o registro ?", "Excluir", JOptionPane.YES_NO_OPTION);
+//            if (opc == JOptionPane.YES_OPTION) {
                 dao.delete(id);
-                JOptionPane.showMessageDialog(null, "Sucesso ao excluir o registro\n", "Excluido com sucesso", 1);
-            }
+//                JOptionPane.showMessageDialog(null, "Sucesso ao excluir o registro\n", "Excluido com sucesso", 1);
+//            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro\n" + e, "erro", 0);
         }
