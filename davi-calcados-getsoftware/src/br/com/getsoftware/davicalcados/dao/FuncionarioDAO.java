@@ -42,8 +42,9 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         ResultSet res = stmt.executeQuery();
         
         
-        Funcionario funcionario = new Funcionario();
+        Funcionario funcionario = null;
         if(res.next()){
+            funcionario = new Funcionario();
         Endereco end = new Endereco();
         funcionario.setAtivo(res.getBoolean("ativo"));
         funcionario.setSexo(res.getString("sexo"));
