@@ -29,9 +29,7 @@ import javax.swing.JOptionPane;
  */
 public class TelaMenuGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaMenuGUI
-     */
+    
     public TelaMenuGUI() {
         initComponents();
         //timer1.start();
@@ -239,6 +237,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/document-icon.png"))); // NOI18N
         jMenu6.setText("RELATORIOS");
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
         jMenuBar2.add(jMenu6);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/util-48.png"))); // NOI18N
@@ -266,6 +269,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Calendar-16.png"))); // NOI18N
         jMenuItem3.setText("Calêndario");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
         jMenu2.add(jSeparator8);
 
@@ -442,12 +450,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-       
           try { 
-               Runtime.getRuntime().exec("cmd.exe /C start Chrome.exe https://www.google.com.br/");
-        } catch (IOException ex) {
+            Runtime.getRuntime().exec("cmd.exe /C start Chrome.exe https://www.google.com.br/");
+          } catch (IOException ex) {
             Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -492,6 +500,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         this.setEnabled(false);
         new ListProdutosGUI(this).setVisible(true);          
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+           
+        
+    }//GEN-LAST:event_jMenu6ActionPerformed
 
     /**
      * @param args the command line arguments

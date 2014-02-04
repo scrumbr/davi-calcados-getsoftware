@@ -1,25 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.com.getsoftware.davicalcados.dao;
 
+import br.com.getsoftware.davicalcados.connection.Conexao;
+import br.com.getsoftware.davicalcados.entity.Entrada;
+import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
+import br.com.getsoftware.davicalcados.util.TransformDate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import br.com.getsoftware.davicalcados.connection.Conexao;
-import br.com.getsoftware.davicalcados.entity.Entrada;
-import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
-import br.com.getsoftware.davicalcados.util.TransformDate;
 
 /**
  *
- * @author JUNIOR
+ * @author Andrey Gois
  */
-public class EntradaDAO implements InterfaceCRUD<Entrada> {
+
+    
+     public class EntradaDAO implements InterfaceCRUD<Entrada> {
 
     private Connection conexao;
 

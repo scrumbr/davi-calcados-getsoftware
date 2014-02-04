@@ -38,8 +38,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         for (int i = 0; i < usuariosSuport.size(); i++) {
             jCusuarios.addItem(usuariosSuport.get(i).getUserName());
             idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
-        }
-        
+        }    
          
     }
 
@@ -84,10 +83,10 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(155, 155, 155)
                 .addComponent(jLabel1)
-                .addGap(146, 146, 146))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
