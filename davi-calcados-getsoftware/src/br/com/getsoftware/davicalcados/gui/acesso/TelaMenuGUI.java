@@ -7,6 +7,7 @@
 package br.com.getsoftware.davicalcados.gui.acesso;
 
 import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadEntradasGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
@@ -493,12 +494,20 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
        this.setEnabled(false);
-       new ListFornecedorGUI(this).setVisible(true);
+        try {
+            new ListFornecedorGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         this.setEnabled(false);
-        new ListProdutosGUI(this).setVisible(true);          
+        try {          
+            new ListProdutosGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

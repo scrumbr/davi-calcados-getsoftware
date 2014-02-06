@@ -8,6 +8,7 @@ import br.com.getsoftware.davicalcados.bo.FornecedorBO;
 import br.com.getsoftware.davicalcados.entity.Endereco;
 import br.com.getsoftware.davicalcados.entity.Fornecedor;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListFornecedorGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.TransformCnpj;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
@@ -35,6 +36,11 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         this();
         this.telaMenu = telaMenu;
     }
+     private ListFornecedorGUI listForn;
+     public CadFornecedorGUI(ListFornecedorGUI listForn) throws SQLException{
+         this();
+         this.listForn = listForn;            
+     }
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,6 +90,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -492,8 +499,12 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        telaMenu.setEnabled(true);
-        dispose();
+        if(telaMenu != null){
+             telaMenu.setEnabled(true);
+         }else  if(listForn != null){
+             listForn.setEnabled(true);
+         }  
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void jTComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTComplementoActionPerformed
@@ -501,8 +512,12 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTComplementoActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        telaMenu.setEnabled(true);
-        dispose();
+         if(telaMenu != null){
+             telaMenu.setEnabled(true);
+         }else  if(listForn != null){
+             listForn.setEnabled(true);
+         }  
+        this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jRCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRCpfActionPerformed

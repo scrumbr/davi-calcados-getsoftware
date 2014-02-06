@@ -524,8 +524,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        try {
+       try {
             this.setEnabled(false);
             new CadFuncionarioGUI(this).setVisible(true);
         } catch (SQLException ex) {

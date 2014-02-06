@@ -7,6 +7,7 @@ package br.com.getsoftware.davicalcados.gui.lista;
 import br.com.getsoftware.davicalcados.bo.ClienteBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditClienteGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewClienteGUI;
 import java.sql.SQLException;
@@ -204,25 +205,32 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(3).setResizable(false);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(4).setResizable(false);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(5).setResizable(false);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(6).setResizable(false);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
+        }
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
         jButton1.setText("Cad Cliente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jBvisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/visualizar_cliente-24.png"))); // NOI18N
         jBvisualizar.setText("Visualizar");
@@ -359,11 +367,11 @@ public class ListClientesGUI extends javax.swing.JFrame {
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 ClienteBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
+                JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!", "Sucesso", 1);
                 dadosTabela();
                 atualizaLinhaSelecionada();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
+                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o cliente", "Erro", 0);
             }
         }
     }//GEN-LAST:event_jBexcluirActionPerformed
@@ -392,6 +400,15 @@ public class ListClientesGUI extends javax.swing.JFrame {
         telaMenu.setEnabled(true);
         dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            this.setEnabled(false);
+            new CadClienteGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de Clientes!", "Erro", 0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
