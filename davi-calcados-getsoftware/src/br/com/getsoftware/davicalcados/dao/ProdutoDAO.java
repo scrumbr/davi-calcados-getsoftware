@@ -6,6 +6,7 @@
 package br.com.getsoftware.davicalcados.dao;
 
 import br.com.getsoftware.davicalcados.connection.Conexao;
+import br.com.getsoftware.davicalcados.entity.Fornecedor;
 import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
 import java.sql.Connection;
@@ -96,7 +97,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
     @Override
     public ArrayList<Produto> listAll() throws SQLException {
         String sql = "select * from produto";
-
+              
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
         ResultSet res = stmt.executeQuery();
@@ -104,7 +105,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
         ArrayList<Produto> minhaLista = new ArrayList<>();
         while (res.next()) {
             Produto produto = new Produto();
-
+          
             produto.setDescricao(res.getString("descricao"));
             produto.setIdProduto(res.getLong("id_produto"));
             produto.setIdFornecedor(res.getLong("id_fornecedor"));
@@ -113,7 +114,8 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
             produto.setValorUnitario(res.getDouble("valor_unitario"));
             produto.setValorVenda(res.getDouble("valor_venda"));
             produto.setNome(res.getString("nome"));
-
+           
+            
             minhaLista.add(produto);
         }
         res.close();

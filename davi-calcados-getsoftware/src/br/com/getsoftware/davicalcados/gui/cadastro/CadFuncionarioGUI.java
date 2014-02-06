@@ -665,9 +665,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         } else if (jFtel1.getText().equals("(  )    -    ")) {
              JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 1' está vazio!", "Atenção", 2);
             jFtel1.requestFocus();
-        } else if (jFtel2.getText().equals("(  )    -    ")) {
-             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 2' está vazio!", "Atenção", 2);
-            jFtel2.requestFocus();
         } else if (!jRmasc.isSelected() && !jRfem.isSelected()) {
              JOptionPane.showMessageDialog(null, "Campo 'SEXO' está vazio!", "Atenção", 2);
         }else if (jFcontrato.getText().equals("  /  /    ")) {
@@ -761,8 +758,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
              telaMenu.setEnabled(true);
          }else  if(listFunc != null){
              listFunc.setEnabled(true);
-         }
-        
+         }        
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 

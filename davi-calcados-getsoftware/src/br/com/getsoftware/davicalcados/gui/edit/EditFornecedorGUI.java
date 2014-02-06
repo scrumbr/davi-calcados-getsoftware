@@ -4,11 +4,17 @@
  */
 package br.com.getsoftware.davicalcados.gui.edit;
 
+import br.com.getsoftware.davicalcados.bo.FornecedorBO;
+import br.com.getsoftware.davicalcados.entity.Endereco;
+import br.com.getsoftware.davicalcados.entity.Fornecedor;
 import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListFornecedorGUI;
+import br.com.getsoftware.davicalcados.util.TransformTelefone;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,17 +22,31 @@ import java.util.logging.Logger;
  */
 public class EditFornecedorGUI extends javax.swing.JFrame {
 
-    private TelaMenuGUI telaMenu;
+    private Boolean status = null;
+    private Boolean CpfCnpj = null;
+    private Fornecedor fornecedor;
+    private ListFornecedorGUI listForn;
     
     public EditFornecedorGUI() {
         initComponents();
+        jFCnpj.setEditable(false);
+    }
+     public EditFornecedorGUI(ListFornecedorGUI listForn, Fornecedor fornecedor) throws SQLException {
+        this();
+        this.listForn = listForn;
+        this.fornecedor = fornecedor;
+        status = fornecedor.isStatus();
+        refreshCampos();
     }
 
-    public EditFornecedorGUI(TelaMenuGUI telaMenu){
+    public EditFornecedorGUI(Fornecedor fornecedor) throws SQLException {
         this();
-        this.telaMenu = telaMenu;
+        this.fornecedor = fornecedor;
+        status = fornecedor.isStatus();
+        refreshCampos();
     }
- 
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,7 +72,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         jCEstado = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTNome = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -75,6 +95,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -223,8 +244,8 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Identificador");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jTextField1.setEnabled(false);
+        jTId.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTId.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nome");
@@ -296,10 +317,20 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         jRAtivo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jRAtivo.setSelected(true);
         jRAtivo.setText("Ativo");
+        jRAtivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRAtivoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRInativo);
         jRInativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jRInativo.setText("Inativo");
+        jRInativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRInativoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Observação");
@@ -314,7 +345,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRCpf)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -358,7 +389,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
                         .addGap(0, 3, Short.MAX_VALUE))))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFCpf, jTextField1});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFCpf, jTId});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,7 +400,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -404,6 +435,11 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         jBSalvar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         jBCancelar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
@@ -478,7 +514,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        telaMenu.setEnabled(true);
+        listForn.setEnabled(true);
         dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -487,7 +523,7 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTComplementoActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        telaMenu.setEnabled(true);
+        listForn.setEnabled(true);
         dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
@@ -504,6 +540,76 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
             jFCpf.setEditable(false);
         }
     }//GEN-LAST:event_jRCnpjActionPerformed
+
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+if (jTNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'NOME' está vazio!", "Atenção", 2);
+            jTNome.requestFocus();
+        } else if (jTEmail.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'E-MAIL' está vazio!", "Atenção", 2);
+            jTEmail.requestFocus();
+        } else if (jRCpf.isSelected() && jFCpf.getText().equals("   .   .   -  ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CPF' está vazio!", "Atenção", 2);
+            jFCpf.requestFocus();
+        } else if (jRCnpj.isSelected() && jFCnpj.getText().equals("  .   .   /    -  ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CNPJ' está vazio!", "Atenção", 2);
+            jFCnpj.requestFocus();
+        } else if (jFTelefone.getText().equals("(  )    -    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE' está vazio!", "Atenção", 2);
+            jFTelefone.requestFocus();
+        } else if (jFTelefone2.getText().equals("(  )    -    ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE 2' está vazio!", "Atenção", 2);
+            jFTelefone2.requestFocus();
+        } else if (jTObservacao.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'OBSERVAÇÃO' está vazio!", "Atenção", 2);
+             jTObservacao.requestFocus();
+        } else if (jTCidade.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'CIDADE' está vazio!", "Atenção", 2);
+            jTCidade.requestFocus();
+        } else if (jTBairro.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'BAIRRO' está vazio!", "Atenção", 2);
+            jTBairro.requestFocus();
+        } else if (jCEstado.getSelectedIndex() == 0) {
+             JOptionPane.showMessageDialog(null, "Campo 'ESTADO' está vazio!", "Atenção", 2);
+            jCEstado.requestFocus();
+        } else if (jFCep.getText().equals("     -   ")) {
+             JOptionPane.showMessageDialog(null, "Campo 'CEP' está vazio!", "Atenção", 2);
+            jFCep.requestFocus();
+        } else if (jTRua.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'RUA' está vazio!", "Atenção", 2);
+            jTRua.requestFocus();
+        } else if (jTNumero.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'NÚMERO' está vazio!", "Atenção", 2);
+            jTNumero.requestFocus();
+        } else if (jTComplemento.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Campo 'COMPLEMENTO' está vazio!", "Atenção", 2);
+            jTComplemento.requestFocus();
+        } else{
+             try {
+                refreshFornecedor();
+                FornecedorBO.update(fornecedor);
+                listForn.setEnabled(true);
+                this.dispose();
+                listForn.dadosTabela();
+                listForn.atualizaLinhaSelecionada();
+                JOptionPane.showMessageDialog(null, "Sucesso ao atualizar os registros!", "Sucesso", 1);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar editar o Fornecedor","Erro",0);
+            } catch (Exception ex) {
+                Logger.getLogger(EditFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
+    }//GEN-LAST:event_jBSalvarActionPerformed
+
+    private void jRAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRAtivoActionPerformed
+status = true;
+    }//GEN-LAST:event_jRAtivoActionPerformed
+
+    private void jRInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRInativoActionPerformed
+status = false;
+    }//GEN-LAST:event_jRInativoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -581,34 +687,62 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTCidade;
     private javax.swing.JTextField jTComplemento;
     private javax.swing.JTextField jTEmail;
+    private javax.swing.JTextField jTId;
     private javax.swing.JTextField jTNome;
     private javax.swing.JTextField jTNumero;
     private javax.swing.JTextField jTObservacao;
     private javax.swing.JTextField jTRua;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-public void DesbloqueiaCampos(){
-    jTNome.setEnabled(true);
-    jTEmail.setEnabled(true);
-    jFCpf.setEnabled(true);
-    jFCnpj.setEnabled(true);
-    jFTelefone.setEnabled(true);
-    jFTelefone2.setEnabled(true);
-    jTObservacao.setEnabled(true);
-    jRAtivo.setEnabled(true);
-    jRInativo.setEnabled(true);
-    jRCpf.setEnabled(true);
-    jRCnpj.setEnabled(true);
-    jTCidade.setEnabled(true);
-    jTBairro.setEnabled(true);
-    jCEstado.setEnabled(true);
-    jFCep.setEnabled(true);
-    jTRua.setEnabled(true);
-    jTNumero.setEnabled(true);
-    jTComplemento.setEnabled(true);
-}
 
+public void refreshFornecedor() {
+       
+            Endereco end = new Endereco();
+            fornecedor.setStatus(status);
+            jRAtivo.setSelected(status);
+            jRInativo.setSelected(status);
+            fornecedor.setIdFornecedor(Long.valueOf(jTId.getText()));
+            fornecedor.setNome(jTNome.getText());
+            //fornecedor.setFisicaJuridica();
+            fornecedor.setTelefone(TransformTelefone.transformTelefone(jFTelefone.getText()));
+            fornecedor.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
+            fornecedor.setEmail(jTEmail.getText());
+            fornecedor.setObservacao(jTObservacao.getText());
+         
+        end.setBairro(jTBairro.getText());
+        end.setCEP(jFCep.getText());
+        end.setCidade(jTCidade.getText());
+        end.setComplemento(jTComplemento.getText());
+        end.setEstado(jCEstado.getSelectedItem().toString());
+        end.setNumero(Integer.valueOf(jTNumero.getText()));
+        end.setRua(jTRua.getText());
+        fornecedor.setEndereco(end);
+    }
 
+    public void refreshCampos() {
+        fornecedor.setStatus(status);
+        if (fornecedor.isStatus()) {
+            jRAtivo.setSelected(true);
+        } else {
+            jRInativo.setSelected(true);
+        }
+
+        jTId.setText("" + fornecedor.getIdFornecedor());
+        jTNome.setText(fornecedor.getNome());
+       // jTrG.setText(fornecedor.getRg());
+        jFTelefone.setText(fornecedor.getTelefone());
+        jFTelefone2.setText(fornecedor.getTelefone2());
+        jTEmail.setText(fornecedor.getEmail());
+        jTObservacao.setText(fornecedor.getObservacao());
+        
+
+        jTRua.setText(fornecedor.getEndereco().getRua());
+        jTNumero.setText("" + fornecedor.getEndereco().getNumero());
+        jTComplemento.setText(fornecedor.getEndereco().getComplemento());
+        jTBairro.setText(fornecedor.getEndereco().getBairro());
+        jTCidade.setText(fornecedor.getEndereco().getCidade());
+        jFCep.setText(fornecedor.getEndereco().getCEP());
+        jCEstado.setSelectedItem(fornecedor.getEndereco().getEstado());
+    }
 
 }

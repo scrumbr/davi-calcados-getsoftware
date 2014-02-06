@@ -186,6 +186,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         }
         jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
+        jFrecisao.setEditable(false);
         try {
             jFrecisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -736,11 +737,18 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jRmascActionPerformed
 
     private void jRativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRativoActionPerformed
-        status = true;
+        if(jRativo.isSelected()){
+            jFrecisao.setEnabled(false);
+            jFrecisao.setText(null);
+            status = true;
+        }
     }//GEN-LAST:event_jRativoActionPerformed
 
     private void jRinativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinativoActionPerformed
-        status = false;
+       if(jRinativo.isSelected()){
+            jFrecisao.setEnabled(true);
+            status = false;
+        }
     }//GEN-LAST:event_jRinativoActionPerformed
 
     /**

@@ -4,28 +4,50 @@
  */
 package br.com.getsoftware.davicalcados.gui.lista;
 
+import br.com.getsoftware.davicalcados.bo.FornecedorBO;
+import br.com.getsoftware.davicalcados.entity.Fornecedor;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
+import br.com.getsoftware.davicalcados.gui.edit.EditFornecedorGUI;
+import br.com.getsoftware.davicalcados.gui.view.ViewFornecedorGUI;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Andrey Gois
  */
 public class ListFornecedorGUI extends javax.swing.JFrame {
-
+    
+    private ArrayList<Fornecedor> listForn;
     private TelaMenuGUI telamenu;
-    public ListFornecedorGUI() {
+    private int linhaSelecionada = 0;
+
+    public ListFornecedorGUI() throws SQLException {
         initComponents();
+        dadosTabela();
+        jTable1.setAutoCreateRowSorter(true);
+        atualizaLinhaSelecionada();
     }
 
-    public ListFornecedorGUI(TelaMenuGUI telamenu){
+    public ListFornecedorGUI(TelaMenuGUI telamenu) throws SQLException{
         this();
         this.telamenu = telamenu;
+    }
+     public void atualizaLinhaSelecionada() {
+        linhaSelecionada = 0;
+        jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
     }
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -96,14 +118,16 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRcpf);
         jRcpf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRcpf.setText("CPF");
+        jRcpf.setText("CNPJ/CPF");
         jRcpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRcpfActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(jRid);
         jRid.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRid.setText("Identificador");
         jRid.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +136,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRnome);
         jRnome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRnome.setSelected(true);
         jRnome.setText("Nome");
@@ -136,7 +161,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 .addComponent(jRid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRcpf)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,30 +199,69 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(3).setResizable(false);
-        jTable1.getColumnModel().getColumn(4).setResizable(false);
-        jTable1.getColumnModel().getColumn(5).setResizable(false);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(50);
+        }
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
         jButton7.setText("Editar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
         jButton8.setText("Excluir");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/visualizar_cliente-24.png"))); // NOI18N
         jButton9.setText("Visualizar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Admin-icon-24.png"))); // NOI18N
         jButton10.setText("Cad Fornecedor");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -249,13 +313,13 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(950, 477));
+        setSize(new java.awt.Dimension(953, 514));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,11 +333,11 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaFocusLost
 
     private void jTpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyPressed
-        //        dadosPesquisa();
+     
     }//GEN-LAST:event_jTpesquisaKeyPressed
 
     private void jTpesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyReleased
-      //  filter();
+        filter();
     }//GEN-LAST:event_jTpesquisaKeyReleased
 
     private void jTpesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyTyped
@@ -281,16 +345,69 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaKeyTyped
 
     private void jRcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRcpfActionPerformed
-        //filter();
+        filter();
     }//GEN-LAST:event_jRcpfActionPerformed
 
     private void jRidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRidActionPerformed
-       // filter();
+        filter();
     }//GEN-LAST:event_jRidActionPerformed
 
     private void jRnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnomeActionPerformed
-      //  filter();
+        filter();
     }//GEN-LAST:event_jRnomeActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+try {
+            this.setEnabled(false);
+            new CadFornecedorGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de fornecedor!", "Erro", 0);
+        }      
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     telamenu.setEnabled(true);
+     dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o fornecedor " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+            try {
+                FornecedorBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                dadosTabela();
+                atualizaLinhaSelecionada();
+                JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso!", "Sucesso", 1);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o fornecedor", "Erro", 0);
+            }
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       this.setEnabled(false);
+        try {
+            Fornecedor fornecedor = FornecedorBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            new ViewFornecedorGUI(this, fornecedor).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+ linhaSelecionada = jTable1.getSelectedRow();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Fornecedor fornecedor;
+        this.setEnabled(false);
+        try {
+            fornecedor = FornecedorBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            new EditFornecedorGUI(this, fornecedor).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,11 +439,16 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListFornecedorGUI().setVisible(true);
+                try {
+                    new ListFornecedorGUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListFornecedorGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
@@ -344,4 +466,96 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTpesquisa;
     // End of variables declaration//GEN-END:variables
+
+    public void filter() {
+        if (jRnome.isSelected()) {
+            dadosPesquisaPorNome();
+        } else if (jRid.isSelected()) {
+            dadosPesquisaPorID();
+        } else if (jRcpf.isSelected()) {
+            dadosPesquisaPorCPF();
+        }
+        atualizaLinhaSelecionada();
+    }
+ public void dadosTabela() throws SQLException {
+
+        listForn = FornecedorBO.listAll();
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listForn.size(); i++) {
+            modelo.addRow(new Object[]{
+                listForn.get(i).getIdFornecedor(),
+                listForn.get(i).getNome(),
+                listForn.get(i).getFisicaJuridica(),
+                listForn.get(i).getTelefone(),
+                listForn.get(i).getTelefone2(),
+                listForn.get(i).getEmail()
+            });
+        }
+    }
+
+public void dadosPesquisaPorNome() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listForn.size(); i++) {
+            if (listForn.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
+                    || listForn.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listForn.get(i).getIdFornecedor(),
+                    listForn.get(i).getNome(),
+                    listForn.get(i).getFisicaJuridica(),
+                    listForn.get(i).getTelefone(),
+                    listForn.get(i).getTelefone2(),
+                    listForn.get(i).getEmail()
+                });
+            }
+
+        }
+    }
+
+    public void dadosPesquisaPorID() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listForn.size(); i++) {
+            if (listForn.get(i).getIdFornecedor().toString().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listForn.get(i).getIdFornecedor(),
+                    listForn.get(i).getNome(),
+                    listForn.get(i).getFisicaJuridica(),
+                    listForn.get(i).getTelefone(),
+                    listForn.get(i).getTelefone2(),
+                    listForn.get(i).getEmail()
+                });
+            }
+
+        }
+    }
+
+    public void dadosPesquisaPorCPF() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listForn.size(); i++) {
+            if (listForn.get(i).getFisicaJuridica().replace(".", "").startsWith(jTpesquisa.getText())
+                    || listForn.get(i).getFisicaJuridica().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listForn.get(i).getIdFornecedor(),
+                    listForn.get(i).getNome(),
+                    listForn.get(i).getFisicaJuridica(),
+                    listForn.get(i).getTelefone(),
+                    listForn.get(i).getTelefone2(),
+                    listForn.get(i).getEmail()
+                });
+            }
+
+        }
+    }
+
+
+
+
 }
