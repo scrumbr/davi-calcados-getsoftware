@@ -8,6 +8,7 @@ import br.com.getsoftware.davicalcados.bo.ProdutoBO;
 import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewProdutoGUI;
 import java.sql.SQLException;
@@ -37,6 +38,11 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     public ListProdutosGUI(TelaMenuGUI telamenu) throws SQLException{
         this();
         this.telamenu = telamenu;        
+    }
+    private CadVendaGUI venda;
+    public ListProdutosGUI(CadVendaGUI venda) throws SQLException{
+        this();
+        this.venda = venda;        
     }
 
       public void atualizaLinhaSelecionada() {
@@ -327,7 +333,12 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-              telamenu.setEnabled(true);
+        if(telamenu != null){      
+            telamenu.setEnabled(true);
+        }else if(venda != null){
+            venda.setEnabled(true);
+        }     
+              
               dispose();
     }//GEN-LAST:event_formWindowClosing
 

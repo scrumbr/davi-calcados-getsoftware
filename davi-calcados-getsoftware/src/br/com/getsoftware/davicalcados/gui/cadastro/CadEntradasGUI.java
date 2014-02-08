@@ -35,10 +35,23 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
+//        for (int i = 0; i < usuariosSuport.size(); i++) {
+//            jCusuarios.addItem(usuariosSuport.get(i).getUserName());
+//            idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
+//        }
+     }
+     private CaixaGUI caixa;
+        public CadEntradasGUI(CaixaGUI caixa) throws SQLException {
+        this();
+        jFdata.setText(MyDate.dataFormatada());
+        jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
+        usuariosSuport = UsuarioBO.listAll();
+        idUsuarios = new ArrayList<>();
         for (int i = 0; i < usuariosSuport.size(); i++) {
             jCusuarios.addItem(usuariosSuport.get(i).getUserName());
             idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
-        }    
+        }
+        this.caixa = caixa;
          
     }
 
@@ -70,8 +83,13 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         jCusuarios = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -293,6 +311,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
             try {
                 EntradaBO.save(entrada);
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar a entrada!", "Sucesso", 1);
+                caixa.dadosTabela();
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova entada?", "Nova entrada", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
                     jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
@@ -302,6 +321,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
                     jTdescricao.setText(null);
                 }else{
                     this.dispose();
+                    caixa.dadosTabela();
                 }
 
             } catch (Exception ex) {
@@ -324,6 +344,11 @@ public class CadEntradasGUI extends javax.swing.JFrame {
             jFdata.setEditable(true);
         }
     }//GEN-LAST:event_jCparaADataActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        caixa.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

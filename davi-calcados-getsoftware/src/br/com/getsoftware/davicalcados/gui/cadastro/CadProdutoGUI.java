@@ -12,7 +12,6 @@ import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import org.eclipse.jdt.internal.compiler.lookup.TypeIds;
 
 /**
  *
