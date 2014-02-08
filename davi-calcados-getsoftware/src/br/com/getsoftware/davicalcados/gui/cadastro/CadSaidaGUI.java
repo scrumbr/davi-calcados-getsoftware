@@ -8,13 +8,11 @@ package br.com.getsoftware.davicalcados.gui.cadastro;
 
 import br.com.getsoftware.davicalcados.bo.SaidaBO;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
-import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Saida;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,20 +27,35 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     /**
      * Creates new form CadSaidasGUI
      */
-    private ArrayList<Usuario>usuariosSuport;
-    private ArrayList<Long>idUsuarios;
-     public CadSaidaGUI() throws SQLException {
+    private ArrayList<Usuario> usuariosSuport;
+    private ArrayList<Long> idUsuarios;
+
+    public CadSaidaGUI() throws SQLException {
         initComponents();
         jFdata.setText(MyDate.dataFormatada());
-        jTid.setText(""+LastID.atualizaId("id_saida", "saida"));
+        jTid.setText("" + LastID.atualizaId("id_saida", "saida"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
+//        for (int i = 0; i < usuariosSuport.size(); i++) {
+//            jCusuarios.addItem(usuariosSuport.get(i).getUserName());
+//            idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
+//        }
+    }
+        private CaixaGUI caixa;
+        public CadSaidaGUI(CaixaGUI caixa) throws SQLException {
+        this();
+        jFdata.setText(MyDate.dataFormatada());
+        jTid.setText("" + LastID.atualizaId("id_saida", "saida"));
+        usuariosSuport = UsuarioBO.listAll();
+        idUsuarios = new ArrayList<>();
+       
         for (int i = 0; i < usuariosSuport.size(); i++) {
             jCusuarios.addItem(usuariosSuport.get(i).getUserName());
             idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
+
         }
-        
-         
+            this.caixa = caixa;
+
     }
 
     /**
@@ -73,8 +86,13 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jCusuarios = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -296,6 +314,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             try {
                 SaidaBO.save(saida);
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar a saida!", "Sucesso", 1);
+                caixa.dadosTabela();
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova entada?", "Nova saida", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
                     jTid.setText(""+LastID.atualizaId("id_saida", "saida"));
@@ -305,6 +324,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                     jTdescricao.setText(null);
                 }else{
                     this.dispose();
+                    caixa.dadosTabela();
                 }
 
             } catch (Exception ex) {
@@ -327,6 +347,11 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             jFdata.setEditable(true);
         }
     }//GEN-LAST:event_jCparaADataActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        caixa.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -137,3 +137,14 @@ constraint fk_prod_produto_fornecido foreign key produto_fornecido(id_produto) r
 constraint fk_forn_produto_fornecido foreign key produto_fornecido(id_fornecedor) references fornecedor(id_fornecedor)
 
 );
+
+create table caixa(
+	id_caixa bigint auto_increment,
+	id_movimentacao bigint not null, 
+	movimentacao enum('Entrada','Saída'), 
+	descricao longtext not null, 
+	data_hora datetime not null, 
+	username varchar(30) not null, 
+	valor numeric(20,2),
+constraint pk_caixa primary key caixa(id_caixa)
+);

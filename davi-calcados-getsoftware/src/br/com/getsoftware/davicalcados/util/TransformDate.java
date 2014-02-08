@@ -12,7 +12,7 @@ package br.com.getsoftware.davicalcados.util;
 public class TransformDate {
 
     public static String transformDate(String data) {
-        System.out.println(data);
+
         if(data.contains("/")){
            String tranform[] = data.split("/");
         String newData = ""+tranform[2] + "/" + tranform[1] + "/" + tranform[0]+""; 
