@@ -501,7 +501,7 @@ public void filter() {
         for (int i = 0; i < listPro.size(); i++) {
             modelo.addRow(new Object[]{
                 listPro.get(i).getIdProduto(),
-                listPro.get(i).getIdFornecedor(),
+                listPro.get(i).getFornecedor().getNome(),
                 listPro.get(i).getNome(),
                 listPro.get(i).getQuantidade(),
                 listPro.get(i).getValorVenda()

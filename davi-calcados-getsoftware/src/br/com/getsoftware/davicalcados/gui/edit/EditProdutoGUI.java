@@ -15,45 +15,45 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Junior Oliveira
  */
 public class EditProdutoGUI extends javax.swing.JFrame {
 
- 
     private Produto produto;
     private ListProdutosGUI listPro;
     private ArrayList<Long> fornecedores;
-    
+
     public EditProdutoGUI() throws SQLException {
         initComponents();
-         jTId.setText(""+LastID.atualizaId("id_produto", "produto"));
+        jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
         jTDescricao.setLineWrap(true);
         fornecedores = new ArrayList<>();
+//        atualizaIdFonecedor();
+    }
+    public void atualizaIdFonecedor() throws SQLException{
         ArrayList<Fornecedor> forn = FornecedorBO.listAll();
-        for(int i = 0; i < forn.size(); i++){
+        for (int i = 0; i < forn.size(); i++) {
             jCFornecedor.addItem(forn.get(i).getNome());
             this.fornecedores.add(forn.get(i).getIdFornecedor());
         }
-        
+        System.out.println(fornecedores.toString());
     }
-
+    
     public EditProdutoGUI(ListProdutosGUI listPro, Produto produto) throws SQLException {
         this();
         this.listPro = listPro;
         this.produto = produto;
-       // refreshCampos();
+         refreshCampos();
+         
     }
-    
-     public EditProdutoGUI(Produto produto) throws SQLException{
-         this();
-         this.produto = produto;    
-        // refreshCampos();
-     }
-        
-    
+
+    public EditProdutoGUI(Produto produto) throws SQLException {
+        this();
+        this.produto = produto;
+         refreshCampos();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,6 +129,11 @@ public class EditProdutoGUI extends javax.swing.JFrame {
 
         jCFornecedor.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jCFornecedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escolha o Fornecedor" }));
+        jCFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCFornecedorActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Nome");
@@ -414,51 +419,57 @@ public class EditProdutoGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo 'VALOR DE VENDA' está vazio!", "Atenção", 2);
             jTValorVenda.requestFocus();
         } else {
-             try {
+            try {
                 refreshProduto();
-                ProdutoBO.update(produto); 
+                ProdutoBO.update(produto);
                 listPro.setEnabled(true);
                 this.dispose();
                 listPro.dadosTabela();
-                listPro.atualizaLinhaSelecionada();                
+                listPro.atualizaLinhaSelecionada();
                 JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Sucesso", 1);
-   
-               } catch (SQLException ex) {
+
+            } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar editar o produto", "Erro", 0);
             } catch (Exception ex) {
                 Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
 
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
-         listPro.setEnabled(true);
+        listPro.setEnabled(true);
         dispose();
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jTValorUnitarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTValorUnitarioKeyReleased
-        if(jTValorUnitario.getText().isEmpty() || jTValorUnitario.getText() == null){
+        if (jTValorUnitario.getText().isEmpty() || jTValorUnitario.getText() == null) {
             jTAumento.setText(null);
             jTValorVenda.setText(null);
             jTAumento.setEditable(false);
-        }else{
+        } else {
             jTAumento.setEditable(true);
         }
     }//GEN-LAST:event_jTValorUnitarioKeyReleased
 
     private void jTAumentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAumentoKeyReleased
-         if(jTAumento.getText().isEmpty() || jTAumento.getText() == null){
-             jTValorVenda.setText(null);
+        if (jTAumento.getText().isEmpty() || jTAumento.getText() == null) {
+            jTValorVenda.setText(null);
         }
     }//GEN-LAST:event_jTAumentoKeyReleased
 
     private void jTAumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAumentoFocusLost
-            double valorAumento = ((Double.valueOf(jTAumento.getText()) / 100) * Double.valueOf(jTValorUnitario.getText())) + Double.valueOf(jTValorUnitario.getText());
- BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
-          jTValorVenda.setText(""+bd.doubleValue());             
+        if (jTAumento.getText().isEmpty() && jTAumento.getText() == null) {
+        double valorAumento = ((Double.valueOf(jTAumento.getText()) / 100) * Double.valueOf(jTValorUnitario.getText())) + Double.valueOf(jTValorUnitario.getText());
+        BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
+        jTValorVenda.setText("" + bd.doubleValue());
+        }
     }//GEN-LAST:event_jTAumentoFocusLost
+
+    private void jCFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,34 +541,33 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTValorVenda;
     // End of variables declaration//GEN-END:variables
 
- 
-    
-    public void refreshProduto() {        
-       produto.setIdProduto(Long.valueOf(jTId.getText()));
-       produto.setNome(jTNome.getText());
-       //ATENÇÃO ---------------------------------------------------------
-       produto.setIdFornecedor(Long.valueOf(jCFornecedor.getSelectedIndex()));
-       //---------------------------------------------------------------
-       produto.setDescricao(jTDescricao.getText());
-       produto.setQuantidade(Integer.valueOf(jTQuantidade.getText()));
-       produto.setQuantidadeMinima(Integer.valueOf(jTQuantidadeMinima.getText()));
-       produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText()));
-       produto.setValorVenda(Double.valueOf(jTValorVenda.getText()));
+    public void refreshProduto() {
+//        produto.setIdProduto(Long.valueOf(jTId.getText()));
+        
+        produto.setNome(jTNome.getText());
+        //ATENÇÃO ---------------------------------------------------------
+        Fornecedor f = new Fornecedor();
+        produto.setFornecedor(f);
+         System.out.println(jCFornecedor.getItemCount());
+        produto.getFornecedor().setIdFornecedor(Long.valueOf(fornecedores.get(jCFornecedor.getSelectedIndex()-1)));
+        //---------------------------------------------------------------
+        produto.setDescricao(jTDescricao.getText());
+        produto.setQuantidade(Integer.valueOf(jTQuantidade.getText()));
+        produto.setQuantidadeMinima(Integer.valueOf(jTQuantidadeMinima.getText()));
+        produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText()));
+        produto.setValorVenda(Double.valueOf(jTValorVenda.getText()));
     }
-//
-//    public void refreshCampos() {
-//       
-//        jTId.setText("" + produto.getIdProduto());
-//        jTNome.setText(produto.getNome());
-//        jTDescricao.setText(produto.getDescricao());
-//        jTQuantidade.setText(""+produto.getQuantidade());
-//        jTQuantidadeMinima.setText(""+produto.getQuantidadeMinima());
-//        jTValorUnitario.setText(""+produto.getValorUnitario());
-//        jTValorVenda.setText(""+produto.getValorVenda());
-//        //jCFornecedor.setSelectedItem(produto.getIdFornecedor());       
-//    }
-    
-    
-    
-    
+
+    public void refreshCampos() throws SQLException {
+        jTId.setText("" + produto.getIdProduto());
+        jTNome.setText(produto.getNome());
+        jTDescricao.setText(produto.getDescricao());
+        jTQuantidade.setText(""+produto.getQuantidade());
+        jTQuantidadeMinima.setText(""+produto.getQuantidadeMinima());
+        jTValorUnitario.setText(""+produto.getValorUnitario());
+        jTValorVenda.setText(""+produto.getValorVenda());
+        atualizaIdFonecedor();
+        jCFornecedor.setSelectedItem(produto.getFornecedor().getNome()); 
+        
+    }
 }
