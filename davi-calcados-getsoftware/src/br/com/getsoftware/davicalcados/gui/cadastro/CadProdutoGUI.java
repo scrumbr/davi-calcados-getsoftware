@@ -428,8 +428,15 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                     limpaCampos();
                     jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
                 } else {
-                    telaMenu.setEnabled(true);
-                    dispose();
+                       if(telaMenu != null){
+                        telaMenu.setEnabled(true);
+                         }else  if(listPro != null){
+                        listPro.setEnabled(true);
+                         listPro.dadosTabela();
+                        listPro.atualizaLinhaSelecionada();
+                }  
+        this.dispose();
+                    
                 }
                 
             } catch (SQLException ex) {
@@ -467,7 +474,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
 
     private void jTAumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAumentoFocusLost
             double valorAumento = ((Double.valueOf(jTAumento.getText()) / 100) * Double.valueOf(jTValorUnitario.getText())) + Double.valueOf(jTValorUnitario.getText());
- BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
+          BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
           jTValorVenda.setText(""+bd.doubleValue());             
     }//GEN-LAST:event_jTAumentoFocusLost
 

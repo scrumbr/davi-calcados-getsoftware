@@ -52,11 +52,9 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         for (int i = 0; i < usuariosSuport.size(); i++) {
             jCusuarios.addItem(usuariosSuport.get(i).getUserName());
             idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
-
         }
             this.caixa = caixa;
-
-    }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -323,8 +321,9 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                     jCusuarios.setSelectedIndex(0);
                     jTdescricao.setText(null);
                 }else{
-                    this.dispose();
+                    caixa.setEnabled(true);
                     caixa.dadosTabela();
+                    this.dispose();
                 }
 
             } catch (Exception ex) {
@@ -335,6 +334,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
+        caixa.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jBcancelActionPerformed
 

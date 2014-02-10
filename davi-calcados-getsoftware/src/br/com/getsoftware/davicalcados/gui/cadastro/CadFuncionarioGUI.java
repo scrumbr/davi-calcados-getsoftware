@@ -19,6 +19,7 @@ import br.com.getsoftware.davicalcados.util.TransformTelefone;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +35,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     public CadFuncionarioGUI() throws SQLException {
         initComponents();
         jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
+        LimpaMascaras();
     }
      public CadFuncionarioGUI(TelaMenuGUI telaMenu) throws SQLException{
          this();
@@ -102,6 +104,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jBsalvar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -227,6 +230,11 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jFdataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jFdataNascimentoFocusLost(evt);
+            }
+        });
+        jFdataNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFdataNascimentoKeyReleased(evt);
             }
         });
 
@@ -574,8 +582,10 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 0, 0));
+        jPanel4.setPreferredSize(new java.awt.Dimension(513, 35));
+        jPanel4.setRequestFocusEnabled(false);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Cadastro de Funcionário");
 
@@ -584,23 +594,37 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(214, 214, 214)
+                .addGap(234, 234, 234)
                 .addComponent(jLabel21)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel21)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(204, 0, 0));
+        jPanel5.setPreferredSize(new java.awt.Dimension(513, 35));
+        jPanel5.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,6 +632,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jPanel2, jPanel3});
@@ -622,16 +647,21 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(740, 542));
+        setSize(new java.awt.Dimension(740, 558));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFdataNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdataNascimentoFocusLost
+        jFdataNascimento.setFocusLostBehavior(JFormattedTextField.COMMIT);     
+        if(jFdataNascimento.getText().equals("  /  /    ")){    
+        }else{
         int ano = Integer.valueOf(jFdataNascimento.getText().substring(jFdataNascimento.getText().length()-4, jFdataNascimento.getText().length()));
-        jTidade.setText(""+(MyDate.getAno()-ano));
+        jTidade.setText(""+(MyDate.getAno()-ano));  
+        }
     }//GEN-LAST:event_jFdataNascimentoFocusLost
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
@@ -793,6 +823,12 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFdataNascimentoActionPerformed
 
+    private void jFdataNascimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFdataNascimentoKeyReleased
+      if(jFdataNascimento.getText().equals("  /  /    ")){
+          jTidade.setText("");
+      } 
+    }//GEN-LAST:event_jFdataNascimentoKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -871,6 +907,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRativo;
     private javax.swing.JRadioButton jRfem;
     private javax.swing.JRadioButton jRinativo;
@@ -888,6 +925,16 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTsalario;
     // End of variables declaration//GEN-END:variables
  
+        public void LimpaMascaras(){
+        jFcpf.setFocusLostBehavior(JFormattedTextField.COMMIT);
+        jFcontrato.setFocusLostBehavior(JFormattedTextField.COMMIT);
+        jFtel1.setFocusLostBehavior(JFormattedTextField.COMMIT); 
+        jFtel2.setFocusLostBehavior(JFormattedTextField.COMMIT);
+        jFrecisao.setFocusLostBehavior(JFormattedTextField.COMMIT);
+        jFcep.setFocusLostBehavior(JFormattedTextField.COMMIT);
+        }
+    
+    
     public void limpaCampos(){
         jFcpf.setText(null);
         jTnome.setText(null);

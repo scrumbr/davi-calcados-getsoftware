@@ -36,7 +36,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         //timer1.start();
         jLData.setText(MyDate.getDataAtual());
         jLHora.setText(MyHours.getHoraAtual());
-        
     }
 
     /**

@@ -10,6 +10,8 @@ import br.com.getsoftware.davicalcados.entity.Fornecedor;
 import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFornecedorGUI;
+import br.com.getsoftware.davicalcados.util.TransformCnpj;
+import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -703,7 +705,11 @@ public void refreshFornecedor() {
             jRInativo.setSelected(status);
             fornecedor.setIdFornecedor(Long.valueOf(jTId.getText()));
             fornecedor.setNome(jTNome.getText());
-            //fornecedor.setFisicaJuridica();
+            if (jRCpf.isSelected()) {
+            fornecedor.setFisicaJuridica(TransformCpf.transformCpf(jFCpf.getText()));
+            } else if (jRCnpj.isSelected()) {
+            fornecedor.setFisicaJuridica(TransformCnpj.transformCnpj(jFCnpj.getText()));
+            }
             fornecedor.setTelefone(TransformTelefone.transformTelefone(jFTelefone.getText()));
             fornecedor.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
             fornecedor.setEmail(jTEmail.getText());
@@ -729,7 +735,13 @@ public void refreshFornecedor() {
 
         jTId.setText("" + fornecedor.getIdFornecedor());
         jTNome.setText(fornecedor.getNome());
-       // jTrG.setText(fornecedor.getRg());
+       if(fornecedor.getFisicaJuridica().length() == 11){
+           jRCpf.setSelected(true);
+           jFCpf.setText(fornecedor.getFisicaJuridica());
+       }else{
+           jRCnpj.setSelected(true);
+           jFCnpj.setText(fornecedor.getFisicaJuridica());
+       }
         jFTelefone.setText(fornecedor.getTelefone());
         jFTelefone2.setText(fornecedor.getTelefone2());
         jTEmail.setText(fornecedor.getEmail());

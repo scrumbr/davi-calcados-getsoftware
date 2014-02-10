@@ -317,6 +317,7 @@ public class CaixaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jBcadEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadEntradaActionPerformed
+        this.setEnabled(false);
         try {
             new CadEntradasGUI(this).setVisible(true);
         } catch (SQLException ex) {
@@ -325,6 +326,8 @@ public class CaixaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcadEntradaActionPerformed
 
     private void jBcadSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadSaidaActionPerformed
+
+        this.setEnabled(false);
         try {
             new CadSaidaGUI(this).setVisible(true);
         } catch (SQLException ex) {
