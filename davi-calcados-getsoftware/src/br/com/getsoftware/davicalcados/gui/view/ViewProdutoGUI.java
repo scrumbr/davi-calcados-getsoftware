@@ -460,7 +460,7 @@ public void refreshCampos() {
         
         jLid.setText("" + produto.getIdProduto());
         jLnome.setText(produto.getNome());
-        jLFornecedor.setText(""+produto.getIdFornecedor());
+        jLFornecedor.setText(""+produto.getFornecedor().getNome());
         jLQunatidade.setText(""+produto.getQuantidade());
         jLQtdMinima.setText(""+produto.getQuantidadeMinima());
         jLValorUnitario.setText(""+produto.getValorUnitario());

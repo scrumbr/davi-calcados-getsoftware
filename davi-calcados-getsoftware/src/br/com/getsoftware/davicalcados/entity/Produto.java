@@ -18,7 +18,7 @@ public class Produto {
     private Double valorUnitario;
     private Double valorVenda;
     private String nome;
-    private Long fornecedor;
+    private Fornecedor fornecedor;
     private Integer quantidadeMinima;
 
     public String getNome() {
@@ -29,11 +29,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Long getIdFornecedor() {
+    public Fornecedor getFornecedor() {
         return fornecedor;
     }
 
-    public void setIdFornecedor(Long fornecedor) {
+    public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
 
