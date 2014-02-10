@@ -320,8 +320,10 @@ public class CadEntradasGUI extends javax.swing.JFrame {
                     jCusuarios.setSelectedIndex(0);
                     jTdescricao.setText(null);
                 }else{
-                    this.dispose();
-                    caixa.dadosTabela();
+                     caixa.setEnabled(true);
+                     caixa.dadosTabela();
+                     this.dispose();
+                   
                 }
 
             } catch (Exception ex) {
@@ -332,6 +334,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
+        caixa.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jBcancelActionPerformed
 

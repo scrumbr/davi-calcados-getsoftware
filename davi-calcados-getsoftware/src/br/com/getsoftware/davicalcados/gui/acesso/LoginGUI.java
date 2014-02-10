@@ -210,7 +210,7 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(0, 0, 500, 59);
 
-        setSize(new java.awt.Dimension(500, 269));
+        setSize(new java.awt.Dimension(500, 273));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

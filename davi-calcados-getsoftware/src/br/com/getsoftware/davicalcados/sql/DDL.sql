@@ -148,3 +148,6 @@ create table caixa(
 	valor numeric(20,2),
 constraint pk_caixa primary key caixa(id_caixa)
 );
+
+
+drop tables entrada, saida;
