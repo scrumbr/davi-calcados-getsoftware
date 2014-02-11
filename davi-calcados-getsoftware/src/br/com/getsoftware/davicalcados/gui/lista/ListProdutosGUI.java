@@ -42,7 +42,11 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private CadVendaGUI venda;
     public ListProdutosGUI(CadVendaGUI venda) throws SQLException{
         this();
-        this.venda = venda;        
+        this.venda = venda;  
+        jBCadProduto.setVisible(false);
+        jBEditar.setVisible(false);
+        jBExcluir.setVisible(false);
+        jBVisualiar.setVisible(false);
     }
 
       public void atualizaLinhaSelecionada() {
@@ -70,6 +74,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jBExcluir = new javax.swing.JButton();
         jBEditar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
+        jBescolher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -229,6 +234,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
 
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jBCadProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cadProduto - 24.png"))); // NOI18N
         jBCadProduto.setText("Cad Produtos");
         jBCadProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,14 +274,23 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             }
         });
 
+        jBescolher.setText("Escolher produto");
+        jBescolher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBescolherActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jBescolher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBCadProduto)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBVisualiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBExcluir)
@@ -283,8 +298,11 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addComponent(jBEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBCancelar)
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadProduto, jBCancelar, jBEditar, jBExcluir, jBVisualiar, jBescolher});
+
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -296,7 +314,13 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                     .addComponent(jBCadProduto)
                     .addComponent(jBExcluir))
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBescolher)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBCadProduto, jBCancelar, jBEditar, jBExcluir, jBVisualiar, jBescolher});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -423,6 +447,20 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 
+    private void jBescolherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBescolherActionPerformed
+        try {
+            Produto produto = ProdutoBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            venda.setProduto(produto);
+            venda.setarValoresProduto();
+            venda.setEnabled(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível selecionar Produto", "Erro", 0);
+            this.dispose();
+            venda.setEnabled(true);
+        }
+    }//GEN-LAST:event_jBescolherActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +506,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBVisualiar;
+    private javax.swing.JButton jBescolher;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

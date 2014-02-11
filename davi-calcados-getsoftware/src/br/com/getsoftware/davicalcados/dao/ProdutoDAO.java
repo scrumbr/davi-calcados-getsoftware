@@ -39,7 +39,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
         if (res.next()) {
             produto = new Produto();
             produto.setDescricao(res.getString("descricao"));
-            produto.setIdProduto(res.getLong("id_produto"));
+            produto.setIdProduto(res.getInt("id_produto"));
             produto.setFornecedor(FornecedorBO.getById(res.getInt("id_fornecedor")));
             produto.setQuantidade(res.getInt("quantidade"));
             produto.setQuantidadeMinima(res.getInt("quantidade_minima"));
@@ -107,7 +107,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
             Produto produto = new Produto();
           
             produto.setDescricao(res.getString("descricao"));
-            produto.setIdProduto(res.getLong("id_produto"));
+            produto.setIdProduto(res.getInt("id_produto"));
             produto.setFornecedor(FornecedorBO.getById(res.getInt("id_fornecedor")));
             produto.setQuantidade(res.getInt("quantidade"));
             produto.setQuantidadeMinima(res.getInt("quantidade_minima"));

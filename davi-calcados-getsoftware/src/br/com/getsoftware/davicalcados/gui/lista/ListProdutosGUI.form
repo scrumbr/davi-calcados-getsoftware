@@ -278,17 +278,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jBCadProduto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jBVisualiar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jBExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBEditar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBescolher" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jBCadProduto" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBVisualiar" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jBCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="jBExcluir" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBEditar" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jBCancelar" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -297,13 +299,18 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jBCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBVisualiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBCadProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBVisualiar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBCadProduto" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBescolher" linkSize="1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -311,6 +318,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jBCadProduto">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/cadProduto - 24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cad Produtos"/>
           </Properties>
           <Events>
@@ -359,6 +369,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCancelarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBescolher">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Escolher produto"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBescolherActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

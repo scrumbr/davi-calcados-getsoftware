@@ -460,7 +460,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTAumentoKeyReleased
 
     private void jTAumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAumentoFocusLost
-        if (jTAumento.getText().isEmpty() && jTAumento.getText() == null) {
+        if (!jTAumento.getText().isEmpty() && jTAumento.getText() == null) {
         double valorAumento = ((Double.valueOf(jTAumento.getText()) / 100) * Double.valueOf(jTValorUnitario.getText())) + Double.valueOf(jTValorUnitario.getText());
         BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
         jTValorVenda.setText("" + bd.doubleValue());

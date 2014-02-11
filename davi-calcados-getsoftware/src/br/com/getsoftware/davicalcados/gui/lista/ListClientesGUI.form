@@ -292,16 +292,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBescolher" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBvisualizar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBvisualizar" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBexcluir" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBexcluir" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBeditar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBeditar" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBcancelar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBcancelar" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -311,13 +313,18 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jBcancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBeditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBexcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBvisualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBcancelar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBeditar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBexcluir" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBvisualizar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBescolher" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -376,6 +383,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcancelarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBescolher">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Escolher"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBescolherActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

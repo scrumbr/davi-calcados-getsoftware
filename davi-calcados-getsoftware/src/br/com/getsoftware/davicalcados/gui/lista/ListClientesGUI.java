@@ -5,9 +5,12 @@
 package br.com.getsoftware.davicalcados.gui.lista;
 
 import br.com.getsoftware.davicalcados.bo.ClienteBO;
+import br.com.getsoftware.davicalcados.bo.ProdutoBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
+import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditClienteGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewClienteGUI;
 import java.sql.SQLException;
@@ -32,10 +35,23 @@ public class ListClientesGUI extends javax.swing.JFrame {
         dadosTabela();
         jTable1.setAutoCreateRowSorter(true);
         atualizaLinhaSelecionada();
+        jBescolher.setVisible(false);
     }
      public ListClientesGUI(TelaMenuGUI telaMenu) throws SQLException{
       this();
       this.telaMenu = telaMenu;
+      jBescolher.setVisible(false);
+    }
+     
+     private CadVendaGUI cadVenda;
+     public ListClientesGUI(CadVendaGUI cadVenda) throws SQLException{
+      this();
+      this.cadVenda = cadVenda;
+      jBeditar.setVisible(false);
+      jBexcluir.setVisible(false);
+      jButton1.setVisible(false);
+      jBvisualizar.setVisible(false);
+      jBescolher.setVisible(true);
     }
 
      public void atualizaLinhaSelecionada() {
@@ -63,6 +79,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jBexcluir = new javax.swing.JButton();
         jBeditar = new javax.swing.JButton();
         jBcancelar = new javax.swing.JButton();
+        jBescolher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -264,12 +281,21 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
 
+        jBescolher.setText("Escolher");
+        jBescolher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBescolherActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jBescolher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBvisualizar)
@@ -281,6 +307,9 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addComponent(jBcancelar)
                 .addContainerGap())
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBcancelar, jBeditar, jBescolher, jBexcluir, jButton1, jBvisualizar});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -292,7 +321,13 @@ public class ListClientesGUI extends javax.swing.JFrame {
                     .addComponent(jBvisualizar)
                     .addComponent(jButton1))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBescolher)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcancelar, jBeditar, jBescolher, jBexcluir, jButton1, jBvisualizar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -388,7 +423,13 @@ public class ListClientesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBeditarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
-        telaMenu.setEnabled(true);
+        if(telaMenu != null){
+            telaMenu.setEnabled(true);
+        }
+        else if(cadVenda != null){
+            cadVenda.setEnabled(true);
+        }
+        
         dispose();
     }//GEN-LAST:event_jBcancelarActionPerformed
 
@@ -409,6 +450,20 @@ public class ListClientesGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de Clientes!", "Erro", 0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jBescolherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBescolherActionPerformed
+        try {
+            Cliente cliente = ClienteBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            cadVenda.setCliente(cliente);
+            cadVenda.setarValoresClient();
+            cadVenda.setEnabled(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível selecionar cliente", "Erro", 0);
+            this.dispose();
+            cadVenda.setEnabled(true);
+        }
+    }//GEN-LAST:event_jBescolherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -452,6 +507,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
+    private javax.swing.JButton jBescolher;
     private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jBvisualizar;
