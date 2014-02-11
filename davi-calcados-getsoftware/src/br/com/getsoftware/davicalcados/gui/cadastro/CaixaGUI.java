@@ -340,11 +340,7 @@ public class CaixaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBreceberPagamentoActionPerformed
 
     private void jBvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvendaActionPerformed
-//        try {
-            new CadVendaGUI().setVisible(true);
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de entradas!", "Erro", 0);
-//        }
+            new CadVendaGUI(this).setVisible(true);
     }//GEN-LAST:event_jBvendaActionPerformed
 
     /**
