@@ -618,6 +618,8 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
                 
         try {
             FornecedorBO.save(fornecedor);
+             listForn.dadosTabela();
+             listForn.atualizaLinhaSelecionada();
             JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
 
              int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo fornecedor ?", "Novo fornecedor", JOptionPane.YES_NO_OPTION);
@@ -629,8 +631,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
                          telaMenu.setEnabled(true);
                       }else  if(listForn != null){
                               listForn.setEnabled(true);
-                              listForn.dadosTabela();
-                              listForn.atualizaLinhaSelecionada();
+                             
                  }  
         this.dispose();
                 }   

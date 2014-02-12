@@ -10,6 +10,7 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadEntradasGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListPlanoComprasGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CaixaGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
@@ -18,7 +19,10 @@ import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListProdutosGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.MyHours;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +69,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
         jMdetalhesMovimentacao = new javax.swing.JMenuItem();
+        jSeparator16 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         jMlistFuncionarios = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
@@ -84,9 +91,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         Chrome = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jSeparator15 = new javax.swing.JPopupMenu.Separator();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -204,6 +214,17 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMdetalhesMovimentacao);
+        jMenu1.add(jSeparator16);
+
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/planoCompras-16.png"))); // NOI18N
+        jMenuItem16.setText("Plano de Compras");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
+        jMenu1.add(jSeparator17);
 
         jMenuBar2.add(jMenu1);
 
@@ -298,27 +319,43 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
         jMenu2.add(jSeparator9);
 
-        Chrome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Chrome-16.png"))); // NOI18N
-        Chrome.setText("Chrome");
+        Chrome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Inetrnet-16.png"))); // NOI18N
+        Chrome.setText("Internet");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Facebook-16.png"))); // NOI18N
-        jMenuItem7.setText("Facebook.com");
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Facebook-16.png"))); // NOI18N
+        jMenuItem15.setText("Facebook");
+        jMenuItem15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem15MouseClicked(evt);
+            }
+        });
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        Chrome.add(jMenuItem15);
+        Chrome.add(jSeparator11);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/google-16.png"))); // NOI18N
+        jMenuItem7.setText("Google");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
         Chrome.add(jMenuItem7);
-        Chrome.add(jSeparator11);
+        Chrome.add(jSeparator14);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/google-16.png"))); // NOI18N
-        jMenuItem8.setText("Google.com");
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/spc-brasil.jpg"))); // NOI18N
+        jMenuItem8.setText("SPC Brasil");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
             }
         });
         Chrome.add(jMenuItem8);
+        Chrome.add(jSeparator15);
 
         jMenu2.add(Chrome);
         jMenu2.add(jSeparator10);
@@ -384,7 +421,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jMClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMClienteActionPerformed
-         this.setEnabled(false);
+        this.setEnabled(false);
         try {
             new CadClienteGUI(this).setVisible(true);
         } catch (SQLException ex) {
@@ -451,24 +488,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       try { 
-            //Runtime.getRuntime().exec("cmd.exe /C start iexplore.exehttp://www.guj.com.br");
-             Runtime.getRuntime().exec("cmd.exe /C start Chrome.exe https://www.facebook.com/");
-        } catch (IOException ex) {
-            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-          try { 
-            Runtime.getRuntime().exec("cmd.exe /C start Chrome.exe https://www.google.com.br/");
-          } catch (IOException ex) {
-            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         //
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -533,6 +552,75 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+           Desktop desktop = null;  
+            desktop = Desktop.getDesktop();  
+            URI uri = null;  
+            try {  
+           uri = new URI("www.facebook.com");  
+           desktop.browse(uri);  
+            }  
+            catch(IOException ioe) {  
+             ioe.printStackTrace();  
+            }  
+            catch(URISyntaxException use) {  
+           use.printStackTrace();  
+            }           
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem15MouseClicked
+          Desktop desktop = null;  
+            desktop = Desktop.getDesktop();  
+            URI uri = null;  
+            try {  
+           uri = new URI("www.facebook.com");  
+           desktop.browse(uri);  
+            }  
+            catch(IOException ioe) {  
+             ioe.printStackTrace();  
+            }  
+            catch(URISyntaxException use) {  
+           use.printStackTrace();  
+            }  
+    }//GEN-LAST:event_jMenuItem15MouseClicked
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+         Desktop desktop = null;  
+            desktop = Desktop.getDesktop();  
+            URI uri = null;  
+            try {  
+           uri = new URI("www.google.com");  
+           desktop.browse(uri);  
+            }  
+            catch(IOException ioe) {  
+             ioe.printStackTrace();  
+            }  
+            catch(URISyntaxException use) {  
+           use.printStackTrace();  
+            }  
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+       Desktop desktop = null;  
+            desktop = Desktop.getDesktop();  
+            URI uri = null;  
+            try {  
+           uri = new URI("https://servicos.spc.org.br/spc/controleacesso/autenticacao/entry.action");  
+           desktop.browse(uri);  
+            }  
+            catch(IOException ioe) {  
+             ioe.printStackTrace();  
+            }  
+            catch(URISyntaxException use) {  
+           use.printStackTrace();  
+            }  
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        this.setEnabled(false);
+        new ListPlanoComprasGUI(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -592,6 +680,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -607,6 +697,10 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JPopupMenu.Separator jSeparator14;
+    private javax.swing.JPopupMenu.Separator jSeparator15;
+    private javax.swing.JPopupMenu.Separator jSeparator16;
+    private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
