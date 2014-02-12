@@ -385,7 +385,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
          if(telaMenu != null){
              telaMenu.setEnabled(true);
          }else  if(listPro != null){
-             listPro.setEnabled(true);
+              listPro.setEnabled(true);
          }  
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
@@ -419,28 +419,27 @@ public class CadProdutoGUI extends javax.swing.JFrame {
             
             produto.setQuantidadeMinima(Integer.valueOf(jTQuantidadeMinima.getText().replace(".", "").replace(",", ".")));
             produto.setQuantidade(Integer.valueOf(jTQuantidade.getText().replace(".", "").replace(",", ".")));
-            produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText().replace(".", "").replace(",", ".")));
-            produto.setValorVenda(Double.valueOf(jTValorVenda.getText().replace(".", "").replace(",", ".")));
+            produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText()));
+            produto.setValorVenda(Double.valueOf(jTValorVenda.getText()));
             produto.setNome(jTNome.getText());
             try {
-                ProdutoBO.save(produto);
+                ProdutoBO.save(produto);                
+                listPro.dadosTabela();
+                listPro.atualizaLinhaSelecionada();
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
-
+                 
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo produto ?", "Novo produto", JOptionPane.YES_NO_OPTION);
-                if (escolha == 0) {
+                if (escolha == 0) {                    
                     limpaCampos();
                     jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
-                } else {
+                } else {                    
                        if(telaMenu != null){
                         telaMenu.setEnabled(true);
                          }else  if(listPro != null){
-                        listPro.setEnabled(true);
-                         listPro.dadosTabela();
-                        listPro.atualizaLinhaSelecionada();
-                }  
-        this.dispose();
-                    
-                }
+                         listPro.setEnabled(true);    
+                        }  
+                    this.dispose();
+                 }
                 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar o produto "+produto.getNome(), "Erro", 0);
@@ -477,7 +476,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
 
     private void jTAumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAumentoFocusLost
         if (!jTAumento.getText().isEmpty() && jTAumento.getText() != (null)) {
-            double valorAumento = ((Double.valueOf(jTAumento.getText()) / 100) * Double.valueOf(jTValorUnitario.getText())) + Double.valueOf(jTValorUnitario.getText());
+            double valorAumento = ((Double.valueOf(jTAumento.getText().replace(",", ".")) / 100) * Double.valueOf(jTValorUnitario.getText().replace(",", "."))) + Double.valueOf(jTValorUnitario.getText().replace(",", "."));
             BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
             jTValorVenda.setText("" + bd.doubleValue());
         }

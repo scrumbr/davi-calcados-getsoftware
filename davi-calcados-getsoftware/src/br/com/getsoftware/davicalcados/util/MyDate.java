@@ -25,15 +25,44 @@ public class MyDate {
 
     }
     
-    public static String getMes() {
-        String mes = "0";
-        if(data.getDate()>9){
-            mes = "";
-        }
-        String mesAtual = mes+data.getMonth();
-         
-        return mesAtual;
-
+//    public static String getMes() {
+//        String mes = "0";
+//        if(data.getDate()>9){
+//            mes = "";
+//        }
+//        String mesAtual = mes+data.getMonth();
+//         
+//        return mesAtual;
+//
+//    }
+     public static String getMesNumero(){
+        String mes = null;
+         if(data.getMonth()== 0){
+             mes = "01";
+         }else if(data.getMonth()== 1){
+             mes = "02";
+         }else if(data.getMonth()== 2){
+             mes = "03";
+         }else if(data.getMonth()== 3){
+             mes = "04";
+         }else if(data.getMonth()==4){
+             mes = "05";
+         }else if(data.getMonth()== 5){
+             mes = "06";
+         }else if(data.getMonth()== 6){
+             mes = "07";
+         }else if(data.getMonth()== 7){
+             mes = "08";
+         }else if(data.getMonth()== 8){
+             mes = "09";
+         }else if(data.getMonth()== 9){
+             mes = "10";
+         }else if(data.getMonth()== 10){
+             mes = "11";
+         }else if(data.getMonth()== 11){
+             mes = "12";
+         }
+         return mes;
     }
 
     public static String getDiaSemana() {
@@ -94,9 +123,8 @@ public class MyDate {
         return " " + getDiaSemana() + ", " + getDia() + " de " + getMesDetalhe()+ " de " + getAno();
     }
 
-    public static String dataFormatada() {
-        
-        return getDia() + "/" + getMes()+ "/" + getAno();
+    public static String dataFormatada() {        
+        return getDia() + "/" + getMesNumero()+ "/" + getAno();
     }
 
     public static void main(String[]args){

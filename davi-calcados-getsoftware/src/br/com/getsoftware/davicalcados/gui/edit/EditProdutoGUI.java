@@ -395,8 +395,10 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        listPro.setEnabled(true);
+        listPro.setEnabled(true);    
         dispose();
+      
+           
     }//GEN-LAST:event_formWindowClosing
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
@@ -441,6 +443,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
         listPro.setEnabled(true);
         dispose();
+        
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jTValorUnitarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTValorUnitarioKeyReleased
@@ -461,7 +464,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
 
     private void jTAumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAumentoFocusLost
         if (!jTAumento.getText().isEmpty() && jTAumento.getText() == null) {
-        double valorAumento = ((Double.valueOf(jTAumento.getText()) / 100) * Double.valueOf(jTValorUnitario.getText())) + Double.valueOf(jTValorUnitario.getText());
+        double valorAumento = ((Double.valueOf(jTAumento.getText().replace(",", ".")) / 100) * Double.valueOf(jTValorUnitario.getText().replace(",", "."))) + Double.valueOf(jTValorUnitario.getText().replace(",", "."));
         BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
         jTValorVenda.setText("" + bd.doubleValue());
         }
