@@ -102,9 +102,10 @@ public class CaixaGUI extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Identificador", "Movimentação", "Descrição", "Data/Hora", "Funcionário", "Valor"
@@ -124,22 +125,16 @@ public class CaixaGUI extends javax.swing.JFrame {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Identificador");
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Movimentação");
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Descrição");
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Data/Hora");
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Funcionário");
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Valor");
         }
 
         jLentrada.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

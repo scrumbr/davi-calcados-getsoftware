@@ -6,8 +6,18 @@
 
 package br.com.getsoftware.davicalcados.gui.lista;
 
+import br.com.getsoftware.davicalcados.bo.PlanoComprasBO;
+import br.com.getsoftware.davicalcados.entity.PlanoCompras;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.CadPlanoComprasGUI;
+import br.com.getsoftware.davicalcados.gui.edit.EditPlanoComprasGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,15 +25,20 @@ import br.com.getsoftware.davicalcados.util.MyDate;
  */
 public class ListPlanoComprasGUI extends javax.swing.JFrame {
 
+    
+    private ArrayList<PlanoCompras> listPlanoCompras;
+    private int linhaSelecionada = 0;
     private TelaMenuGUI telaMenu;    
      public ListPlanoComprasGUI() {
         initComponents();
         jLData.setText(MyDate.dataFormatada());
     }
  
-    public ListPlanoComprasGUI(TelaMenuGUI telaMenu){
+    public ListPlanoComprasGUI(TelaMenuGUI telaMenu) throws SQLException{
         this();
         this.telaMenu = telaMenu;
+        dadosTabela();
+        atualizaLinhaSelecionada();
     }  
     
     @SuppressWarnings("unchecked")
@@ -103,6 +118,7 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -126,6 +142,11 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -143,11 +164,27 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
         jButton1.setText("Excluir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cadPlanoCompras-24.png"))); // NOI18N
         jButton3.setText("Novo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
         jButton4.setText("Editar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBSair.setText("Sair");
@@ -172,6 +209,9 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 .addComponent(jBSair)
                 .addGap(30, 30, 30))
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBSair, jButton1, jButton3, jButton4});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -271,7 +311,7 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
         );
 
-        setSize(new java.awt.Dimension(819, 597));
+        setSize(new java.awt.Dimension(819, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -301,6 +341,44 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
     private void jTpesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyTyped
 
     }//GEN-LAST:event_jTpesquisaKeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setEnabled(false);
+        try {
+            new CadPlanoComprasGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListPlanoComprasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        PlanoCompras planoCompras;
+        this.setEnabled(false);
+        try {
+            planoCompras = PlanoComprasBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            new EditPlanoComprasGUI(this, planoCompras).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);
+        } 
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         linhaSelecionada = jTable1.getSelectedRow();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o item " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+            try {
+                PlanoComprasBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                dadosTabela();
+                atualizaLinhaSelecionada();
+                JOptionPane.showMessageDialog(null, "Item excluido com sucesso!", "Sucesso", 1);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o item", "Erro", 0);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,4 +434,35 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTpesquisa;
     // End of variables declaration//GEN-END:variables
+
+
+ public void atualizaLinhaSelecionada(){
+        linhaSelecionada = 0;
+        jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
+ }
+
+
+
+ public void dadosTabela() throws SQLException {
+
+        listPlanoCompras = PlanoComprasBO.listAll();
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listPlanoCompras.size(); i++) {
+            modelo.addRow(new Object[]{
+                listPlanoCompras.get(i).getIdPlanoCompras(),
+                listPlanoCompras.get(i).getNome(),
+                listPlanoCompras.get(i).getMarca(),
+                listPlanoCompras.get(i).getDescricaoPlano(),
+                listPlanoCompras.get(i).getDataCadastro(),});
+        }
+    }
+
+
+
+
+
+
 }

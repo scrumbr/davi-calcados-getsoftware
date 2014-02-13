@@ -11,7 +11,6 @@ import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
-import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
@@ -217,7 +216,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
         }
         jFtelefone.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
-        jTid.setBackground(new java.awt.Color(255, 153, 153));
+        jTid.setEditable(false);
         jTid.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTid.setEnabled(false);
 
@@ -875,7 +874,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
             end.setRua(jTRua.getText());
             cliente.setEndereco(end);
             try {
-                ClienteBO.save(cliente);
+                 ClienteBO.save(cliente);
                  listCli.dadosTabela();
                  listCli.atualizaLinhaSelecionada();
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
@@ -890,8 +889,8 @@ public class CadClienteGUI extends javax.swing.JFrame {
                     }else  if(listCli != null){
                     listCli.setEnabled(true);
                    
-         }  
-        this.dispose();
+                }  
+                this.dispose();
                 }
 
             } catch (SQLException ex) {
