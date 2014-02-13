@@ -96,7 +96,7 @@ constraint pk_fornecedor primary key fornecedor(id_fornecedor)
 CREATE TABLE PRODUTO(
 	id_produto bigint auto_increment not null,
         id_fornecedor bigint not null,
-	nome varchar(255) not null,
+		nome varchar(255) not null,
         descricao varchar(30) not null,
         quantidade int not null,
         quantidade_minima int not null,
@@ -148,6 +148,14 @@ create table caixa(
 	valor numeric(20,2),
 constraint pk_caixa primary key caixa(id_caixa)
 );
+create table plano_compras(
+     id_plano_compras bigint auto_increment,
+    nome varchar(100) not null,
+    descricao longtext not null,
+     marca varchar(50) not null,
+    data_cadastro date,
+    constraint pk_plano_compras primary key plano_compras(id_plano_compras)
 
-
+);
+select * from plano_compras;
 drop tables entrada, saida;
