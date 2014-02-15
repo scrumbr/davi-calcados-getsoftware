@@ -5,60 +5,62 @@
  */
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import java.util.Objects;
+
 /**
  *
  * @author Junior Oliveira
  */
 public class ItensCarrinho {
 
-    private int id;
-    private String nomeProduto;
-    private int quantidade;
-    private double valor;
-    private double total;
+    private Integer idProduto;
+    private String nome;
+    private Integer quantidade;
+    private Double valorVenda;
+    private Double total;
 
-    //GETTERS AND SETTERS
-    public int getId() {
-        return id;
+    public Integer getIdProduto() {
+        return idProduto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public String getNomeProduto() {
-        return nomeProduto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public int getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
-    public double getValor() {
-        return valor;
+    public Double getValorVenda() {
+        return valorVenda;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValorVenda(Double valorVenda) {
+        this.valorVenda = valorVenda;
     }
 
-    public double getTotal() {
-        total = valor * quantidade;
+    public Double getTotal() {
+        total = valorVenda * quantidade;
         return total;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + this.id;
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.idProduto);
+        hash = 41 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -71,10 +73,18 @@ public class ItensCarrinho {
             return false;
         }
         final ItensCarrinho other = (ItensCarrinho) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.idProduto, other.idProduto)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ItensCarrinho{" + "idProduto=" + idProduto + ", nome=" + nome + ", quantidade=" + quantidade + ", valorVenda=" + valorVenda + ", total=" + total + '}';
+    }
+
 }

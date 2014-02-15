@@ -6,6 +6,7 @@ package br.com.getsoftware.davicalcados.util;
 
 import br.com.getsoftware.davicalcados.connection.Conexao;
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -16,65 +17,39 @@ import javax.swing.JOptionPane;
  */
 public class RestaurarBackUP {
 
-    private Connection con; //variável para usar em conexão de banco de dados.
-    private Process proc;
-
-    public RestaurarBackUP(JFileChooser JFC_Backup) {
-
-        try {
-            con = Conexao.getConexao();//Conecta ao banco de dados 
-            JFC_Backup.setVisible(false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Erro!", 2);
-        }
-    }
-
-    public void restaurarBackUp(JFileChooser JFC_Backup) {
+    public static void restaurarBackUp(String user, String senha, String dbName) throws IOException, InterruptedException {
         // TODO add your handling code here:
-        try {
-            JFC_Backup.setVisible(true);
-            String bd = "test";
-            int result = JFC_Backup.showOpenDialog(null);
 
-            if (result == JFileChooser.OPEN_DIALOG) {
+        JFileChooser telaRestore = new JFileChooser();
+        telaRestore.setCurrentDirectory(new File("Bibliotecas/Imagens"));
+        telaRestore.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        telaRestore.setDialogTitle("Restaurar backup");
+        int result = telaRestore.showOpenDialog(null);
 
-                File bkp;
-                bkp = JFC_Backup.getSelectedFile();
-                String arq = bkp.getPath();
-                System.out.println("bd " + bd);
-                System.out.println("arq " + arq);
+        if (result == JFileChooser.OPEN_DIALOG) {
 
-                String[] cmd = new String[3];
-                cmd[0] = "cmd.exe";
-                cmd[1] = "/C";
-                cmd[2] = "src/br/com/getsoftware/davicalcados/util/mysql -u root -p -h localhost " + bd + " < " + arq;
+//                File bkp;
+//                bkp = JFC_Backup.getSelectedFile();
+//                String arq = bkp.getPath();
+//                System.out.println("bd " + bd);
+//                System.out.println("arq " + arq);
+//                String[] cmd = new String[3];
+//                cmd[0] = "cmd.exe";
+//                cmd[1] = "/C";
+//                cmd[2] = "mysql -u root -p 123456 -h localhost " + bd + " < " + arq;
+            String arquivo = "" + telaRestore.getSelectedFile().getPath();
+            System.out.println(arquivo);
+                
+            String executeCmd = "mysql --user=" + user + " --password=" + senha + "-h localhost " + dbName + " <  " + arquivo;
+ 
+            String  cmd =   "mysql.exe -u " + user + " -p " + senha + " -d" + dbName + " < " + arquivo;
+ 
+            ProcessBuilder pb = new ProcessBuilder("mysql.exe", "--user=" , user, "--password=", senha , dbName, "--result-file=" , arquivo);
+            // Executa o backup
+            
+            pb.start();
+            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso !");
 
-                Runtime rt = Runtime.getRuntime();
-                System.out.println("Executando " + cmd[0] + " " + cmd[1]);
-                proc = rt.exec(cmd);
-
-                // any error message?
-                StreamGobbler errorGobbler = new StreamGobbler(proc.getErrorStream(), "ERROR");
-
-                // any output?
-                StreamGobbler outputGobbler = new StreamGobbler(proc.getInputStream(), "OUTPUT");
-
-                // kick them off
-                errorGobbler.run();
-                outputGobbler.run();
-
-                // any error???
-                int exitVal = proc.waitFor();
-
-                if (exitVal == 0) {
-                    JOptionPane.showMessageDialog(null, "Backup Restaurado com sucesso !");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Falha ao restaurar backup. \n Verifique as configurações ou entre em contato com o suporte !");
-                }
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Erro!\n" + e, 2);
         }
     }
 }
