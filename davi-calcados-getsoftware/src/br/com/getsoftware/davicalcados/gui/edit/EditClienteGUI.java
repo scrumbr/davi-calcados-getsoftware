@@ -10,6 +10,8 @@ import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -805,12 +807,14 @@ public class EditClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTRendaKeyPressed
 
     private void jTRendaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRendaKeyReleased
-        if(jTRenda.getText().isEmpty() || jTRenda.getText() == null){
-            jTCredito.setText(null);
-        }else{
+       if(jTRenda.getText().isEmpty() || jTRenda.getText() == null){
+          jTCredito.setText(null);
+       }else{
             double credito = 0.60 * (Double.valueOf(jTRenda.getText().replace(",",".")));
-            jTCredito.setText(""+credito);
-        }
+           BigDecimal bd = new BigDecimal(credito).setScale(2, RoundingMode.HALF_EVEN);
+          jTCredito.setText(""+bd.doubleValue());
+        //  jTCredito.setText(""+credito);
+       }
     }//GEN-LAST:event_jTRendaKeyReleased
 
     /**
@@ -932,6 +936,8 @@ public class EditClienteGUI extends javax.swing.JFrame {
         cliente.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
         cliente.setPreferencia(jTPreferencias.getText());
         cliente.setNumeroBoleto(Long.valueOf(jTBoleto.getText()));
+        cliente.setRenda(Double.valueOf(jTRenda.getText().replace(",", ".")));
+        cliente.setCredito(Double.valueOf(jTCredito.getText()));
 
         end.setBairro(jTBairro.getText());
         end.setCEP(jFCep.getText());
@@ -979,5 +985,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jTCidade.setText(cliente.getEndereco().getCidade());
         jFCep.setText(cliente.getEndereco().getCEP());
         jCEstado.setSelectedItem(cliente.getEndereco().getEstado());
+        jTRenda.setText(""+cliente.getRenda());
+        jTCredito.setText(""+cliente.getCredito());
     }
 }

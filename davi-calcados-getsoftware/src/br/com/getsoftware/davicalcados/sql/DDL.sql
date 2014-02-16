@@ -55,14 +55,19 @@ CREATE TABLE CLIENTE(
         ativo boolean not null,
 	    rua varchar(50) not null,
         numero int not null,
-        complemento varchar(20),
+        complemento varchar(100),
         bairro varchar(50) not null,
         cidade varchar(50) not null,
         CEP varchar(10), -- 99.999-999
         estado char(2) not null,
+		
 constraint pk_cliente primary key cliente(id_cliente)
 );
+alter table cliente add column renda numeric(9,2);
+alter table cliente add column credito numeric(9,2);
 
+ALTER TABLE cliente drop column complemento;
+alter table cliente add column complemento varchar(100);
 /*
 CREATE TABLE VENDA(
 		id_venda bigint, 
@@ -105,8 +110,8 @@ CREATE TABLE PRODUTO(
 constraint pk_produto primary key produto(id_produto),
 constraint fk_produto_fornecedorr foreign key produto(id_fornecedor) references fornecedor(id_fornecedor)
 ); 
-
-
+alter table produto add column valor_aumento numeric(9,2);
+select * from produto;
 CREATE TABLE SAIDA(
 		id_usuario bigint not null,
         id_saida bigint auto_increment not null,
@@ -157,5 +162,5 @@ create table plano_compras(
     constraint pk_plano_compras primary key plano_compras(id_plano_compras)
 
 );
-select * from plano_compras;
+select * from cliente;
 drop tables entrada, saida;

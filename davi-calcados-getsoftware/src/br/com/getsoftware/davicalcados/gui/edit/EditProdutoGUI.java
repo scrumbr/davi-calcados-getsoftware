@@ -30,7 +30,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
         jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
         jTDescricao.setLineWrap(true);
         fornecedores = new ArrayList<>();
-//        atualizaIdFonecedor();
+        jTAumento.setEditable(true);
     }
     public void atualizaIdFonecedor() throws SQLException{
         ArrayList<Fornecedor> forn = FornecedorBO.listAll();
@@ -38,7 +38,6 @@ public class EditProdutoGUI extends javax.swing.JFrame {
             jCFornecedor.addItem(forn.get(i).getNome());
             this.fornecedores.add(forn.get(i).getIdFornecedor());
         }
-        System.out.println(fornecedores.toString());
     }
     
     public EditProdutoGUI(ListProdutosGUI listPro, Produto produto) throws SQLException {
@@ -46,7 +45,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
         this.listPro = listPro;
         this.produto = produto;
          refreshCampos();
-         
+         System.err.println(produto.getNome());
     }
 
     public EditProdutoGUI(Produto produto) throws SQLException {
@@ -207,6 +206,11 @@ public class EditProdutoGUI extends javax.swing.JFrame {
         jLabel8.setText("Quantidade Minima");
 
         jTQuantidadeMinima.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTQuantidadeMinima.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTQuantidadeMinimaFocusLost(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Valor Unitário");
@@ -447,11 +451,11 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jTValorUnitarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTValorUnitarioKeyReleased
-        if (jTValorUnitario.getText().isEmpty() || jTValorUnitario.getText() == null) {
+      if(jTValorUnitario.getText().isEmpty() || jTValorUnitario.getText() == null){
             jTAumento.setText(null);
             jTValorVenda.setText(null);
             jTAumento.setEditable(false);
-        } else {
+        }else{
             jTAumento.setEditable(true);
         }
     }//GEN-LAST:event_jTValorUnitarioKeyReleased
@@ -463,16 +467,24 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTAumentoKeyReleased
 
     private void jTAumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAumentoFocusLost
-        if (!jTAumento.getText().isEmpty() && jTAumento.getText() == null) {
-        double valorAumento = ((Double.valueOf(jTAumento.getText().replace(",", ".")) / 100) * Double.valueOf(jTValorUnitario.getText().replace(",", "."))) + Double.valueOf(jTValorUnitario.getText().replace(",", "."));
-        BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
-        jTValorVenda.setText("" + bd.doubleValue());
+        if (!jTAumento.getText().isEmpty() && jTAumento.getText() != (null)) {
+            double valorAumento = ((Double.valueOf(jTAumento.getText().replace(",", ".")) / 100) * Double.valueOf(jTValorUnitario.getText().replace(",", "."))) + Double.valueOf(jTValorUnitario.getText().replace(",", "."));
+            BigDecimal bd = new BigDecimal(valorAumento).setScale(2, RoundingMode.HALF_EVEN);
+            jTValorVenda.setText("" + bd.doubleValue());
         }
     }//GEN-LAST:event_jTAumentoFocusLost
 
     private void jCFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCFornecedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCFornecedorActionPerformed
+
+    private void jTQuantidadeMinimaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTQuantidadeMinimaFocusLost
+        if(Double.valueOf(jTQuantidadeMinima.getText()) > Double.valueOf(jTQuantidade.getText())){
+           JOptionPane.showMessageDialog(null, "Quantidade Minima maior que Quantidade", "Atenção", 2);
+           jTQuantidadeMinima.setText(null);
+           jTQuantidadeMinima.requestFocus();
+       }
+    }//GEN-LAST:event_jTQuantidadeMinimaFocusLost
 
     /**
      * @param args the command line arguments
@@ -557,8 +569,9 @@ public class EditProdutoGUI extends javax.swing.JFrame {
         produto.setDescricao(jTDescricao.getText());
         produto.setQuantidade(Integer.valueOf(jTQuantidade.getText()));
         produto.setQuantidadeMinima(Integer.valueOf(jTQuantidadeMinima.getText()));
-        produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText()));
+        produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText().replace(",", ".")));
         produto.setValorVenda(Double.valueOf(jTValorVenda.getText()));
+        produto.setQtdAumento(Double.valueOf(jTAumento.getText().replace(",", ".")));
     }
 
     public void refreshCampos() throws SQLException {
@@ -571,6 +584,6 @@ public class EditProdutoGUI extends javax.swing.JFrame {
         jTValorVenda.setText(""+produto.getValorVenda());
         atualizaIdFonecedor();
         jCFornecedor.setSelectedItem(produto.getFornecedor().getNome()); 
-        
+        jTAumento.setText(""+produto.getQtdAumento());
     }
 }

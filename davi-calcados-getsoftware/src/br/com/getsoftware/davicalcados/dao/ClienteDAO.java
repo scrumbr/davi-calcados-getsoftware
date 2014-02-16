@@ -55,6 +55,8 @@ import java.util.ArrayList;
         cliente.setPreferencia(res.getString("preferencia"));
         cliente.setNumeroBoleto(res.getLong("numero_boleto"));
         cliente.setStatus(res.getBoolean("ativo"));
+        cliente.setRenda(res.getDouble("renda"));
+        cliente.setCredito(res.getDouble("credito"));
         
         end.setBairro(res.getString("bairro"));
         end.setCEP(res.getString("cep"));
@@ -74,8 +76,8 @@ import java.util.ArrayList;
     public void save(Cliente cliente) throws SQLException {
         String sql = "insert into cliente(nome,profissao,sexo,data_nascimento,estado_civil,cpf,"
                 + " rg,telefone,telefone2, email,preferencia,"
-                + "numero_boleto,ativo,rua,numero,complemento,bairro,cidade,CEP,estado) "
-                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "numero_boleto,ativo,rua,numero,complemento,bairro,cidade,CEP,estado,renda,credito) "
+                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -100,6 +102,8 @@ import java.util.ArrayList;
         stmt.setString(18, cliente.getEndereco().getCidade());
         stmt.setString(19, cliente.getEndereco().getCEP());
         stmt.setString(20, cliente.getEndereco().getEstado());
+        stmt.setDouble(21, cliente.getRenda());
+        stmt.setDouble(22, cliente.getCredito());
 
         stmt.execute();
         stmt.close();
@@ -109,7 +113,7 @@ import java.util.ArrayList;
     public void update(Cliente cliente) throws SQLException {
         String sql = "update cliente set nome=?,profissao=?,sexo=?,data_nascimento=?,estado_civil=?,cpf=?, "
                 + "rg=?,telefone=?,telefone2=?, email=?,preferencia=?,numero_boleto=?,"
-                + "ativo=?, rua=?,numero=?,complemento=?,bairro=?,cidade=?,CEP=?,estado=?"
+                + "ativo=?, rua=?,numero=?,complemento=?,bairro=?,cidade=?,CEP=?,estado=?,renda=?,credito=?"
                 + " where id_cliente=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
@@ -135,13 +139,16 @@ import java.util.ArrayList;
         stmt.setString(18, cliente.getEndereco().getCidade());
         stmt.setString(19, cliente.getEndereco().getCEP());
         stmt.setString(20, cliente.getEndereco().getEstado());
-        stmt.setLong(21, cliente.getIdCiente());
+        stmt.setDouble(21, cliente.getRenda());
+        stmt.setDouble(22, cliente.getCredito());
+        stmt.setLong(23, cliente.getIdCiente());
+
 
         stmt.execute();
         stmt.close();
     }
 
-    @Override
+     @Override
     public ArrayList<Cliente> listAll() throws SQLException {
         String sql = "select * from cliente";
 
@@ -167,6 +174,9 @@ import java.util.ArrayList;
         cliente.setPreferencia(res.getString("preferencia"));
         cliente.setNumeroBoleto(res.getLong("numero_boleto"));
         cliente.setStatus(res.getBoolean("ativo"));
+        cliente.setRenda(res.getDouble("renda"));
+        cliente.setCredito(res.getDouble("credito"));
+        
 
         end.setBairro(res.getString("bairro"));
         end.setCEP(res.getString("cep"));

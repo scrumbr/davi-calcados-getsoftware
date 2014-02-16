@@ -194,6 +194,11 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel8.setText("Quantidade Minima");
 
         jTQuantidadeMinima.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTQuantidadeMinima.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTQuantidadeMinimaFocusLost(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Valor Unitário");
@@ -419,13 +424,16 @@ public class CadProdutoGUI extends javax.swing.JFrame {
             
             produto.setQuantidadeMinima(Integer.valueOf(jTQuantidadeMinima.getText().replace(".", "").replace(",", ".")));
             produto.setQuantidade(Integer.valueOf(jTQuantidade.getText().replace(".", "").replace(",", ".")));
-            produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText()));
+            produto.setValorUnitario(Double.valueOf(jTValorUnitario.getText().replace(",", ".")));
             produto.setValorVenda(Double.valueOf(jTValorVenda.getText()));
             produto.setNome(jTNome.getText());
+            produto.setQtdAumento(Double.valueOf(jTAumento.getText().replace(",", ".")));
             try {
-                ProdutoBO.save(produto);                
+                ProdutoBO.save(produto); 
+                if(listPro != null){
                 listPro.dadosTabela();
-                listPro.atualizaLinhaSelecionada();
+                listPro.atualizaLinhaSelecionada();    
+                }
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
                  
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo produto ?", "Novo produto", JOptionPane.YES_NO_OPTION);
@@ -481,6 +489,14 @@ public class CadProdutoGUI extends javax.swing.JFrame {
             jTValorVenda.setText("" + bd.doubleValue());
         }
     }//GEN-LAST:event_jTAumentoFocusLost
+
+    private void jTQuantidadeMinimaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTQuantidadeMinimaFocusLost
+       if(Double.valueOf(jTQuantidadeMinima.getText()) > Double.valueOf(jTQuantidade.getText())){
+           JOptionPane.showMessageDialog(null, "Quantidade Minima maior que Quantidade", "Atenção", 2);
+           jTQuantidadeMinima.setText(null);
+           jTQuantidadeMinima.requestFocus();
+       }
+    }//GEN-LAST:event_jTQuantidadeMinimaFocusLost
 
     /**
      * @param args the command line arguments
@@ -560,5 +576,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jTQuantidadeMinima.setText(null);
         jTValorUnitario.setText(null);
         jTValorVenda.setText(null);
+        jTAumento.setText(null);
+        jTAumento.setEditable(false);
     }
 }

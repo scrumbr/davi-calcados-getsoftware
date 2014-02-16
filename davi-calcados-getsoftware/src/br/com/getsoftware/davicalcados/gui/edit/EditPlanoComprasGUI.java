@@ -27,7 +27,7 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
      */
     private ListPlanoComprasGUI planoDeCompras;
     private PlanoCompras planoCompras;
-    private ListPlanoComprasGUI listplanoCompras;
+    
     
     public EditPlanoComprasGUI() {
         initComponents();
@@ -231,11 +231,10 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
            try {
                 refreshItem();
                 PlanoComprasBO.update(planoCompras); 
-                listplanoCompras.setEnabled(true); 
-                listplanoCompras.dadosTabela();
-                listplanoCompras.atualizaLinhaSelecionada();                
+                planoDeCompras.setEnabled(true); 
+                planoDeCompras.dadosTabela();
+                planoDeCompras.atualizaLinhaSelecionada();                
                 JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Sucesso", 1);
-                
                 this.dispose();
                } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar editar o item", "Erro", 0);

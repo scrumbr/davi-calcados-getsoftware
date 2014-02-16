@@ -20,6 +20,16 @@ public class Produto {
     private String nome;
     private Fornecedor fornecedor;
     private Integer quantidadeMinima;
+    private Double qtdAumento;
+    
+    
+    public Double getQtdAumento() {
+        return qtdAumento;
+    }
+
+    public void setQtdAumento(Double qtdAumento) {
+        this.qtdAumento = qtdAumento;
+    }
 
     public String getNome() {
         return nome;
