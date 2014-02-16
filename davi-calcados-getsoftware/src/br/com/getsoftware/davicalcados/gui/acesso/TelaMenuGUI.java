@@ -105,7 +105,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMrestaurarBackup = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -378,15 +379,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jMenuItem6);
+        jMenu8.add(jSeparator18);
 
-        jMrestaurarBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/restaurar-Backup-B-icon.png"))); // NOI18N
-        jMrestaurarBackup.setText("restaurar backup");
-        jMrestaurarBackup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMrestaurarBackupActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMrestaurarBackup);
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/restaurar-Backup-B-icon.png"))); // NOI18N
+        jMenuItem9.setText("restaurar backup");
+        jMenu8.add(jMenuItem9);
 
         jMenuBar2.add(jMenu8);
 
@@ -703,8 +700,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMlistFuncionarios;
-    private javax.swing.JMenuItem jMrestaurarBackup;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
@@ -715,6 +712,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
+    private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

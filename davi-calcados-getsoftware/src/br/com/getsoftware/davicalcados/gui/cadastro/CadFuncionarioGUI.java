@@ -758,8 +758,10 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         funcionario.setEndereco(end);
         try {
             FuncionarioBO.save(funcionario);
+            if(listFunc != null){
              listFunc.dadosTabela();
              listFunc.atualizaLinhaSelecionada();
+            } 
             JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
 
              int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo funcionario ?", "Novo funcionario", JOptionPane.YES_NO_OPTION);

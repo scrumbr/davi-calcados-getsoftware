@@ -46,6 +46,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
             produto.setValorUnitario(res.getDouble("valor_unitario"));
             produto.setValorVenda(res.getDouble("valor_venda"));
             produto.setNome(res.getString("nome"));
+            produto.setQtdAumento(res.getDouble("valor_aumento"));
         }
         res.close();
         stmt.close();
@@ -56,8 +57,8 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
     public void save(Produto produto) throws SQLException {
         //id_produto, id_usuario ,id_fornecedor,nome, descricao, quantidade, quantidade_minima, valor_unitario ,valor_venda 
 
-        String sql = "insert into produto( nome, descricao, quantidade, quantidade_minima, valor_unitario, valor_venda, id_fornecedor) "
-                + " values ( ?, ?, ?, ?,  ?, ?, ?)";
+        String sql = "insert into produto( nome, descricao, quantidade, quantidade_minima, valor_unitario, valor_venda, id_fornecedor,valor_aumento) "
+                + " values ( ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -68,6 +69,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
         stmt.setDouble(5, produto.getValorUnitario());
         stmt.setDouble(6, produto.getValorVenda());
         stmt.setDouble(7, produto.getFornecedor().getIdFornecedor());
+        stmt.setDouble(8, produto.getQtdAumento());
 
         stmt.execute();
         stmt.close();
@@ -76,7 +78,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
     @Override
     public void update(Produto produto) throws SQLException {
         //id_produto, id_usuario ,id_fornecedor,nome, descricao, quantidade, quantidade_minima, valor_unitario ,valor_venda 
-        String sql = "update produto set id_fornecedor=?, nome=?, descricao=?, quantidade=?, quantidade_minima=?, valor_unitario=?, valor_venda=?"
+        String sql = "update produto set id_fornecedor=?, nome=?, descricao=?, quantidade=?, quantidade_minima=?, valor_unitario=?, valor_venda=?, valor_aumento=?"
                 + "  where id_produto=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
@@ -88,7 +90,8 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
         stmt.setLong(5, produto.getQuantidadeMinima());
         stmt.setDouble(6, produto.getValorUnitario());
         stmt.setDouble(7, produto.getValorVenda());
-        stmt.setLong(8, produto.getIdProduto());
+        stmt.setDouble(8,produto.getQtdAumento());
+        stmt.setLong(9, produto.getIdProduto());
 
         stmt.execute();
         stmt.close();
@@ -114,7 +117,7 @@ public class ProdutoDAO implements InterfaceCRUD<Produto> {
             produto.setValorUnitario(res.getDouble("valor_unitario"));
             produto.setValorVenda(res.getDouble("valor_venda"));
             produto.setNome(res.getString("nome"));
-           
+            produto.setQtdAumento(res.getDouble("valor_aumento"));
             
             minhaLista.add(produto);
         }

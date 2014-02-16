@@ -324,6 +324,11 @@ public class CadClienteGUI extends javax.swing.JFrame {
 
         jTCredito.setEditable(false);
         jTCredito.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCreditoActionPerformed(evt);
+            }
+        });
 
         try {
             jFCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -864,7 +869,9 @@ public class CadClienteGUI extends javax.swing.JFrame {
             cliente.setNumeroBoleto(Long.valueOf(jTBoleto.getText()));
             cliente.setRg(jTRg.getText());
             cliente.setStatus(status());
-
+            cliente.setRenda(Double.valueOf(jTRenda.getText().replace(",", ".")));
+            cliente.setCredito(Double.valueOf(jTCredito.getText()));
+            
             end.setBairro(jTBairro.getText());
             end.setCEP(jFCep.getText());
             end.setCidade(jTCidade.getText());
@@ -875,8 +882,10 @@ public class CadClienteGUI extends javax.swing.JFrame {
             cliente.setEndereco(end);
             try {
                  ClienteBO.save(cliente);
+                 if(listCli!=null){
                  listCli.dadosTabela();
                  listCli.atualizaLinhaSelecionada();
+                 }
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
 
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo cliente ?", "Novo cliente", JOptionPane.YES_NO_OPTION);
@@ -958,6 +967,10 @@ public class CadClienteGUI extends javax.swing.JFrame {
     private void jFCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFCpfActionPerformed
+
+    private void jTCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCreditoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCreditoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1116,6 +1129,9 @@ public void LimpaCampos(){
     jRF.setSelected(false);
     jTRg.setText(null);
     jTIdade.setText(null);
+    jTRenda.setText(null);
+    jTCredito.setText(null);
+    
 }
 
  public boolean status() {

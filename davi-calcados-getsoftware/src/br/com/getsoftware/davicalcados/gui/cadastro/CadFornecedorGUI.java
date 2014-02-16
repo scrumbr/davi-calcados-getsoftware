@@ -618,8 +618,10 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
                 
         try {
             FornecedorBO.save(fornecedor);
+            if(listForn != null){
              listForn.dadosTabela();
-             listForn.atualizaLinhaSelecionada();
+             listForn.atualizaLinhaSelecionada();    
+            }
             JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
 
              int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo fornecedor ?", "Novo fornecedor", JOptionPane.YES_NO_OPTION);

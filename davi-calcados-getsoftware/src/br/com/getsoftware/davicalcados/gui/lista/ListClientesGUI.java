@@ -13,6 +13,7 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditClienteGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewClienteGUI;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -36,6 +37,8 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         atualizaLinhaSelecionada();
         jBescolher.setVisible(false);
+        jTable1.setSelectionBackground(Color.red); //fundo da linha  
+
     }
      public ListClientesGUI(TelaMenuGUI telaMenu) throws SQLException{
       this();

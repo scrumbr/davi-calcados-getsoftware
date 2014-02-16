@@ -152,10 +152,11 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(30);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
         }
@@ -231,6 +232,7 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
         jLabel2.setText("Pesquisar");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        jTpesquisa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTpesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisaFocusLost(evt);
@@ -270,7 +272,7 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 .addComponent(jRadioButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButton3)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,13 +307,13 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(24, 24, 24))
         );
 
-        setSize(new java.awt.Dimension(819, 561));
+        setSize(new java.awt.Dimension(944, 585));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -335,7 +337,8 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaKeyPressed
 
     private void jTpesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyReleased
-        //filter();
+dadosPesquisaPorNome();
+
     }//GEN-LAST:event_jTpesquisaKeyReleased
 
     private void jTpesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyTyped
@@ -460,6 +463,24 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
         }
     }
 
+public void dadosPesquisaPorNome() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listPlanoCompras.size(); i++) {
+            if (listPlanoCompras.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
+                    || listPlanoCompras.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listPlanoCompras.get(i).getIdPlanoCompras(),
+                    listPlanoCompras.get(i).getNome(),
+                    listPlanoCompras.get(i).getMarca(),
+                    listPlanoCompras.get(i).getDescricaoPlano(),
+                    listPlanoCompras.get(i).getDataCadastro(),
+                });
+            }
+
+        }
+    }
 
 
 

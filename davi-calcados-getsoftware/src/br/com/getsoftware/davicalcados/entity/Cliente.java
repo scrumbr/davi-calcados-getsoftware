@@ -29,6 +29,24 @@ public class Cliente {
     private String preferencia;
     private Long numeroBoleto;
     private Boolean status;
+    private Double renda;
+    private Double credito;
+
+    public Double getRenda() {
+        return renda;
+    }
+
+    public void setRenda(Double renda) {
+        this.renda = renda;
+    }
+
+    public Double getCredito() {
+        return credito;
+    }
+
+    public void setCredito(Double credito) {
+        this.credito = credito;
+    }
 
     public Long getIdCiente() {
         return idCiente;

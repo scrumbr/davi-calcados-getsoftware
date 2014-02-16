@@ -37,7 +37,8 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     
     public ListProdutosGUI(TelaMenuGUI telamenu) throws SQLException{
         this();
-        this.telamenu = telamenu;        
+        this.telamenu = telamenu;  
+        jBescolher.setVisible(false);
     }
     private CadVendaGUI venda;
     public ListProdutosGUI(CadVendaGUI venda) throws SQLException{
@@ -63,8 +64,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTpesquisa3 = new javax.swing.JTextField();
-        jRcpf3 = new javax.swing.JRadioButton();
-        jRid3 = new javax.swing.JRadioButton();
+        jRFornecedor = new javax.swing.JRadioButton();
         jRnome3 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -114,6 +114,11 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jLabel5.setText("Pesquisar");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        jTpesquisa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTpesquisa3ActionPerformed(evt);
+            }
+        });
         jTpesquisa3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisa3FocusLost(evt);
@@ -131,21 +136,12 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(jRcpf3);
-        jRcpf3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRcpf3.setText("CPF");
-        jRcpf3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRFornecedor);
+        jRFornecedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRFornecedor.setText("Fornecedor");
+        jRFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRcpf3ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRid3);
-        jRid3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRid3.setText("Identificador");
-        jRid3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRid3ActionPerformed(evt);
+                jRFornecedorActionPerformed(evt);
             }
         });
 
@@ -171,10 +167,8 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jRnome3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRid3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRcpf3)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addComponent(jRFornecedor)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,8 +177,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTpesquisa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRcpf3)
-                    .addComponent(jRid3)
+                    .addComponent(jRFornecedor)
                     .addComponent(jRnome3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -289,7 +282,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBescolher)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(jBCadProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBVisualiar)
@@ -376,23 +369,19 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisa3KeyPressed
 
     private void jTpesquisa3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisa3KeyReleased
-        //filter();
+        filter();
     }//GEN-LAST:event_jTpesquisa3KeyReleased
 
     private void jTpesquisa3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisa3KeyTyped
 
     }//GEN-LAST:event_jTpesquisa3KeyTyped
 
-    private void jRcpf3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRcpf3ActionPerformed
-       // filter();
-    }//GEN-LAST:event_jRcpf3ActionPerformed
-
-    private void jRid3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRid3ActionPerformed
-        //filter();
-    }//GEN-LAST:event_jRid3ActionPerformed
+    private void jRFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRFornecedorActionPerformed
+        filter();
+    }//GEN-LAST:event_jRFornecedorActionPerformed
 
     private void jRnome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnome3ActionPerformed
-       // filter();
+        filter();
     }//GEN-LAST:event_jRnome3ActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -435,7 +424,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBVisualiarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o produto " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o produto " + jTable1.getValueAt(linhaSelecionada, 2) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 ProdutoBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
@@ -461,6 +450,10 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             venda.setEnabled(true);
         }
     }//GEN-LAST:event_jBescolherActionPerformed
+
+    private void jTpesquisa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpesquisa3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTpesquisa3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -513,8 +506,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRcpf3;
-    private javax.swing.JRadioButton jRid3;
+    private javax.swing.JRadioButton jRFornecedor;
     private javax.swing.JRadioButton jRnome3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -523,11 +515,9 @@ public class ListProdutosGUI extends javax.swing.JFrame {
 
 public void filter() {
         if (jRnome3.isSelected()) {
-            //dadosPesquisaPorNome();
-        } else if (jRid3.isSelected()) {
-           // dadosPesquisaPorID();
-        } else if (jRcpf3.isSelected()) {
-           // dadosPesquisaPorCPF();
+            dadosPesquisaPorNome();
+        } else if (jRFornecedor.isSelected()) {
+           dadosPesquisaPorFornecedor();
         }
         atualizaLinhaSelecionada();
     }
@@ -547,73 +537,61 @@ public void filter() {
                 listPro.get(i).getValorVenda()
             });
    }
+ }
 
-//public void dadosPesquisaPorNome() {
-//        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-//        modelo.setNumRows(0);
-//
-//        for (int i = 0; i < listPro.size(); i++) {
-//            if (listPro.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
-//                    || listPro.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())) {
-//                modelo.addRow(new Object[]{
-//                    listPro.get(i).getIdCiente(),
-//                    listPro.get(i).getNome(),
-//                    listPro.get(i).getCpf(),
-//                    listPro.get(i).getRg(),
-//                    listPro.get(i).getTelefone(),
-//                    listPro.get(i).getTelefone2(),
-//                    listPro.get(i).getEmail()
-//                });
-//            }
-//
-//        }
-//    }
-//
-//    public void dadosPesquisaPorID() {
-//        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-//        modelo.setNumRows(0);
-//
-//        for (int i = 0; i < listPro.size(); i++) {
-//            if (listPro.get(i).getIdCiente().toString().startsWith(jTpesquisa.getText())) {
-//                modelo.addRow(new Object[]{
-//                    listPro.get(i).getIdCiente(),
-//                    listPro.get(i).getNome(),
-//                    listPro.get(i).getCpf(),
-//                    listPro.get(i).getRg(),
-//                    listPro.get(i).getTelefone(),
-//                    listPro.get(i).getTelefone2(),
-//                    listPro.get(i).getEmail()
-//                });
-//            }
-//
-//        }
-//    }
-//
-//    public void dadosPesquisaPorCPF() {
-//        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-//        modelo.setNumRows(0);
-//
-//        for (int i = 0; i < listPro.size(); i++) {
-//            if (listPro.get(i).getCpf().replace(".", "").startsWith(jTpesquisa.getText())
-//                    || listPro.get(i).getCpf().startsWith(jTpesquisa.getText())) {
-//                modelo.addRow(new Object[]{
-//                    listPro.get(i).getIdCiente(),
-//                    listPro.get(i).getNome(),
-//                    listPro.get(i).getCpf(),
-//                    listPro.get(i).getRg(),
-//                    listPro.get(i).getTelefone(),
-//                    listPro.get(i).getTelefone2(),
-//                    listPro.get(i).getEmail()
-//                });
-//            }
-//
-//        }
+public void dadosPesquisaPorNome() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listPro.size(); i++) {
+            if (listPro.get(i).getNome().toLowerCase().startsWith(jTpesquisa3.getText())
+                    || listPro.get(i).getNome().toUpperCase().startsWith(jTpesquisa3.getText())) {
+                modelo.addRow(new Object[]{
+                    listPro.get(i).getIdProduto(),
+                    listPro.get(i).getFornecedor().getNome(),
+                    listPro.get(i).getNome(),
+                    listPro.get(i).getQuantidade(),
+                    listPro.get(i).getValorVenda(),
+                });
+            }
+
+        }
     }
 
 
+ public void dadosPesquisaPorFornecedor() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
 
+        for (int i = 0; i < listPro.size(); i++) {
+            if (listPro.get(i).getFornecedor().getNome().toLowerCase().startsWith(jTpesquisa3.getText())
+                    || listPro.get(i).getFornecedor().getNome().toUpperCase().startsWith(jTpesquisa3.getText())) {
+                modelo.addRow(new Object[]{
+                    listPro.get(i).getIdProduto(),
+                    listPro.get(i).getFornecedor().getNome(),
+                    listPro.get(i).getNome(),
+                    listPro.get(i).getQuantidade(),
+                    listPro.get(i).getValorVenda(),
+                });
+            }
 
-
+        }
+    }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 }
+
+
+
+
+
+
+
