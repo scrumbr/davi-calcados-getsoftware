@@ -3,16 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
 import br.com.getsoftware.davicalcados.bo.CaixaBO;
 import br.com.getsoftware.davicalcados.entity.Caixa;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.util.MeuRenderer;
+import static br.com.getsoftware.davicalcados.util.MeuRenderer.DEFAULT_RENDERER;
+import br.com.getsoftware.davicalcados.util.MyDate;
+import br.com.getsoftware.davicalcados.util.TransformMoeda;
+import java.awt.Color;
+import java.awt.Component;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -26,17 +36,26 @@ public class CaixaGUI extends javax.swing.JFrame {
     public CaixaGUI() throws SQLException {
         initComponents();
     }
-    
+
     private ArrayList<Caixa> listCaixa;
     private int linhaSelecionada = 0;
     private TelaMenuGUI telaMenu;
     private TelaMenuGUI menu;
-    
+
     public CaixaGUI(TelaMenuGUI menu) throws SQLException {
         this();
         this.menu = menu;
         dadosTabela();
         atualizaLinhaSelecionada();
+        jLdata.setText(MyDate.dataFormatada());
+        TableCellRenderer tcr = new MeuRenderer();
+        TableColumn column = jTable1.getColumnModel().getColumn(1);
+        column.setCellRenderer(tcr);
+    }
+
+    public void atualizaLinhaSelecionada() {
+        linhaSelecionada = 0;
+        jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
     }
 
     /**
@@ -53,21 +72,19 @@ public class CaixaGUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLentrada = new javax.swing.JLabel();
+        jLasda = new javax.swing.JLabel();
         jLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLgeral = new javax.swing.JLabel();
         jLsaida = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLentrada = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jBcadEntrada = new javax.swing.JButton();
         jBcadSaida = new javax.swing.JButton();
         jBvenda = new javax.swing.JButton();
         jBreceberPagamento = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLdata = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -108,7 +125,7 @@ public class CaixaGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificador", "Movimentação", "Descrição", "Data/Hora", "Funcionário", "Valor"
+                "Identificador", "Movimentação", "Descrição", "Horário", "Funcionário", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -121,6 +138,11 @@ public class CaixaGUI extends javax.swing.JFrame {
         });
         jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -137,24 +159,29 @@ public class CaixaGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(20);
         }
 
-        jLentrada.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLentrada.setForeground(new java.awt.Color(0, 153, 0));
-        jLentrada.setText("Total Entrada");
+        jLasda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLasda.setForeground(new java.awt.Color(0, 153, 0));
+        jLasda.setText("Total Entrada");
 
-        jLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel.setForeground(new java.awt.Color(204, 0, 0));
         jLabel.setText("Total Saída");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 0, 204));
         jLabel4.setText("Total em Caixa");
 
-        jLgeral.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLgeral.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLgeral.setForeground(new java.awt.Color(51, 0, 204));
         jLgeral.setText("00,00");
 
-        jLsaida.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLsaida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLsaida.setForeground(new java.awt.Color(204, 0, 0));
         jLsaida.setText("00,00");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setText("00,00");
+        jLentrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLentrada.setForeground(new java.awt.Color(0, 153, 0));
+        jLentrada.setText("00,00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,20 +190,20 @@ public class CaixaGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLentrada)
+                        .addComponent(jLasda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addGap(113, 113, 113)
+                        .addComponent(jLentrada)
+                        .addGap(171, 171, 171)
                         .addComponent(jLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLsaida)
-                        .addGap(134, 134, 134)
+                        .addGap(159, 159, 159)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLgeral)
-                        .addGap(0, 134, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -186,12 +213,12 @@ public class CaixaGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLentrada)
+                    .addComponent(jLasda)
                     .addComponent(jLabel)
                     .addComponent(jLabel4)
                     .addComponent(jLgeral)
                     .addComponent(jLsaida)
-                    .addComponent(jLabel7))
+                    .addComponent(jLentrada))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -229,13 +256,11 @@ public class CaixaGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("jButton1");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Data:");
 
-        jButton6.setText("jButton1");
-
-        jButton7.setText("jButton1");
-
-        jButton8.setText("jButton1");
+        jLdata.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLdata.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -250,34 +275,32 @@ public class CaixaGUI extends javax.swing.JFrame {
                 .addComponent(jBreceberPagamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBvenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLdata)
+                .addGap(138, 138, 138))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBcadEntrada, jBcadSaida, jBreceberPagamento, jBvenda});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton8)
-                        .addComponent(jButton7)
-                        .addComponent(jButton6)
-                        .addComponent(jButton5))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBreceberPagamento)
-                        .addComponent(jBvenda))
+                        .addComponent(jBvenda)
+                        .addComponent(jLabel2)
+                        .addComponent(jLdata))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBcadEntrada)
                         .addComponent(jBcadSaida)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcadEntrada, jBcadSaida, jBreceberPagamento, jBvenda});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -335,8 +358,23 @@ public class CaixaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBreceberPagamentoActionPerformed
 
     private void jBvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvendaActionPerformed
-            new CadVendaGUI(this).setVisible(true);
+        new CadVendaGUI(this).setVisible(true);
     }//GEN-LAST:event_jBvendaActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+//       linhaSelecionada = jTable1.getSelectedRow();
+//        if (jTable1.getValueAt(linhaSelecionada, 1).toString().equals("Entrada")) {
+//            jTable1.setSelectionBackground(Color.getHSBColor(10, 50, 100));
+//            jTable1.setSelectionForeground(Color.black);
+//        } else if (jTable1.getValueAt(linhaSelecionada, 1).toString().equals("Saída")) {
+//            jTable1.setSelectionBackground(Color.getHSBColor(10, 100, 255));
+//            jTable1.setSelectionForeground(Color.black);
+//        } else {
+//            jTable1.setSelectionBackground(Color.white);
+//            jTable1.setSelectionForeground(Color.black);
+//        }
+//        System.out.println(jTable1.getValueAt(linhaSelecionada, 1).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -381,15 +419,13 @@ public class CaixaGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBcadEntrada;
     private javax.swing.JButton jBcadSaida;
     private javax.swing.JButton jBreceberPagamento;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jBvenda;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLasda;
+    private javax.swing.JLabel jLdata;
     private javax.swing.JLabel jLentrada;
     private javax.swing.JLabel jLgeral;
     private javax.swing.JLabel jLsaida;
@@ -411,26 +447,54 @@ public class CaixaGUI extends javax.swing.JFrame {
         atualizaLinhaSelecionada();
     }
 
-    public void atualizaLinhaSelecionada() {
-        linhaSelecionada = 0;
-        jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
-    }
-
     public void dadosTabela() throws SQLException {
 
         listCaixa = CaixaBO.listAll();
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-
+        
         for (int i = 0; i < listCaixa.size(); i++) {
             modelo.addRow(new Object[]{
                 listCaixa.get(i).getIdCaixa(),
                 listCaixa.get(i).getTipoMovimentacao(),
                 listCaixa.get(i).getDescricao(),
-                listCaixa.get(i).getDataHora(),
+                listCaixa.get(i).getHora(),
                 listCaixa.get(i).getIdUsuario(),
-                listCaixa.get(i).getValor(),});
+                TransformMoeda.trasnformMoeda("" + listCaixa.get(i).getValor())});
         }
+        jLentrada.setText(TransformMoeda.trasnformMoeda("" + entradas()));
+        jLsaida.setText(TransformMoeda.trasnformMoeda("" + saidas()));
+        jLgeral.setText(TransformMoeda.trasnformMoeda("" + totalGeral()));
     }
+
+    public BigDecimal entradas() {
+        Double valor = new Double(0);
+        for (int i = 0; i < listCaixa.size(); i++) {
+            if (listCaixa.get(i).getTipoMovimentacao().equals("Entrada")) {
+                valor += listCaixa.get(i).getValor();
+            }
+        }
+        BigDecimal total = new BigDecimal(valor).setScale(2, RoundingMode.HALF_EVEN);
+        return total;
+    }
+
+    public BigDecimal saidas() {
+        Double valor = new Double(0);
+        for (int i = 0; i < listCaixa.size(); i++) {
+            if (listCaixa.get(i).getTipoMovimentacao().equals("Saída")) {
+                valor += listCaixa.get(i).getValor();
+            }
+        }
+        BigDecimal total = new BigDecimal(valor).setScale(2, RoundingMode.HALF_EVEN);
+        return total;
+    }
+
+    public BigDecimal totalGeral() {
+        Double entrada = entradas().doubleValue();
+        Double saida = saidas().doubleValue();
+        BigDecimal total = new BigDecimal(entrada - saida).setScale(2, RoundingMode.HALF_EVEN);
+        return total;
+    }
+     
 }

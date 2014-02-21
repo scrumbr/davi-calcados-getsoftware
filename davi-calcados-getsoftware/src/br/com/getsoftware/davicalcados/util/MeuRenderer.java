@@ -17,7 +17,7 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author Junior Oliveira
  */
-public class MeuRenderer implements TableCellRenderer {  
+public class MeuRenderer extends JTable implements TableCellRenderer {  
   
   public static final DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();  
   
@@ -27,15 +27,13 @@ public class MeuRenderer implements TableCellRenderer {
   
     Component renderer = DEFAULT_RENDERER.getTableCellRendererComponent(  
         table, value, isSelected, hasFocus, row, column);  
-  
-    ((JLabel) renderer).setOpaque(true);  
-  
+   
     Color foreground, background;  
   
-      if (row % 2 == 0) {  
+      if (table.getValueAt(row, 1).toString().equals("Entrada")) {  
         foreground = Color.black;  
-        background = Color.white;  
-  
+        float[] x ={1,2,3};
+    background = Color.getHSBColor(10, 255, 255);   
       } else {  
         foreground = Color.black;  
         background = Color.getHSBColor(10, 50, 255);  
@@ -45,6 +43,5 @@ public class MeuRenderer implements TableCellRenderer {
     renderer.setForeground(foreground);  
     renderer.setBackground(background);  
     return renderer;  
-  
   }  
 } 

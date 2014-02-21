@@ -16,7 +16,8 @@ public class Caixa {
     private Long iDTipoMovimentacao;
     private String tipoMovimentacao;
     private String descricao;
-    private String dataHora;
+    private String data;
+    private String hora;
     private String usuario;
     private Double valor;
 
@@ -27,7 +28,6 @@ public class Caixa {
     public void setIdCaixa(Long idCaixa) {
         this.idCaixa = idCaixa;
     }
-    
     
     public Long getiDTipoMovimentacao() {
         return iDTipoMovimentacao;
@@ -53,12 +53,20 @@ public class Caixa {
         this.descricao = descricao;
     }
 
-    public String getDataHora() {
-        return dataHora;
+    public String getData() {
+        return data;
     }
 
-    public void setDataHora(String dataHora) {
-        this.dataHora = dataHora;
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getIdUsuario() {

@@ -148,13 +148,15 @@ create table caixa(
 	id_movimentacao bigint not null, 
 	movimentacao enum('Entrada','Saída'), 
 	descricao longtext not null, 
-	data_hora datetime not null, 
+	data date not null, 
+	hora time not null, 
 	username varchar(30) not null, 
 	valor numeric(20,2),
 constraint pk_caixa primary key caixa(id_caixa)
 );
+
 create table plano_compras(
-     id_plano_compras bigint auto_increment,
+	id_plano_compras bigint auto_increment,
     nome varchar(100) not null,
     descricao longtext not null,
      marca varchar(50) not null,

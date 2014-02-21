@@ -6,6 +6,8 @@
 
 package br.com.getsoftware.davicalcados.gui.acesso;
 
+import br.com.getsoftware.davicalcados.util.SetIcon;
+
 /**
  *
  * @author Junior Oliveira
@@ -17,6 +19,7 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
+        SetIcon.setIcon(this, "chaveLogo.png");
     }
 
     /**

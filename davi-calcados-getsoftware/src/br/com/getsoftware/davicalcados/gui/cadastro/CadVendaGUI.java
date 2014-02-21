@@ -464,14 +464,14 @@ public class CadVendaGUI extends javax.swing.JFrame {
         removerCarrinho();
         mostraItensCarrinho();
         atualizaLinhaSelecionada();
-
+        jFquantidade.setText(null);
     }//GEN-LAST:event_jBremoverActionPerformed
 
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirActionPerformed
         inserirCarrinho();
         mostraItensCarrinho();
         atualizaLinhaSelecionada();
-
+        jFquantidade.setText(null);
     }//GEN-LAST:event_jBinserirActionPerformed
 
     private void jBaddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddProdutoActionPerformed
