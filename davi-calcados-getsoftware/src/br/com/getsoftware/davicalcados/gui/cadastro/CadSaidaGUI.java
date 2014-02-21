@@ -311,8 +311,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             saida.setValorSaida(Double.valueOf(jTvalor.getText()));
             try {
                 SaidaBO.save(saida);
-                JOptionPane.showMessageDialog(null, "Sucesso ao salvar a saida!", "Sucesso", 1);
                 caixa.dadosTabela();
+                JOptionPane.showMessageDialog(null, "Sucesso ao salvar a saida!", "Sucesso", 1);
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova entada?", "Nova saida", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
                     jTid.setText(""+LastID.atualizaId("id_saida", "saida"));

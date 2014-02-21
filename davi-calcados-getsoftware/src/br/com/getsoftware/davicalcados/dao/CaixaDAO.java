@@ -14,6 +14,7 @@ import br.com.getsoftware.davicalcados.connection.Conexao;
 import br.com.getsoftware.davicalcados.entity.Caixa;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
 import br.com.getsoftware.davicalcados.util.TransformDate;
+import br.com.getsoftware.davicalcados.util.TransformMoeda;
 
 /**
  *
@@ -38,7 +39,8 @@ public class CaixaDAO implements InterfaceCRUD<Caixa> {
 
         if (res.next()) {
             caixa = new Caixa();
-            caixa.setDataHora(TransformDate.transformDate(res.getString("data_hora")));
+           caixa.setData(TransformDate.transformDate(res.getString("data")));
+            caixa.setHora((res.getString("hora")));
             caixa.setDescricao(res.getString("descricao"));
             caixa.setIdCaixa(Long.valueOf(res.getString("id_caixa")));
             caixa.setUsuario((res.getString("username")));
@@ -55,17 +57,18 @@ public class CaixaDAO implements InterfaceCRUD<Caixa> {
 
     @Override
     public void save(Caixa caixa) throws SQLException {
-        String sql = "insert into caixa(movimentacao, descricao, data_hora, id_usuario, valor, id_movimentacao)"
+        String sql = "insert into caixa(movimentacao, descricao, data, hora, id_usuario, valor, id_movimentacao)"
                 + " values (?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
         stmt.setString(1, caixa.getTipoMovimentacao());
         stmt.setString(2, caixa.getDescricao());
-        stmt.setString(3, caixa.getDataHora());
-        stmt.setString(4, caixa.getIdUsuario());
-        stmt.setDouble(5, caixa.getValor());
-        stmt.setLong(6, caixa.getiDTipoMovimentacao());
+        stmt.setString(3, caixa.getData());
+        stmt.setString(4, caixa.getHora());
+        stmt.setString(5, caixa.getIdUsuario());
+        stmt.setDouble(6, caixa.getValor());
+        stmt.setLong(7, caixa.getiDTipoMovimentacao());
 
         stmt.execute();
         stmt.close();
@@ -73,18 +76,19 @@ public class CaixaDAO implements InterfaceCRUD<Caixa> {
 
     @Override
     public void update(Caixa caixa) throws SQLException {
-        String sql = "update caixa set movimentacao=?, descricao=?, data_hora=?, username=?, valor=?, id_movimentacao=? "
+        String sql = "update caixa set movimentacao=?, descricao=?, data=?, hora=?, username=?, valor=?, id_movimentacao=? "
                 + " where id_caixa=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
         stmt.setString(1, caixa.getTipoMovimentacao());
         stmt.setString(2, caixa.getDescricao());
-        stmt.setString(3, caixa.getDataHora());
-        stmt.setString(4, caixa.getIdUsuario());
-        stmt.setDouble(5, caixa.getValor());
-        stmt.setLong(6, caixa.getiDTipoMovimentacao());
-        stmt.setLong(7, caixa.getIdCaixa());
+        stmt.setString(3, caixa.getData());
+        stmt.setString(4, caixa.getHora());
+        stmt.setString(5, caixa.getIdUsuario());
+        stmt.setDouble(6, caixa.getValor());
+        stmt.setLong(7, caixa.getiDTipoMovimentacao());
+        stmt.setLong(8, caixa.getIdCaixa());
 
         stmt.execute();
         stmt.close();
@@ -92,7 +96,7 @@ public class CaixaDAO implements InterfaceCRUD<Caixa> {
 
     @Override
     public ArrayList<Caixa> listAll() throws SQLException {
-        String sql = "select * from caixa order by data_hora desc";
+        String sql = "select * from caixa where data = current_date() order by hora desc";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -102,7 +106,8 @@ public class CaixaDAO implements InterfaceCRUD<Caixa> {
         while (res.next()) {
             Caixa caixa = new Caixa();
 
-            caixa.setDataHora(TransformDate.transformDate(res.getString("data_hora")));
+            caixa.setData(TransformDate.transformDate(res.getString("data")));
+            caixa.setHora((res.getString("hora")));
             caixa.setDescricao(res.getString("descricao"));
             caixa.setIdCaixa((res.getLong("id_caixa")));
             caixa.setUsuario((res.getString("username")));

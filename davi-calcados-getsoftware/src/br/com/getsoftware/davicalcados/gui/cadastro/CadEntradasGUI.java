@@ -310,8 +310,8 @@ public class CadEntradasGUI extends javax.swing.JFrame {
             entrada.setValorEntrada(Double.valueOf(jTvalor.getText()));
             try {
                 EntradaBO.save(entrada);
-                JOptionPane.showMessageDialog(null, "Sucesso ao salvar a entrada!", "Sucesso", 1);
                 caixa.dadosTabela();
+                JOptionPane.showMessageDialog(null, "Sucesso ao salvar a entrada!", "Sucesso", 1);
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova entada?", "Nova entrada", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
                     jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
