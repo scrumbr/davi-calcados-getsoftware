@@ -14,7 +14,8 @@ public class TransformMoeda {
     public static String trasnformMoeda(String valor) {
         String newValue; // variável de suporte 1
         String newFormat; // variável de suporte 2
-
+        
+        if(!valor.isEmpty()){
         // se o valor entrar formatado
         if (valor.contains("R$ ")) {
             // newValue removerá a formatação do R$
@@ -42,6 +43,9 @@ public class TransformMoeda {
                 newValue = newValue + ",00";
                 return newValue;
             }
+        }
+        }else{
+            return "R$ 0,00";
         }
     }
 }

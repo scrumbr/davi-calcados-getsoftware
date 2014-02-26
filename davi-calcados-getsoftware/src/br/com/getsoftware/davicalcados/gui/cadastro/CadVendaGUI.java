@@ -399,7 +399,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         }
 
         jBfinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"))); // NOI18N
-        jBfinalizar.setText("FINALIZAR COMPRA");
+        jBfinalizar.setText("FINALIZAR VENDA");
         jBfinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBfinalizarActionPerformed(evt);
@@ -496,7 +496,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
-
+        
     }//GEN-LAST:event_jBfinalizarActionPerformed
 
     private void jFquantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFquantidadeKeyReleased

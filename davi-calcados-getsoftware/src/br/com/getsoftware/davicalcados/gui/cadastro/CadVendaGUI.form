@@ -505,7 +505,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FINALIZAR COMPRA"/>
+        <Property name="text" type="java.lang.String" value="FINALIZAR VENDA"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBfinalizarActionPerformed"/>
