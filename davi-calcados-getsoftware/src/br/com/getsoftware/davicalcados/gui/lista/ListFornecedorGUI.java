@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -10,6 +10,7 @@ import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFornecedorGUI;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Andrey Gois
  */
 public class ListFornecedorGUI extends javax.swing.JFrame {
-    
+
     private ArrayList<Fornecedor> listForn;
     private TelaMenuGUI telamenu;
     private int linhaSelecionada = 0;
@@ -30,19 +31,22 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
     public ListFornecedorGUI() throws SQLException {
         initComponents();
         dadosTabela();
+        tabelaVazia();
         jTable1.setAutoCreateRowSorter(true);
+        jTable1.setSelectionBackground(Color.red); //fundo da linha  
         atualizaLinhaSelecionada();
     }
 
-    public ListFornecedorGUI(TelaMenuGUI telamenu) throws SQLException{
+    public ListFornecedorGUI(TelaMenuGUI telamenu) throws SQLException {
         this();
         this.telamenu = telamenu;
     }
-     public void atualizaLinhaSelecionada() {
+
+    public void atualizaLinhaSelecionada() {
         linhaSelecionada = 0;
         jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
     }
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,10 +64,10 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
+        jBExcluir = new javax.swing.JButton();
+        jBVisualizar = new javax.swing.JButton();
+        jBCadFornecedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(934, 476));
@@ -85,7 +89,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(322, 322, 322)
+                .addGap(357, 357, 357)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -161,7 +165,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 .addComponent(jRid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRcpf)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +215,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
@@ -219,7 +223,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
         }
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -232,35 +236,35 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
-        jButton7.setText("Editar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
+        jBEditar.setText("Editar");
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
-        jButton8.setText("Excluir");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
+        jBExcluir.setText("Excluir");
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jBExcluirActionPerformed(evt);
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/visualizar_cliente-24.png"))); // NOI18N
-        jButton9.setText("Visualizar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jBVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/visualizar_cliente-24.png"))); // NOI18N
+        jBVisualizar.setText("Visualizar");
+        jBVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                jBVisualizarActionPerformed(evt);
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Admin-icon-24.png"))); // NOI18N
-        jButton10.setText("Cad Fornecedor");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jBCadFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Admin-icon-24.png"))); // NOI18N
+        jBCadFornecedor.setText("Cad Fornecedor");
+        jBCadFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jBCadFornecedorActionPerformed(evt);
             }
         });
 
@@ -270,13 +274,13 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton10)
+                .addComponent(jBCadFornecedor)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9)
+                .addComponent(jBVisualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8)
+                .addComponent(jBExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton7)
+                .addComponent(jBEditar)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(49, 49, 49))
@@ -286,11 +290,11 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
+                    .addComponent(jBCadFornecedor)
                     .addComponent(jButton3)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(jBEditar)
+                    .addComponent(jBExcluir)
+                    .addComponent(jBVisualizar))
                 .addContainerGap())
         );
 
@@ -314,19 +318,19 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(953, 514));
+        setSize(new java.awt.Dimension(1054, 526));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-     telamenu.setEnabled(true);
-     dispose();
+        telamenu.setEnabled(true);
+        dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void jTpesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesquisaFocusLost
@@ -334,7 +338,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaFocusLost
 
     private void jTpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyPressed
-     
+
     }//GEN-LAST:event_jTpesquisaKeyPressed
 
     private void jTpesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyReleased
@@ -351,55 +355,57 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
 
     private void jRidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRidActionPerformed
         filter();
+       
     }//GEN-LAST:event_jRidActionPerformed
 
     private void jRnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnomeActionPerformed
         filter();
     }//GEN-LAST:event_jRnomeActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-try {
+    private void jBCadFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadFornecedorActionPerformed
+        try {
             this.setEnabled(false);
             new CadFornecedorGUI(this).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de fornecedor!", "Erro", 0);
-        }      
-    }//GEN-LAST:event_jButton10ActionPerformed
+        }
+    }//GEN-LAST:event_jBCadFornecedorActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     telamenu.setEnabled(true);
-     dispose();
+        telamenu.setEnabled(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o fornecedor " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 FornecedorBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
                 dadosTabela();
                 atualizaLinhaSelecionada();
+                tabelaVazia();
                 JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o fornecedor", "Erro", 0);
             }
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jBExcluirActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-       this.setEnabled(false);
+    private void jBVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVisualizarActionPerformed
+        this.setEnabled(false);
         try {
             Fornecedor fornecedor = FornecedorBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
             new ViewFornecedorGUI(this, fornecedor).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_jBVisualizarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
- linhaSelecionada = jTable1.getSelectedRow();
+        linhaSelecionada = jTable1.getSelectedRow();
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         Fornecedor fornecedor;
         this.setEnabled(false);
         try {
@@ -408,7 +414,7 @@ try {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jBEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,11 +456,11 @@ try {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jBCadFornecedor;
+    private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBVisualizar;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -476,12 +482,27 @@ try {
         } else if (jRcpf.isSelected()) {
             dadosPesquisaPorCPF();
         }
+        tabelaVazia();
         atualizaLinhaSelecionada();
     }
- public void dadosTabela() throws SQLException {
+
+    public void tabelaVazia(){
+
+        if (jTable1.getRowCount() == 0) {
+            jBEditar.setEnabled(false);
+            jBExcluir.setEnabled(false);
+            jBVisualizar.setEnabled(false);
+        } else {
+            jBEditar.setEnabled(true);
+            jBExcluir.setEnabled(true);
+            jBVisualizar.setEnabled(true);
+        }
+    }
+
+    public void dadosTabela() throws SQLException {
 
         listForn = FornecedorBO.listAll();
-
+        tabelaVazia();
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -496,6 +517,8 @@ try {
             });
         }
     }
+
+
 
 public void dadosPesquisaPorNome() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -555,7 +578,6 @@ public void dadosPesquisaPorNome() {
 
         }
     }
-
 
 
 

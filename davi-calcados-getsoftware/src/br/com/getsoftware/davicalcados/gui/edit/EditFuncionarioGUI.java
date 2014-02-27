@@ -123,12 +123,13 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel1.setText("Identificador");
 
         jTid.setEditable(false);
-        jTid.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Nome");
 
-        jTnome.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTnome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTnome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("CPF");
@@ -136,12 +137,24 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("RG");
 
-        jTrg.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTrg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTrg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTrgKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Salário");
 
-        jTsalario.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTsalario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTsalario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTsalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTsalarioKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Telefone 1");
@@ -158,41 +171,46 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Status");
 
+        jFtel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFtel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFtel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFtel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jFtel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFtel2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFtel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFtel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jFcpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFcpf.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFcpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jFcontrato.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFcontrato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jFrecisao.setEditable(false);
+        jFrecisao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFrecisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFrecisao.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFrecisao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         buttonGroup1.add(jRativo);
         jRativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -217,14 +235,16 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel19.setText("Idade");
 
         jTidade.setEditable(false);
-        jTidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jFdataNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFdataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFdataNascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jFdataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jFdataNascimentoFocusLost(evt);
@@ -237,9 +257,11 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setText("E-mail");
 
-        jTemail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTemail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTemail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         buttonGroup2.add(jRfem);
+        jRfem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRfem.setText("F");
         jRfem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +273,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel22.setText("Sexo");
 
         buttonGroup2.add(jRmasc);
+        jRmasc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRmasc.setText("M");
         jRmasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,23 +305,24 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(38, 38, 38)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel22)
-                                            .addComponent(jRmasc))
-                                        .addGap(23, 23, 23)
-                                        .addComponent(jRfem))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jRativo))
+                                            .addComponent(jRativo)
+                                            .addComponent(jLabel12))
                                         .addGap(14, 14, 14)
-                                        .addComponent(jRinativo))))))
+                                        .addComponent(jRinativo))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel22)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jRmasc)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRfem))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -358,9 +382,15 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRmasc)
+                            .addComponent(jRfem))
+                        .addGap(3, 3, 3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,19 +399,11 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel19)
                                     .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel22))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRmasc)
-                                .addComponent(jRfem))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addGap(28, 28, 28)))
-                        .addGap(3, 3, 3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -405,34 +427,38 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTemail, jTid, jTnome, jTrg, jTsalario});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFcontrato, jFcpf, jFdataNascimento, jFrecisao, jFtel1, jFtel2, jTemail, jTid, jTidade, jTnome, jTrg, jTsalario});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Endereço"));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setText("Cidade");
 
-        jTcidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTcidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTcidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Rua");
 
-        jTrua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTrua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTrua.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Bairro");
 
-        jTbairro.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTbairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTbairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("CEP");
 
+        jFcep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFcep.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFcep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Estado");
@@ -448,12 +474,14 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("N°");
 
-        jTnumero.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTnumero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTnumero.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("Complemento");
 
-        jTcomplemento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTcomplemento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTcomplemento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -474,14 +502,12 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jCestado, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jFcep)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -535,6 +561,8 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                 .addGap(13, 13, 13))
         );
 
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCestado, jFcep, jTbairro, jTcidade, jTcomplemento, jTnumero, jTrua});
+
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jBcancel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -578,7 +606,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(204, 0, 0));
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Editar Funcionário");
 
@@ -593,10 +621,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel21)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -622,7 +647,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -746,10 +771,24 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
     private void jRinativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinativoActionPerformed
        if(jRinativo.isSelected()){
-            jFrecisao.setEnabled(true);
+            jFrecisao.setEditable(true);
             status = false;
-        }
+        }        
     }//GEN-LAST:event_jRinativoActionPerformed
+
+    private void jTrgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTrgKeyTyped
+         String caracteres="0987654321";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTrgKeyTyped
+
+    private void jTsalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTsalarioKeyTyped
+     String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTsalarioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -867,7 +906,13 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         funcionario.setSalario(Double.valueOf(jTsalario.getText()));
         funcionario.setTelefone(TransformTelefone.transformTelefone(jFtel1.getText()));
         funcionario.setTelefone2(TransformTelefone.transformTelefone(jFtel2.getText()));
-
+        if(jRmasc.isSelected()){
+            sexo ="M";
+            funcionario.setSexo(sexo);
+        }else{
+            sexo="F";
+            funcionario.setSexo(sexo);
+        }       
         end.setBairro(jTbairro.getText());
         end.setCEP(jFcep.getText());
         end.setCidade(jTcidade.getText());
@@ -889,7 +934,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             jRmasc.setSelected(true);
             jRfem.setSelected(false);
         }else{
-            jRmasc.setSelected(false);
+             jRmasc.setSelected(false);
              jRfem.setSelected(true);
         }
         jFcontrato.setText(funcionario.getContrato());

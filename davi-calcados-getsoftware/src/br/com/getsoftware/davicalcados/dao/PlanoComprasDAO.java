@@ -86,7 +86,7 @@ public class PlanoComprasDAO implements InterfaceCRUD<PlanoCompras> {
     
     @Override
     public ArrayList<PlanoCompras> listAll() throws SQLException {
-        String sql = "select * from plano_compras";
+        String sql = "select * from plano_compras order by data_cadastro desc";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 

@@ -216,6 +216,17 @@ public class CadPlanoComprasGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+        if(jTNome.getText().isEmpty() || jTNome.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'NOME' está em vazio!", "Atenção", 2);
+            jTNome.requestFocus();
+        }else if(jTMarca.getText().isEmpty() || jTMarca.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'MARCA' está em vazio!", "Atenção", 2);
+            jTMarca.requestFocus();
+        }else if(jTDescricao.getText().isEmpty() || jTDescricao.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'Descrição' está em vazio!", "Atenção", 2);
+            jTDescricao.requestFocus();
+        }
+        else{    
         PlanoCompras planoCompras = new PlanoCompras();
           
             planoCompras.setIdPlanoCompras(Long.valueOf(jTId.getText()));
@@ -226,8 +237,10 @@ public class CadPlanoComprasGUI extends javax.swing.JFrame {
           
             try {
                  PlanoComprasBO.save(planoCompras);
-                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o item!", "Sucesso", 1);
                  planoDeCompras.dadosTabela();
+                 planoDeCompras.atualizaLinhaSelecionada();
+                 planoDeCompras.tabelaVazia();
+                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o item!", "Sucesso", 1);
                  int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma novo item?", "Nova item", JOptionPane.YES_NO_OPTION);
                  if(opt == JOptionPane.YES_OPTION){
                     jTId.setText(""+LastID.atualizaId("id_plano_compras", "plano_compras"));
@@ -235,12 +248,14 @@ public class CadPlanoComprasGUI extends javax.swing.JFrame {
                 }else{
                     planoDeCompras.setEnabled(true);
                     planoDeCompras.dadosTabela();
+                    planoDeCompras.atualizaLinhaSelecionada();
                     this.dispose();
                 }
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar a saida!", "Erro", 0);
             }
+        }
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed

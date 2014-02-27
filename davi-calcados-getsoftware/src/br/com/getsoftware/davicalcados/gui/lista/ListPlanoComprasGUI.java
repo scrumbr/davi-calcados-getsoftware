@@ -12,12 +12,14 @@ import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadPlanoComprasGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditPlanoComprasGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mondrian.olap.Category;
 
 /**
  *
@@ -29,9 +31,13 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
     private ArrayList<PlanoCompras> listPlanoCompras;
     private int linhaSelecionada = 0;
     private TelaMenuGUI telaMenu;    
+    
+    
+    
      public ListPlanoComprasGUI() {
         initComponents();
         jLData.setText(MyDate.dataFormatada());
+        jTable1.setSelectionBackground(Color.red); //fundo da linha
     }
  
     public ListPlanoComprasGUI(TelaMenuGUI telaMenu) throws SQLException{
@@ -39,12 +45,14 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
         this.telaMenu = telaMenu;
         dadosTabela();
         atualizaLinhaSelecionada();
+        tabelaVazia();
     }  
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLData = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -52,9 +60,9 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jBExcluir = new javax.swing.JButton();
+        jBNovo = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
         jBSair = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,6 +70,7 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -163,27 +172,27 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
-        jButton1.setText("Excluir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
+        jBExcluir.setText("Excluir");
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBExcluirActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cadPlanoCompras-24.png"))); // NOI18N
-        jButton3.setText("Novo");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cadPlanoCompras-24.png"))); // NOI18N
+        jBNovo.setText("Novo");
+        jBNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBNovoActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
-        jButton4.setText("Editar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
+        jBEditar.setText("Editar");
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
 
@@ -201,26 +210,26 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(jBNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(jBEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jBExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBSair)
                 .addGap(30, 30, 30))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBSair, jButton1, jButton3, jButton4});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBEditar, jBExcluir, jBNovo, jBSair});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
+                    .addComponent(jBEditar)
+                    .addComponent(jBExcluir)
+                    .addComponent(jBNovo)
                     .addComponent(jBSair))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -233,7 +242,11 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jTpesquisa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTpesquisa.setText("Digite o nome do item");
         jTpesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTpesquisaFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisaFocusLost(evt);
             }
@@ -250,12 +263,38 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Todos");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("jRadioButton2");
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton2.setText("Semana");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("jRadioButton3");
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton3.setText("Mês");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/blocos-16.png"))); // NOI18N
+        jLabel3.setText("Listar por");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -266,13 +305,15 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jRadioButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButton3)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +324,8 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
                     .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jRadioButton3)
+                    .addComponent(jLabel3))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -329,7 +371,9 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jTpesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesquisaFocusLost
-        // TODO add your handling code here:
+       if(jTpesquisa.getText().isEmpty() || jTpesquisa.getText() == null){
+           jTpesquisa.setText("Digite o nome do item");
+       }
     }//GEN-LAST:event_jTpesquisaFocusLost
 
     private void jTpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyPressed
@@ -337,24 +381,23 @@ public class ListPlanoComprasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaKeyPressed
 
     private void jTpesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyReleased
-dadosPesquisaPorNome();
-
+           filter();
     }//GEN-LAST:event_jTpesquisaKeyReleased
 
     private void jTpesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyTyped
 
     }//GEN-LAST:event_jTpesquisaKeyTyped
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
         this.setEnabled(false);
         try {
             new CadPlanoComprasGUI(this).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ListPlanoComprasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBNovoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         PlanoCompras planoCompras;
         this.setEnabled(false);
         try {
@@ -363,25 +406,44 @@ dadosPesquisaPorNome();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);
         } 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
          linhaSelecionada = jTable1.getSelectedRow();
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+               
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o item " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 PlanoComprasBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
                 dadosTabela();
                 atualizaLinhaSelecionada();
+                tabelaVazia();
                 JOptionPane.showMessageDialog(null, "Item excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o item", "Erro", 0);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jTpesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesquisaFocusGained
+        jTpesquisa.setText(null);
+    }//GEN-LAST:event_jTpesquisaFocusGained
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        filter();
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+     filter();
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        filter();
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,13 +481,15 @@ dadosPesquisaPorNome();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBNovo;
     private javax.swing.JButton jBSair;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -443,47 +507,65 @@ dadosPesquisaPorNome();
         linhaSelecionada = 0;
         jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
  }
+ 
 
+public void tabelaVazia(){
 
-
- public void dadosTabela() throws SQLException {
-
-        listPlanoCompras = PlanoComprasBO.listAll();
-
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setNumRows(0);
-
-        for (int i = 0; i < listPlanoCompras.size(); i++) {
-            modelo.addRow(new Object[]{
-                listPlanoCompras.get(i).getIdPlanoCompras(),
-                listPlanoCompras.get(i).getNome(),
-                listPlanoCompras.get(i).getMarca(),
-                listPlanoCompras.get(i).getDescricaoPlano(),
-                listPlanoCompras.get(i).getDataCadastro(),});
+        if (jTable1.getRowCount() == 0 ) {
+            jBEditar.setEnabled(false);
+            jBExcluir.setEnabled(false);            
+        } else {
+            jBEditar.setEnabled(true);
+            jBExcluir.setEnabled(true);
         }
     }
 
-public void dadosPesquisaPorNome() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setNumRows(0);
+    public void dadosTabela() throws SQLException {
+      listPlanoCompras = PlanoComprasBO.listAll();
+      tabelaVazia();
 
-        for (int i = 0; i < listPlanoCompras.size(); i++) {
-            if (listPlanoCompras.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
-                    || listPlanoCompras.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())) {
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            modelo.setNumRows(0);
+
+            for (int i = 0; i < listPlanoCompras.size(); i++) {
                 modelo.addRow(new Object[]{
                     listPlanoCompras.get(i).getIdPlanoCompras(),
                     listPlanoCompras.get(i).getNome(),
                     listPlanoCompras.get(i).getMarca(),
                     listPlanoCompras.get(i).getDescricaoPlano(),
-                    listPlanoCompras.get(i).getDataCadastro(),
-                });
+                    listPlanoCompras.get(i).getDataCadastro(),});
             }
-
         }
-    }
+        
+  public void filter() {
+        if (jRadioButton1.isSelected()) {
+            dadosPesquisaPorNome();
+        } else if (jRadioButton2.isSelected()) {
+        
+        } else if (jRadioButton3.isSelected()) {
+           
+        }
+        atualizaLinhaSelecionada();
+        tabelaVazia();
+       
+    }   
 
+    public void dadosPesquisaPorNome() {    
 
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            modelo.setNumRows(0);
 
+            for (int i = 0; i < listPlanoCompras.size(); i++) {
+                if (listPlanoCompras.get(i).getNome().toLowerCase().startsWith(jTpesquisa.getText())
+                        || listPlanoCompras.get(i).getNome().toUpperCase().startsWith(jTpesquisa.getText())) {
+                    modelo.addRow(new Object[]{
+                        listPlanoCompras.get(i).getIdPlanoCompras(),
+                        listPlanoCompras.get(i).getNome(),
+                        listPlanoCompras.get(i).getMarca(),
+                        listPlanoCompras.get(i).getDescricaoPlano(),
+                        listPlanoCompras.get(i).getDataCadastro(),});
+                }
 
-
+            }
+        }
 }

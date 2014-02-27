@@ -112,7 +112,7 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jLabel1.setText("Identificador");
 
         jTid.setEditable(false);
-        jTid.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
@@ -121,7 +121,8 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jLabel3.setText("Nível");
 
         jTusuario.setEditable(false);
-        jTusuario.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTusuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTusuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Nome do usuário");
@@ -146,15 +147,18 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jRintivo.setText("Inativo");
         jRintivo.setEnabled(false);
 
-        jPsenha.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jPsenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPsenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jPconfirmarSenha.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jPconfirmarSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPconfirmarSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("CPF");
 
         jTcpf.setEditable(false);
-        jTcpf.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTcpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTcpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -233,6 +237,8 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCnivel, jPconfirmarSenha, jPsenha, jTcpf, jTusuario});
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Opções"));
 
         jBsalvar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -293,10 +299,10 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(137, 137, 137)
                 .addComponent(jLabel8)
-                .addGap(136, 136, 136))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

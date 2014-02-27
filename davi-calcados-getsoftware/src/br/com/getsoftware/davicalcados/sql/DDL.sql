@@ -1,8 +1,9 @@
 create database davi_calcados;
 
 use davi_calcados;
+select * from cliente;
 
--- drop database davi_calcados;
+drop database davi_calcados;
 
 CREATE TABLE FUNCIONARIO(
 		id_funcionario bigint auto_increment,
@@ -60,14 +61,11 @@ CREATE TABLE CLIENTE(
         cidade varchar(50) not null,
         CEP varchar(10), -- 99.999-999
         estado char(2) not null,
-		
+        renda numeric(9,2),
+        credito numeric(9,2),		
 constraint pk_cliente primary key cliente(id_cliente)
 );
-alter table cliente add column renda numeric(9,2);
-alter table cliente add column credito numeric(9,2);
-
-ALTER TABLE cliente drop column complemento;
-alter table cliente add column complemento varchar(100);
+select * from cliente;
 /*
 CREATE TABLE VENDA(
 		id_venda bigint, 
@@ -107,11 +105,11 @@ CREATE TABLE PRODUTO(
         quantidade_minima int not null,
         valor_unitario numeric(9,2) not null,
         valor_venda numeric(9,2) not null,
+        valor_aumento numeric(9,2),
 constraint pk_produto primary key produto(id_produto),
 constraint fk_produto_fornecedorr foreign key produto(id_fornecedor) references fornecedor(id_fornecedor)
 ); 
-alter table produto add column valor_aumento numeric(9,2);
-select * from produto;
+drop table produto;
 CREATE TABLE SAIDA(
 		id_usuario bigint not null,
         id_saida bigint auto_increment not null,
@@ -132,7 +130,7 @@ constraint pk_entrada primary key entrada(id_entrada),
 constraint fk_entrada foreign key entrada(id_usuario) references usuario(id_usuario)
 
 );
-
+select * from entrada;
 CREATE TABLE PRODUTO_FORNECIDO( -- TABELA N : M (PRODUTO : FORNECEDOR)
 		id_produto_fornecido bigint auto_increment,
 		id_produto bigint not null,
@@ -154,7 +152,7 @@ create table caixa(
 	valor numeric(20,2),
 constraint pk_caixa primary key caixa(id_caixa)
 );
-
+drop table caixa;
 create table plano_compras(
 	id_plano_compras bigint auto_increment,
     nome varchar(100) not null,
@@ -164,5 +162,4 @@ create table plano_compras(
     constraint pk_plano_compras primary key plano_compras(id_plano_compras)
 
 );
-select * from cliente;
 drop tables entrada, saida;

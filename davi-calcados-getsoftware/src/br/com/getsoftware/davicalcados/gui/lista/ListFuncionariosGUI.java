@@ -14,6 +14,7 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
+import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,8 +39,10 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     public ListFuncionariosGUI() throws SQLException {
         initComponents();
         dadosTabela();
+        tabelaVazia();
         jTable1.setAutoCreateRowSorter(true);
         atualizaLinhaSelecionada();
+        jTable1.setSelectionBackground(Color.red); //fundo da linha  
     }
       public ListFuncionariosGUI(TelaMenuGUI telaMenu) throws SQLException{
       this();
@@ -75,7 +78,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jBexcluir = new javax.swing.JButton();
         jBvisualizar = new javax.swing.JButton();
         jBcadUser = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBFuncionario = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -265,11 +268,11 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
-        jButton1.setText("Cad Funcionário");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
+        jBFuncionario.setText("Cad Funcionário");
+        jBFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBFuncionarioActionPerformed(evt);
             }
         });
 
@@ -279,7 +282,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jBFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBcadUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -306,7 +309,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                         .addComponent(jBexcluir)
                         .addComponent(jBvisualizar)
                         .addComponent(jBcadUser))
-                    .addComponent(jButton1))
+                    .addComponent(jBFuncionario))
                 .addContainerGap())
         );
 
@@ -394,9 +397,10 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 FuncionarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
                 dadosTabela();
                 atualizaLinhaSelecionada();
+                tabelaVazia();
+                JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
             }
@@ -523,14 +527,14 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFuncionarioActionPerformed
        try {
             this.setEnabled(false);
             new CadFuncionarioGUI(this).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de funcionários!", "Erro", 0);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,11 +577,11 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBFuncionario;
     private javax.swing.JButton jBcadUser;
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBexcluir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -600,13 +604,29 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         } else if (jRcpf.isSelected()) {
             dadosPesquisaPorCPF();
         }
+        tabelaVazia();
         atualizaLinhaSelecionada();
     }
 
+    public void tabelaVazia(){
+
+        if (jTable1.getRowCount() == 0) {
+            jBcadUser.setEnabled(false);
+            jBeditar.setEnabled(false);
+            jBexcluir.setEnabled(false);
+            jBvisualizar.setEnabled(false);
+        } else {
+            jBcadUser.setEnabled(true);
+            jBeditar.setEnabled(true);
+            jBexcluir.setEnabled(true);
+            jBvisualizar.setEnabled(true);
+        }
+    }
     public void dadosTabela() throws SQLException {
 
         listFuncionarios = FuncionarioBO.listAll();
-
+        tabelaVazia();
+       
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -621,6 +641,6 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 listFuncionarios.get(i).getEmail()
             });
         }
+    
     }
-
 }

@@ -9,7 +9,9 @@ import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
+import br.com.getsoftware.davicalcados.util.TransformMoeda;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
@@ -183,30 +185,34 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Status");
 
+        jFCpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFCpf.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFCpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTemail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTemail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTemail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jFTelefone2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFTelefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jFTelefone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFTelefone.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFTelefone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTid.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTid.setEnabled(false);
 
         buttonGroup1.add(jRStatusAtivo);
@@ -228,19 +234,29 @@ public class EditClienteGUI extends javax.swing.JFrame {
             }
         });
 
-        jTnome.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTnome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTnome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTprofissao.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTprofissao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTprofissao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTBoleto.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTBoleto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTBoleto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTBoleto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTBoletoKeyTyped(evt);
+            }
+        });
 
-        jTPreferencias.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTPreferencias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTPreferencias.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Idade");
 
         jTIdade.setEditable(false);
-        jTIdade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTIdade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTIdade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel23.setText("Sexo");
@@ -263,14 +279,21 @@ public class EditClienteGUI extends javax.swing.JFrame {
             }
         });
 
-        jTrG.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTrG.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTrG.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTrG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTrGKeyTyped(evt);
+            }
+        });
 
+        jFDataNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFDataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFDataNascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jFDataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jFDataNascimentoFocusLost(evt);
@@ -280,7 +303,8 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel24.setText("Renda/Mensal");
 
-        jTRenda.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTRenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTRenda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTRenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTRendaActionPerformed(evt);
@@ -298,13 +322,17 @@ public class EditClienteGUI extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTRendaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTRendaKeyTyped(evt);
+            }
         });
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Crédito");
 
         jTCredito.setEditable(false);
-        jTCredito.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTCredito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTCredito.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jCEstadoCivil.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jCEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione Estado Civil", "Casada", "Solteira", "Viúva", "Divorciada" }));
@@ -453,10 +481,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel11))
                                 .addGap(5, 5, 5)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
@@ -486,9 +515,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTIdade, jTrG});
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFDataNascimento, jFTelefone});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCEstadoCivil, jFCpf, jFDataNascimento, jFTelefone, jFTelefone2, jTBoleto, jTCredito, jTIdade, jTPreferencias, jTRenda, jTemail, jTnome, jTprofissao, jTrG});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Endereço"));
 
@@ -513,27 +540,33 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setText("Complemento");
 
-        jTCidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTCidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTBairro.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTBairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTBairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTComplemento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTComplemento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTComplemento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTComplemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTComplementoActionPerformed(evt);
             }
         });
 
-        jTRua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTRua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTRua.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jFCep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFCep.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFCep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTNumero.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTNumero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTNumero.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jCEstado.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jCEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Estado--", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PR", "PB", "PA", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SE", "SP", "TO" }));
@@ -606,6 +639,8 @@ public class EditClienteGUI extends javax.swing.JFrame {
                     .addComponent(jTNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCEstado, jFCep, jTBairro, jTCidade, jTComplemento, jTNumero, jTRua});
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
@@ -799,7 +834,13 @@ public class EditClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTRendaActionPerformed
 
     private void jTRendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTRendaFocusLost
-
+        jTRenda.setBackground(Color.WHITE);
+        if(jTRenda.getText().isEmpty() || jTRenda.getText() == null){
+          jTRenda.setText(null);
+        }else{
+        jTRenda.setText(TransformMoeda.trasnformMoeda(jTRenda.getText()));
+        
+        }
     }//GEN-LAST:event_jTRendaFocusLost
 
     private void jTRendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRendaKeyPressed
@@ -812,10 +853,32 @@ public class EditClienteGUI extends javax.swing.JFrame {
        }else{
             double credito = 0.60 * (Double.valueOf(jTRenda.getText().replace(",",".")));
            BigDecimal bd = new BigDecimal(credito).setScale(2, RoundingMode.HALF_EVEN);
-          jTCredito.setText(""+bd.doubleValue());
+       jTCredito.setText(TransformMoeda.trasnformMoeda(""+bd.doubleValue()));       
+// jTCredito.setText(""+bd.doubleValue());
         //  jTCredito.setText(""+credito);
        }
     }//GEN-LAST:event_jTRendaKeyReleased
+
+    private void jTrGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTrGKeyTyped
+        String caracteres="0987654321";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTrGKeyTyped
+
+    private void jTRendaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRendaKeyTyped
+         String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTRendaKeyTyped
+
+    private void jTBoletoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBoletoKeyTyped
+         String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTBoletoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -921,9 +984,16 @@ public class EditClienteGUI extends javax.swing.JFrame {
     public void refreshCliente() {
 
         Endereco end = new Endereco();
-        cliente.setStatus(status);
         jRStatusAtivo.setSelected(status);
         jRStatusInativo.setSelected(status);
+         if(jRM.isSelected()){
+            sexo ="M";
+            cliente.setSexo(sexo);
+        }else{
+            sexo="F";
+            cliente.setSexo(sexo);
+        } 
+        cliente.setStatus(status);
         cliente.setIdCiente(Long.valueOf(jTid.getText()));
         cliente.setNome(jTnome.getText());
         cliente.setProfissao(jTprofissao.getText());
@@ -936,8 +1006,8 @@ public class EditClienteGUI extends javax.swing.JFrame {
         cliente.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
         cliente.setPreferencia(jTPreferencias.getText());
         cliente.setNumeroBoleto(Long.valueOf(jTBoleto.getText()));
-        cliente.setRenda(Double.valueOf(jTRenda.getText().replace(",", ".")));
-        cliente.setCredito(Double.valueOf(jTCredito.getText()));
+        cliente.setRenda(Double.valueOf(TransformMoeda.trasnformMoeda(jTRenda.getText().replace(",", "."))));
+        cliente.setCredito(Double.valueOf(TransformMoeda.trasnformMoeda(jTCredito.getText())));
 
         end.setBairro(jTBairro.getText());
         end.setCEP(jFCep.getText());
@@ -959,7 +1029,7 @@ public class EditClienteGUI extends javax.swing.JFrame {
         if (cliente.getSexo().equals("M")) {
             jRM.setSelected(true);
             jRF.setSelected(false);
-        } else if (cliente.getSexo().equals("F")) {
+        } else if(cliente.getSexo().equals("F")) {
             jRM.setSelected(false);
             jRF.setSelected(true);
         }
