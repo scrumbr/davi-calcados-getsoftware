@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +25,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     private ArrayList<Long> fornecedores;
     public CadProdutoGUI() throws SQLException {
         initComponents();
-         jTId.setText(""+LastID.atualizaId("id_produto", "produto"));
+        jTId.setText(""+LastID.atualizaId("id_produto", "produto"));
         jTDescricao.setLineWrap(true);
         fornecedores = new ArrayList<>();
         ArrayList<Fornecedor> forn = FornecedorBO.listAll();
@@ -75,12 +77,12 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTAumento = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jBSair = new javax.swing.JButton();
-        jBSalvar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jBSalvar = new javax.swing.JButton();
+        jBSair = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -100,8 +102,8 @@ public class CadProdutoGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
+                .addComponent(jLabel1)
+                .addGap(220, 220, 220))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,21 +121,23 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Fornecedor");
 
-        jCFornecedor.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jCFornecedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCFornecedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escolha o Fornecedor" }));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Nome");
 
-        jTNome.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Descrição");
 
         jTDescricao.setColumns(20);
-        jTDescricao.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTDescricao.setRows(5);
         jTDescricao.setWrapStyleWord(true);
+        jTDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jScrollPane1.setViewportView(jTDescricao);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -174,13 +178,13 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                             .addComponent(jCFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addGap(13, 13, 13)
-                .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(37, 37, 37))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Dados Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
@@ -188,25 +192,48 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Quantidade");
 
-        jTQuantidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTQuantidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTQuantidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTQuantidadeKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTQuantidadeKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Quantidade Minima");
 
-        jTQuantidadeMinima.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTQuantidadeMinima.setEditable(false);
+        jTQuantidadeMinima.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTQuantidadeMinima.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTQuantidadeMinima.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTQuantidadeMinimaFocusLost(evt);
+            }
+        });
+        jTQuantidadeMinima.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTQuantidadeMinimaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTQuantidadeMinimaKeyTyped(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Valor Unitário");
 
-        jTValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTValorUnitario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTValorUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTValorUnitarioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTValorUnitarioKeyTyped(evt);
             }
         });
 
@@ -214,13 +241,15 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel6.setText("Valor de Venda");
 
         jTValorVenda.setEditable(false);
-        jTValorVenda.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTValorVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTValorVenda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("% Aumento");
 
         jTAumento.setEditable(false);
-        jTAumento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTAumento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTAumento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTAumento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTAumentoFocusLost(evt);
@@ -229,6 +258,9 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jTAumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTAumentoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTAumentoKeyTyped(evt);
             }
         });
 
@@ -259,7 +291,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -275,23 +307,23 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addComponent(jTValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTAumento, jTQuantidade, jTQuantidadeMinima, jTValorUnitario, jTValorVenda});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTAumento, jTQuantidadeMinima, jTValorUnitario, jTValorVenda});
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jBSair.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
-        jBSair.setText("Sair");
-        jBSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBSair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jBSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBSair.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Admin-icon-24.png"))); // NOI18N
+        jButton1.setText("Cad.Forn.");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBSairActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -307,39 +339,44 @@ public class CadProdutoGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Admin-icon-24.png"))); // NOI18N
-        jButton1.setText("Cad.Forn.");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBSair.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
+        jBSair.setText("Sair");
+        jBSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBSair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jBSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBSair, jBSalvar, jButton1});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBSalvar, jButton1});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jBSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jBSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBSair, jBSalvar, jButton1});
 
         jPanel5.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -367,32 +404,47 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(671, 400));
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel1, jPanel5});
+
+        setSize(new java.awt.Dimension(684, 417));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-         if(telaMenu != null){
-             telaMenu.setEnabled(true);
-         }else  if(listPro != null){
-              listPro.setEnabled(true);
-         }  
-        this.dispose();
+        if (verificarCampos()) {
+            int escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "DADOS NÂO SALVOS", JOptionPane.YES_NO_OPTION);
+            if (escolha == 0) {
+                if (telaMenu != null) {
+                    telaMenu.setEnabled(true);
+                } else if (listPro != null) {
+                    listPro.setEnabled(true);
+                }
+                this.dispose();
+            }
+        } else {
+
+            if (telaMenu != null) {
+                telaMenu.setEnabled(true);
+            } else if (listPro != null) {
+                listPro.setEnabled(true);
+            }
+            this.dispose();
+        } 
     }//GEN-LAST:event_formWindowClosing
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
@@ -433,6 +485,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                 if(listPro != null){
                 listPro.dadosTabela();
                 listPro.atualizaLinhaSelecionada();    
+                listPro.tabelaVazia();
                 }
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
                  
@@ -458,12 +511,25 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
-         if(telaMenu != null){
-             telaMenu.setEnabled(true);
-         }else  if(listPro != null){
-             listPro.setEnabled(true);
-         }  
-        this.dispose();;
+          if (verificarCampos()) {
+            int escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "DADOS NÂO SALVOS", JOptionPane.YES_NO_OPTION);
+            if (escolha == 0) {
+                if (telaMenu != null) {
+                    telaMenu.setEnabled(true);
+                } else if (listPro != null) {
+                    listPro.setEnabled(true);
+                }
+                this.dispose();
+            }
+        } else {
+
+            if (telaMenu != null) {
+                telaMenu.setEnabled(true);
+            } else if (listPro != null) {
+                listPro.setEnabled(true);
+            }
+            this.dispose();
+        } 
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jTValorUnitarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTValorUnitarioKeyReleased
@@ -491,12 +557,63 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTAumentoFocusLost
 
     private void jTQuantidadeMinimaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTQuantidadeMinimaFocusLost
-       if(Double.valueOf(jTQuantidadeMinima.getText()) > Double.valueOf(jTQuantidade.getText())){
+        if(jTQuantidadeMinima.getText().isEmpty() || jTQuantidadeMinima.getText() == (null) ) {
+            jTQuantidadeMinima.setText(null);
+        }else if((Double.valueOf(jTQuantidadeMinima.getText()) > Double.valueOf(jTQuantidade.getText()))){
            JOptionPane.showMessageDialog(null, "Quantidade Minima maior que Quantidade", "Atenção", 2);
            jTQuantidadeMinima.setText(null);
            jTQuantidadeMinima.requestFocus();
        }
     }//GEN-LAST:event_jTQuantidadeMinimaFocusLost
+
+    private void jTQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTQuantidadeKeyTyped
+       String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTQuantidadeKeyTyped
+
+    private void jTQuantidadeMinimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTQuantidadeMinimaKeyTyped
+         String caracteres="0987654321.";
+         if(!caracteres.contains(evt.getKeyChar()+"")){
+         evt.consume();
+         }
+    }//GEN-LAST:event_jTQuantidadeMinimaKeyTyped
+
+    private void jTValorUnitarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTValorUnitarioKeyTyped
+        String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTValorUnitarioKeyTyped
+
+    private void jTAumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAumentoKeyTyped
+       String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTAumentoKeyTyped
+
+    private void jTQuantidadeMinimaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTQuantidadeMinimaKeyReleased
+       
+    }//GEN-LAST:event_jTQuantidadeMinimaKeyReleased
+
+    private void jTQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTQuantidadeKeyReleased
+       if(jTQuantidade.getText().isEmpty() || jTQuantidade.getText() == null){
+           jTQuantidadeMinima.setEditable(false);
+        }else{
+            jTQuantidadeMinima.setEditable(true);
+        }
+    }//GEN-LAST:event_jTQuantidadeKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.setEnabled(false);
+        try {
+            new CadFornecedorGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadProdutoGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,4 +696,13 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jTAumento.setText(null);
         jTAumento.setEditable(false);
     }
+
+    public boolean verificarCampos() {
+        if(!jTNome.getText().isEmpty() || !jTDescricao.getText().isEmpty() || !jTQuantidade.getText().isEmpty() || !jTQuantidadeMinima.getText().isEmpty()
+                || !jTValorUnitario.getText().isEmpty() || !jTAumento.getText().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+     }
 }

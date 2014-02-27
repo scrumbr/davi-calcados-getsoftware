@@ -297,7 +297,7 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(500, 342));
+        setSize(new java.awt.Dimension(500, 352));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

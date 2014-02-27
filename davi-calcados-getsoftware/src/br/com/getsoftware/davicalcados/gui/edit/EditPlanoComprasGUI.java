@@ -58,7 +58,7 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
         jTNome = new javax.swing.JTextField();
         jTMarca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTObservacao = new javax.swing.JTextArea();
+        jTDescricao = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -111,9 +111,9 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
 
         jTMarca.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
-        jTObservacao.setColumns(20);
-        jTObservacao.setRows(5);
-        jScrollPane1.setViewportView(jTObservacao);
+        jTDescricao.setColumns(20);
+        jTDescricao.setRows(5);
+        jScrollPane1.setViewportView(jTDescricao);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -228,7 +228,19 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           try {
+       if(jTNome.getText().isEmpty() || jTNome.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'NOME' está em vazio!", "Atenção", 2);
+            jTNome.requestFocus();
+        }else if(jTMarca.getText().isEmpty() || jTMarca.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'MARCA' está em vazio!", "Atenção", 2);
+            jTMarca.requestFocus();
+        }else if(jTDescricao.getText().isEmpty() || jTDescricao.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'Descrição' está em vazio!", "Atenção", 2);
+            jTDescricao.requestFocus();
+        }
+        else{  
+        
+        try {
                 refreshItem();
                 PlanoComprasBO.update(planoCompras); 
                 planoDeCompras.setEnabled(true); 
@@ -240,7 +252,8 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar editar o item", "Erro", 0);
             } catch (Exception ex) {
                 Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }                                   
+            }      
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -300,17 +313,17 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTDescricao;
     private javax.swing.JTextField jTId;
     private javax.swing.JTextField jTMarca;
     private javax.swing.JTextField jTNome;
-    private javax.swing.JTextArea jTObservacao;
     // End of variables declaration//GEN-END:variables
 
     
     public void refreshItem() {
         planoCompras.setIdPlanoCompras(Long.valueOf(jTId.getText()));
         planoCompras.setNome(jTNome.getText());
-        planoCompras.setDescricaoPlano(jTObservacao.getText());
+        planoCompras.setDescricaoPlano(jTDescricao.getText());
         planoCompras.setMarca(jTMarca.getText());
         planoCompras.setDataCadastro(jLData.getText());       
     }
@@ -319,7 +332,7 @@ public class EditPlanoComprasGUI extends javax.swing.JFrame {
         jTId.setText("" + planoCompras.getIdPlanoCompras());
         jTNome.setText(planoCompras.getNome());
         jTMarca.setText(planoCompras.getMarca());
-        jTObservacao.setText(planoCompras.getDescricaoPlano());   
+        jTDescricao.setText(planoCompras.getDescricaoPlano());   
         jLData.setText(MyDate.dataFormatada());
     }
 }

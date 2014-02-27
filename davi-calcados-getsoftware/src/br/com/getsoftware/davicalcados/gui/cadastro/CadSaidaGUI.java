@@ -140,6 +140,11 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jLabel11.setText("Valor da saída");
 
         jTvalor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTvalor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTvalorKeyTyped(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Data da saída");
@@ -352,6 +357,13 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         caixa.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jTvalorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTvalorKeyTyped
+         String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTvalorKeyTyped
 
     /**
      * @param args the command line arguments

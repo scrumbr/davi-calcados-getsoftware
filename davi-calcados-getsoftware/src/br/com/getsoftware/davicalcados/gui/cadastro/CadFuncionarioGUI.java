@@ -16,6 +16,7 @@ import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,12 +35,15 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     
     public CadFuncionarioGUI() throws SQLException {
         initComponents();
-        jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
+        jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));        
         LimpaMascaras();
+             
     }
      public CadFuncionarioGUI(TelaMenuGUI telaMenu) throws SQLException{
          this();
-         this.telaMenu = telaMenu;            
+         this.telaMenu = telaMenu;  
+         jFcpf.requestFocus();
+
      }
      private ListFuncionariosGUI listFunc;
      public CadFuncionarioGUI(ListFuncionariosGUI listFunc) throws SQLException{
@@ -106,7 +110,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -120,12 +124,23 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel1.setText("Identificador");
 
         jTid.setEditable(false);
-        jTid.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Nome");
 
-        jTnome.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTnome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTnome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTnome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTnome.setName(""); // NOI18N
+        jTnome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTnomeFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("CPF");
@@ -133,12 +148,40 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("RG");
 
-        jTrg.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTrg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTrg.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTrgFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTrgFocusLost(evt);
+            }
+        });
+        jTrg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTrgKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Salário");
 
-        jTsalario.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTsalario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTsalario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTsalario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTsalarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTsalarioFocusLost(evt);
+            }
+        });
+        jTsalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTsalarioKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Telefone 1");
@@ -155,41 +198,79 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Status");
 
+        jFtel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFtel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFtel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFtel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jFtel1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFtel1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFtel1FocusLost(evt);
+            }
+        });
 
+        jFtel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFtel2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFtel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFtel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jFtel2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFtel2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFtel2FocusLost(evt);
+            }
+        });
 
+        jFcpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFcpf.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFcpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jFcpf.setPreferredSize(new java.awt.Dimension(2, 18));
+        jFcpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFcpfFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFcpfFocusLost(evt);
+            }
+        });
 
+        jFcontrato.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFcontrato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jFcontrato.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFcontratoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFcontratoFocusLost(evt);
+            }
+        });
 
+        jFrecisao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFrecisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         jFrecisao.setEnabled(false);
-        jFrecisao.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFrecisao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         buttonGroup1.add(jRativo);
         jRativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -214,20 +295,25 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel19.setText("Idade");
 
         jTidade.setEditable(false);
-        jTidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jFdataNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFdataNascimento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFdataNascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jFdataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFdataNascimentoActionPerformed(evt);
             }
         });
         jFdataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFdataNascimentoFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jFdataNascimentoFocusLost(evt);
             }
@@ -244,7 +330,16 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setText("E-mail");
 
-        jTemail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTemail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTemail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTemail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTemailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTemailFocusLost(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setText("Sexo");
@@ -358,21 +453,26 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(2, 2, 2)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jFcpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -411,34 +511,70 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTemail, jTid, jTnome, jTrg, jTsalario});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFcontrato, jFcpf, jFdataNascimento, jFrecisao, jFtel1, jFtel2, jTemail, jTid, jTidade, jTnome, jTrg, jTsalario});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Endereço"));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setText("Cidade");
 
-        jTcidade.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTcidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTcidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTcidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTcidadeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTcidadeFocusLost(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Rua");
 
-        jTrua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTrua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTrua.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTrua.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTruaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTruaFocusLost(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Bairro");
 
-        jTbairro.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTbairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTbairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTbairro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTbairroFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTbairroFocusLost(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("CEP");
 
+        jFcep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFcep.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jFcep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jFcep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFcepFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFcepFocusLost(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Estado");
@@ -452,14 +588,32 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setText("Número");
+        jLabel14.setText("N°");
 
-        jTnumero.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTnumero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTnumero.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTnumero.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnumeroFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTnumeroFocusLost(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("Complemento");
 
-        jTcomplemento.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTcomplemento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTcomplemento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTcomplemento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTcomplementoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTcomplementoFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -488,13 +642,12 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                             .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jTrua, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jTnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTrua, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -512,9 +665,9 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                             .addComponent(jLabel18)
                             .addComponent(jLabel16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTbairro)
+                            .addComponent(jTcidade)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -530,15 +683,17 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTrua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(26, 26, 26))
-                    .addComponent(jTcomplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 11, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTcomplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFcep, jTbairro, jTcidade, jTcomplemento, jTnumero, jTrua});
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -594,7 +749,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(234, 234, 234)
+                .addGap(227, 227, 227)
                 .addComponent(jLabel21)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -629,10 +784,13 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jPanel2, jPanel3});
@@ -645,9 +803,9 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -656,21 +814,35 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFdataNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdataNascimentoFocusLost
+        jFdataNascimento.setBackground(Color.white);
         jFdataNascimento.setFocusLostBehavior(JFormattedTextField.COMMIT);     
         if(jFdataNascimento.getText().equals("  /  /    ")){    
         }else{
         int ano = Integer.valueOf(jFdataNascimento.getText().substring(jFdataNascimento.getText().length()-4, jFdataNascimento.getText().length()));
         jTidade.setText(""+(MyDate.getAno()-ano));  
         }
+        jTrg.requestFocus();
     }//GEN-LAST:event_jFdataNascimentoFocusLost
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
-        if (telaMenu != null) {
-            telaMenu.setEnabled(true);
-        } else if (listFunc != null) {
-            listFunc.setEnabled(true);
-        }
-        this.dispose();
+         if (verificarCampos()) {
+            int escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "DADOS NÂO SALVOS", JOptionPane.YES_NO_OPTION);
+            if (escolha == 0) {
+                if (telaMenu != null) {
+                    telaMenu.setEnabled(true);
+                } else if (listFunc != null) {
+                    listFunc.setEnabled(true);
+                }
+                this.dispose();
+            }
+        } else {
+            if (telaMenu != null) {
+                telaMenu.setEnabled(true);
+            } else if (listFunc != null) {
+                listFunc.setEnabled(true);
+            }
+            this.dispose();
+        } 
     }//GEN-LAST:event_jBcancelActionPerformed
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
@@ -761,6 +933,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
             if(listFunc != null){
              listFunc.dadosTabela();
              listFunc.atualizaLinhaSelecionada();
+             listFunc.tabelaVazia();
             } 
             JOptionPane.showMessageDialog(null, "Sucesso ao salvar o registro\n", "Salvo com sucesso", 1);
 
@@ -787,12 +960,24 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-         if(telaMenu != null){
-             telaMenu.setEnabled(true);
-         }else  if(listFunc != null){
-             listFunc.setEnabled(true);
-         }        
-        this.dispose();
+        if (verificarCampos()) {
+            int escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "DADOS NÂO SALVOS", JOptionPane.YES_NO_OPTION);
+            if (escolha == 0) {
+                if (telaMenu != null) {
+                    telaMenu.setEnabled(true);
+                } else if (listFunc != null) {
+                    listFunc.setEnabled(true);
+                }
+                this.dispose();
+            }
+        } else {
+            if (telaMenu != null) {
+                telaMenu.setEnabled(true);
+            } else if (listFunc != null) {
+                listFunc.setEnabled(true);
+            }
+            this.dispose();
+        }        
     }//GEN-LAST:event_formWindowClosing
 
     private void jCestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCestadoActionPerformed
@@ -831,6 +1016,141 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
           jTidade.setText("");
       } 
     }//GEN-LAST:event_jFdataNascimentoKeyReleased
+
+    private void jTrgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTrgKeyTyped
+        String caracteres="0987654321";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTrgKeyTyped
+
+    private void jTsalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTsalarioKeyTyped
+         String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTsalarioKeyTyped
+
+    private void jFcpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFcpfFocusGained
+         jFcpf.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jFcpfFocusGained
+
+    private void jFcpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFcpfFocusLost
+        jFcpf.setBackground(Color.white);
+        
+    }//GEN-LAST:event_jFcpfFocusLost
+
+    private void jTnomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnomeFocusGained
+         jTnome.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTnomeFocusGained
+
+    private void jTnomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnomeFocusLost
+        jTnome.setBackground(Color.white);
+        
+    }//GEN-LAST:event_jTnomeFocusLost
+
+    private void jFdataNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdataNascimentoFocusGained
+         jFdataNascimento.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jFdataNascimentoFocusGained
+
+    private void jTrgFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTrgFocusGained
+         jTrg.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTrgFocusGained
+
+    private void jTrgFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTrgFocusLost
+       jTrg.setBackground(Color.white);
+       
+    }//GEN-LAST:event_jTrgFocusLost
+
+    private void jTemailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTemailFocusGained
+         jTemail.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTemailFocusGained
+
+    private void jTemailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTemailFocusLost
+       jTemail.setBackground(Color.white);
+       
+    }//GEN-LAST:event_jTemailFocusLost
+
+    private void jFtel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFtel1FocusGained
+         jFtel1.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jFtel1FocusGained
+
+    private void jFtel1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFtel1FocusLost
+        jFtel1.setBackground(Color.white);
+      
+    }//GEN-LAST:event_jFtel1FocusLost
+
+    private void jFtel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFtel2FocusGained
+         jFtel2.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jFtel2FocusGained
+
+    private void jFtel2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFtel2FocusLost
+          jFtel2.setBackground(Color.white);
+    }//GEN-LAST:event_jFtel2FocusLost
+
+    private void jFcontratoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFcontratoFocusGained
+         jFcontrato.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jFcontratoFocusGained
+
+    private void jFcontratoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFcontratoFocusLost
+        jFcontrato.setBackground(Color.white);
+    }//GEN-LAST:event_jFcontratoFocusLost
+
+    private void jTsalarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTsalarioFocusGained
+         jTsalario.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTsalarioFocusGained
+
+    private void jTsalarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTsalarioFocusLost
+            jTsalario.setBackground(Color.white);
+    }//GEN-LAST:event_jTsalarioFocusLost
+
+    private void jTcidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTcidadeFocusGained
+         jTcidade.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTcidadeFocusGained
+
+    private void jTcidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTcidadeFocusLost
+            jTcidade.setBackground(Color.white);
+    }//GEN-LAST:event_jTcidadeFocusLost
+
+    private void jTbairroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTbairroFocusGained
+         jTbairro.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTbairroFocusGained
+
+    private void jTbairroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTbairroFocusLost
+            jTbairro.setBackground(Color.white);
+    }//GEN-LAST:event_jTbairroFocusLost
+
+    private void jFcepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFcepFocusGained
+         jFcep.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jFcepFocusGained
+
+    private void jFcepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFcepFocusLost
+            jFcep.setBackground(Color.white);
+    }//GEN-LAST:event_jFcepFocusLost
+
+    private void jTruaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTruaFocusGained
+         jTrua.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTruaFocusGained
+
+    private void jTruaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTruaFocusLost
+            jTrua.setBackground(Color.white);
+    }//GEN-LAST:event_jTruaFocusLost
+
+    private void jTnumeroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnumeroFocusGained
+         jTnumero.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTnumeroFocusGained
+
+    private void jTnumeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnumeroFocusLost
+            jTnumero.setBackground(Color.white);
+    }//GEN-LAST:event_jTnumeroFocusLost
+
+    private void jTcomplementoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTcomplementoFocusGained
+         jTcomplemento.setBackground(Color.getHSBColor(220,110, 204));
+    }//GEN-LAST:event_jTcomplementoFocusGained
+
+    private void jTcomplementoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTcomplementoFocusLost
+            jTcomplemento.setBackground(Color.white);
+    }//GEN-LAST:event_jTcomplementoFocusLost
 
     /**
      * @param args the command line arguments
@@ -969,4 +1289,19 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
             return false;
         }
     }
+    
+     public boolean verificarCampos() {
+        if(!jFcpf.getText().equals("   .   .   -  ") || !jTnome.getText().isEmpty() || !jFdataNascimento.getText().equals("  /  /    ") 
+                || jTemail.getText().isEmpty() || !jTemail.getText().isEmpty() ||  !jFtel1.getText().equals("(  )    -    ") 
+                || !jFtel2.getText().equals("(  )    -    ") || !jFcontrato.getText().equals("  /  /     ") || !jTsalario.getText().isEmpty()
+                || !jTcidade.getText().isEmpty() || !jTbairro.getText().isEmpty() || !jFcep.getText().equals("     -   ") || jCestado.getSelectedIndex() != 0
+                || !jTrua.getText().isEmpty() || !jTnumero.getText().isEmpty() || !jTcomplemento.getText().isEmpty()) {
+
+            return true;
+        } else {
+            return false;
+        }
+     }   
+    
+    
 }

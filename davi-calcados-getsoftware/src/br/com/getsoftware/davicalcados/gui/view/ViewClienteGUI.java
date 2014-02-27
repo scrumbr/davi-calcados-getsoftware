@@ -410,28 +410,28 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLnome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLcpf)
-                    .addComponent(jLabel7)
-                    .addComponent(jLrg)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jLidade)))
+                        .addComponent(jLidade))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLcpf)
+                        .addComponent(jLabel7)
+                        .addComponent(jLrg)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLnasc)
                         .addComponent(jLabel12))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRmasc)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRfem)
-                                .addComponent(jLabel10)))
-                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel44)))
+                    .addComponent(jRmasc)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRfem)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)))
+                    .addComponent(jLabel44))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -861,6 +861,7 @@ public class ViewClienteGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public void refreshCampos() {
+    
         if (cliente.isStatus()==true) {
             jRativo.setSelected(true);
             jRinativo.setEnabled(false);
@@ -903,11 +904,4 @@ public void refreshCampos() {
         jLnum.setText("" + cliente.getEndereco().getNumero());
         jLrua.setText(cliente.getEndereco().getRua());
     }
-
-
-
-
-
-
-
 }

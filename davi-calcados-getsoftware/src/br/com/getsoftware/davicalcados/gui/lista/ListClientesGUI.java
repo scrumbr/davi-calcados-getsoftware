@@ -5,9 +5,7 @@
 package br.com.getsoftware.davicalcados.gui.lista;
 
 import br.com.getsoftware.davicalcados.bo.ClienteBO;
-import br.com.getsoftware.davicalcados.bo.ProdutoBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
-import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
@@ -36,9 +34,10 @@ public class ListClientesGUI extends javax.swing.JFrame {
         dadosTabela();
         jTable1.setAutoCreateRowSorter(true);
         atualizaLinhaSelecionada();
+        tabelaVazia();
         jBescolher.setVisible(false);
         jTable1.setSelectionBackground(Color.red); //fundo da linha  
-
+               
     }
      public ListClientesGUI(TelaMenuGUI telaMenu) throws SQLException{
       this();
@@ -401,17 +400,20 @@ public class ListClientesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBvisualizarActionPerformed
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
+             
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o cliente " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 ClienteBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!", "Sucesso", 1);
                 dadosTabela();
                 atualizaLinhaSelecionada();
+                tabelaVazia();
+                JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o cliente", "Erro", 0);
             }
         }
+      
     }//GEN-LAST:event_jBexcluirActionPerformed
 
     private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
@@ -540,12 +542,28 @@ public void filter() {
         } else if (jRcpf.isSelected()) {
             dadosPesquisaPorCPF();
         }
+        tabelaVazia();
         atualizaLinhaSelecionada();
+    }
+
+public void tabelaVazia(){
+       
+        if(jTable1.getRowCount() ==0){
+             System.out.print("Ok");
+             jBeditar.setEnabled(false);
+            jBexcluir.setEnabled(false);
+            jBvisualizar.setEnabled(false);
+        }else{
+            jBeditar.setEnabled(true);
+            jBexcluir.setEnabled(true);
+            jBvisualizar.setEnabled(true);            
+        }
     }
  public void dadosTabela() throws SQLException {
 
         listClientes = ClienteBO.listAll();
-
+        tabelaVazia();
+         
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -560,10 +578,11 @@ public void filter() {
                 listClientes.get(i).getEmail()
             });
         }
-    }
+         }
+    
 
 public void dadosPesquisaPorNome() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
         for (int i = 0; i < listClientes.size(); i++) {

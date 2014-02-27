@@ -11,6 +11,7 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewProdutoGUI;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -31,7 +32,9 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     public ListProdutosGUI() throws SQLException {
         initComponents();
         dadosTabela();
+        tabelaVazia();
         jTable1.setAutoCreateRowSorter(true);
+       jTable1.setSelectionBackground(Color.red); //fundo da linha 
         atualizaLinhaSelecionada();
     }
     
@@ -217,9 +220,9 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(120);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(120);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(30);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
@@ -385,8 +388,13 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jRnome3ActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-         telamenu.setEnabled(true);
-         dispose();
+           if(telamenu != null){      
+            telamenu.setEnabled(true);
+           }else if(venda != null){
+            venda.setEnabled(true);
+            }     
+              
+              dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadProdutoActionPerformed
@@ -424,13 +432,16 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBVisualiarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        
+        
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o produto " + jTable1.getValueAt(linhaSelecionada, 2) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 ProdutoBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!", "Sucesso", 1);
+               JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!", "Sucesso", 1);
                 dadosTabela();
                 atualizaLinhaSelecionada();
+                tabelaVazia();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
             }
@@ -519,12 +530,28 @@ public void filter() {
         } else if (jRFornecedor.isSelected()) {
            dadosPesquisaPorFornecedor();
         }
+        tabelaVazia();
         atualizaLinhaSelecionada();
+    }
+
+public void tabelaVazia(){
+     if(jTable1.getRowCount() == 0){
+            jBEditar.setEnabled(false);
+            jBExcluir.setEnabled(false);
+            jBVisualiar.setEnabled(false);
+    } else {
+            jBEditar.setEnabled(true);
+            jBExcluir.setEnabled(true);
+            jBVisualiar.setEnabled(true);
+//        }
+    }
+
     }
  public void dadosTabela() throws SQLException {
 
         listPro = ProdutoBO.listAll();
-
+        tabelaVazia();
+         
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -537,6 +564,7 @@ public void filter() {
                 listPro.get(i).getValorVenda()
             });
    }
+         
  }
 
 public void dadosPesquisaPorNome() {
