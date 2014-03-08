@@ -134,7 +134,7 @@ constraint fk_forn_produto_fornecido foreign key produto_fornecido(id_fornecedor
 create table caixa(
 	id_caixa bigint auto_increment,
 	id_movimentacao bigint not null, 
-	movimentacao enum('Entrada','Saída'), 
+	movimentacao enum('Entrada','Saída','Venda','Pagamento'), 
 	descricao longtext not null, 
 	data date not null, 
 	hora time not null, 

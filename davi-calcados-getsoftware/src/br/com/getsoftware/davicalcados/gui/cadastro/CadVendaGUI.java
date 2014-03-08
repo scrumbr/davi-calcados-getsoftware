@@ -485,15 +485,19 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBremoverActionPerformed
 
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirActionPerformed
-//        if(){
-//            
-//        }
-        
-        
+        if(jFid.getText() == null || jFid.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo 'ID do Produto' está vazio!", "Atenção!", 2);
+            jFid.requestFocus();
+        }else if(jFquantidade.getText() == null || jFquantidade.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo 'Quantidade no carrinho' está vazio!", "Atenção!", 2);
+            jFquantidade.requestFocus();
+        }
+        else{
         inserirCarrinho();
         mostraItensCarrinho();
         atualizaLinhaSelecionada();
-        jFquantidade.setText(null);
+        limparCapos();
+        }
     }//GEN-LAST:event_jBinserirActionPerformed
 
     private void jBaddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddProdutoActionPerformed
@@ -518,6 +522,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
+        
+        new FormaDePagamento().setVisible(true);
         
     }//GEN-LAST:event_jBfinalizarActionPerformed
 
@@ -587,6 +593,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jFid.setText(null);
         jFvalor.setText(null);
         jFestoque.setText(null);
+        jFid.requestFocus();
     }
     /**
      * @param args the command line arguments
