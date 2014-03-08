@@ -1,9 +1,8 @@
 create database davi_calcados;
 
 use davi_calcados;
-select * from cliente;
 
-drop database davi_calcados;
+-- drop database davi_calcados;
 
 CREATE TABLE FUNCIONARIO(
 		id_funcionario bigint auto_increment,
@@ -65,17 +64,7 @@ CREATE TABLE CLIENTE(
         credito numeric(9,2),		
 constraint pk_cliente primary key cliente(id_cliente)
 );
-select * from cliente;
-/*
-CREATE TABLE VENDA(
-		id_venda bigint, 
-		id_usuario bigint,
-		id_cliente bigint,
-		id_produto bigint,
-		data date
-		
-);
-*/
+
 
 CREATE TABLE FORNECEDOR(
 		id_fornecedor bigint auto_increment not null,
@@ -97,7 +86,7 @@ constraint pk_fornecedor primary key fornecedor(id_fornecedor)
 );
 
 CREATE TABLE PRODUTO(
-	id_produto bigint auto_increment not null,
+		id_produto varchar(255) not null,
         id_fornecedor bigint not null,
 		nome varchar(255) not null,
         descricao varchar(30) not null,
@@ -109,8 +98,9 @@ CREATE TABLE PRODUTO(
 constraint pk_produto primary key produto(id_produto),
 constraint fk_produto_fornecedorr foreign key produto(id_fornecedor) references fornecedor(id_fornecedor)
 ); 
-drop table produto;
-CREATE TABLE SAIDA(
+
+
+ CREATE TABLE SAIDA(
 		id_usuario bigint not null,
         id_saida bigint auto_increment not null,
         descricao_saida longtext not null,
@@ -130,10 +120,10 @@ constraint pk_entrada primary key entrada(id_entrada),
 constraint fk_entrada foreign key entrada(id_usuario) references usuario(id_usuario)
 
 );
-select * from entrada;
+
 CREATE TABLE PRODUTO_FORNECIDO( -- TABELA N : M (PRODUTO : FORNECEDOR)
-		id_produto_fornecido bigint auto_increment,
-		id_produto bigint not null,
+		id_produto_fornecido bigint,
+		id_produto varchar(255) not null,
 		id_fornecedor bigint not null,
 constraint pk_produto_fornecido primary key produto_fornecido(id_produto_fornecido),
 constraint fk_prod_produto_fornecido foreign key produto_fornecido(id_produto) references produto(id_produto),
@@ -152,7 +142,8 @@ create table caixa(
 	valor numeric(20,2),
 constraint pk_caixa primary key caixa(id_caixa)
 );
-drop table caixa;
+
+
 create table plano_compras(
 	id_plano_compras bigint auto_increment,
     nome varchar(100) not null,
@@ -162,4 +153,4 @@ create table plano_compras(
     constraint pk_plano_compras primary key plano_compras(id_plano_compras)
 
 );
-drop tables entrada, saida;
+

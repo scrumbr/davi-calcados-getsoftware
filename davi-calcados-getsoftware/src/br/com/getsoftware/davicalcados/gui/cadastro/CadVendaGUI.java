@@ -6,6 +6,7 @@
 
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import br.com.getsoftware.davicalcados.bo.ProdutoBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
 import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
@@ -29,6 +30,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public CadVendaGUI() {
         initComponents();
         atualizaLinhaSelecionada();
+        jFid.requestFocus();
 
     }
     
@@ -48,6 +50,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         this.produto = produto;
          setarValoresProduto();
          atualizaLinhaSelecionada();
+         jFid.requestFocus();
          
     }
 
@@ -80,6 +83,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         this.cliente = cliente;
         jFcliente.setText(cliente.getNome());
         atualizaLinhaSelecionada();
+        jFid.requestFocus();
 
     }
     public void setarValoresClient(){
@@ -89,6 +93,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public CadVendaGUI(CaixaGUI caixa) {
         this();
         this.caixa = caixa;
+        jFid.requestFocus();
     }
 
     private int linhaSelecionada;
@@ -213,8 +218,20 @@ public class CadVendaGUI extends javax.swing.JFrame {
             }
         });
 
-        jFid.setEditable(false);
         jFid.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jFid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFidActionPerformed(evt);
+            }
+        });
+        jFid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFidFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFidFocusLost(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Valor");
@@ -468,6 +485,11 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBremoverActionPerformed
 
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirActionPerformed
+//        if(){
+//            
+//        }
+        
+        
         inserirCarrinho();
         mostraItensCarrinho();
         atualizaLinhaSelecionada();
@@ -521,6 +543,51 @@ public class CadVendaGUI extends javax.swing.JFrame {
         caixa.setEnabled(true);
     }//GEN-LAST:event_jBcancelarActionPerformed
 
+    public void jFidActionPerformed(){
+        jFidActionPerformed(null);
+    }
+    
+    private void jFidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFidActionPerformed
+        String cod = (jFid.getText());
+        try {
+            produto = ProdutoBO.getById(cod);
+            if(produto == null){
+                 int opc = JOptionPane.showConfirmDialog(null, "Produto não encontrado!\n\nDeseja cadastrá-lo gora ?","Atenção",JOptionPane.YES_NO_OPTION);
+                 if(opc == JOptionPane.YES_OPTION){
+                     this.setEnabled(false);
+                     new CadProdutoGUI(this).setVisible(true);
+                 }else{
+                     limparCapos();
+                 }
+            }else{
+                setarValoresProduto();
+                jFquantidade.requestFocus();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o produto","Erro",0);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jFidActionPerformed
+
+    private void jFidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFidFocusGained
+        if(jFid.getText() == null || jFid.getText().isEmpty()){
+            limparCapos();
+        }
+    }//GEN-LAST:event_jFidFocusGained
+
+    private void jFidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFidFocusLost
+        if(jFid.getText() == null || jFid.getText().isEmpty()){
+            limparCapos();
+        }
+    }//GEN-LAST:event_jFidFocusLost
+
+    public void limparCapos(){
+        jFquantidade.setText(null);
+        jFproduto.setText(null);
+        jFid.setText(null);
+        jFvalor.setText(null);
+        jFestoque.setText(null);
+    }
     /**
      * @param args the command line arguments
      */
@@ -611,7 +678,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
       public void removerCarrinho() {
         ItensCarrinho itens = new ItensCarrinho();
-        itens.setIdProduto(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+        itens.setIdProduto((jTable1.getValueAt(linhaSelecionada, 0).toString()));
         itens.setNome(jTable1.getValueAt(linhaSelecionada, 1).toString());
         itens.setQuantidade(Integer.valueOf(jFquantidade.getText()));
         itens.setValorVenda(Double.valueOf(jTable1.getValueAt(linhaSelecionada, 3).toString()));

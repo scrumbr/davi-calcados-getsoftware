@@ -18,15 +18,22 @@ import javax.swing.JOptionPane;
  */
 public class ProdutoBO {
 
-    public static Produto getById(Integer id) throws SQLException {
+    public static Produto getById(String id) throws SQLException {
         ProdutoDAO dao = new ProdutoDAO();
         Produto produto = null;
         try {
-            produto = dao.getById(id);
+            if (dao.getById(id) == null) {
+                return null;
+            } else {
+                produto = dao.getById(id);
+                return produto;
+            }
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não localizou o registro\n" + e, "erro", 0);
+            return null;
         }
-        return produto;
+
     }
 
     public static void save(Produto produto) throws SQLException {

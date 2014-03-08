@@ -13,17 +13,17 @@ import java.util.Objects;
  */
 public class ItensCarrinho {
 
-    private Integer idProduto;
+    private String idProduto;
     private String nome;
     private Integer quantidade;
     private Double valorVenda;
     private Double total;
 
-    public Integer getIdProduto() {
+    public String getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Integer idProduto) {
+    public void setIdProduto(String idProduto) {
         this.idProduto = idProduto;
     }
 
