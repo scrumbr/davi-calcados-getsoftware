@@ -127,12 +127,12 @@ public class ProdutoDAO   {
     }
 
 //    @Override
-    public void delete(Integer id) throws SQLException {
+    public void delete(String id) throws SQLException {
         String sql = "delete from produto where id_produto=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
-        stmt.setLong(1, id);
+        stmt.setString(1, id);
 
         stmt.execute();
         stmt.close();

@@ -722,6 +722,7 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
                 listFunc.setEnabled(true);
                 listFunc.dadosTabela();
                 listFunc.atualizaLinhaSelecionada();
+                listFunc.tabelaVazia();
                 this.dispose();
                  JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {

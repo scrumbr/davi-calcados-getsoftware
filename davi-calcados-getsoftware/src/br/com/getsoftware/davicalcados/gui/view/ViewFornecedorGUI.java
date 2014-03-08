@@ -572,6 +572,7 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
                 listForn.setEnabled(true);
                 listForn.dadosTabela();
                 listForn.atualizaLinhaSelecionada();
+                listForn.tabelaVazia();
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {

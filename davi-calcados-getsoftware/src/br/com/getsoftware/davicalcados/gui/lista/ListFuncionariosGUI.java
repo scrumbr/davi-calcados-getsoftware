@@ -97,6 +97,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        jTpesquisa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTpesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisaFocusLost(evt);

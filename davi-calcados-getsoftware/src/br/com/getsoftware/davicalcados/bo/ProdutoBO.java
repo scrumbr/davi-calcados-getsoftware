@@ -68,7 +68,7 @@ public class ProdutoBO {
         return minhaLista;
     }
 
-    public static void delete(int id) throws SQLException {
+    public static void delete(String id) throws SQLException {
         ProdutoDAO dao = new ProdutoDAO();
         try {
             dao.delete(id);

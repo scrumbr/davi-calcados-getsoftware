@@ -319,17 +319,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBreceberPagamento" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBvenda" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLdata" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jBcadEntrada" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBcadSaida" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBreceberPagamento" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBvenda" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

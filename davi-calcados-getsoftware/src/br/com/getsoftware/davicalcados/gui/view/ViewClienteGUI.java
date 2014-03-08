@@ -741,6 +741,7 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                 listCli.setEnabled(true);
                 listCli.dadosTabela();
                 listCli.atualizaLinhaSelecionada();
+                listCli.tabelaVazia();
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {

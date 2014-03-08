@@ -26,8 +26,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     private ArrayList<Long> fornecedores;
 
     public EditProdutoGUI() throws SQLException {
-        initComponents();
-        jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
+        initComponents();        
         jTDescricao.setLineWrap(true);
         fornecedores = new ArrayList<>();
         jTAumento.setEditable(true);
@@ -654,7 +653,7 @@ public class EditProdutoGUI extends javax.swing.JFrame {
     }
 
     public void refreshCampos() throws SQLException {
-        jTId.setText("" + produto.getIdProduto());
+        jTId.setText(produto.getIdProduto());
         jTNome.setText(produto.getNome());
         jTDescricao.setText(produto.getDescricao());
         jTQuantidade.setText(""+produto.getQuantidade());
