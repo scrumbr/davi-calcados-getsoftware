@@ -414,7 +414,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         Produto produto;
         this.setEnabled(false);
         try {
-            produto = ProdutoBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            produto = ProdutoBO.getById((jTable1.getValueAt(linhaSelecionada, 0).toString()));
             new EditProdutoGUI(this, produto).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);
@@ -424,7 +424,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private void jBVisualiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVisualiarActionPerformed
          this.setEnabled(false);
         try {
-            Produto cliente = ProdutoBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            Produto cliente = ProdutoBO.getById((jTable1.getValueAt(linhaSelecionada, 0).toString()));
             new ViewProdutoGUI(this, cliente).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
@@ -450,7 +450,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
 
     private void jBescolherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBescolherActionPerformed
         try {
-            Produto produto = ProdutoBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            Produto produto = ProdutoBO.getById((jTable1.getValueAt(linhaSelecionada, 0).toString()));
             venda.setProduto(produto);
             venda.setarValoresProduto();
             venda.setEnabled(true);

@@ -12,7 +12,7 @@ package br.com.getsoftware.davicalcados.entity;
 public class Produto {
 //id_produto, id_usuario ,id_fornecedor,nome, descricao, quantidade, quantidade_minima, valor_unitario ,valor_venda 
 
-    private Integer idProduto;
+    private String idProduto;
     private String descricao;
     private Integer quantidade;
     private Double valorUnitario;
@@ -57,11 +57,11 @@ public class Produto {
         this.quantidadeMinima = quantidadeMinima;
     }
      
-    public Integer getIdProduto() {
+    public String getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Integer idProduto) {
+    public void setIdProduto(String idProduto) {
         this.idProduto = idProduto;
     }
 

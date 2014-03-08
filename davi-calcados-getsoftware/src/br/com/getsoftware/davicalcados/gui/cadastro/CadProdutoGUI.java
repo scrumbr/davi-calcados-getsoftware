@@ -25,7 +25,8 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     private ArrayList<Long> fornecedores;
     public CadProdutoGUI() throws SQLException {
         initComponents();
-        jTId.setText(""+LastID.atualizaId("id_produto", "produto"));
+//        jTId.setText(""+LastID.atualizaId("id_produto", "produto"));
+        jTId.requestFocus();
         jTDescricao.setLineWrap(true);
         fornecedores = new ArrayList<>();
         ArrayList<Fornecedor> forn = FornecedorBO.listAll();
@@ -39,12 +40,21 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     public CadProdutoGUI(TelaMenuGUI telaMenu) throws SQLException {
         this();
         this.telaMenu = telaMenu;
+        jTId.requestFocus();
     }
     
      private ListProdutosGUI listPro;
      public CadProdutoGUI(ListProdutosGUI listPro) throws SQLException{
          this();
          this.listPro = listPro;            
+         jTId.requestFocus();
+     }
+     
+     private CadVendaGUI cadVenda;
+     public CadProdutoGUI(CadVendaGUI cadVenda) throws SQLException{
+         this();
+         this.cadVenda = cadVenda;         
+         jTId.requestFocus();
      }
         
     
@@ -57,7 +67,6 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTId = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jCFornecedor = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
@@ -65,6 +74,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTDescricao = new javax.swing.JTextArea();
+        jTId = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTQuantidade = new javax.swing.JTextField();
@@ -115,9 +125,6 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Identificador");
 
-        jTId.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jTId.setEnabled(false);
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Fornecedor");
 
@@ -139,6 +146,13 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jTDescricao.setWrapStyleWord(true);
         jTDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jScrollPane1.setViewportView(jTDescricao);
+
+        jTId.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTIdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,8 +188,8 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jCFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -428,11 +442,13 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (verificarCampos()) {
             int escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "DADOS NÂO SALVOS", JOptionPane.YES_NO_OPTION);
-            if (escolha == 0) {
+            if (escolha == JOptionPane.YES_OPTION) {
                 if (telaMenu != null) {
                     telaMenu.setEnabled(true);
                 } else if (listPro != null) {
                     listPro.setEnabled(true);
+                } else if (cadVenda != null) {
+                    cadVenda.setEnabled(true);
                 }
                 this.dispose();
             }
@@ -442,13 +458,18 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                 telaMenu.setEnabled(true);
             } else if (listPro != null) {
                 listPro.setEnabled(true);
+            } else if (cadVenda != null) {
+                cadVenda.setEnabled(true);
             }
             this.dispose();
         } 
     }//GEN-LAST:event_formWindowClosing
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
-        if (jCFornecedor.getSelectedIndex() == 0) {
+        if (jTId.getText() == null || jTId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'CÓDIGO' está vazio!", "Atenção", 2);
+            jTId.requestFocus();
+        }else if (jCFornecedor.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Selecione o FORNECEDOR!", "Atenção", 2);
             jCFornecedor.requestFocus();
         } else if (jTNome.getText().isEmpty() || jTNome.getText() == null) {
@@ -469,7 +490,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         } else {
             Produto produto = new Produto();
             produto.setDescricao(jTDescricao.getText());
-//            produto.setIdProduto(jTId.getText());
+            produto.setIdProduto(jTId.getText());
             Fornecedor f = new Fornecedor();
             produto.setFornecedor(f);
             produto.getFornecedor().setIdFornecedor(Long.valueOf(fornecedores.get(jCFornecedor.getSelectedIndex()-1)));
@@ -492,15 +513,19 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo produto ?", "Novo produto", JOptionPane.YES_NO_OPTION);
                 if (escolha == 0) {                    
                     limpaCampos();
-                    jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
-                } else {                    
-                       if(telaMenu != null){
+//                    jTId.setText("" + LastID.atualizaId("id_produto", "produto"));
+                    jTId.requestFocus();
+                } else {
+                    if (telaMenu != null) {
                         telaMenu.setEnabled(true);
-                         }else  if(listPro != null){
-                         listPro.setEnabled(true);    
-                        }  
+                    } else if (listPro != null) {
+                        listPro.setEnabled(true);
+                    } else if (cadVenda != null) {
+                        cadVenda.setEnabled(true);
+                        cadVenda.jFidActionPerformed();
+                    }
                     this.dispose();
-                 }
+                }
                 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar o produto "+produto.getNome(), "Erro", 0);
@@ -518,6 +543,8 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                     telaMenu.setEnabled(true);
                 } else if (listPro != null) {
                     listPro.setEnabled(true);
+                }else if (cadVenda != null) {
+                    cadVenda.setEnabled(true);
                 }
                 this.dispose();
             }
@@ -527,7 +554,9 @@ public class CadProdutoGUI extends javax.swing.JFrame {
                 telaMenu.setEnabled(true);
             } else if (listPro != null) {
                 listPro.setEnabled(true);
-            }
+            }else if (cadVenda != null) {
+                    cadVenda.setEnabled(true);
+                }
             this.dispose();
         } 
     }//GEN-LAST:event_jBSairActionPerformed
@@ -615,6 +644,10 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdActionPerformed
+        jTNome.requestFocus();
+    }//GEN-LAST:event_jTIdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -686,6 +719,7 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void limpaCampos() {
+        jTId.setText(null);
         jCFornecedor.setSelectedIndex(0);
         jTNome.setText(null);
         jTDescricao.setText(null);
