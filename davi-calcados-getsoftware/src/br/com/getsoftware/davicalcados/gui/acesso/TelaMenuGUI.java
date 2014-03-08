@@ -73,10 +73,10 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMProduto = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
-        jMdetalhesMovimentacao = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
+        jMenu9 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMlistFuncionarios = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
@@ -152,7 +152,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLHora)
@@ -212,14 +212,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Service.png"))); // NOI18N
         jMenu1.setText("SERVIÇOS");
-
-        jMdetalhesMovimentacao.setText("Detalhes de Movimentação");
-        jMdetalhesMovimentacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMdetalhesMovimentacaoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMdetalhesMovimentacao);
         jMenu1.add(jSeparator16);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/planoCompras-16.png"))); // NOI18N
@@ -233,6 +225,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu1.add(jSeparator17);
 
         jMenuBar2.add(jMenu1);
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/kkkkkk.png"))); // NOI18N
+        jMenu9.setText("CAIXA");
+        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu9MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu9);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/ConsultarNovo-4.png"))); // NOI18N
         jMenu5.setText("CONSULTAR");
@@ -372,7 +373,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu8.setText("BACKUP");
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Blue-Backup-B-icon.png"))); // NOI18N
-        jMenuItem6.setText("backup");
+        jMenuItem6.setText("Realizar backup");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -382,7 +383,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu8.add(jSeparator18);
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/restaurar-Backup-B-icon.png"))); // NOI18N
-        jMenuItem9.setText("restaurar backup");
+        jMenuItem9.setText("Restaurar backup");
         jMenu8.add(jMenuItem9);
 
         jMenuBar2.add(jMenu8);
@@ -546,15 +547,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void jMdetalhesMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMdetalhesMovimentacaoActionPerformed
-        try {
-            new CaixaGUI(this).setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setEnabled(false);
-    }//GEN-LAST:event_jMdetalhesMovimentacaoActionPerformed
-
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem14ActionPerformed
@@ -632,6 +624,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+        try {
+            new CaixaGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setEnabled(false);
+    }//GEN-LAST:event_jMenu9MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -675,7 +676,6 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMCliente;
     private javax.swing.JMenuItem jMFuncionario;
     private javax.swing.JMenuItem jMProduto;
-    private javax.swing.JMenuItem jMdetalhesMovimentacao;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -684,6 +684,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;

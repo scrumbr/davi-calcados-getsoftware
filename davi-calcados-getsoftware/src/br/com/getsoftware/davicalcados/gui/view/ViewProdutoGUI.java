@@ -388,10 +388,11 @@ public class ViewProdutoGUI extends javax.swing.JFrame {
         int opt = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o registro ?", "Excluir",JOptionPane.YES_NO_OPTION);
         if(opt == JOptionPane.YES_OPTION){
             try {
-                ProdutoBO.delete(Integer.valueOf(""+produto.getIdProduto()));
+                ProdutoBO.delete(produto.getIdProduto());
                 listPro.setEnabled(true);
                 listPro.dadosTabela();
                 listPro.atualizaLinhaSelecionada();
+                listPro.tabelaVazia();
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
@@ -474,7 +475,7 @@ public class ViewProdutoGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public void refreshCampos() {          
-        jLid.setText(""+produto.getIdProduto());
+        jLid.setText(produto.getIdProduto());
         jLnome.setText(produto.getNome());
         jLFornecedor.setText(""+produto.getFornecedor().getNome());
         jLQunatidade.setText(""+produto.getQuantidade());

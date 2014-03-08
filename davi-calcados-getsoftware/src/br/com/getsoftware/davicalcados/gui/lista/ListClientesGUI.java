@@ -43,6 +43,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
       this();
       this.telaMenu = telaMenu;
       jBescolher.setVisible(false);
+      jBCadCliente2.setVisible(false);
     }
      
      private CadVendaGUI cadVenda;
@@ -54,6 +55,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
       jButton1.setVisible(false);
       jBvisualizar.setVisible(false);
       jBescolher.setVisible(true);
+      jBCadCliente2.setVisible(true);
     }
 
      public void atualizaLinhaSelecionada() {
@@ -82,6 +84,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jBeditar = new javax.swing.JButton();
         jBcancelar = new javax.swing.JButton();
         jBescolher = new javax.swing.JButton();
+        jBCadCliente2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -118,6 +121,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jLabel2.setText("Pesquisar");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        jTpesquisa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTpesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisaFocusLost(evt);
@@ -290,6 +294,14 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
 
+        jBCadCliente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
+        jBCadCliente2.setText("Cad Cliente");
+        jBCadCliente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadCliente2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -297,6 +309,8 @@ public class ListClientesGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBescolher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBCadCliente2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -325,7 +339,9 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBescolher)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBescolher)
+                    .addComponent(jBCadCliente2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -351,7 +367,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -475,6 +491,15 @@ public class ListClientesGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBescolherActionPerformed
 
+    private void jBCadCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadCliente2ActionPerformed
+       try {
+            this.setEnabled(false);
+            new CadClienteGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de Clientes!", "Erro", 0);
+        }
+    }//GEN-LAST:event_jBCadCliente2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -515,6 +540,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBCadCliente2;
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBescolher;

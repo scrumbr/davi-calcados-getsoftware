@@ -290,14 +290,14 @@ public class CaixaGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBreceberPagamento)
-                        .addComponent(jBvenda)
                         .addComponent(jLabel2)
                         .addComponent(jLdata))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBcadEntrada)
-                        .addComponent(jBcadSaida)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jBcadSaida)
+                        .addComponent(jBreceberPagamento)
+                        .addComponent(jBvenda)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcadEntrada, jBcadSaida, jBreceberPagamento, jBvenda});
