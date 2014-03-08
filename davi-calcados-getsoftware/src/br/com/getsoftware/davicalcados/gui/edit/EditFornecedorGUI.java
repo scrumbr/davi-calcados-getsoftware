@@ -551,13 +551,16 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
       if(jRCpf.isSelected()){
           jFCpf.setEditable(true);
           jFCnpj.setEditable(false);
+          jFCnpj.setText(null);
       }
+      
     }//GEN-LAST:event_jRCpfActionPerformed
 
     private void jRCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRCnpjActionPerformed
         if(jRCnpj.isSelected()){
             jFCnpj.setEditable(true);
             jFCpf.setEditable(false);
+            jFCpf.setText(null);
         }
     }//GEN-LAST:event_jRCnpjActionPerformed
 

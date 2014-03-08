@@ -562,7 +562,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
 
         jFcep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
-            jFcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
+            jFcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -1292,10 +1292,10 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     
      public boolean verificarCampos() {
         if(!jFcpf.getText().equals("   .   .   -  ") || !jTnome.getText().isEmpty() || !jFdataNascimento.getText().equals("  /  /    ") 
-                || jTemail.getText().isEmpty() || !jTemail.getText().isEmpty() ||  !jFtel1.getText().equals("(  )    -    ") 
-                || !jFtel2.getText().equals("(  )    -    ") || !jFcontrato.getText().equals("  /  /     ") || !jTsalario.getText().isEmpty()
+                || !jTemail.getText().isEmpty() ||  !jFtel1.getText().equals("(  )    -    ") || !jFtel2.getText().equals("(  )    -    ") || !jFcontrato.getText().equals("  /  /    ") || !jTsalario.getText().isEmpty()
                 || !jTcidade.getText().isEmpty() || !jTbairro.getText().isEmpty() || !jFcep.getText().equals("     -   ") || jCestado.getSelectedIndex() != 0
-                || !jTrua.getText().isEmpty() || !jTnumero.getText().isEmpty() || !jTcomplemento.getText().isEmpty()) {
+                || !jTrua.getText().isEmpty() || !jTnumero.getText().isEmpty() || !jTcomplemento.getText().isEmpty())
+                {
 
             return true;
         } else {
