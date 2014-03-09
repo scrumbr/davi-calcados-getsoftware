@@ -15,7 +15,7 @@ import java.util.List;
 public class Venda {
     private Integer idVenda;
     private Integer idFuncionario;
-    private Integer idCliente;
+    private Long idCliente;
     private List<String> listaIdProduto;
     private Double valorTotal;
     private String descricao;
@@ -36,11 +36,11 @@ public class Venda {
         this.idFuncionario = idFuncionario;
     }
 
-    public Integer getIdCliente() {
+    public Long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
     }
 
