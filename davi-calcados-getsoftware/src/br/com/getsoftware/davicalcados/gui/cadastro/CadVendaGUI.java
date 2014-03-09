@@ -9,6 +9,7 @@ package br.com.getsoftware.davicalcados.gui.cadastro;
 import br.com.getsoftware.davicalcados.bo.ProdutoBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
 import br.com.getsoftware.davicalcados.entity.Produto;
+import br.com.getsoftware.davicalcados.entity.Venda;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListProdutosGUI;
 import java.sql.SQLException;
@@ -522,8 +523,19 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
+        Venda venda = new Venda();
+        venda.setDescricao(jTobs.getText());
+        venda.setIdCliente(cliente.getIdCiente());
+        venda.setIdFuncionario(linhaSelecionada);
+//        venda.setIdVenda();
+        ArrayList<String> listIdProdutos = new ArrayList();
+        for (int i = 0; i < itensCarrinho.size(); i++) {
+            listIdProdutos.add(itensCarrinho.get(i).getIdProduto());
+        }
+        venda.setListaIdProduto(listIdProdutos);
+        venda.setValorTotal(Double.valueOf(jLtotal.getText()));
         
-        new FormaDePagamento().setVisible(true);
+        new FormaDePagamento(venda).setVisible(true);
         
     }//GEN-LAST:event_jBfinalizarActionPerformed
 

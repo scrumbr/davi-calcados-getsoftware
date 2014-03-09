@@ -6,6 +6,7 @@
 
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import br.com.getsoftware.davicalcados.entity.Venda;
 import br.com.getsoftware.davicalcados.util.TransformMoeda;
 
 /**
@@ -19,6 +20,18 @@ public class FormaDePagamento extends javax.swing.JFrame {
      */
     public FormaDePagamento() {
         initComponents();
+    }
+    
+    private Venda venda;
+    public FormaDePagamento(Venda venda) {
+        initComponents();
+        this.venda = venda;
+//        jTdesconto
+//        jTecebido
+//                jTentrada
+//        jTtroco
+        jTvalor.setText(""+venda.getValorTotal());
+//        jTvalorVenda
     }
 
     /**
