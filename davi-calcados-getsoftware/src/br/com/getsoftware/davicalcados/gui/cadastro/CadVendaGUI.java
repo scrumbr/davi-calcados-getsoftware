@@ -533,9 +533,9 @@ public class CadVendaGUI extends javax.swing.JFrame {
             listIdProdutos.add(itensCarrinho.get(i).getIdProduto());
         }
         venda.setListaIdProduto(listIdProdutos);
-        venda.setValorTotal(Double.valueOf(jLtotal.getText()));
-        
-        new FormaDePagamento(venda).setVisible(true);
+        //venda.setValorTotal(Double.valueOf(jLtotal.getText()));
+        this.setEnabled(false);
+        new FormaDePagamento(venda, this).setVisible(true);
         
     }//GEN-LAST:event_jBfinalizarActionPerformed
 
@@ -544,7 +544,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFquantidadeKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+        this.dispose();
+        caixa.setEnabled(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void jBaddProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddProduto1ActionPerformed

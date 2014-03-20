@@ -9,6 +9,7 @@ import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
+import br.com.getsoftware.davicalcados.gui.edit.EditEstoqueGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditProdutoGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewProdutoGUI;
 import java.awt.Color;
@@ -82,6 +83,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
         jBescolher = new javax.swing.JButton();
         jBCadProduto1 = new javax.swing.JButton();
+        jBAtualizarEstoque = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -107,11 +109,11 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(346, 346, 346))
+                .addGap(457, 457, 457))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -121,7 +123,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jLabel5.setText("Pesquisar");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        jTpesquisa3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTpesquisa3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTpesquisa3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTpesquisa3ActionPerformed(evt);
@@ -176,7 +178,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addComponent(jRnome3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRFornecedor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(639, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +278,8 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             }
         });
 
-        jBescolher.setText("Escolher produto");
+        jBescolher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Arrow-icon.png"))); // NOI18N
+        jBescolher.setText("Escolher ");
         jBescolher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBescolherActionPerformed(evt);
@@ -291,6 +294,14 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             }
         });
 
+        jBAtualizarEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/atualizarEstoque-24.png"))); // NOI18N
+        jBAtualizarEstoque.setText("Atualizar Estoque");
+        jBAtualizarEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAtualizarEstoqueActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -300,41 +311,46 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addComponent(jBescolher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBCadProduto1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBCadProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBVisualiar)
+                .addComponent(jBAtualizarEstoque)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBVisualiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBCancelar)
-                .addContainerGap())
+                .addComponent(jBEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadProduto, jBCancelar, jBEditar, jBExcluir, jBVisualiar, jBescolher});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBAtualizarEstoque, jBExcluir, jBVisualiar, jBescolher});
 
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCancelar)
-                    .addComponent(jBEditar)
-                    .addComponent(jBVisualiar)
-                    .addComponent(jBCadProduto)
-                    .addComponent(jBExcluir))
-                .addContainerGap())
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBescolher)
-                    .addComponent(jBCadProduto1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBCancelar)
+                            .addComponent(jBEditar)
+                            .addComponent(jBVisualiar)
+                            .addComponent(jBExcluir)
+                            .addComponent(jBAtualizarEstoque)
+                            .addComponent(jBCadProduto)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBescolher)
+                            .addComponent(jBCadProduto1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBCadProduto, jBCancelar, jBEditar, jBExcluir, jBVisualiar, jBescolher});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBAtualizarEstoque, jBCadProduto, jBCadProduto1, jBCancelar, jBEditar, jBExcluir, jBVisualiar, jBescolher});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -343,12 +359,16 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel5, jPanel6, jScrollPane1});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -356,13 +376,13 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(1011, 514));
+        setSize(new java.awt.Dimension(1181, 527));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -492,6 +512,19 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBCadProduto1ActionPerformed
 
+    private void jBAtualizarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarEstoqueActionPerformed
+          this.setEnabled(false);
+          
+          Produto produto;  
+        try {
+            produto = ProdutoBO.getById(jTable1.getValueAt(linhaSelecionada, 0).toString());
+             new EditEstoqueGUI(this, produto).setVisible(true);    
+        } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de Clientes!", "Erro", 0);
+}              
+               
+    }//GEN-LAST:event_jBAtualizarEstoqueActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -532,6 +565,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBAtualizarEstoque;
     private javax.swing.JButton jBCadProduto;
     private javax.swing.JButton jBCadProduto1;
     private javax.swing.JButton jBCancelar;
@@ -566,10 +600,12 @@ public void tabelaVazia(){
             jBEditar.setEnabled(false);
             jBExcluir.setEnabled(false);
             jBVisualiar.setEnabled(false);
+            jBAtualizarEstoque.setEnabled(false);
     } else {
             jBEditar.setEnabled(true);
             jBExcluir.setEnabled(true);
             jBVisualiar.setEnabled(true);
+            jBAtualizarEstoque.setEnabled(true);
 //        }
     }
 

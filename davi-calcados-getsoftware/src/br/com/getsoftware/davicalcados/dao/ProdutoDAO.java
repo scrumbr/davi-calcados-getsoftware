@@ -137,4 +137,14 @@ public class ProdutoDAO   {
         stmt.execute();
         stmt.close();
     }
+    
+    public void atualizaEstoque(int qtd, String codigo) throws SQLException {
+         
+        String sql = "update produto set quantidade = "+qtd+" where id_produto = "+codigo;
+
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        stmt.execute();
+        stmt.close();
+    }
 }

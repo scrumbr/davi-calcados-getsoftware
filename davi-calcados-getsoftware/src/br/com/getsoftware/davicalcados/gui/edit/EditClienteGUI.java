@@ -336,6 +336,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
 
         jCEstadoCivil.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jCEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione Estado Civil", "Casada", "Solteira", "Viúva", "Divorciada" }));
+        jCEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCEstadoCivilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -879,6 +884,10 @@ public class EditClienteGUI extends javax.swing.JFrame {
        evt.consume();
        }
     }//GEN-LAST:event_jTBoletoKeyTyped
+
+    private void jCEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCEstadoCivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCEstadoCivilActionPerformed
 
     /**
      * @param args the command line arguments

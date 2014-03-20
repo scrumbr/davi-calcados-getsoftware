@@ -2,7 +2,7 @@ create database davi_calcados;
 
 use davi_calcados;
 
--- drop database davi_calcados;
+ -- drop database davi_calcados;
 
 CREATE TABLE FUNCIONARIO(
 		id_funcionario bigint auto_increment,
@@ -134,7 +134,7 @@ constraint fk_forn_produto_fornecido foreign key produto_fornecido(id_fornecedor
 create table caixa(
 	id_caixa bigint auto_increment,
 	id_movimentacao bigint not null, 
-	movimentacao enum('Entrada','Saída','Venda','Pagamento'), 
+	movimentacao enum('Entrada','Saída'), 
 	descricao longtext not null, 
 	data date not null, 
 	hora time not null, 

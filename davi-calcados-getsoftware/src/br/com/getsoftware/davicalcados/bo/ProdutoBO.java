@@ -77,6 +77,14 @@ public class ProdutoBO {
         }
     }
 
+     public static void updateStock(int id, String codigo) throws SQLException {
+        ProdutoDAO dao = new ProdutoDAO();
+        try {
+            dao.atualizaEstoque(id, codigo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro\n" + e, "erro", 0);
+        }
+    }
     public static void validator(Produto produto) {
  
     }
