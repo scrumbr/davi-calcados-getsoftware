@@ -287,6 +287,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
 
+        jBescolher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Arrow-icon.png"))); // NOI18N
         jBescolher.setText("Escolher");
         jBescolher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

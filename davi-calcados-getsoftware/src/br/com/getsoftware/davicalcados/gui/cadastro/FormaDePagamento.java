@@ -21,11 +21,14 @@ public class FormaDePagamento extends javax.swing.JFrame {
     public FormaDePagamento() {
         initComponents();
     }
-    
+    private CadVendaGUI cadVenda;
     private Venda venda;
-    public FormaDePagamento(Venda venda) {
-        initComponents();
+    public FormaDePagamento(Venda venda, CadVendaGUI cadVenda) {
+
+        this();
         this.venda = venda;
+        
+        this.cadVenda = cadVenda;
 //        jTdesconto
 //        jTecebido
 //                jTentrada
@@ -68,6 +71,11 @@ public class FormaDePagamento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Forma de pagamento");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -298,6 +306,11 @@ public class FormaDePagamento extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jCpagamentoActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+           dispose();
+           cadVenda.setEnabled(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
