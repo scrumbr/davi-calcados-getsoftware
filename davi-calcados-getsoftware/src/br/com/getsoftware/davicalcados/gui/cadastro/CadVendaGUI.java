@@ -31,7 +31,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public CadVendaGUI() {
         initComponents();
         atualizaLinhaSelecionada();
-        jFid.requestFocus();
+//        jFid.requestFocus();
 
     }
     
@@ -51,7 +51,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         this.produto = produto;
          setarValoresProduto();
          atualizaLinhaSelecionada();
-         jFid.requestFocus();
+//         jFid.requestFocus();
          
     }
 
@@ -73,8 +73,10 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public void setarValoresProduto(){
         jFproduto.setText(produto.getNome());
         jFid.setText(""+produto.getIdProduto());
-        jFvalor.setText(""+produto.getValorVenda());
-        jFestoque.setText(""+produto.getQuantidade());
+        jFvalor.setText("" + produto.getValorVenda());
+        jFestoque.setText("" + produto.getQuantidade());
+        jFquantidade.requestFocus();
+
     }
      
     private Cliente cliente;
@@ -84,7 +86,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         this.cliente = cliente;
         jFcliente.setText(cliente.getNome());
         atualizaLinhaSelecionada();
-        jFid.requestFocus();
+//        jFid.requestFocus();
 
     }
     public void setarValoresClient(){
@@ -94,7 +96,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public CadVendaGUI(CaixaGUI caixa) {
         this();
         this.caixa = caixa;
-        jFid.requestFocus();
+//        jFid.requestFocus();
     }
 
     private int linhaSelecionada;
@@ -580,7 +582,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
                  }
             }else{
                 setarValoresProduto();
-                jFquantidade.requestFocus();
+//                jFquantidade.requestFocus();
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível encontrar o produto","Erro",0);
