@@ -794,7 +794,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
             fornecedor.setObservacao(jTObservacao.getText());
 
             end.setRua(jTRua.getText());
-            end.setNumero(Integer.valueOf(jTNumero.getText()));
+            end.setNumero(jTNumero.getText());
             end.setComplemento(jTComplemento.getText());
             end.setBairro(jTBairro.getText());
             end.setCidade(jTCidade.getText());

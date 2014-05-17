@@ -7,6 +7,7 @@ package br.com.getsoftware.davicalcados.gui.cadastro;
 
 import br.com.getsoftware.davicalcados.bo.CaixaBO;
 import br.com.getsoftware.davicalcados.entity.Caixa;
+import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.util.MeuRenderer;
 import static br.com.getsoftware.davicalcados.util.MeuRenderer.DEFAULT_RENDERER;
@@ -18,6 +19,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -344,12 +347,13 @@ public class CaixaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcadEntradaActionPerformed
 
     private void jBcadSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadSaidaActionPerformed
-
         this.setEnabled(false);
         try {
             new CadSaidaGUI(this).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de cadastro de saídas!", "Erro", 0);
+        } catch (FormatoSQLException ex) {
+           JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBcadSaidaActionPerformed
 
@@ -358,6 +362,7 @@ public class CaixaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBreceberPagamentoActionPerformed
 
     private void jBvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvendaActionPerformed
+        this.setEnabled(false);
         new CadVendaGUI(this).setVisible(true);
     }//GEN-LAST:event_jBvendaActionPerformed
 
@@ -473,7 +478,7 @@ public class CaixaGUI extends javax.swing.JFrame {
         for (int i = 0; i < listCaixa.size(); i++) {
             if (listCaixa.get(i).getTipoMovimentacao().equals("Entrada")) {
                 valor += listCaixa.get(i).getValor();
-            }
+              }
         }
         BigDecimal total = new BigDecimal(valor).setScale(2, RoundingMode.HALF_EVEN);
         return total;

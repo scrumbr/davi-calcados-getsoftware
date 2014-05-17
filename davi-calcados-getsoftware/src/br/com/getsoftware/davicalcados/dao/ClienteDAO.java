@@ -63,7 +63,7 @@ import java.util.ArrayList;
         end.setCidade(res.getString("cidade"));
         end.setComplemento(res.getString("complemento"));
         end.setEstado(res.getString("estado"));
-        end.setNumero(res.getInt("numero"));
+        end.setNumero(res.getString("numero"));
         end.setRua(res.getString("rua"));
         cliente.setEndereco(end);
         }
@@ -96,7 +96,7 @@ import java.util.ArrayList;
         stmt.setBoolean(13, cliente.isStatus());
             
         stmt.setString(14, cliente.getEndereco().getRua());
-        stmt.setLong(15, cliente.getEndereco().getNumero());
+        stmt.setString(15, cliente.getEndereco().getNumero());
         stmt.setString(16, cliente.getEndereco().getComplemento());
         stmt.setString(17, cliente.getEndereco().getBairro());
         stmt.setString(18, cliente.getEndereco().getCidade());
@@ -133,7 +133,7 @@ import java.util.ArrayList;
         stmt.setBoolean(13, cliente.isStatus());
         
         stmt.setString(14, cliente.getEndereco().getRua());
-        stmt.setLong(15, cliente.getEndereco().getNumero());
+        stmt.setString(15, cliente.getEndereco().getNumero());
         stmt.setString(16, cliente.getEndereco().getComplemento());
         stmt.setString(17, cliente.getEndereco().getBairro());
         stmt.setString(18, cliente.getEndereco().getCidade());
@@ -183,7 +183,7 @@ import java.util.ArrayList;
         end.setCidade(res.getString("cidade"));
         end.setComplemento(res.getString("complemento"));
         end.setEstado(res.getString("estado"));
-        end.setNumero(res.getInt("numero"));
+        end.setNumero(res.getString("numero"));
         end.setRua(res.getString("rua"));
         cliente.setEndereco(end);
 

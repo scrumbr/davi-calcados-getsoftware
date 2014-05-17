@@ -1057,7 +1057,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
             end.setCidade(jTCidade.getText());
             end.setComplemento(jTComplemento.getText());
             end.setEstado(jCEstado.getSelectedItem().toString());
-            end.setNumero(Integer.valueOf(jTNumero.getText()));
+            end.setNumero(jTNumero.getText());
             end.setRua(jTRua.getText());
             cliente.setEndereco(end);
             try {

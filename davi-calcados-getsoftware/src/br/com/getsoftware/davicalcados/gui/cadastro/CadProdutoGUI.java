@@ -130,6 +130,11 @@ public class CadProdutoGUI extends javax.swing.JFrame {
 
         jCFornecedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCFornecedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escolha o Fornecedor" }));
+        jCFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCFornecedorActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Nome");
@@ -647,6 +652,10 @@ public class CadProdutoGUI extends javax.swing.JFrame {
     private void jTIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdActionPerformed
         jTNome.requestFocus();
     }//GEN-LAST:event_jTIdActionPerformed
+
+    private void jCFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCFornecedorActionPerformed
 
     /**
      * @param args the command line arguments

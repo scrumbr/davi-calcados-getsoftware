@@ -9,11 +9,13 @@ import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.entity.Usuario;
+import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
+import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -70,6 +72,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jRcpf = new javax.swing.JRadioButton();
         jRid = new javax.swing.JRadioButton();
         jRnome = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -143,6 +147,23 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setText("Telefone1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
+        jButton1.setText("Gerar Relatorio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,7 +179,11 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addComponent(jRid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRcpf)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +194,9 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                     .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRcpf)
                     .addComponent(jRid)
-                    .addComponent(jRnome))
+                    .addComponent(jRnome)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -282,7 +309,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+                .addContainerGap(236, Short.MAX_VALUE)
                 .addComponent(jBFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBcadUser)
@@ -360,7 +387,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(950, 514));
+        setSize(new java.awt.Dimension(1046, 543));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -537,6 +564,28 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBFuncionarioActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        filter();
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String consulta = "";
+       if(jRnome.isSelected()){
+           consulta = "select * from funcionario where nome like";
+       }else if(jRid.isSelected()){
+           consulta = "select * from funcionario where id_funcionario like";
+       }else if(jRcpf.isSelected()){
+           consulta = "select * from funcionario where cpf like";
+       }else if(jRadioButton1.isSelected()){
+            consulta = "select * from funcionario where telefone like";
+       }        
+        try {
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%'","FuncionarioTesteReport.jasper");
+        } catch (FormatoSQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -583,12 +632,14 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBexcluir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRcpf;
     private javax.swing.JRadioButton jRid;
     private javax.swing.JRadioButton jRnome;
@@ -604,6 +655,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             dadosPesquisaPorID();
         } else if (jRcpf.isSelected()) {
             dadosPesquisaPorCPF();
+        }else if(jRadioButton1.isSelected()){
+            dadosPesquisaPorTelefone();
         }
         tabelaVazia();
         atualizaLinhaSelecionada();
@@ -643,5 +696,26 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             });
         }
     
+    }
+    
+     public void dadosPesquisaPorTelefone() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listFuncionarios.size(); i++) {
+            if (listFuncionarios.get(i).getTelefone().replace("(", "").replace(")", "").replace("-", "").startsWith(jTpesquisa.getText())
+                    || listFuncionarios.get(i).getTelefone().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listFuncionarios.get(i).getIdFuncionario(),
+                    listFuncionarios.get(i).getNome(),
+                    listFuncionarios.get(i).getCpf(),
+                    listFuncionarios.get(i).getRg(),
+                    listFuncionarios.get(i).getTelefone(),
+                    listFuncionarios.get(i).getTelefone2(),
+                    listFuncionarios.get(i).getEmail()
+                });
+            }
+
+        }
     }
 }
