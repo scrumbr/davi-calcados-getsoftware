@@ -54,7 +54,7 @@ public class FornecedorDAO implements InterfaceCRUD<Fornecedor> {
         end.setCidade(res.getString("cidade"));
         end.setComplemento(res.getString("complemento"));
         end.setEstado(res.getString("estado"));
-        end.setNumero(res.getInt("numero"));
+        end.setNumero(res.getString("numero"));
         end.setRua(res.getString("rua"));
         fornecedor.setEndereco(end);
         }
@@ -79,7 +79,7 @@ public class FornecedorDAO implements InterfaceCRUD<Fornecedor> {
         stmt.setBoolean(6, fornecedor.isStatus());
         stmt.setString(7,fornecedor.getObservacao());
         stmt.setString(8, fornecedor.getEndereco().getRua());
-        stmt.setLong(9, fornecedor.getEndereco().getNumero());
+        stmt.setString(9, fornecedor.getEndereco().getNumero());
         stmt.setString(10, fornecedor.getEndereco().getComplemento());
         stmt.setString(11, fornecedor.getEndereco().getBairro());
         stmt.setString(12, fornecedor.getEndereco().getCidade());
@@ -106,7 +106,7 @@ public class FornecedorDAO implements InterfaceCRUD<Fornecedor> {
         stmt.setBoolean(6, fornecedor.isStatus());
         stmt.setString(7,fornecedor.getObservacao());
         stmt.setString(8, fornecedor.getEndereco().getRua());
-        stmt.setLong(9, fornecedor.getEndereco().getNumero());
+        stmt.setString(9, fornecedor.getEndereco().getNumero());
         stmt.setString(10, fornecedor.getEndereco().getComplemento());
         stmt.setString(11, fornecedor.getEndereco().getBairro());
         stmt.setString(12, fornecedor.getEndereco().getCidade());
@@ -144,7 +144,7 @@ public class FornecedorDAO implements InterfaceCRUD<Fornecedor> {
             end.setCidade(res.getString("cidade"));
             end.setComplemento(res.getString("complemento"));
             end.setEstado(res.getString("estado"));
-            end.setNumero(res.getInt("numero"));
+            end.setNumero(res.getString("numero"));
             end.setRua(res.getString("rua"));
             fornecedor.setEndereco(end);
 

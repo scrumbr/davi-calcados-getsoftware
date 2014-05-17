@@ -925,7 +925,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         end.setCidade(jTcidade.getText());
         end.setComplemento(jTcomplemento.getText());
         end.setEstado(jCestado.getSelectedItem().toString());
-        end.setNumero(Integer.valueOf(jTnumero.getText()));
+        end.setNumero(jTnumero.getText());
         end.setRua(jTrua.getText());
         funcionario.setEndereco(end);
         try {

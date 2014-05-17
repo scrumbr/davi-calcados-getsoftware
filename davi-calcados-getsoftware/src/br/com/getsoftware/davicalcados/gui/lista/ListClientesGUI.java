@@ -6,18 +6,22 @@ package br.com.getsoftware.davicalcados.gui.lista;
 
 import br.com.getsoftware.davicalcados.bo.ClienteBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
+import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadVendaGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditClienteGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewClienteGUI;
+import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -75,6 +79,8 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jRnome = new javax.swing.JRadioButton();
         jRid = new javax.swing.JRadioButton();
         jRcpf = new javax.swing.JRadioButton();
+        jButton2 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -107,7 +113,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(374, 374, 374)
                 .addComponent(jLabel1)
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,6 +128,11 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jTpesquisa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTpesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTpesquisaActionPerformed(evt);
+            }
+        });
         jTpesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisaFocusLost(evt);
@@ -167,6 +178,24 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-24.png"))); // NOI18N
+        jButton2.setText("Gerer Relatorio");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setText("Telefone");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -182,7 +211,11 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addComponent(jRid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRcpf)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +226,9 @@ public class ListClientesGUI extends javax.swing.JFrame {
                     .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRcpf)
                     .addComponent(jRid)
-                    .addComponent(jRnome))
+                    .addComponent(jRnome)
+                    .addComponent(jButton2)
+                    .addComponent(jRadioButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -249,6 +284,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
         jButton1.setText("Cad Cliente");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -257,6 +293,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jBvisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/visualizar_cliente-24.png"))); // NOI18N
         jBvisualizar.setText("Visualizar");
+        jBvisualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBvisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBvisualizarActionPerformed(evt);
@@ -265,6 +302,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jBexcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Document-Delete-icon.png"))); // NOI18N
         jBexcluir.setText("Excluir");
+        jBexcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBexcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBexcluirActionPerformed(evt);
@@ -273,6 +311,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jBeditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Text-Edit-icon.png"))); // NOI18N
         jBeditar.setText("Editar");
+        jBeditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBeditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBeditarActionPerformed(evt);
@@ -281,6 +320,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jBcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBcancelar.setText("Cancelar");
+        jBcancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcancelarActionPerformed(evt);
@@ -289,6 +329,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jBescolher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Arrow-icon.png"))); // NOI18N
         jBescolher.setText("Escolher");
+        jBescolher.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBescolher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBescolherActionPerformed(evt);
@@ -297,6 +338,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
         jBCadCliente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-system-users-icon.png"))); // NOI18N
         jBCadCliente2.setText("Cad Cliente");
+        jBCadCliente2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBCadCliente2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCadCliente2ActionPerformed(evt);
@@ -367,14 +409,14 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(997, 514));
+        setSize(new java.awt.Dimension(1004, 527));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -501,6 +543,32 @@ public class ListClientesGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBCadCliente2ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       String consulta = "";
+       if(jRnome.isSelected()){
+           consulta = "select * from cliente where nome like";
+       }else if(jRid.isSelected()){
+           consulta = "select * from cliente where id_cliente like";
+       }else if(jRcpf.isSelected()){
+           consulta = "select * from cliente where cpf like";
+       }else if(jRadioButton1.isSelected()){
+            consulta = "select * from cliente where telefone like";
+       }        
+        try {
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%'","ClienteTesteReport.jasper");
+        } catch (FormatoSQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTpesquisaActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+filter();
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -547,12 +615,14 @@ public class ListClientesGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBescolher;
     private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRcpf;
     private javax.swing.JRadioButton jRid;
     private javax.swing.JRadioButton jRnome;
@@ -568,7 +638,9 @@ public void filter() {
             dadosPesquisaPorID();
         } else if (jRcpf.isSelected()) {
             dadosPesquisaPorCPF();
-        }
+        } else if (jRadioButton1.isSelected()){
+           dadosPesquisaPorTelefone();
+}     
         tabelaVazia();
         atualizaLinhaSelecionada();
     }
@@ -656,6 +728,27 @@ public void dadosPesquisaPorNome() {
         for (int i = 0; i < listClientes.size(); i++) {
             if (listClientes.get(i).getCpf().replace(".", "").startsWith(jTpesquisa.getText())
                     || listClientes.get(i).getCpf().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listClientes.get(i).getIdCiente(),
+                    listClientes.get(i).getNome(),
+                    listClientes.get(i).getCpf(),
+                    listClientes.get(i).getRg(),
+                    listClientes.get(i).getTelefone(),
+                    listClientes.get(i).getTelefone2(),
+                    listClientes.get(i).getEmail()
+                });
+            }
+
+        }
+    }
+    
+     public void dadosPesquisaPorTelefone() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listClientes.size(); i++) {
+            if (listClientes.get(i).getTelefone().replace("(", "").replace(")", "").replace("-", "").startsWith(jTpesquisa.getText())
+                    || listClientes.get(i).getTelefone().startsWith(jTpesquisa.getText())) {
                 modelo.addRow(new Object[]{
                     listClientes.get(i).getIdCiente(),
                     listClientes.get(i).getNome(),

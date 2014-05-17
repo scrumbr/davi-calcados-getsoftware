@@ -505,6 +505,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     private void jBaddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddProdutoActionPerformed
         try {
+            this.setEnabled(false);
             new ListProdutosGUI(this).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível listar os produtos", "Erro", 0);
@@ -546,12 +547,13 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFquantidadeKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.dispose();
         caixa.setEnabled(true);
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void jBaddProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddProduto1ActionPerformed
         try {
+            this.setEnabled(false);
             new ListClientesGUI(this).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível listar os clientes", "Erro", 0);
@@ -560,8 +562,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBaddProduto1ActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
-        this.dispose();
         caixa.setEnabled(true);
+         this.dispose();
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     public void jFidActionPerformed(){

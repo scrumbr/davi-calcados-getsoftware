@@ -6,10 +6,12 @@ package br.com.getsoftware.davicalcados.gui.lista;
 
 import br.com.getsoftware.davicalcados.bo.FornecedorBO;
 import br.com.getsoftware.davicalcados.entity.Fornecedor;
+import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFornecedorGUI;
+import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,6 +62,8 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
         jRcpf = new javax.swing.JRadioButton();
         jRid = new javax.swing.JRadioButton();
         jRnome = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -151,6 +155,23 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setText("Telefone");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
+        jButton1.setText("Gerar Relatorio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -166,7 +187,11 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 .addComponent(jRid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRcpf)
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(48, 48, 48))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +202,9 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                     .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRcpf)
                     .addComponent(jRid)
-                    .addComponent(jRnome))
+                    .addComponent(jRnome)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -319,7 +346,7 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -417,6 +444,28 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBEditarActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        filter();
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String consulta = "";
+       if(jRnome.isSelected()){
+           consulta = "select * from fornecedor where nome like";
+       }else if(jRid.isSelected()){
+           consulta = "select * from fornecedor where id_fornecedor like";
+       }else if(jRcpf.isSelected()){
+           consulta = "select * from fornecedor where fisica_juridica like";
+       }else if(jRadioButton1.isSelected()){
+            consulta = "select * from fornecedor where telefone like";
+       }        
+        try {
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%'","FornecedorTesteReport.jasper");
+        } catch (FormatoSQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -461,12 +510,14 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBVisualizar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRcpf;
     private javax.swing.JRadioButton jRid;
     private javax.swing.JRadioButton jRnome;
@@ -482,6 +533,8 @@ public class ListFornecedorGUI extends javax.swing.JFrame {
             dadosPesquisaPorID();
         } else if (jRcpf.isSelected()) {
             dadosPesquisaPorCPF();
+        }else if(jRadioButton1.isSelected()){
+            dadosPesquisaPorTelefone();
         }
         tabelaVazia();
         atualizaLinhaSelecionada();
@@ -565,7 +618,7 @@ public void dadosPesquisaPorNome() {
         modelo.setNumRows(0);
 
         for (int i = 0; i < listForn.size(); i++) {
-            if (listForn.get(i).getFisicaJuridica().replace(".", "").startsWith(jTpesquisa.getText())
+            if (listForn.get(i).getFisicaJuridica().replace(".", "").replace("/", "").replace("-", "").startsWith(jTpesquisa.getText())
                     || listForn.get(i).getFisicaJuridica().startsWith(jTpesquisa.getText())) {
                 modelo.addRow(new Object[]{
                     listForn.get(i).getIdFornecedor(),
@@ -578,8 +631,27 @@ public void dadosPesquisaPorNome() {
             }
 
         }
-    }
+    }    
+    
+      public void dadosPesquisaPorTelefone() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
 
+        for (int i = 0; i < listForn.size(); i++) {
+            if (listForn.get(i).getTelefone().replace("(", "").replace(")", "").replace("-", "").startsWith(jTpesquisa.getText())
+                    || listForn.get(i).getTelefone().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                    listForn.get(i).getIdFornecedor(),
+                    listForn.get(i).getNome(),
+                    listForn.get(i).getFisicaJuridica(),
+                    listForn.get(i).getTelefone(),
+                    listForn.get(i).getTelefone2(),
+                    listForn.get(i).getEmail()
+                });
+            }
+
+        }
+    }
 
 
 }

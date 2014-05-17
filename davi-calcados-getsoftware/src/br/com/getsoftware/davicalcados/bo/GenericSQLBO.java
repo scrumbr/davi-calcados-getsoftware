@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import br.com.getsoftware.davicalcados.util.GenericSQL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,20 +23,19 @@ public class GenericSQLBO {
     private static ResultSet resultSet;
     private static Statement statement;
 
-    public static void genericQuery(String sql) throws SQLException {
+    public static void genericQuery(String sql) throws SQLException{
         GenericSQL generic = new GenericSQL();
         try {
             validator(sql);
             generic.genericSQL(sql);
-            resultSet = generic.getGenericResultset();
-            statement = generic.getGenericStatement();
-
+        resultSet = generic.getGenericResultset();
+        statement = generic.getGenericStatement();
         } catch (FormatoSQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+        } catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex);
         }
-
+        
     }
 
     public static ResultSet genericResultSet() {

@@ -67,7 +67,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         end.setCidade(res.getString("cidade"));
         end.setComplemento(res.getString("complemento"));
         end.setEstado(res.getString("estado"));
-        end.setNumero(res.getInt("numero"));
+        end.setNumero(res.getString("numero"));
         end.setRua(res.getString("rua"));
         funcionario.setEndereco(end);
         }
@@ -96,7 +96,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(10, funcionario.getContrato());
         stmt.setBoolean(11, funcionario.isAtivo());
         stmt.setString(12, funcionario.getEndereco().getRua());
-        stmt.setLong(13, funcionario.getEndereco().getNumero());
+        stmt.setString(13, funcionario.getEndereco().getNumero());
         stmt.setString(14, funcionario.getEndereco().getComplemento());
         stmt.setString(15, funcionario.getEndereco().getBairro());
         stmt.setString(16, funcionario.getEndereco().getCidade());
@@ -129,7 +129,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(11, funcionario.getRecisao());
         stmt.setBoolean(12, funcionario.isAtivo());
         stmt.setString(13, funcionario.getEndereco().getRua());
-        stmt.setLong(14, funcionario.getEndereco().getNumero());
+        stmt.setString(14, funcionario.getEndereco().getNumero());
         stmt.setString(15, funcionario.getEndereco().getComplemento());
         stmt.setString(16, funcionario.getEndereco().getBairro());
         stmt.setString(17, funcionario.getEndereco().getCidade());
@@ -174,7 +174,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
             end.setCidade(res.getString("cidade"));
             end.setComplemento(res.getString("complemento"));
             end.setEstado(res.getString("estado"));
-            end.setNumero(res.getInt("numero"));
+            end.setNumero(res.getString("numero"));
             end.setRua(res.getString("rua"));
             funcionario.setEndereco(end);
 
