@@ -6,8 +6,14 @@
 
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import br.com.getsoftware.davicalcados.bo.ProdutoVendidoBO;
+import br.com.getsoftware.davicalcados.bo.VendaBO;
+import br.com.getsoftware.davicalcados.entity.ProdutoVendido;
 import br.com.getsoftware.davicalcados.entity.Venda;
 import br.com.getsoftware.davicalcados.util.TransformMoeda;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +26,12 @@ public class FormaDePagamento extends javax.swing.JFrame {
      */
     public FormaDePagamento() {
         initComponents();
+        bloqueaCampos();
+        campoNaoAlterados();
     }
     private CadVendaGUI cadVenda;
     private Venda venda;
     public FormaDePagamento(Venda venda, CadVendaGUI cadVenda) {
-
         this();
         this.venda = venda;
         
@@ -34,6 +41,7 @@ public class FormaDePagamento extends javax.swing.JFrame {
 //                jTentrada
 //        jTtroco
         jTvalor.setText(""+venda.getValorTotal());
+        jTvalorVenda.setText(""+venda.getValorTotal());
 //        jTvalorVenda
     }
 
@@ -127,6 +135,11 @@ public class FormaDePagamento extends javax.swing.JFrame {
 
         jTentrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTentrada.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTentrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTentradaKeyReleased(evt);
+            }
+        });
 
         jTecebido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTecebido.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -152,31 +165,34 @@ public class FormaDePagamento extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jCpagamento, javax.swing.GroupLayout.Alignment.LEADING, 0, 288, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTvalorVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTvalorVenda, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTtroco)
-                        .addComponent(jTecebido, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTentrada, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTvalor, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jTdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTtroco)
+                    .addComponent(jTecebido)
+                    .addComponent(jTentrada)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jTvalor)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jTdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addComponent(jCparcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jCparcela, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jCpagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTecebido, jTentrada, jTtroco, jTvalor, jTvalorVenda});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -217,11 +233,23 @@ public class FormaDePagamento extends javax.swing.JFrame {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTdesconto, jTecebido, jTentrada, jTtroco, jTvalor, jTvalorVenda});
 
+        jBcancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBcancelar.setText("Cancelar");
+        jBcancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBcancelarActionPerformed(evt);
+            }
+        });
 
+        jBfinalizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBfinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"))); // NOI18N
         jBfinalizar.setText("Finalizar venda");
+        jBfinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBfinalizarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -262,6 +290,9 @@ public class FormaDePagamento extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBcancelar, jBfinalizar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -275,7 +306,9 @@ public class FormaDePagamento extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        setSize(new java.awt.Dimension(348, 629));
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcancelar, jBfinalizar});
+
+        setSize(new java.awt.Dimension(364, 629));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -292,18 +325,20 @@ public class FormaDePagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jTvalorFocusLost
 
     private void jCpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCpagamentoActionPerformed
+        if (jCpagamento.getSelectedIndex() == 0) {
+           bloqueaCampos();
+        }
         if (jCpagamento.getSelectedIndex() == 1) {
-            jCparcela.setEnabled(false);
-            jTentrada.setEnabled(false);
+            vendaDinheiro();
         }
         if (jCpagamento.getSelectedIndex() == 2) {
-
+            vendaCartao();
         }
         if (jCpagamento.getSelectedIndex() == 3) {
-
+            vendaBoleto();
         }
         if (jCpagamento.getSelectedIndex() == 4) {
-
+            vendaCarne();
         }
     }//GEN-LAST:event_jCpagamentoActionPerformed
 
@@ -311,6 +346,56 @@ public class FormaDePagamento extends javax.swing.JFrame {
            dispose();
            cadVenda.setEnabled(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBcancelarActionPerformed
+
+    private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
+       
+//        if (jTdesconto.getText().isEmpty()) {
+//
+//        }
+//        else if (jTecebido.getText().isEmpty()) {
+//            
+//        }
+//        else if (jTentrada.getText().isEmpty()) {
+//
+//        }
+//        else if (jTtroco.getText().isEmpty()) {
+//
+//        }
+//        else if (jTvalor.getText().isEmpty()) {
+//
+//        }
+//        else if (jTvalorVenda.getText().isEmpty()) {
+//
+//        }
+         if (jCparcela.getSelectedIndex() == 0) {
+             JOptionPane.showMessageDialog(null, "Deve-se selecioar uma forma de pagamento.", "Atenção!", 2);
+             jCparcela.requestFocus();
+         }
+        else{
+             try {
+                 VendaBO.save(venda);
+                 for (int i = 0; i < venda.getListaIdProduto().size(); i++) {
+                     ProdutoVendido prod = new ProdutoVendido();
+                     prod.setId_produto(Long.parseLong(""+venda.getListaIdProduto().get(i)));
+                     prod.setId_venda(Long.parseLong(""+venda.getIdVenda()));
+                     ProdutoVendidoBO.save(prod);
+                 }
+                 JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!.", "Sucesso!!", 1);
+                 this.dispose();
+             } catch (Exception ex) {
+                 JOptionPane.showMessageDialog(rootPane, "Não foi possível salvar a venda.", "Erro!", 0);
+             }
+        }
+
+    }//GEN-LAST:event_jBfinalizarActionPerformed
+
+    private void jTentradaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTentradaKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTentradaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -370,4 +455,55 @@ public class FormaDePagamento extends javax.swing.JFrame {
     private javax.swing.JTextField jTvalor;
     private javax.swing.JTextField jTvalorVenda;
     // End of variables declaration//GEN-END:variables
+
+    private void campoNaoAlterados(){
+         jTvalor.setEditable(false);
+         jTtroco.setEditable(false);
+         jTvalorVenda.setEditable(false);
+    }
+    
+    private void bloqueaCampos() {
+        jTdesconto.setEnabled(false);
+        jTecebido.setEnabled(false);
+        jTentrada.setEnabled(false);
+        jCparcela.setEnabled(false);
+        limpaCampos();
+    }
+    
+    private void vendaDinheiro() {
+        jTdesconto.setEnabled(true);
+        jTecebido.setEnabled(true);
+        jTentrada.setEnabled(false);
+        jCparcela.setEnabled(false);
+        limpaCampos();
+    }
+    private void vendaCartao() {
+        jTdesconto.setEnabled(false);
+        jTecebido.setEnabled(true);
+        jTentrada.setEnabled(true);
+        jCparcela.setEnabled(true);
+        limpaCampos();
+    }
+    private void vendaBoleto() {
+        jTdesconto.setEnabled(false);
+        jTecebido.setEnabled(true);
+        jTentrada.setEnabled(true);
+        jCparcela.setEnabled(true);
+        limpaCampos();
+    }
+    private void vendaCarne() {
+        jTdesconto.setEnabled(false);
+        jTecebido.setEnabled(true);
+        jTentrada.setEnabled(true);
+        jCparcela.setEnabled(true);
+        limpaCampos();
+    }
+    private void limpaCampos(){
+        jTdesconto.setText(null);
+        jTecebido.setText(null);
+        jTentrada.setText(null);
+        jTtroco.setText(null);
+        jTvalorVenda.setText(null);
+        jCparcela.setSelectedIndex(0);
+    }
 }
