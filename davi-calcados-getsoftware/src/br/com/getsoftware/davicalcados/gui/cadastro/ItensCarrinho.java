@@ -18,6 +18,7 @@ public class ItensCarrinho {
     private Integer quantidade;
     private Double valorVenda;
     private Double total;
+    private Integer quantidadeRealDoEstoque;
 
     public String getIdProduto() {
         return idProduto;
@@ -56,6 +57,14 @@ public class ItensCarrinho {
         return total;
     }
 
+    public Integer getQuantidadeRealDoEstoque() {
+        return quantidadeRealDoEstoque;
+    }
+
+    public void setQuantidadeRealDoEstoque(Integer quantidadeRealDoEstoque) {
+        this.quantidadeRealDoEstoque = quantidadeRealDoEstoque;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;

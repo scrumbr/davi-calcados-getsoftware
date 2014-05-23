@@ -89,7 +89,7 @@ CREATE TABLE PRODUTO(
 		id_produto varchar(255) not null,
         id_fornecedor bigint not null,
 		nome varchar(255) not null,
-        descricao varchar(30) not null,
+        descricao longtext,
         quantidade int not null,
         quantidade_minima int not null,
         valor_unitario numeric(9,2) not null,
@@ -151,6 +151,47 @@ create table plano_compras(
      marca varchar(50) not null,
     data_cadastro date,
     constraint pk_plano_compras primary key plano_compras(id_plano_compras)
-
 );
+
+create table venda(
+	id bigint auto_increment,
+    id_funcionario bigint,
+    id_cliente bigint,
+	data date not null,
+	parcela int,
+    total Double not null,
+constraint pk_venda primary key venda(id),
+constraint fk_venda_funcionario foreign key venda(id_funcionario) references funcionario(id_funcionario)
+);
+
+create table produtos_vendidos(
+	id bigint auto_increment,
+    id_venda bigint,
+    id_produto varchar(255) ,
+constraint pk_venda primary key produtos_vendidos(id),
+constraint fk_venda_produto foreign key produtos_vendidos(id_venda) references venda(id),
+constraint fk_venda_produto_vendido foreign key produtos_vendidos(id_produto) references produto(id_produto)
+);
+
+
+create table contas_pagar(
+	id bigint auto_increment,
+	data_pagamento date not null,
+        valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_pagar primary key contas_pagar(id)
+);
+
+create table contas_receber(
+	id bigint auto_increment,
+	data_pagamento date not null,
+        valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_receber primary key contas_receber(id)
+);
+
+
+
 

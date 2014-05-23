@@ -18,7 +18,8 @@ public class Venda {
     private Long idCliente;
     private List<String> listaIdProduto;
     private Double valorTotal;
-    private String descricao;
+    private String data;
+    private int parcela;
 
     public Integer getIdVenda() {
         return idVenda;
@@ -60,13 +61,19 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getData() {
+        return data;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setData(String descricao) {
+        this.data = descricao;
     }
-     
-    
+
+    public int getParcela() {
+        return parcela;
+    }
+
+    public void setParcela(int parcela) {
+        this.parcela = parcela;
+    }
 }

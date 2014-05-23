@@ -15,6 +15,7 @@ import br.com.getsoftware.davicalcados.entity.Caixa;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformMoeda;
+import java.util.List;
 
 /**
  *
@@ -28,7 +29,8 @@ public class CaixaDAO implements InterfaceCRUD<Caixa> {
         this.conexao = Conexao.getConexao();
     }
 
-    //id_usuario, id_caixa, descricao_caixa, valor_caixa, data_caixa 
+    // idVenda, idFuncionario, idCliente,  listaIdProduto, valorTotal, descricao;
+    
     @Override
     public Caixa getById(Integer id) throws SQLException {
         Caixa caixa = null;

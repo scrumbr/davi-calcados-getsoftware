@@ -6,12 +6,15 @@
 
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.bo.ProdutoBO;
 import br.com.getsoftware.davicalcados.entity.Cliente;
+import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.entity.Produto;
 import br.com.getsoftware.davicalcados.entity.Venda;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListProdutosGUI;
+import br.com.getsoftware.davicalcados.util.DataAtual;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -31,8 +34,25 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public CadVendaGUI() {
         initComponents();
         atualizaLinhaSelecionada();
-//        jFid.requestFocus();
+        jFid.requestFocus();
+        atualizaFuncionarios();
+        jLdata.setText(DataAtual.dataAtual());
+        
+            
+        
 
+    }
+    ArrayList<Long> idFuncionarios = new ArrayList<>();
+    public void atualizaFuncionarios(){
+        try {
+            ArrayList<Funcionario> funcionarios = FuncionarioBO.listAll();
+            for (int i = 0; i < funcionarios.size(); i++) {
+                jCfuncionarios.addItem(funcionarios.get(i).getNome());
+                idFuncionarios.add(funcionarios.get(i).getIdFuncionario());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível atualizar a lista de funcionários!", "Erro!", 0);
+        }
     }
     
     private Produto produto;
@@ -51,7 +71,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         this.produto = produto;
          setarValoresProduto();
          atualizaLinhaSelecionada();
-//         jFid.requestFocus();
+         jFid.requestFocus();
          
     }
 
@@ -74,7 +94,22 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jFproduto.setText(produto.getNome());
         jFid.setText(""+produto.getIdProduto());
         jFvalor.setText("" + produto.getValorVenda());
-        jFestoque.setText("" + produto.getQuantidade());
+        
+          ItensCarrinho itens = new ItensCarrinho();
+          itens.setIdProduto(produto.getIdProduto());
+          itens.setNome(produto.getNome());
+          itens.setQuantidadeRealDoEstoque(produto.getQuantidade());
+            boolean encontreiOItem = false;
+            for (int i = 0; i < itensCarrinho.size(); i++) {
+                if (itensCarrinho.get(i).equals(itens)) {
+                    jFestoque.setText("" + (produto.getQuantidade() - itensCarrinho.get(i).getQuantidade()));
+                    encontreiOItem = true;
+                    break;
+                }
+            }
+            if(!encontreiOItem){
+               jFestoque.setText("" + (produto.getQuantidade())); 
+            }
         jFquantidade.requestFocus();
 
     }
@@ -101,7 +136,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     private int linhaSelecionada;
     public void atualizaLinhaSelecionada() {
-        linhaSelecionada = 0;
+        linhaSelecionada = -1;
         jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
     }
     /**
@@ -127,15 +162,16 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jFid = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jFproduto = new javax.swing.JFormattedTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTobs = new javax.swing.JTextArea();
         jFestoque = new javax.swing.JFormattedTextField();
         jFquantidade = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jBaddProduto1 = new javax.swing.JButton();
         jBcancelar = new javax.swing.JButton();
+        jCfuncionarios = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        jLdata = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBfinalizar = new javax.swing.JButton();
@@ -184,10 +220,10 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jFcliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Quantidade em estoque");
+        jLabel8.setText("Quantidade disponível");
 
         jBremover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/shop-cart-exclude-icon.png"))); // NOI18N
-        jBremover.setText("remover");
+        jBremover.setText("ajustar");
         jBremover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBremoverActionPerformed(evt);
@@ -222,17 +258,17 @@ public class CadVendaGUI extends javax.swing.JFrame {
         });
 
         jFid.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jFid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFidActionPerformed(evt);
-            }
-        });
         jFid.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jFidFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jFidFocusLost(evt);
+            }
+        });
+        jFid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFidActionPerformed(evt);
             }
         });
 
@@ -242,14 +278,6 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jFproduto.setEditable(false);
         jFproduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jFproduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("Observação");
-
-        jTobs.setColumns(20);
-        jTobs.setLineWrap(true);
-        jTobs.setRows(5);
-        jScrollPane2.setViewportView(jTobs);
 
         jFestoque.setEditable(false);
         jFestoque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
@@ -288,17 +316,33 @@ public class CadVendaGUI extends javax.swing.JFrame {
             }
         });
 
+        jCfuncionarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione" }));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Funcionário");
+
+        jLdata.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLdata.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLdata.setText(" ");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Data da venda");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jBinserir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBremover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel10)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel8)
@@ -307,7 +351,16 @@ public class CadVendaGUI extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel9)
                                 .addComponent(jFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFid, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jFvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jCfuncionarios, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(292, 292, 292))
@@ -319,29 +372,26 @@ public class CadVendaGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jBaddProduto)
                                     .addComponent(jBaddProduto1))))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jFid, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel11))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jFvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jBinserir)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBremover)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBcancelar))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBcancelar, jBinserir, jBremover});
-
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6))
+                    .addComponent(jLdata, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLdata, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCfuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,11 +423,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBinserir, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(jBremover, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,11 +438,11 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CÓDIGO", "PRODUTO", "QUANTIDADE", "PREÇO", "TOTAL"
+                "CÓDIGO", "PRODUTO", "QTD. ESTOQUE", "QUANTIDADE", "PREÇO", "TOTAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -416,8 +462,10 @@ public class CadVendaGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        jBfinalizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBfinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"))); // NOI18N
         jBfinalizar.setText("FINALIZAR VENDA");
         jBfinalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -442,15 +490,15 @@ public class CadVendaGUI extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBfinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBfinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
@@ -463,44 +511,56 @@ public class CadVendaGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel5)
-                        .addComponent(jLtotal))
-                    .addComponent(jBfinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBfinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLtotal)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(960, 575));
+        setSize(new java.awt.Dimension(1021, 519));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBremoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBremoverActionPerformed
+       if (Integer.valueOf(jFestoque.getText()) < Integer.valueOf(jFquantidade.getText())) {
+            JOptionPane.showMessageDialog(null, "Quantidade inválida!\nA quantidade no carrinho é superior a quantidade disponível.", "Atenção!", 2);
+            jFquantidade.setText(null);
+            jFquantidade.requestFocus();
+        }else{
         removerCarrinho();
         mostraItensCarrinho();
         atualizaLinhaSelecionada();
-        jFquantidade.setText(null);
+        limparCapos();
+           calcularTotalGeral();
+       }
     }//GEN-LAST:event_jBremoverActionPerformed
 
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirActionPerformed
-        if(jFid.getText() == null || jFid.getText().isEmpty()){
+
+        if (jFid.getText() == null || jFid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campo 'ID do Produto' está vazio!", "Atenção!", 2);
             jFid.requestFocus();
-        }else if(jFquantidade.getText() == null || jFquantidade.getText().isEmpty()){
+        } else if (jFquantidade.getText() == null || jFquantidade.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campo 'Quantidade no carrinho' está vazio!", "Atenção!", 2);
             jFquantidade.requestFocus();
+        } else if (Integer.valueOf(jFestoque.getText()) < Integer.valueOf(jFquantidade.getText())) {
+            JOptionPane.showMessageDialog(null, "Quantidade inválida!\nA quantidade no carrinho é superior a quantidade disponível.", "Atenção!", 2);
+            jFquantidade.setText(null);
+            jFquantidade.requestFocus();
+        } else {
+            inserirCarrinho();
+            mostraItensCarrinho();
+            atualizaLinhaSelecionada();
+            limparCapos();
         }
-        else{
-        inserirCarrinho();
-        mostraItensCarrinho();
-        atualizaLinhaSelecionada();
-        limparCapos();
-        }
+        calcularTotalGeral();
     }//GEN-LAST:event_jBinserirActionPerformed
 
     private void jBaddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddProdutoActionPerformed
@@ -523,23 +583,47 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         linhaSelecionada = jTable1.getSelectedRow();
+        
+        if(linhaSelecionada != -1){
+        jFid.setText(jTable1.getValueAt(linhaSelecionada, 0).toString());
+        jFproduto.setText(jTable1.getValueAt(linhaSelecionada, 1).toString());
+        jFestoque.setText(jTable1.getValueAt(linhaSelecionada, 2).toString());
+        jFquantidade.setText(jTable1.getValueAt(linhaSelecionada, 3).toString());
+        jFvalor.setText(jTable1.getValueAt(linhaSelecionada, 4).toString());
+        
+        }
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
+       if(jCfuncionarios.getSelectedIndex() == 0){
+           JOptionPane.showMessageDialog(null, "Campo 'Funcionário' é obrigatório!", "Atenção", 2);
+           jCfuncionarios.requestFocus();
+       }
+       else if(jFcliente.getText() == null || jFcliente.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "Campo 'Cliente' é obrigatório!", "Atenção", 2);
+           jFcliente.requestFocus();
+       }
+       else if(itensCarrinho.isEmpty()){
+           JOptionPane.showMessageDialog(null, "A lista de compra está vazia!!", "Atenção", 2);
+           jBaddProduto.requestFocus();
+       }
+        else{
         Venda venda = new Venda();
-        venda.setDescricao(jTobs.getText());
+        
         venda.setIdCliente(cliente.getIdCiente());
-        venda.setIdFuncionario(linhaSelecionada);
-//        venda.setIdVenda();
+        venda.setIdFuncionario(idFuncionarios.get(jCfuncionarios.getSelectedIndex()-1).intValue());
+        venda.setData(DataAtual.dataAtual());
         ArrayList<String> listIdProdutos = new ArrayList();
         for (int i = 0; i < itensCarrinho.size(); i++) {
             listIdProdutos.add(itensCarrinho.get(i).getIdProduto());
         }
         venda.setListaIdProduto(listIdProdutos);
-        //venda.setValorTotal(Double.valueOf(jLtotal.getText()));
+        venda.setValorTotal(Double.valueOf(jLtotal.getText()));
         this.setEnabled(false);
+        this.dispose();
         new FormaDePagamento(venda, this).setVisible(true);
-        
+       }
     }//GEN-LAST:event_jBfinalizarActionPerformed
 
     private void jFquantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFquantidadeKeyReleased
@@ -610,7 +694,6 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jFid.setText(null);
         jFvalor.setText(null);
         jFestoque.setText(null);
-        jFid.requestFocus();
     }
     /**
      * @param args the command line arguments
@@ -655,6 +738,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBfinalizar;
     private javax.swing.JButton jBinserir;
     private javax.swing.JButton jBremover;
+    private javax.swing.JComboBox jCfuncionarios;
     private javax.swing.JFormattedTextField jFcliente;
     private javax.swing.JFormattedTextField jFestoque;
     private javax.swing.JTextField jFid;
@@ -668,16 +752,16 @@ public class CadVendaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLdata;
     private javax.swing.JLabel jLtotal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTobs;
     // End of variables declaration//GEN-END:variables
 
     public void inserirCarrinho() {
@@ -686,7 +770,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         itens.setNome(produto.getNome());
         itens.setQuantidade(Integer.valueOf(jFquantidade.getText()));
         itens.setValorVenda(produto.getValorVenda());
-
+        itens.setQuantidadeRealDoEstoque(produto.getQuantidade());
         for (int i = 0; i < itensCarrinho.size(); i++) {
             if (itensCarrinho.get(i).equals(itens)) {
                 itensCarrinho.get(i).setQuantidade(itensCarrinho.get(i).getQuantidade() + itens.getQuantidade());
@@ -709,7 +793,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
         for (int i = 0; i < itensCarrinho.size(); i++) {
              if (itensCarrinho.get(i).equals(itens)) {
-                itensCarrinho.get(i).setQuantidade(itensCarrinho.get(i).getQuantidade() - itens.getQuantidade());
+                itensCarrinho.get(i).setQuantidade(Integer.valueOf(jFquantidade.getText()));
                 break;
             }
         }
@@ -726,11 +810,18 @@ public class CadVendaGUI extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 itensCarrinho.get(i).getIdProduto(),
                 itensCarrinho.get(i).getNome(),
+                itensCarrinho.get(i).getQuantidadeRealDoEstoque(),
                 itensCarrinho.get(i).getQuantidade(),
                 itensCarrinho.get(i).getValorVenda(),
                 itensCarrinho.get(i).getTotal()
             });
         }
     }
-    
+    public void calcularTotalGeral(){
+        Double total = 0.00;
+        for (int i = 0; i < itensCarrinho.size(); i++) {
+             total = total + itensCarrinho.get(i).getTotal();
+        }
+        jLtotal.setText(""+total);
+    }
 }
