@@ -19,3 +19,32 @@ bairro,cidade,cep,estado,renda,credito) values("Maria Florentina", "Recepcionist
 "(88)3422-1407","rodolfo.abreu@gmail.com","Sem Preferencia", 123456, true, "Rua tomas de aquino", 123,"Casa","Santa Barbara", "Ibicuitinga", "62940-000", "CE", 1500,700);
 
 select * from plano_compras;
+
+create table contas_pagar(
+	id_contas_pagar bigint auto_increment,
+	data_pagamento date not null,
+	valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_pagar primary key contas_pagar(id_contas_pagar)
+);
+
+
+insert into contas_pagar(data_pagamento, valor, status, descricao) values('2014/10/10',120.00,false,"Testando");
+
+
+select * from contas_pagar;
+delete from contas_pagar;
+select * from cliente;
+
+
+
+
+
+
+
+
+
+
+
+

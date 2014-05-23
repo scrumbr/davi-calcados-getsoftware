@@ -55,10 +55,9 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jBEditar.setVisible(false);
         jBExcluir.setVisible(false);
         jBVisualiar.setVisible(false);
-        
+        jBGerarRelatorio.setVisible(false);
         jBCadProduto1.setVisible(true);        
         tabelaVazia();
-
     }
 
       public void atualizaLinhaSelecionada() {
@@ -77,7 +76,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jTpesquisa3 = new javax.swing.JTextField();
         jRFornecedor = new javax.swing.JRadioButton();
         jRnome3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jBGerarRelatorio = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -171,11 +170,11 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
-        jButton1.setText("Gerar Relatorio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
+        jBGerarRelatorio.setText("Gerar Relatorio");
+        jBGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBGerarRelatorioActionPerformed(evt);
             }
         });
 
@@ -204,7 +203,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jPanel5Layout.setVerticalGroup(
@@ -216,7 +215,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                     .addComponent(jTpesquisa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRFornecedor)
                     .addComponent(jRnome3)
-                    .addComponent(jButton1)
+                    .addComponent(jBGerarRelatorio)
                     .addComponent(jRadioButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -544,7 +543,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                
     }//GEN-LAST:event_jBAtualizarEstoqueActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelatorioActionPerformed
        String consulta = "";
        if(jRFornecedor.isSelected()){
            consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and f.nome like";
@@ -558,7 +557,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBGerarRelatorioActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         filter();
@@ -610,9 +609,9 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBGerarRelatorio;
     private javax.swing.JButton jBVisualiar;
     private javax.swing.JButton jBescolher;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
