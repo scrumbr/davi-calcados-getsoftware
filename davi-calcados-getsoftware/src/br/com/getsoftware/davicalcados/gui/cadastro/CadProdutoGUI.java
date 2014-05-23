@@ -29,12 +29,24 @@ public class CadProdutoGUI extends javax.swing.JFrame {
         jTId.requestFocus();
         jTDescricao.setLineWrap(true);
         fornecedores = new ArrayList<>();
-        ArrayList<Fornecedor> forn = FornecedorBO.listAll();
-        for(int i = 0; i < forn.size(); i++){
+        atualizaCombo();
+    }
+    
+    public void atualizaCombo(){
+        ArrayList<Fornecedor> forn;
+        jCFornecedor.removeAllItems();
+        fornecedores = new ArrayList<>();
+        jCFornecedor.addItem("Escolha o fornecedor");
+        try {
+            forn = FornecedorBO.listAll();
+            for(int i = 0; i < forn.size(); i++){
             jCFornecedor.addItem(forn.get(i).getNome());
             this.fornecedores.add(forn.get(i).getIdFornecedor());
         }
-        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível atualizar os fornecedores!", "Erro", 0);
+            this.dispose();
+        }
     }
 
     public CadProdutoGUI(TelaMenuGUI telaMenu) throws SQLException {
