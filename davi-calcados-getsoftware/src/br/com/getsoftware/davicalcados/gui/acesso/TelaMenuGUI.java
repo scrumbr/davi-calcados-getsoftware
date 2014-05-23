@@ -249,6 +249,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu1.add(jMenuItem16);
         jMenu1.add(jSeparator17);
 
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/contaspagar.png"))); // NOI18N
         jMenuItem19.setText("Contas á pagar");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,6 +259,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu1.add(jMenuItem19);
         jMenu1.add(jSeparator20);
 
+        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/contaReceber.png"))); // NOI18N
         jMenuItem20.setText("Contas á receber");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -840,7 +842,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        String consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor;";
+     String consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor;";
         try {
             GenericReport produtoRel = new GenericReport(consulta,"ProdutoTesteReport.jasper");
         } catch (FormatoSQLException ex) {

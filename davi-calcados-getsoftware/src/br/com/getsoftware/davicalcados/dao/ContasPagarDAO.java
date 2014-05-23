@@ -55,7 +55,7 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
              stmt.setString(1, contaPagar.getDescricao());
              stmt.setDouble(2, contaPagar.getValor());
              stmt.setString(3, TransformDate.transformDate(contaPagar.getDataPagamento()));
-             stmt.setBoolean(4, contaPagar.isStatus());
+             stmt.setBoolean(4, contaPagar.getStatus());
              
              stmt.execute();
          }
@@ -72,7 +72,7 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
         stmt.setString(2, contasPagar.getDescricao());
         stmt.setDouble(3, contasPagar.getValor());
         stmt.setString(4, TransformDate.transformDate(contasPagar.getDataPagamento()));
-        stmt.setBoolean(5, contasPagar.isStatus());
+        stmt.setBoolean(5, contasPagar.getStatus());
         stmt.setLong(6, contasPagar.getIdContaPagar());
 
         stmt.execute();

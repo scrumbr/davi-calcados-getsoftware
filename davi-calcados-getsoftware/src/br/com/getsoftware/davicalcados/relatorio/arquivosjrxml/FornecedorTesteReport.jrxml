@@ -57,12 +57,8 @@
 	</background>
 	<title>
 		<band height="113" splitType="Stretch">
-			<image>
-				<reportElement x="12" y="0" width="148" height="101" uuid="a56a59be-9c49-476c-89fc-2ab419520f32"/>
-				<imageExpression><![CDATA["C:\\Users\\Andrey Gois\\Pictures\\davi calçados.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement x="0" y="0" width="802" height="52" uuid="ec506f38-9f14-4fa0-bfe5-33c985a4ca61"/>
+				<reportElement x="0" y="10" width="802" height="52" uuid="ec506f38-9f14-4fa0-bfe5-33c985a4ca61"/>
 				<textElement textAlignment="Center">
 					<font fontName="Cambria" size="36" isBold="true"/>
 				</textElement>
@@ -94,6 +90,10 @@ Rua Capitão Manoel Antonio - N° 2451]]></text>
 				<reportElement x="681" y="92" width="119" height="20" uuid="e07393af-cb41-421f-9f4b-f7b19165c288"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="21" y="0" width="186" height="112" uuid="3238c48a-0503-4ec0-b4c7-bb7b4c4834da"/>
+				<imageExpression><![CDATA["src\\br\\com\\getsoftware\\davicalcados\\images\\davi calçados pequeno.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

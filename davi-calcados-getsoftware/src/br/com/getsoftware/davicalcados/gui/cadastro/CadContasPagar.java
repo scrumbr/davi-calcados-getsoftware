@@ -253,7 +253,6 @@ public class CadContasPagar extends javax.swing.JFrame {
             contaPagar.setDataPagamento(jFData.getText());
             contaPagar.setDescricao(jTdescricao.getText());
             contaPagar.setValor(Double.valueOf(jTValor.getText()));
-            contaPagar.setStatus(false);
             try {
                 ContasPagarBO.save(contaPagar);
                 contasPagar.dadosTabela();
