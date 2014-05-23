@@ -373,5 +373,4 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
             jBExcluir.setEnabled(true);
         }
     }
-
 }
