@@ -5,8 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1" uuid="7b10d63c-7d0d-4bbe-96a3-f5f8c10e4258"/>
 	<queryString>
-		<![CDATA[select  s.id_saida, s.descricao_saida, s.valor_saida, s.data_saida, u.username from saida as s, usuario as u where s.id_usuario = u.id_usuario
-]]>
+		<![CDATA[select  s.id_saida, s.descricao_saida, s.valor_saida, s.data_saida, u.username from saida as s, usuario as u where s.id_usuario = u.id_usuario]]>
 	</queryString>
 	<field name="id_saida" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -30,7 +29,7 @@
 		<band height="104" splitType="Stretch">
 			<image>
 				<reportElement x="12" y="0" width="148" height="101" uuid="a56a59be-9c49-476c-89fc-2ab419520f32"/>
-				<imageExpression><![CDATA["C:\\Users\\Andrey Gois\\Pictures\\davi calçados.png"]]></imageExpression>
+				<imageExpression><![CDATA["src\\br\\com\\getsoftware\\davicalcados\\images\\davi calçados pequeno.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="0" y="0" width="555" height="52" uuid="ec506f38-9f14-4fa0-bfe5-33c985a4ca61"/>
@@ -128,7 +127,7 @@ Rua Capitão Manoel Antonio - N° 2451]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{valor_saida}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="163" y="-1" width="103" height="17" uuid="b32380e6-648b-4705-9cd8-134b03a752cd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{data_saida}]]></textFieldExpression>

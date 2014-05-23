@@ -16,7 +16,7 @@ public class ContasPagar {
     private String descricao;
     private String dataPagamento;
     private Double valor;
-    private Boolean status;
+    private boolean status = false;
 
     public Long getIdContaPagar() {
         return idContaPagar;
@@ -50,11 +50,11 @@ public class ContasPagar {
         this.valor = valor;
     }
 
-    public Boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
     
