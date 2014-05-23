@@ -833,7 +833,8 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }    
+        }
+        cadPro.atualizaCombo();
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jTNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNomeFocusGained
