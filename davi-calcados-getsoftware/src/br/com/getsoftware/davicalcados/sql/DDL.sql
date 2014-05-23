@@ -173,6 +173,23 @@ constraint fk_venda_produto foreign key produtos_vendidos(id_venda) references v
 constraint fk_venda_produto_vendido foreign key produtos_vendidos(id_produto) references produto(id_produto)
 );
 
+create table contas_pagar(
+	id_contas_pagar bigint auto_increment,
+	data_pagamento date not null,
+	valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_pagar primary key contas_pagar(id_contas_pagar)
+);
+
+create table contas_receber(
+	id_contas_receber bigint auto_increment,
+	data_pagamento date not null,
+	valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_receber primary key contas_receber(id_contas_receber)
+);
 
 create table contas_pagar(
 	id bigint auto_increment,
@@ -191,6 +208,7 @@ create table contas_receber(
 	descricao longtext,
 constraint pk_contas_receber primary key contas_receber(id)
 );
+
 
 
 

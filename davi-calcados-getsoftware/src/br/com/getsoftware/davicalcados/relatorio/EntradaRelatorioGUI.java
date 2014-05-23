@@ -9,9 +9,11 @@ package br.com.getsoftware.davicalcados.relatorio;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.util.TransformDate;
+import br.com.getsoftware.davicalcados.util.ValidatorDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -85,6 +87,11 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFDataDe.setFont(new java.awt.Font("Cambria", 0, 22)); // NOI18N
+        jFDataDe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFDataDeKeyReleased(evt);
+            }
+        });
 
         try {
             jFDataAte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -92,12 +99,18 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFDataAte.setFont(new java.awt.Font("Cambria", 0, 22)); // NOI18N
+        jFDataAte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFDataAteKeyReleased(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
         jButton1.setText("Gerar Relatorio");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -171,15 +184,23 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN '2014/05/11' AND '2014/05/13';
+
+            String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ TransformDate.transformDate(jFDataDe.getText()) +"'" + "AND" + "'" + TransformDate.transformDate(jFDataAte.getText()) +"'";
+            try {
+                GenericReport entraRel = new GenericReport(consulta, "EntradaReport.jasper");
+            } catch (FormatoSQLException ex) {
+                Logger.getLogger(EntradaRelatorioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
-        String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ TransformDate.transformDate(jFDataDe.getText()) +"'" + "AND" + "'" + TransformDate.transformDate(jFDataAte.getText()) +"'";
-        try {
-            GenericReport entraRel = new GenericReport(consulta, "EntradaReport.jasper");
-        } catch (FormatoSQLException ex) {
-            Logger.getLogger(EntradaRelatorioGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFDataDeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFDataDeKeyReleased
+        validaCaposData();
+    }//GEN-LAST:event_jFDataDeKeyReleased
+
+    private void jFDataAteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFDataAteKeyReleased
+       validaCaposData();
+    }//GEN-LAST:event_jFDataAteKeyReleased
 
     /**
      * @param args the command line arguments
@@ -226,4 +247,18 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+public void validaCaposData(){
+    if(!jFDataDe.getText().equals("  /  /    ") && !jFDataAte.getText().equals("  /  /    ")){
+        jButton1.setEnabled(true);
+    }else{
+        jButton1.setEnabled(false);
+    }
+    
+    
+}
+
+
+
+
 }

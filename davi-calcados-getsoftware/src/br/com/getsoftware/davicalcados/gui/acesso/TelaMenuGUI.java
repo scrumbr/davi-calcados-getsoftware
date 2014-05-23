@@ -810,7 +810,11 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        new ListContasPagarGUI(this).setVisible(true);
+        try {
+            new ListContasPagarGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setEnabled(false);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 

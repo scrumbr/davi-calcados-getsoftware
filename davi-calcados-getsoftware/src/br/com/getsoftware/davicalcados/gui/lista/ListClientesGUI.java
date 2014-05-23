@@ -58,6 +58,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
       jBexcluir.setVisible(false);
       jButton1.setVisible(false);
       jBvisualizar.setVisible(false);
+      jBGerarRelatorio.setVisible(false);
       jBescolher.setVisible(true);
       jBCadCliente2.setVisible(true);
     }
@@ -79,7 +80,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jRnome = new javax.swing.JRadioButton();
         jRid = new javax.swing.JRadioButton();
         jRcpf = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        jBGerarRelatorio = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -178,12 +179,12 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-24.png"))); // NOI18N
-        jButton2.setText("Gerer Relatorio");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-24.png"))); // NOI18N
+        jBGerarRelatorio.setText("Gerer Relatorio");
+        jBGerarRelatorio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBGerarRelatorioActionPerformed(evt);
             }
         });
 
@@ -214,7 +215,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
@@ -227,7 +228,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
                     .addComponent(jRcpf)
                     .addComponent(jRid)
                     .addComponent(jRnome)
-                    .addComponent(jButton2)
+                    .addComponent(jBGerarRelatorio)
                     .addComponent(jRadioButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -543,7 +544,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBCadCliente2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelatorioActionPerformed
        String consulta = "";
        if(jRnome.isSelected()){
            consulta = "select * from cliente where nome like";
@@ -559,7 +560,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBGerarRelatorioActionPerformed
 
     private void jTpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpesquisaActionPerformed
         // TODO add your handling code here:
@@ -610,12 +611,12 @@ filter();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBCadCliente2;
+    private javax.swing.JButton jBGerarRelatorio;
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBescolher;
     private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
