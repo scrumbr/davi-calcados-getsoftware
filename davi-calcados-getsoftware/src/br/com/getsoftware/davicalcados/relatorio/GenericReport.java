@@ -30,10 +30,12 @@ public class GenericReport {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
                     "src/br/com/getsoftware/davicalcados/relatorio/"
                             + jasper, new HashMap(), jrRS);
-            JasperViewer.viewReport(jasperPrint, false);
+            
+             JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+            jasperViewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+            jasperViewer.setVisible(true);
         } catch (SQLException | JRException erro) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar o relatório!\n" + erro,"Erro",0);
         }
     }
-    
 }
