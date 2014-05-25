@@ -6,11 +6,14 @@
 
 package br.com.getsoftware.davicalcados.gui.edit;
 
+import br.com.getsoftware.davicalcados.bo.ContasPagarBO;
+import br.com.getsoftware.davicalcados.entity.ContasPagar;
 import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.gui.lista.ListContasPagarGUI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,13 +22,21 @@ import java.util.logging.Logger;
 public class EditContasPagar extends javax.swing.JFrame {
 
     private ListContasPagarGUI contasPagar;
+    private ContasPagar contaPagar;
     public EditContasPagar() {
         initComponents();
     }
     
-    public EditContasPagar(ListContasPagarGUI contasPagar){
+    public EditContasPagar(ContasPagar contaPagar){
+        this();
+        this.contaPagar = contaPagar;
+        refreshCampos();
+    }
+      public EditContasPagar(ListContasPagarGUI contasPagar, ContasPagar contaPagar){
         this();
         this.contasPagar = contasPagar;
+        this.contaPagar = contaPagar;
+        refreshCampos();
     }
 
     /**
@@ -43,14 +54,14 @@ public class EditContasPagar extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jTId = new javax.swing.JTextField();
+        jTValor = new javax.swing.JTextField();
+        jFData = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jBCancelar = new javax.swing.JButton();
         jBSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTDescricao = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,17 +101,17 @@ public class EditContasPagar extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Valor");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTId.setEditable(false);
+        jTId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jFData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jFData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -114,6 +125,11 @@ public class EditContasPagar extends javax.swing.JFrame {
 
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -136,9 +152,9 @@ public class EditContasPagar extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTDescricao.setColumns(20);
+        jTDescricao.setRows(5);
+        jScrollPane1.setViewportView(jTDescricao);
 
         jPanel3.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -168,15 +184,15 @@ public class EditContasPagar extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTValor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField1)))
+                                    .addComponent(jFData)))
                             .addComponent(jLabel4))
                         .addGap(0, 48, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -194,9 +210,9 @@ public class EditContasPagar extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(33, 33, 33))))
@@ -225,6 +241,35 @@ public class EditContasPagar extends javax.swing.JFrame {
         contasPagar.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+       if(jTValor.getText().isEmpty() || jTValor.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'valor' está em vazio!", "Atenção", 2);
+            jTValor.requestFocus();
+        }else if(jFData.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(null, "Campo 'data' está em vazio!", "Atenção", 2);
+            jFData.requestFocus();
+        }else if(jTDescricao.getText().isEmpty() || jTDescricao.getText() == null){
+            JOptionPane.showMessageDialog(null, "Campo 'descrição' está em vazio!", "Atenção", 2);
+            jTDescricao.requestFocus();
+        } else{                
+            try {
+                refreshConta();
+                ContasPagarBO.update(contaPagar); 
+                contasPagar.setEnabled(true);
+                this.dispose();
+                contasPagar.dadosTabela();
+                contasPagar.atualizaLinhaSelecionada();                
+                JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Sucesso", 1);
+   
+               } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar editar a conta", "Erro", 0);
+            } catch (Exception ex) {
+                Logger.getLogger(CadFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jBSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,7 +313,7 @@ public class EditContasPagar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBSalvar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,8 +323,28 @@ public class EditContasPagar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextArea jTDescricao;
+    private javax.swing.JTextField jTId;
+    private javax.swing.JTextField jTValor;
     // End of variables declaration//GEN-END:variables
+
+  public void refreshConta() {
+        contaPagar.setDescricao((jTDescricao.getText()));
+        contaPagar.setValor(Double.parseDouble(jTValor.getText()));
+        contaPagar.setDataPagamento(jFData.getText());
+        contaPagar.setDataQuitado(null);
+     }
+
+    public void refreshCampos() {
+        
+        jTId.setText("" + contaPagar.getIdContaPagar());
+        jTValor.setText(""+contaPagar.getValor());
+        jFData.setText(contaPagar.getDataPagamento());
+        jTDescricao.setText(contaPagar.getDescricao());
+       
+    }
+
+
+
+
 }

@@ -9,7 +9,9 @@ package br.com.getsoftware.davicalcados.gui.cadastro;
 import br.com.getsoftware.davicalcados.bo.ContasPagarBO;
 import br.com.getsoftware.davicalcados.entity.ContasPagar;
 import br.com.getsoftware.davicalcados.gui.lista.ListContasPagarGUI;
+import br.com.getsoftware.davicalcados.util.DataAtual;
 import br.com.getsoftware.davicalcados.util.LastID;
+import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -99,6 +101,11 @@ public class CadContasPagar extends javax.swing.JFrame {
         jTId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTValorKeyTyped(evt);
+            }
+        });
 
         try {
             jFData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -237,22 +244,23 @@ public class CadContasPagar extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
-            
+         
+        
+        
         if(jTValor.getText().isEmpty() || jTValor.getText() == null){
             JOptionPane.showMessageDialog(null, "Campo 'valor' está em vazio!", "Atenção", 2);
             jTValor.requestFocus();
-        }else if(jFData.getText().equals("  /  /    ")){
-            JOptionPane.showMessageDialog(null, "Campo 'data' está em vazio!", "Atenção", 2);
+        }else if(jFData.getText().equals("  /  /    ") ){
+            JOptionPane.showMessageDialog(null, "Preencha o campo data!", "Atenção", 2);
             jFData.requestFocus();
-        }else if(jTdescricao.getText().isEmpty() || jTdescricao.getText() == null){
+        } else if(jTdescricao.getText().isEmpty() || jTdescricao.getText() == null){
             JOptionPane.showMessageDialog(null, "Campo 'descrição' está em vazio!", "Atenção", 2);
             jTdescricao.requestFocus();
-        } else{
-            
-            ContasPagar contaPagar =  new ContasPagar();
+        }else{  ContasPagar contaPagar =  new ContasPagar();
             contaPagar.setDataPagamento(jFData.getText());
             contaPagar.setDescricao(jTdescricao.getText());
-            contaPagar.setValor(Double.valueOf(jTValor.getText()));
+            contaPagar.setValor(Double.valueOf(jTValor.getText().replace(",", ".")));
+            contaPagar.setStatus(false);
             try {
                 ContasPagarBO.save(contaPagar);
                 contasPagar.dadosTabela();
@@ -266,18 +274,25 @@ public class CadContasPagar extends javax.swing.JFrame {
                     jFData.setText("");
                     jTdescricao.setText(null);
                 }else{
-                     contasPagar.setEnabled(true);
-                     contasPagar.dadosTabela();
-                     this.dispose();                   
+                    contasPagar.setEnabled(true);
+                    contasPagar.dadosTabela();
+                    contasPagar.atualizaLinhaSelecionada();
+                    this.dispose();                   
                 }
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar a conta! \n" + ex.getMessage(), "Erro", 0);
-            }
-
+            }    
         }
     }//GEN-LAST:event_jBSalvarActionPerformed
+
+    private void jTValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTValorKeyTyped
+        String caracteres="0987654321.,";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }
+    }//GEN-LAST:event_jTValorKeyTyped
 
     /**
      * @param args the command line arguments

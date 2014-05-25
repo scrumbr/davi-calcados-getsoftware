@@ -6,13 +6,17 @@
 
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
+import br.com.getsoftware.davicalcados.bo.ContasPagarBO;
 import br.com.getsoftware.davicalcados.bo.SaidaBO;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
+import br.com.getsoftware.davicalcados.entity.ContasPagar;
 import br.com.getsoftware.davicalcados.entity.Saida;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
+import br.com.getsoftware.davicalcados.gui.lista.ListContasPagarGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.MyDate;
+import br.com.getsoftware.davicalcados.util.TransformDate;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -44,6 +48,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 //        }
     }
         private CaixaGUI caixa;
+        private ListContasPagarGUI contasPagar;
+        private ContasPagar contaPagar;
         public CadSaidaGUI(CaixaGUI caixa) throws SQLException, FormatoSQLException {
         this();
         jFdata.setText(MyDate.dataFormatada());
@@ -57,7 +63,23 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         }
             this.caixa = caixa;
         }
-
+      
+        public CadSaidaGUI(ListContasPagarGUI contasPagar,ContasPagar contaPagar) throws SQLException, FormatoSQLException{
+            this();  
+            this.contaPagar = contaPagar;
+            this.contasPagar = contasPagar;
+            usuariosSuport = UsuarioBO.listAll();
+        idUsuarios = new ArrayList<>();
+       
+        for (int i = 0; i < usuariosSuport.size(); i++) {
+            jCusuarios.addItem(usuariosSuport.get(i).getUserName());
+            idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
+        }
+            refreshCampos();
+            
+        }
+        
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +90,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLMensagemTopo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -85,6 +107,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jBcancel = new javax.swing.JButton();
         jCusuarios = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -96,24 +119,22 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro de Saídas");
+        jLMensagemTopo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLMensagemTopo.setForeground(new java.awt.Color(255, 255, 255));
+        jLMensagemTopo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLMensagemTopo.setText("Cadastro de Saídas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLMensagemTopo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLMensagemTopo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -203,6 +224,14 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Funcionário / Usuário");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
+        jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -224,6 +253,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBsalvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBcancel))
@@ -268,7 +299,9 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBsalvar)
                         .addComponent(jBcancel))
-                    .addComponent(jCparaAData))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCparaAData)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
 
@@ -321,7 +354,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 //          saida.setIdSaida();
             saida.setIdUsuario(idUsuarios.get(jCusuarios.getSelectedIndex()-1));
             saida.setValorSaida(Double.valueOf(jTvalor.getText()));
-            try {
+          
+            try {          
                 SaidaBO.save(saida);
                 caixa.dadosTabela();
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar a saida!", "Sucesso", 1);
@@ -337,16 +371,20 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                     caixa.dadosTabela();
                     this.dispose();
                 }
-
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Não foi possível salvar a saida!", "Erro", 0);
+                JOptionPane.showMessageDialog(null, "Não foi possível salvar a saida! 'CAIXA'", "Erro", 0);
             }
 
         }
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
-        caixa.setEnabled(true);
+            if(caixa != null){
+            caixa.setEnabled(true);
+        }
+        else if(contasPagar != null){
+            contasPagar.setEnabled(true);
+        }        
         this.dispose();
     }//GEN-LAST:event_jBcancelActionPerformed
 
@@ -361,7 +399,12 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jCparaADataActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        caixa.setEnabled(true);
+           if(caixa != null){
+            caixa.setEnabled(true);
+        }
+        else if(contasPagar != null){
+            contasPagar.setEnabled(true);
+        }        
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -375,6 +418,34 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     private void jCusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCusuariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCusuariosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          if(jCusuarios.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Campo 'funcionário' está em vazio!", "Atenção", 2);
+            jCusuarios.requestFocus();
+        }else{     
+            Saida saida = new Saida();
+            saida.setDataSaida(jFdata.getText());
+            saida.setDescricao(jTdescricao.getText());
+            saida.setIdUsuario(idUsuarios.get(jCusuarios.getSelectedIndex()-1));
+            saida.setValorSaida(Double.valueOf(jTvalor.getText()));
+            contaPagar.setDataQuitado(TransformDate.transformDate(jFdata.getText()));
+            contaPagar.setStatus(true);
+            try {          
+                SaidaBO.save(saida);
+                ContasPagarBO.update(contaPagar);
+                JOptionPane.showMessageDialog(null, "Sucesso ao salvar a saida!", "Sucesso", 1);
+                contasPagar.setEnabled(true);
+                contasPagar.dadosTabela();
+                contasPagar.atualizaLinhaSelecionada();
+                this.dispose();
+              
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível salvar a saida! 'CAIXA'", "Erro", 0);
+            }
+          }
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,10 +491,11 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcancel;
     private javax.swing.JButton jBsalvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCparaAData;
     private javax.swing.JComboBox jCusuarios;
     private javax.swing.JFormattedTextField jFdata;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLMensagemTopo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -437,4 +509,21 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTid;
     private javax.swing.JTextField jTvalor;
     // End of variables declaration//GEN-END:variables
+
+
+ public void refreshCampos() {        
+            jCparaAData.setEnabled(false);
+            jTvalor.setEnabled(false);
+            jTdescricao.setEnabled(false);
+            jFdata.setEnabled(false);
+            jFdata.setText(MyDate.dataFormatada());
+            jTvalor.setText(""+contaPagar.getValor());
+            jTdescricao.setText(contaPagar.getDescricao());
+            jLMensagemTopo.setText("Confirma pagamento de conta");
+            jBsalvar.setVisible(false);
+            jCparaAData.setVisible(false);
+    }
+
+
+
 }
