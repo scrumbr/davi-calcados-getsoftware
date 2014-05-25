@@ -9,11 +9,9 @@ package br.com.getsoftware.davicalcados.relatorio;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.util.TransformDate;
-import br.com.getsoftware.davicalcados.util.ValidatorDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 
 /**
  *

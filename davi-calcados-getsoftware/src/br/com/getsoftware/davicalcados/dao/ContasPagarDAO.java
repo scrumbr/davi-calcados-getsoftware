@@ -5,6 +5,7 @@ import br.com.getsoftware.davicalcados.connection.Conexao;
 import br.com.getsoftware.davicalcados.entity.ContasPagar;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
 import br.com.getsoftware.davicalcados.util.TransformDate;
+import br.com.getsoftware.davicalcados.util.TransformMoeda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,13 +33,14 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
         ResultSet res = stmt.executeQuery();
         
         ContasPagar contasPagar = new ContasPagar();
-        if(res.next()){
+        if(res.next()){        
+        contasPagar.setDataPagamento(TransformDate.transformDate(res.getString("data_pagamento")));
+        contasPagar.setDescricao(res.getString("descricao"));
+        contasPagar.setIdContaPagar(Long.valueOf(res.getString("id_contas_pagar")));
+        contasPagar.setValor(Double.valueOf(res.getString("valor")));
+        contasPagar.setStatus(res.getBoolean("status"));       
+        contasPagar.setDataQuitado(TransformDate.transformDate(res.getString("data_quitado")));
             
-        contasPagar.setDataPagamento(TransformDate.transformDate(res.getString("data_entrada")));
-        contasPagar.setDescricao(res.getString("descricao_entrada"));
-        contasPagar.setIdContaPagar(Long.valueOf(res.getString("id_entrada")));
-        contasPagar.setValor(Double.valueOf(res.getString("valor_entrada")));
-        contasPagar.setStatus(res.getBoolean("status"));
         }
         
         res.close();
@@ -49,13 +51,14 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
 
     @Override
     public void save(ContasPagar contaPagar) throws SQLException {
-        String sql = "insert into contas_pagar( descricao, valor, data_pagamento, status )"
-                + " values ( ?, ?, ?, ?)";
+        String sql = "insert into contas_pagar( descricao, valor, data_pagamento, status, data_quitado)"
+                + " values ( ?, ?, ?, ?,?)";
          try (PreparedStatement stmt = this.conexao.prepareStatement(sql)) {
              stmt.setString(1, contaPagar.getDescricao());
              stmt.setDouble(2, contaPagar.getValor());
              stmt.setString(3, TransformDate.transformDate(contaPagar.getDataPagamento()));
              stmt.setBoolean(4, contaPagar.getStatus());
+             stmt.setString(5, contaPagar.getDataQuitado());
              
              stmt.execute();
          }
@@ -63,16 +66,16 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
 
     @Override
     public void update(ContasPagar contasPagar) throws SQLException {
-        String sql = "update contas_pagar set id_contas_pagar, descricao, valor, data_pagamento, status "
+        String sql = "update contas_pagar set  descricao=?, valor=?, data_pagamento=?, status=?, data_quitado=? "
                 + " where id_contas_pagar=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
-        stmt.setLong(1, contasPagar.getIdContaPagar());
-        stmt.setString(2, contasPagar.getDescricao());
-        stmt.setDouble(3, contasPagar.getValor());
-        stmt.setString(4, TransformDate.transformDate(contasPagar.getDataPagamento()));
-        stmt.setBoolean(5, contasPagar.getStatus());
+        stmt.setString(1, contasPagar.getDescricao());
+        stmt.setDouble(2, contasPagar.getValor());
+        stmt.setString(3, TransformDate.transformDate(contasPagar.getDataPagamento()));
+        stmt.setBoolean(4, contasPagar.getStatus());
+        stmt.setString(5, contasPagar.getDataQuitado());
         stmt.setLong(6, contasPagar.getIdContaPagar());
 
         stmt.execute();
@@ -81,7 +84,7 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
 
     @Override
     public ArrayList<ContasPagar> listAll() throws SQLException {
-        String sql = "select * from contas_pagar";
+        String sql = "select * from contas_pagar order by data_pagamento";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -93,10 +96,10 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
 
             contasPagar.setIdContaPagar(Long.valueOf(res.getString("id_contas_pagar")));
             contasPagar.setDescricao((res.getString("descricao")));
-            contasPagar.setValor(Double.valueOf(res.getString("valor")));
-            contasPagar.setDataPagamento((res.getString("data_pagamento")));
-            contasPagar.setIdContaPagar(Long.valueOf(res.getString("id_contas_pagar")));
-
+            contasPagar.setValor(Double.parseDouble(res.getString("valor")));
+            contasPagar.setDataPagamento(res.getString("data_pagamento"));
+            contasPagar.setDataQuitado(res.getString("data_quitado"));
+            contasPagar.setStatus((res.getBoolean("status")));
             minhaLista.add(contasPagar);
         }
         res.close();

@@ -190,3 +190,28 @@ create table contas_receber(
 	descricao longtext,
 constraint pk_contas_receber primary key contas_receber(id_contas_receber)
 );
+
+create table contas_pagar(
+	id bigint auto_increment,
+	data_pagamento date not null,
+        valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_pagar primary key contas_pagar(id)
+);
+
+alter table contas_pagar add column data_quitado date;
+
+create table contas_receber(
+	id bigint auto_increment,
+	data_pagamento date not null,
+        valor numeric(9,2) not null,
+	status boolean not null,
+	descricao longtext,
+constraint pk_contas_receber primary key contas_receber(id)
+);
+
+
+
+
+

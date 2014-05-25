@@ -18,7 +18,7 @@ insert into cliente(nome,profissao,sexo,data_nascimento, estado_civil, cpf, rg, 
 bairro,cidade,cep,estado,renda,credito) values("Maria Florentina", "Recepcionista", "Feminino", '1980/12/08', "Solteiro", "09878628320", "123456789", "(88)9660-4515",
 "(88)3422-1407","rodolfo.abreu@gmail.com","Sem Preferencia", 123456, true, "Rua tomas de aquino", 123,"Casa","Santa Barbara", "Ibicuitinga", "62940-000", "CE", 1500,700);
 
-select * from plano_compras;
+select * from contas_pagar;
 
 create table contas_pagar(
 	id_contas_pagar bigint auto_increment,
@@ -35,7 +35,7 @@ insert into contas_pagar(data_pagamento, valor, status, descricao) values('2014/
 
 select * from contas_pagar;
 delete from contas_pagar;
-select * from cliente;
+select * from saida;
 
 
 
