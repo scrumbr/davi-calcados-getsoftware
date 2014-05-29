@@ -115,14 +115,16 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTpesquisa3" min="-2" pref="333" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jTpesquisa3" min="-2" pref="374" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jRnome3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jRFornecedor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                   <Component id="jBGerarRelatorio" min="-2" pref="179" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
@@ -139,6 +141,7 @@
                       <Component id="jRnome3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBGerarRelatorio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -225,6 +228,14 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Filtrar por:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -325,16 +336,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jBescolher" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBCadProduto1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jBCancelar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBEditar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBVisualiar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBExcluir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBAtualizarEstoque" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBCadProduto" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jBescolher" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBCadProduto1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>

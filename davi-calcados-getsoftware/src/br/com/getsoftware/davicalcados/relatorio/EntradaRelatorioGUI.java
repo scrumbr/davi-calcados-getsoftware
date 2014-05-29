@@ -8,10 +8,11 @@ package br.com.getsoftware.davicalcados.relatorio;
 
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
-import br.com.getsoftware.davicalcados.util.TransformDate;
+import static br.com.getsoftware.davicalcados.util.DataAtual.dataAtual;
+import static br.com.getsoftware.davicalcados.util.TransformDate.transformDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,8 +25,8 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
     
     public EntradaRelatorioGUI() {
         initComponents();
-         jFDataDe.setFocusLostBehavior(JFormattedTextField.COMMIT);
-         jFDataAte.setFocusLostBehavior(JFormattedTextField.COMMIT);
+//         jFDataDe.setFocusLostBehavior(JFormattedTextField.COMMIT);
+//         jFDataAte.setFocusLostBehavior(JFormattedTextField.COMMIT);
 
     }
     
@@ -42,10 +43,10 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jFDataDe = new javax.swing.JFormattedTextField();
-        jFDataAte = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jFDataAte = new com.toedter.calendar.JDateChooser();
+        jFDataDe = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -79,36 +80,11 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 22)); // NOI18N
         jLabel3.setText("até:");
 
-        try {
-            jFDataDe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFDataDe.setFont(new java.awt.Font("Cambria", 0, 22)); // NOI18N
-        jFDataDe.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jFDataDeKeyReleased(evt);
-            }
-        });
-
-        try {
-            jFDataAte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFDataAte.setFont(new java.awt.Font("Cambria", 0, 22)); // NOI18N
-        jFDataAte.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jFDataAteKeyReleased(evt);
-            }
-        });
-
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
         jButton1.setText("Gerar Relatorio");
-        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -122,7 +98,7 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +107,10 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jFDataAte.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+
+        jFDataDe.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,36 +121,32 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jFDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jFDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jFDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFDataAte, jFDataDe});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jFDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jFDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFDataAte, jFDataDe, jLabel2});
 
         setSize(new java.awt.Dimension(447, 256));
         setLocationRelativeTo(null);
@@ -183,7 +159,10 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-            String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ TransformDate.transformDate(jFDataDe.getText()) +"'" + "AND" + "'" + TransformDate.transformDate(jFDataAte.getText()) +"'";
+           validaCapos();
+           
+            String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, "
+                    + "usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ (transformDate(dataAtual(jFDataDe.getDate()))) +"'" + "AND" + "'" + (transformDate(dataAtual(jFDataAte.getDate())))+ "'";
             try {
                 GenericReport entraRel = new GenericReport(consulta, "EntradaReport.jasper");
             } catch (FormatoSQLException ex) {
@@ -191,14 +170,6 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             }
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jFDataDeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFDataDeKeyReleased
-        validaCaposData();
-    }//GEN-LAST:event_jFDataDeKeyReleased
-
-    private void jFDataAteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFDataAteKeyReleased
-       validaCaposData();
-    }//GEN-LAST:event_jFDataAteKeyReleased
 
     /**
      * @param args the command line arguments
@@ -237,8 +208,8 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFDataAte;
-    private javax.swing.JFormattedTextField jFDataDe;
+    private com.toedter.calendar.JDateChooser jFDataAte;
+    private com.toedter.calendar.JDateChooser jFDataDe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -246,17 +217,14 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-public void validaCaposData(){
-    if(!jFDataDe.getText().equals("  /  /    ") && !jFDataAte.getText().equals("  /  /    ")){
-        jButton1.setEnabled(true);
-    }else{
-        jButton1.setEnabled(false);
+
+public void validaCapos(){
+    if(jFDataDe.getDate() == null){
+      JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data de:'", "Atenção", 2);
+    }else if(jFDataAte.getDate() == null){
+      JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data até:'", "Atenção", 2);
     }
-    
-    
 }
-
-
 
 
 }

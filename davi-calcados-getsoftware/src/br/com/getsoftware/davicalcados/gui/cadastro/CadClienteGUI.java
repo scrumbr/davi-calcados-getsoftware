@@ -71,13 +71,10 @@ public class CadClienteGUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jTemail = new javax.swing.JTextField();
         jFTelefone2 = new javax.swing.JFormattedTextField();
         jFtelefone = new javax.swing.JFormattedTextField();
         jTid = new javax.swing.JTextField();
-        jRStatusAtivo = new javax.swing.JRadioButton();
-        jRStatusInativo = new javax.swing.JRadioButton();
         jTnome = new javax.swing.JTextField();
         jTprofissao = new javax.swing.JTextField();
         jTBoleto = new javax.swing.JTextField();
@@ -199,9 +196,6 @@ public class CadClienteGUI extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("N° Boleto");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setText("Status");
-
         jTemail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTemail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTemail.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -248,20 +242,6 @@ public class CadClienteGUI extends javax.swing.JFrame {
         jTid.setEditable(false);
         jTid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTid.setEnabled(false);
-
-        buttonGroup1.add(jRStatusAtivo);
-        jRStatusAtivo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRStatusAtivo.setSelected(true);
-        jRStatusAtivo.setText("Ativo");
-        jRStatusAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRStatusAtivoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRStatusInativo);
-        jRStatusInativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRStatusInativo.setText("Inativo");
 
         jTnome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTnome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -358,7 +338,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
 
         buttonGroup2.add(jRM);
         jRM.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRM.setText("M");
+        jRM.setText("Masculino");
         jRM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRMActionPerformed(evt);
@@ -367,7 +347,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
 
         buttonGroup2.add(jRF);
         jRF.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRF.setText("F");
+        jRF.setText("Feminino");
         jRF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRFActionPerformed(evt);
@@ -521,26 +501,20 @@ public class CadClienteGUI extends javax.swing.JFrame {
                             .addComponent(jTemail)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTRenda, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jRM))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jRF)))
+                                    .addComponent(jTRenda, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel24))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel25)
+                                    .addComponent(jTCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jRStatusAtivo))
+                                        .addComponent(jRM)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRStatusInativo))
-                                    .addComponent(jTCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jRF)))
+                                .addGap(12, 12, 12)))))
                 .addContainerGap())
         );
 
@@ -605,16 +579,13 @@ public class CadClienteGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel16)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRM)
-                    .addComponent(jRF)
-                    .addComponent(jRStatusAtivo)
-                    .addComponent(jRStatusInativo))
+                    .addComponent(jRF))
                 .addContainerGap())
         );
 
@@ -952,10 +923,6 @@ public class CadClienteGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void jRStatusAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRStatusAtivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRStatusAtivoActionPerformed
-
     private void jTComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTComplementoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTComplementoActionPerformed
@@ -999,7 +966,15 @@ public class CadClienteGUI extends javax.swing.JFrame {
          } else if (jFtelefone.getText().equals("(  )    -    ")) {
             JOptionPane.showMessageDialog(null, "Campo 'TELEFONE' está vazio!", "Atenção", 2);
             jFtelefone.requestFocus();
-         } else if (jFDataNascimento.getText().equals("  /  /    ")){
+         }else if (jTRenda.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo 'RENDA' está vazio!", "Atenção", 2);
+            jTRenda.requestFocus();
+         } 
+         else if (jTCredito.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo 'CRÉDITO' está vazio!", "Atenção", 2);
+            jTCredito.requestFocus();
+         } 
+         else if (jFDataNascimento.getText().equals("  /  /    ")){
             JOptionPane.showMessageDialog(null, "Campo 'DATA NASCIMENTO' está vazio!", "Atenção", 2);
             jFDataNascimento.requestFocus();
          }else if(!jRM.isSelected() && !jRF.isSelected()){
@@ -1048,9 +1023,9 @@ public class CadClienteGUI extends javax.swing.JFrame {
             cliente.setPreferencia(jTPreferencias.getText());
             cliente.setNumeroBoleto(Long.valueOf(jTBoleto.getText()));
             cliente.setRg(jTRg.getText());
-            cliente.setStatus(status());
-            cliente.setRenda(Double.valueOf(TransformMoeda.trasnformMoeda(jTRenda.getText().replace(",", "."))));
-            cliente.setCredito(Double.valueOf(TransformMoeda.trasnformMoeda(jTCredito.getText())));
+            //cliente.setStatus(status());
+            cliente.setRenda(Double.valueOf((jTRenda.getText().replace(",", "."))));
+            cliente.setCredito(Double.valueOf((jTCredito.getText())));
             
             end.setBairro(jTBairro.getText());
             end.setCEP(jFCep.getText());
@@ -1114,7 +1089,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
         if(jTRenda.getText().isEmpty() || jTRenda.getText() == null){
           jTRenda.setText(null);
         }else{
-        jTRenda.setText(TransformMoeda.trasnformMoeda(jTRenda.getText()));
+        jTRenda.setText((jTRenda.getText()));
         
         }
     }//GEN-LAST:event_jTRendaFocusLost
@@ -1136,7 +1111,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
            double credito = 0.60 * (Double.valueOf(jTRenda.getText().replace(",",".")));
            BigDecimal bd = new BigDecimal(credito).setScale(2, RoundingMode.HALF_EVEN);
          
-         jTCredito.setText(TransformMoeda.trasnformMoeda(""+bd.doubleValue()));
+         jTCredito.setText((""+bd.doubleValue()));
         // jTCredito.setText(""+bd.doubleValue());
         //  jTCredito.setText(""+credito);
        }
@@ -1369,7 +1344,6 @@ public class CadClienteGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1404,8 +1378,6 @@ public class CadClienteGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRF;
     private javax.swing.JRadioButton jRM;
-    private javax.swing.JRadioButton jRStatusAtivo;
-    private javax.swing.JRadioButton jRStatusInativo;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTBoleto;
     private javax.swing.JTextField jTCidade;
@@ -1440,8 +1412,8 @@ public void DesbloqueiaCampos(){
     jTRua.setEnabled(true);
     jTNumero.setEnabled(true);
     jTComplemento.setEnabled(true);
-    jRStatusAtivo.setEnabled(true);
-    jRStatusInativo.setEnabled(true);
+//    jRStatusAtivo.setEnabled(true);
+//    jRStatusInativo.setEnabled(true);
     jFDataNascimento.setEnabled(true);
     //jTextField1.setEnabled(true);
 };
@@ -1475,13 +1447,13 @@ public void LimpaCampos(){
     jRF.setSelected(false);
 }
 
- public boolean status() {
-        if (jRStatusAtivo.isSelected()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+// public boolean status() {
+//        if (jRStatusAtivo.isSelected()) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
  
  
  public void LimpaMascaras(){

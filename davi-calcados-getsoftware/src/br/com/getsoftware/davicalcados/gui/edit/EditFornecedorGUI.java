@@ -87,9 +87,6 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jFTelefone = new javax.swing.JFormattedTextField();
         jFTelefone2 = new javax.swing.JFormattedTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jRAtivo = new javax.swing.JRadioButton();
-        jRInativo = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jTObservacao = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -326,28 +323,6 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
         }
         jFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Status");
-
-        buttonGroup1.add(jRAtivo);
-        jRAtivo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRAtivo.setSelected(true);
-        jRAtivo.setText("Ativo");
-        jRAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRAtivoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRInativo);
-        jRInativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRInativo.setText("Inativo");
-        jRInativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRInativoActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Observação");
 
@@ -387,14 +362,8 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTObservacao)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jRAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRInativo)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel5)
+                                .addGap(0, 203, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,18 +403,12 @@ public class EditFornecedorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
+                    .addComponent(jRCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRAtivo)
-                        .addComponent(jRInativo))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFCnpj, jFCpf, jFTelefone, jFTelefone2, jTEmail, jTId, jTNome, jTObservacao});
@@ -626,14 +589,6 @@ if (jTNome.getText().isEmpty()) {
         }
     }//GEN-LAST:event_jBSalvarActionPerformed
 
-    private void jRAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRAtivoActionPerformed
-status = true;
-    }//GEN-LAST:event_jRAtivoActionPerformed
-
-    private void jRInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRInativoActionPerformed
-status = false;
-    }//GEN-LAST:event_jRInativoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -695,17 +650,14 @@ status = false;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRAtivo;
     private javax.swing.JRadioButton jRCnpj;
     private javax.swing.JRadioButton jRCpf;
-    private javax.swing.JRadioButton jRInativo;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTCidade;
     private javax.swing.JTextField jTComplemento;
@@ -722,8 +674,8 @@ public void refreshFornecedor() {
        
             Endereco end = new Endereco();
             fornecedor.setStatus(status);
-            jRAtivo.setSelected(status);
-            jRInativo.setSelected(status);
+//            jRAtivo.setSelected(status);
+//            jRInativo.setSelected(status);
             fornecedor.setIdFornecedor(Long.valueOf(jTId.getText()));
             fornecedor.setNome(jTNome.getText());
             if (jRCpf.isSelected()) {
@@ -747,12 +699,12 @@ public void refreshFornecedor() {
     }
 
     public void refreshCampos() {
-        fornecedor.setStatus(status);
-        if (fornecedor.isStatus()) {
-            jRAtivo.setSelected(true);
-        } else {
-            jRInativo.setSelected(true);
-        }
+       fornecedor.setStatus(true);
+//        if (fornecedor.isStatus()) {
+//            jRAtivo.setSelected(true);
+//        } else {
+//            jRInativo.setSelected(true);
+//        }
 
         jTId.setText("" + fornecedor.getIdFornecedor());
         jTNome.setText(fornecedor.getNome());

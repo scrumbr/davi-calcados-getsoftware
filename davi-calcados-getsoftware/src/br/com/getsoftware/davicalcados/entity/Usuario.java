@@ -16,6 +16,17 @@ public class Usuario {
     private String senha;
     private Integer nivel;
     private Boolean active;
+    private String cpfFuncionario;
+
+    public String getCpfFuncionario() {
+        return cpfFuncionario;
+    }
+
+    public void setCpfFuncionario(String cpfFuncionario) {
+        this.cpfFuncionario = cpfFuncionario;
+    }
+
+   
 
     public Long getIdUsuario() {
         return idUsuario;

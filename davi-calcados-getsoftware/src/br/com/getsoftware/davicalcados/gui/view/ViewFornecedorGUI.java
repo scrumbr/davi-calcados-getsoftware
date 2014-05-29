@@ -59,11 +59,6 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
         jLcpf = new javax.swing.JLabel();
         jLnome = new javax.swing.JLabel();
         jLid = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jRativo = new javax.swing.JRadioButton();
-        jRinativo = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTObservacao = new javax.swing.JTextArea();
@@ -201,26 +196,6 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
         jLid.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLid.setText("12321");
 
-        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel42.setText("Status");
-
-        jRativo.setBackground(new java.awt.Color(255, 255, 255));
-        jRativo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jRativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRativoActionPerformed(evt);
-            }
-        });
-
-        jRinativo.setBackground(new java.awt.Color(255, 255, 255));
-        jRinativo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel8.setText("Ativo");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel9.setText("Inativo");
-
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Observação");
 
@@ -251,17 +226,7 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel42)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRativo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRinativo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)))
+                        .addComponent(jLcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,18 +239,9 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLnome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLcpf))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRativo, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel42)
-                            .addComponent(jLabel8))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jRinativo))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLcpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
@@ -515,10 +471,6 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRativoActionPerformed
-       
-    }//GEN-LAST:event_jRativoActionPerformed
-
     private void jLeditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLeditarMouseClicked
         
         this.setEnabled(false);
@@ -568,7 +520,9 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
         int opt = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o registro ?", "Excluir",JOptionPane.YES_NO_OPTION);
         if(opt == JOptionPane.YES_OPTION){
             try {
-                FornecedorBO.delete(Integer.valueOf(""+fornecedor.getIdFornecedor()));
+               // FornecedorBO.delete(Integer.valueOf(""+fornecedor.getIdFornecedor()));
+                fornecedor.setStatus(false);
+                FornecedorBO.update(fornecedor);
                 listForn.setEnabled(true);
                 listForn.dadosTabela();
                 listForn.atualizaLinhaSelecionada();
@@ -578,6 +532,8 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro!", "Erro", 0);
                 this.dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(ViewFornecedorGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jLexcluirMouseClicked
@@ -641,10 +597,7 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLbairro;
     private javax.swing.JLabel jLcep;
     private javax.swing.JLabel jLcidade;
@@ -666,20 +619,18 @@ public class ViewFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRativo;
-    private javax.swing.JRadioButton jRinativo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTObservacao;
     // End of variables declaration//GEN-END:variables
 
 public void refreshCampos() {
-        if (fornecedor.isStatus()==true) {
-            jRativo.setSelected(true);
-            jRinativo.setEnabled(false);
-        } else {
-            jRinativo.setSelected(true);
-            jRativo.setEnabled(false);
-        }
+//        if (fornecedor.isStatus()==true) {
+//            jRativo.setSelected(true);
+//            jRinativo.setEnabled(false);
+//        } else {
+//            jRinativo.setSelected(true);
+//            jRativo.setEnabled(false);
+//        }
                 
         jLid.setText("" + fornecedor.getIdFornecedor());
         jLnome.setText(fornecedor.getNome());

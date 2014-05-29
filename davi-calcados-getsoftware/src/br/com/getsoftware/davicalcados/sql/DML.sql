@@ -32,8 +32,8 @@ constraint pk_contas_pagar primary key contas_pagar(id_contas_pagar)
 
 insert into contas_pagar(data_pagamento, valor, status, descricao) values('2014/10/10',120.00,false,"Testando");
 
-
-select * from contas_pagar;
+select * from contas_pagar where descricao like 'c%' and status = false;
+select * from contas_pagar where status = true order by data_pagamento;
 delete from contas_pagar;
 select * from saida;
 

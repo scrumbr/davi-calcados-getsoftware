@@ -12,6 +12,7 @@ import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadContasPagar;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadSaidaGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditContasPagar;
+import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformMoeda;
 import java.sql.SQLException;
@@ -52,6 +53,7 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -63,6 +65,11 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTpesquisa = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jRTodos = new javax.swing.JRadioButton();
+        jRApagar = new javax.swing.JRadioButton();
+        jRQuitados = new javax.swing.JRadioButton();
+        jBGerarRelatorio = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -170,10 +177,19 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Start-Menu-Search-icon.png"))); // NOI18N
         jLabel2.setText("Pesquisar");
+        jLabel2.setToolTipText("Digite a descrição da conta que deseja pesquisar");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jTpesquisa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTpesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTpesquisaActionPerformed(evt);
+            }
+        });
         jTpesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTpesquisaFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTpesquisaFocusLost(evt);
             }
@@ -190,6 +206,45 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Listar:");
+
+        buttonGroup1.add(jRTodos);
+        jRTodos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jRTodos.setSelected(true);
+        jRTodos.setText("Todos");
+        jRTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRTodosActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRApagar);
+        jRApagar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jRApagar.setText("A pagar");
+        jRApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRApagarActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRQuitados);
+        jRQuitados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jRQuitados.setText("Quitados");
+        jRQuitados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRQuitadosActionPerformed(evt);
+            }
+        });
+
+        jBGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
+        jBGerarRelatorio.setText("Gerar Relatorio");
+        jBGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGerarRelatorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -198,17 +253,34 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRTodos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRApagar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRQuitados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRTodos)
+                        .addComponent(jRApagar)
+                        .addComponent(jRQuitados)
+                        .addComponent(jBGerarRelatorio)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -221,7 +293,7 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -276,7 +348,7 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -292,7 +364,7 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jTpesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesquisaFocusLost
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jTpesquisaFocusLost
 
     private void jTpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyPressed
@@ -300,7 +372,17 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTpesquisaKeyPressed
 
     private void jTpesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyReleased
-        //filter();
+       if(jTpesquisa.getText().isEmpty()){
+           try {
+               dadosTabela();
+               jRTodos.setSelected(true);
+           } catch (SQLException ex) {
+           }
+       }else{
+        dadosPesquisaPorDescricao();
+        tabelaVazia();
+        atualizaLinhaSelecionada();
+       }      
     }//GEN-LAST:event_jTpesquisaKeyReleased
 
     private void jTpesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesquisaKeyTyped
@@ -373,6 +455,57 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
+    private void jRTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRTodosActionPerformed
+        try {
+            dadosTabela();
+            atualizaLinhaSelecionada();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar!", "Erro", 0);
+        }
+    }//GEN-LAST:event_jRTodosActionPerformed
+
+    private void jRApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRApagarActionPerformed
+        try {
+            dadosTabelaFalse();
+           atualizaLinhaSelecionada();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar!", "Erro", 0);
+        }
+    }//GEN-LAST:event_jRApagarActionPerformed
+
+    private void jRQuitadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRQuitadosActionPerformed
+        try {
+            dadosTabelaTrue();
+            atualizaLinhaSelecionada();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar!", "Erro", 0);
+        }
+    }//GEN-LAST:event_jRQuitadosActionPerformed
+
+    private void jTpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTpesquisaActionPerformed
+
+    private void jTpesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesquisaFocusGained
+       
+    }//GEN-LAST:event_jTpesquisaFocusGained
+
+    private void jBGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelatorioActionPerformed
+         String consulta = "select * from contas_pagar where descricao like";
+       if(jRTodos.isSelected()){
+           consulta += "'" +jTpesquisa.getText() + "%'";
+       }else if(jRApagar.isSelected()){
+           consulta +=  "'" +jTpesquisa.getText() + "%' and status = false";
+       }else if(jRQuitados.isSelected()){
+           consulta +=  "'" +jTpesquisa.getText() + "%' and status = true";
+       }      
+        try {
+            GenericReport c = new GenericReport(consulta,"ContasPagarReport.jasper");
+        } catch (FormatoSQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
+        }
+    }//GEN-LAST:event_jBGerarRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,16 +542,22 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBCadastrar;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBGerarRelatorio;
     private javax.swing.JButton jBQuitar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRApagar;
+    private javax.swing.JRadioButton jRQuitados;
+    private javax.swing.JRadioButton jRTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTpesquisa;
@@ -427,7 +566,27 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
     public void dadosTabela() throws SQLException {
 
         listContasPagar = ContasPagarBO.listAll();
-        tabelaVazia();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listContasPagar.size(); i++) {
+            
+            modelo.addRow(new Object[]{
+                listContasPagar.get(i).getIdContaPagar(),
+                listContasPagar.get(i).getDescricao(),
+                TransformDate.transformDate(listContasPagar.get(i).getDataPagamento()),
+                TransformDate.transformDate(listContasPagar.get(i).getDataQuitado()),
+                TransformMoeda.trasnformMoeda(""+listContasPagar.get(i).getValor()),
+                Boolean.TRUE.equals(listContasPagar.get(i).getStatus()) ? "QUITADA" : "NÂO QUITADA",});
+                
+        }
+                tabelaVazia();
+
+    }
+    
+    public void dadosTabelaTrue() throws SQLException {
+
+        listContasPagar = ContasPagarBO.listAllTrue();
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
@@ -440,9 +599,31 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
                 TransformDate.transformDate(listContasPagar.get(i).getDataPagamento()),
                 TransformDate.transformDate(listContasPagar.get(i).getDataQuitado()),
                 TransformMoeda.trasnformMoeda(""+listContasPagar.get(i).getValor()),
-                listContasPagar.get(i).getStatus(),});
-                
+                Boolean.TRUE.equals(listContasPagar.get(i).getStatus()) ? "QUITADA" : "NÂO QUITADA",});
         }
+                tabelaVazia();
+
+    }
+    
+    public void dadosTabelaFalse() throws SQLException {
+
+        listContasPagar = ContasPagarBO.listAllFalse();
+        
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listContasPagar.size(); i++) {
+            
+            modelo.addRow(new Object[]{
+                listContasPagar.get(i).getIdContaPagar(),
+                listContasPagar.get(i).getDescricao(),
+                TransformDate.transformDate(listContasPagar.get(i).getDataPagamento()),
+                TransformDate.transformDate(listContasPagar.get(i).getDataQuitado()),
+                TransformMoeda.trasnformMoeda(""+listContasPagar.get(i).getValor()),
+                Boolean.TRUE.equals(listContasPagar.get(i).getStatus()) ? "QUITADA" : "NÂO QUITADA",});
+         }
+        tabelaVazia();
     }
 
     public void tabelaVazia() {
@@ -452,10 +633,31 @@ public class ListContasPagarGUI extends javax.swing.JFrame {
             jBEditar.setEnabled(false);
             jBExcluir.setEnabled(false);
             jBQuitar.setEnabled(false);
+            jBGerarRelatorio.setEnabled(false);
         } else {
             jBEditar.setEnabled(true);
             jBExcluir.setEnabled(true);
             jBQuitar.setEnabled(true);
+            jBGerarRelatorio.setEnabled(true);
+        }
+    }
+    
+    public void dadosPesquisaPorDescricao() {
+       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < listContasPagar.size(); i++) {
+            if (listContasPagar.get(i).getDescricao().toLowerCase().startsWith(jTpesquisa.getText())
+                    || listContasPagar.get(i).getDescricao().toUpperCase().startsWith(jTpesquisa.getText())) {
+                modelo.addRow(new Object[]{
+                listContasPagar.get(i).getIdContaPagar(),
+                listContasPagar.get(i).getDescricao(),
+                TransformDate.transformDate(listContasPagar.get(i).getDataPagamento()),
+                TransformDate.transformDate(listContasPagar.get(i).getDataQuitado()),
+                TransformMoeda.trasnformMoeda(""+listContasPagar.get(i).getValor()),
+                Boolean.TRUE.equals(listContasPagar.get(i).getStatus()) ? "QUITADA" : "NÂO QUITADA",});
+            }
+
         }
     }
 }

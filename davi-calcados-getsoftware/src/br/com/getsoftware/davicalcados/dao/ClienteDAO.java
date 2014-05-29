@@ -45,7 +45,7 @@ import java.util.ArrayList;
         cliente.setNome(res.getString("nome"));
         cliente.setProfissao(res.getString("profissao"));
         cliente.setSexo(res.getString("sexo"));
-        cliente.setDataNascimento(TransformDate.transformDate(res.getString("data_nascimento")));
+        cliente.setDataNascimento((res.getString("data_nascimento")));
         cliente.setEstadoCivil(res.getString("estado_civil"));
         cliente.setCpf(TransformCpf.transformCpf(res.getString("cpf")));
         cliente.setRg(res.getString("rg"));
@@ -148,9 +148,9 @@ import java.util.ArrayList;
         stmt.close();
     }
 
-     @Override
+    @Override
     public ArrayList<Cliente> listAll() throws SQLException {
-        String sql = "select * from cliente";
+        String sql = "select * from cliente where ativo = true";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -205,5 +205,10 @@ import java.util.ArrayList;
         stmt.execute();
         stmt.close();
     }  
+    
+    
+    
+    
+    
 }
 
