@@ -56,6 +56,31 @@ public class ContasPagarBO {
         return minhaLista;
     }
     
+     public static ArrayList<ContasPagar> listAllTrue() throws SQLException {
+        ContasPagarDAO dao = new ContasPagarDAO();
+        ArrayList<ContasPagar> minhaLista = null;
+        try {
+            minhaLista = dao.listAllTrue();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar os registros\n" + e, "erro", 0);
+        }
+
+        return minhaLista;
+    }
+      public static ArrayList<ContasPagar> listAllFalse() throws SQLException {
+        ContasPagarDAO dao = new ContasPagarDAO();
+        ArrayList<ContasPagar> minhaLista = null;
+        try {
+            minhaLista = dao.listAllFalse();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar os registros\n" + e, "erro", 0);
+        }
+
+        return minhaLista;
+    }
+    
+    
+    
     public static void delete(int id) throws SQLException {
         ContasPagarDAO dao = new ContasPagarDAO();
         try {

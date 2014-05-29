@@ -28,7 +28,7 @@ public class Cliente {
     private String dataUltimCompra;
     private String preferencia;
     private Long numeroBoleto;
-    private Boolean status;
+    private Boolean status = true;
     private Double renda;
     private Double credito;
 

@@ -97,9 +97,6 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jFTelefone = new javax.swing.JFormattedTextField();
         jFTelefone2 = new javax.swing.JFormattedTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jRAtivo = new javax.swing.JRadioButton();
-        jRInativo = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jTObservacao = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -436,18 +433,6 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Status");
-
-        buttonGroup1.add(jRAtivo);
-        jRAtivo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRAtivo.setSelected(true);
-        jRAtivo.setText("Ativo");
-
-        buttonGroup1.add(jRInativo);
-        jRInativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRInativo.setText("Inativo");
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Observação");
 
@@ -495,13 +480,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTObservacao)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jRAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRInativo)))
+                                .addComponent(jLabel5)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,17 +519,12 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRAtivo)
-                        .addComponent(jRInativo))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFCnpj, jFCpf, jFTelefone, jFTelefone2, jTEmail, jTNome, jTObservacao, jTextField1});
@@ -790,7 +764,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
             fornecedor.setTelefone(TransformTelefone.transformTelefone(jFTelefone.getText()));
             fornecedor.setTelefone2(TransformTelefone.transformTelefone(jFTelefone2.getText()));
             fornecedor.setEmail(jTEmail.getText());
-            fornecedor.setStatus(status());
+            //fornecedor.setStatus(status());
             fornecedor.setObservacao(jTObservacao.getText());
 
             end.setRua(jTRua.getText());
@@ -1002,7 +976,6 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -1010,10 +983,8 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRAtivo;
     private javax.swing.JRadioButton jRCnpj;
     private javax.swing.JRadioButton jRCpf;
-    private javax.swing.JRadioButton jRInativo;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTCidade;
     private javax.swing.JTextField jTComplemento;
@@ -1052,13 +1023,13 @@ public void limpaCampos(){
 
 
 
- public boolean status() {
-        if (jRAtivo.isSelected()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+// public boolean status() {
+//        if (jRAtivo.isSelected()) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
  public boolean verificarCampos() {
         if(!jTNome.getText().isEmpty() || !jTEmail.getText().isEmpty() || !jFCpf.getText().equals("   .   .   -  ")

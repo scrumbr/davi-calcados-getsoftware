@@ -6,8 +6,10 @@
 package br.com.getsoftware.davicalcados.gui.lista;
 
 import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
+import br.com.getsoftware.davicalcados.bo.SaidaBO;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
+import br.com.getsoftware.davicalcados.entity.Saida;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
@@ -16,6 +18,7 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
 import br.com.getsoftware.davicalcados.relatorio.GenericReport;
+import br.com.getsoftware.davicalcados.util.MyDate;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -37,7 +40,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     private ArrayList<Funcionario> listFuncionarios;
     private int linhaSelecionada = 0;
     private TelaMenuGUI telaMenu;
-    
+    private Funcionario funcionario;
     public ListFuncionariosGUI() throws SQLException {
         initComponents();
         dadosTabela();
@@ -73,7 +76,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jRid = new javax.swing.JRadioButton();
         jRnome = new javax.swing.JRadioButton();
         jRadioButton1 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jBGerarRelatorio = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -83,6 +87,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jBvisualizar = new javax.swing.JButton();
         jBcadUser = new javax.swing.JButton();
         jBFuncionario = new javax.swing.JButton();
+        jBSalario = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -156,13 +161,16 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
-        jButton1.setText("Gerar Relatorio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
+        jBGerarRelatorio.setText("Gerar Relatorio");
+        jBGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBGerarRelatorioActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Filtrar por:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,8 +180,10 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTpesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRnome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRid)
@@ -181,8 +191,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addComponent(jRcpf)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
@@ -196,7 +206,8 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                     .addComponent(jRid)
                     .addComponent(jRnome)
                     .addComponent(jRadioButton1)
-                    .addComponent(jButton1))
+                    .addComponent(jBGerarRelatorio)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -304,13 +315,23 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
+        jBSalario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/payment-icon.png"))); // NOI18N
+        jBSalario.setText("Pagar Salario");
+        jBSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addComponent(jBFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBcadUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -328,18 +349,24 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBcancelar)
+                            .addComponent(jBeditar)
+                            .addComponent(jBexcluir)
+                            .addComponent(jBvisualizar)
+                            .addComponent(jBcadUser)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBcancelar)
-                        .addComponent(jBeditar)
-                        .addComponent(jBexcluir)
-                        .addComponent(jBvisualizar)
-                        .addComponent(jBcadUser))
-                    .addComponent(jBFuncionario))
+                        .addComponent(jBSalario)
+                        .addComponent(jBFuncionario)))
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBSalario, jBcadUser});
 
         jPanel3.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -568,7 +595,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         filter();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelatorioActionPerformed
         String consulta = "";
        if(jRnome.isSelected()){
            consulta = "select * from funcionario where nome like";
@@ -584,7 +611,27 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBGerarRelatorioActionPerformed
+
+    private void jBSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalarioActionPerformed
+        int opc = JOptionPane.showConfirmDialog(null, "Deseja confirmar o pagamento de salário do funcionario: " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Pagar Salario", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+             try {
+                 funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                 gerarSaida();
+                 JOptionPane.showMessageDialog(null, "Funcionário pago com sucesso!", "Sucesso", 1);
+                 GenericReport c = new GenericReport("select * from funcionario where id_funcionario = " + funcionario.getIdFuncionario(),"ReciboFuncionarioReport.jasper");
+                  
+             } catch (FormatoSQLException ex) {
+                 Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (SQLException ex) {
+                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+        }
+    }//GEN-LAST:event_jBSalarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -628,14 +675,16 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBFuncionario;
+    private javax.swing.JButton jBGerarRelatorio;
+    private javax.swing.JButton jBSalario;
     private javax.swing.JButton jBcadUser;
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBexcluir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -669,11 +718,15 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             jBeditar.setEnabled(false);
             jBexcluir.setEnabled(false);
             jBvisualizar.setEnabled(false);
+            jBSalario.setEnabled(false);
+            jBGerarRelatorio.setEnabled(false);
         } else {
             jBcadUser.setEnabled(true);
             jBeditar.setEnabled(true);
             jBexcluir.setEnabled(true);
             jBvisualizar.setEnabled(true);
+            jBSalario.setEnabled(true);
+            jBGerarRelatorio.setEnabled(true);
         }
     }
     public void dadosTabela() throws SQLException {
@@ -718,4 +771,13 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
         }
     }
+     
+     public void gerarSaida() throws Exception{
+         Saida saida = new Saida();
+            saida.setDataSaida(MyDate.dataFormatada());
+            saida.setDescricao("Salario do funcionario: " + funcionario.getNome());
+            saida.setValorSaida(funcionario.getSalario());
+            saida.setIdUsuario((long) 1);
+            SaidaBO.save(saida);
+     }
 }

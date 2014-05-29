@@ -119,6 +119,54 @@ public class ContasPagarDAO implements InterfaceCRUD<ContasPagar>{
         stmt.close();
     }
 
-  
+   public ArrayList<ContasPagar> listAllTrue() throws SQLException {
+        String sql = "select * from contas_pagar where status = true order by data_pagamento;";
+
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        ResultSet res = stmt.executeQuery();
+
+        ArrayList<ContasPagar> minhaLista = new ArrayList<>();
+        while (res.next()) {
+            ContasPagar contasPagar = new ContasPagar();
+
+            contasPagar.setIdContaPagar(Long.valueOf(res.getString("id_contas_pagar")));
+            contasPagar.setDescricao((res.getString("descricao")));
+            contasPagar.setValor(Double.parseDouble(res.getString("valor")));
+            contasPagar.setDataPagamento(res.getString("data_pagamento"));
+            contasPagar.setDataQuitado(res.getString("data_quitado"));
+            contasPagar.setStatus((res.getBoolean("status")));
+            minhaLista.add(contasPagar);
+        }
+        res.close();
+        stmt.close();
+        return minhaLista;
+    }
     
+    public ArrayList<ContasPagar> listAllFalse() throws SQLException {
+        String sql = "select * from contas_pagar where status = false order by data_pagamento;";
+
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        ResultSet res = stmt.executeQuery();
+
+        ArrayList<ContasPagar> minhaLista = new ArrayList<>();
+        while (res.next()) {
+            ContasPagar contasPagar = new ContasPagar();
+
+            contasPagar.setIdContaPagar(Long.valueOf(res.getString("id_contas_pagar")));
+            contasPagar.setDescricao((res.getString("descricao")));
+            contasPagar.setValor(Double.parseDouble(res.getString("valor")));
+            contasPagar.setDataPagamento(res.getString("data_pagamento"));
+            contasPagar.setDataQuitado(res.getString("data_quitado"));
+            contasPagar.setStatus((res.getBoolean("status")));
+            minhaLista.add(contasPagar);
+        }
+        res.close();
+        stmt.close();
+        return minhaLista;
+    }
+    
+   
+   
 }

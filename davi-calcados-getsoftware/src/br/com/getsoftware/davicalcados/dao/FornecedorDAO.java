@@ -120,7 +120,7 @@ public class FornecedorDAO implements InterfaceCRUD<Fornecedor> {
 
     @Override
     public ArrayList<Fornecedor> listAll() throws SQLException {
-        String sql = "select * from fornecedor";
+        String sql = "select * from fornecedor where ativo = true";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 

@@ -78,6 +78,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
         jRnome3 = new javax.swing.JRadioButton();
         jBGerarRelatorio = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -187,6 +188,9 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Filtrar por:");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -195,14 +199,16 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTpesquisa3, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jTpesquisa3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRnome3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(91, 91, 91)
                 .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -216,7 +222,8 @@ public class ListProdutosGUI extends javax.swing.JFrame {
                     .addComponent(jRFornecedor)
                     .addComponent(jRnome3)
                     .addComponent(jBGerarRelatorio)
-                    .addComponent(jRadioButton1))
+                    .addComponent(jRadioButton1)
+                    .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -360,16 +367,17 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBescolher)
-                    .addComponent(jBCadProduto1)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBCancelar)
                         .addComponent(jBEditar)
                         .addComponent(jBVisualiar)
                         .addComponent(jBExcluir)
                         .addComponent(jBAtualizarEstoque)
-                        .addComponent(jBCadProduto)))
+                        .addComponent(jBCadProduto))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBescolher)
+                        .addComponent(jBCadProduto1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -613,6 +621,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBVisualiar;
     private javax.swing.JButton jBescolher;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
@@ -644,7 +653,9 @@ public void tabelaVazia(){
             jBExcluir.setEnabled(false);
             jBVisualiar.setEnabled(false);
             jBAtualizarEstoque.setEnabled(false);
+            jBGerarRelatorio.setEnabled(false);
     } else {
+            jBGerarRelatorio.setEnabled(true);
             jBescolher.setEnabled(true);
             jBEditar.setEnabled(true);
             jBExcluir.setEnabled(true);

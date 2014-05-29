@@ -82,6 +82,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
         jRcpf = new javax.swing.JRadioButton();
         jBGerarRelatorio = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -197,6 +198,9 @@ public class ListClientesGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Filtrar por:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -205,8 +209,10 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTpesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRnome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRid)
@@ -214,7 +220,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
                 .addComponent(jRcpf)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
@@ -229,7 +235,8 @@ public class ListClientesGUI extends javax.swing.JFrame {
                     .addComponent(jRid)
                     .addComponent(jRnome)
                     .addComponent(jBGerarRelatorio)
-                    .addComponent(jRadioButton1))
+                    .addComponent(jRadioButton1)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -464,13 +471,18 @@ public class ListClientesGUI extends javax.swing.JFrame {
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o cliente " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
-                ClienteBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                //ClienteBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                 Cliente cliente = ClienteBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                 cliente.setStatus(false);
+                 ClienteBO.update(cliente);
                 dadosTabela();
                 atualizaLinhaSelecionada();
                 tabelaVazia();
                 JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o cliente", "Erro", 0);
+            } catch (Exception ex) {
+                Logger.getLogger(ListClientesGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
       
@@ -556,7 +568,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
             consulta = "select * from cliente where telefone like";
        }        
         try {
-            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%'","ClienteTesteReport.jasper");
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%' and ativo = true;","ClienteTesteReport.jasper");
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }
@@ -620,6 +632,7 @@ filter();
     private javax.swing.JButton jBvisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -653,10 +666,12 @@ public void tabelaVazia(){
              jBeditar.setEnabled(false);
             jBexcluir.setEnabled(false);
             jBvisualizar.setEnabled(false);
+            jBGerarRelatorio.setEnabled(false);
         }else{
             jBeditar.setEnabled(true);
             jBexcluir.setEnabled(true);
-            jBvisualizar.setEnabled(true);            
+            jBvisualizar.setEnabled(true); 
+            jBGerarRelatorio.setEnabled(true);
         }
     }
  public void dadosTabela() throws SQLException {

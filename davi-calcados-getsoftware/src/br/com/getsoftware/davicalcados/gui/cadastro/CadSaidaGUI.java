@@ -53,6 +53,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         public CadSaidaGUI(CaixaGUI caixa) throws SQLException, FormatoSQLException {
         this();
         jFdata.setText(MyDate.dataFormatada());
+        jButton1.setVisible(false);
         jTid.setText("" + LastID.atualizaId("id_saida", "saida"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
@@ -75,8 +76,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             jCusuarios.addItem(usuariosSuport.get(i).getUserName());
             idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
         }
-            refreshCampos();
-            
+            refreshCampos();            
         }
         
         

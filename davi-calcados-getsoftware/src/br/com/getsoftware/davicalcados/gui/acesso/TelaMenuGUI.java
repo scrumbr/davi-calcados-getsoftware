@@ -20,6 +20,7 @@ import br.com.getsoftware.davicalcados.gui.lista.ListContasReceberGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListProdutosGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListUsuariosGUI;
 import br.com.getsoftware.davicalcados.relatorio.EntradaRelatorioGUI;
 import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import br.com.getsoftware.davicalcados.relatorio.MovimentacaoCaixaGUI;
@@ -96,6 +97,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jSeparator31 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jSeparator19 = new javax.swing.JPopupMenu.Separator();
@@ -321,6 +324,16 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem12);
+        jMenu5.add(jSeparator31);
+
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/usu-16.png"))); // NOI18N
+        jMenuItem23.setText("Lista de Usuarios");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem23);
 
         jMenuBar2.add(jMenu5);
 
@@ -897,6 +910,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
        new MovimentacaoCaixaGUI(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        this.setEnabled(false);
+        try {
+            new ListUsuariosGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -967,6 +989,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
@@ -1007,6 +1030,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator29;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator30;
+    private javax.swing.JPopupMenu.Separator jSeparator31;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;

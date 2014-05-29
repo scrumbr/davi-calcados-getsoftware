@@ -16,7 +16,7 @@ public class Fornecedor {
     private String telefone2;
     private String email;
     private String observacao;
-    private boolean status;
+    private boolean status = true;
 
     public String getObservacao() {
         return observacao;

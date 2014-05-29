@@ -20,4 +20,10 @@ public class DataAtual {
         String minhaData = formatador.format(data);
         return minhaData;
     }
+    
+     public static String dataAtual(Date data){
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        String minhaData = formatador.format(data);
+        return minhaData;
+    }
 }

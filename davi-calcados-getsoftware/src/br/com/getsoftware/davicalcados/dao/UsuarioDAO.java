@@ -5,6 +5,7 @@
  */
 package br.com.getsoftware.davicalcados.dao;
 
+import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.connection.Conexao;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
@@ -83,7 +84,7 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
 
     @Override
     public ArrayList<Usuario> listAll() throws SQLException {
-        String sql = "select * from usuario";
+        String sql = "select u.id_usuario, u.username, u.senha, u.nivel, u.ativo, f.cpf from usuario as u, funcionario as f where id_usuario = id_funcionario";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -93,11 +94,12 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
         while (res.next()) {
             Usuario usuario = new Usuario();
 
-            usuario.setActive(res.getBoolean("ativo"));
-            usuario.setIdUsuario(res.getLong("id_usuario"));
-            usuario.setNivel(res.getInt("nivel"));
-            usuario.setSenha(res.getString("senha"));
-            usuario.setUserName(res.getString("username"));
+            usuario.setActive(res.getBoolean("u.ativo"));
+            usuario.setIdUsuario(res.getLong("u.id_usuario"));
+            usuario.setNivel(res.getInt("u.nivel"));
+            usuario.setSenha(res.getString("u.senha"));
+            usuario.setUserName(res.getString("u.username"));
+            usuario.setCpfFuncionario(res.getString("f.cpf"));
 
             minhaLista.add(usuario);
         }
