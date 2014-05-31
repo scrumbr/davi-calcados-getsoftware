@@ -28,7 +28,7 @@ public class GenericReport {
             GenericSQLBO.genericQuery(sql);
             JRResultSetDataSource jrRS = new JRResultSetDataSource( GenericSQLBO.genericResultSet());
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "src/br/com/getsoftware/davicalcados/relatorio/"
+                    "src/br/com/getsoftware/davicalcados/relatorio/arquivosjasper/"
                             + jasper, new HashMap(), jrRS);
             
              JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);

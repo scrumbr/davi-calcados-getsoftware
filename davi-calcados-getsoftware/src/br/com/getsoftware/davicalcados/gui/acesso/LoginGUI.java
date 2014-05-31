@@ -242,6 +242,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     jFCpf.requestFocus();
                }else{
                     Usuario usuario = new Usuario();
+                    usuario.setIdUsuario(GenericSQLBO.genericResultSet().getLong("u.id_usuario"));
                     usuario.setUserName(GenericSQLBO.genericResultSet().getString("u.username"));
                     usuario.setNivel(GenericSQLBO.genericResultSet().getInt("u.nivel"));
                     usuario.setSenha(GenericSQLBO.genericResultSet().getString("u.senha"));

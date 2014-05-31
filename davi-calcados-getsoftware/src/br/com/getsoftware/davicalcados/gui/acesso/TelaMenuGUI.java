@@ -155,6 +155,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jSeparator32 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMSair = new javax.swing.JMenu();
 
         jMenuItem3.setText("jMenuItem3");
@@ -174,7 +177,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/images/davi calçados.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/images/davi calçados 2.png"))); // NOI18N
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -581,7 +584,22 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenuBar2.add(jMenu8);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/sobre-48.png"))); // NOI18N
-        jMenu4.setText("SOBRE");
+        jMenu4.setText("AJUDA");
+
+        jMenuItem31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/ajuda-16.png"))); // NOI18N
+        jMenuItem31.setText("Ajuda");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem31);
+        jMenu4.add(jSeparator32);
+
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Folders-OS-Info-Metro-icon.png"))); // NOI18N
+        jMenuItem23.setText("Sobre");
+        jMenu4.add(jMenuItem23);
+
         jMenuBar2.add(jMenu4);
 
         jMSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Action-exit-icon.png"))); // NOI18N
@@ -929,6 +947,10 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMListaDeUsuariosActionPerformed
 
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1000,6 +1022,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
@@ -1008,6 +1031,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1041,6 +1065,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator30;
     private javax.swing.JPopupMenu.Separator jSeparator31;
+    private javax.swing.JPopupMenu.Separator jSeparator32;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;

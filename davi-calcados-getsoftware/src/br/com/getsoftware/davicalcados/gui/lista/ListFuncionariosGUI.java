@@ -18,6 +18,7 @@ import br.com.getsoftware.davicalcados.gui.acesso.ValidaAdminGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
+import br.com.getsoftware.davicalcados.gui.edit.UpdateSenhaGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
 import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import br.com.getsoftware.davicalcados.util.MyDate;
@@ -92,6 +93,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         jBcadUser = new javax.swing.JButton();
         jBFuncionario = new javax.swing.JButton();
         jBSalario = new javax.swing.JButton();
+        jBAlterarSenha = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -184,7 +186,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTpesquisa)
+                .addComponent(jTpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -195,9 +197,9 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addComponent(jRcpf)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
-                .addGap(41, 41, 41)
+                .addGap(59, 59, 59)
                 .addComponent(jBGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,17 +329,27 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             }
         });
 
+        jBAlterarSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/updateKey-24.png"))); // NOI18N
+        jBAlterarSenha.setText("Alterar Senha");
+        jBAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAlterarSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBFuncionario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBcadUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBAlterarSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBvisualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -356,17 +368,19 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBcancelar)
-                            .addComponent(jBeditar)
-                            .addComponent(jBexcluir)
-                            .addComponent(jBvisualizar)
-                            .addComponent(jBcadUser)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBSalario)
-                        .addComponent(jBFuncionario)))
+                        .addComponent(jBFuncionario)
+                        .addComponent(jBcadUser))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBcancelar)
+                                .addComponent(jBeditar)
+                                .addComponent(jBexcluir)
+                                .addComponent(jBvisualizar))
+                            .addComponent(jBAlterarSenha, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
 
@@ -376,16 +390,14 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Lista de funcionários");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(332, 332, 332)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,19 +424,21 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(1046, 543));
+        setSize(new java.awt.Dimension(1175, 563));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBcadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadUserActionPerformed
+
         try {
             Usuario user = UsuarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+             Funcionario fun = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
             if (user == null) {
                 Funcionario funcionario;
                 try {
@@ -434,7 +448,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "funcionário já possui usuário", "Atenção", 2);
+                  JOptionPane.showMessageDialog(null, "Funcionário " + fun.getNome() +" já possui usuário", "Atenção", 2);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível verificar se o funcionário já possui um login", "Erro", 0);
@@ -630,6 +644,26 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
       validarEfetuarPagamento(UsuarioLogado.usuarioLogado);
     }//GEN-LAST:event_jBSalarioActionPerformed
 
+    private void jBAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarSenhaActionPerformed
+        try {
+            Usuario user = UsuarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            Funcionario fun = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            if (user == null) {
+                JOptionPane.showMessageDialog(null, "Funcionário " + fun.getNome() +" não possui usuário", "Atenção", 2);
+            } else {
+                if(user.getIdUsuario() == UsuarioLogado.usuarioLogado.getIdUsuario() || UsuarioLogado.usuarioLogado.getNivel() == 1 ){
+                      this.setEnabled(false);
+                    new UpdateSenhaGUI(this,user).setVisible(true);
+                }else{                   
+                    JOptionPane.showMessageDialog(null, "Funcionario sem permissão para alterar senha!!", "Atenção", 2);
+                }
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível verificar se o funcionário já possui um login", "Erro", 0);
+        }
+    }//GEN-LAST:event_jBAlterarSenhaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -671,6 +705,7 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBAlterarSenha;
     private javax.swing.JButton jBFuncionario;
     private javax.swing.JButton jBGerarRelatorio;
     private javax.swing.JButton jBSalario;

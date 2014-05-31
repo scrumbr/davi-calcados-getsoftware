@@ -119,4 +119,13 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
         stmt.execute();
         stmt.close();
     }
+    
+//    public Usuario recuperaUsuario(){
+//        
+//        
+//        return usuario;
+//    }
+//    
+    
+    
 }
