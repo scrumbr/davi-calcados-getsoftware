@@ -21,8 +21,16 @@ public class Produto {
     private Fornecedor fornecedor;
     private Integer quantidadeMinima;
     private Double qtdAumento;
-    
-    
+    private Boolean status = true;
+
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+      
     public Double getQtdAumento() {
         return qtdAumento;
     }

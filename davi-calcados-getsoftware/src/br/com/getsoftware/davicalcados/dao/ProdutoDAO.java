@@ -44,6 +44,7 @@ public class ProdutoDAO   {
             produto.setQuantidadeMinima(res.getInt("quantidade_minima"));
             produto.setValorUnitario(res.getDouble("valor_unitario"));
             produto.setValorVenda(res.getDouble("valor_venda"));
+            produto.setStatus(res.getBoolean("ativo"));
             produto.setNome(res.getString("nome"));
             produto.setQtdAumento(res.getDouble("valor_aumento"));
         }
@@ -56,8 +57,8 @@ public class ProdutoDAO   {
     public void save(Produto produto) throws SQLException {
         //id_produto, id_usuario ,id_fornecedor,nome, descricao, quantidade, quantidade_minima, valor_unitario ,valor_venda 
 
-        String sql = "insert into produto(id_produto, nome, descricao, quantidade, quantidade_minima, valor_unitario, valor_venda, id_fornecedor,valor_aumento) "
-                + " values ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into produto(id_produto, nome, descricao, quantidade, quantidade_minima, valor_unitario, valor_venda, id_fornecedor,valor_aumento, ativo) "
+                + " values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -70,6 +71,7 @@ public class ProdutoDAO   {
         stmt.setDouble(7, produto.getValorVenda());
         stmt.setDouble(8, produto.getFornecedor().getIdFornecedor());
         stmt.setDouble(9, produto.getQtdAumento());
+        stmt.setBoolean(10, produto.isStatus());
 
         stmt.execute();
         stmt.close();
@@ -79,7 +81,7 @@ public class ProdutoDAO   {
     public void update(Produto produto) throws SQLException {
         //id_produto, id_usuario ,id_fornecedor,nome, descricao, quantidade, quantidade_minima, valor_unitario ,valor_venda 
         String sql = "update produto set id_fornecedor=?, nome=?, descricao=?, quantidade=?, quantidade_minima=?, valor_unitario=?, valor_venda=?, valor_aumento=?"
-                + "  where id_produto=?";
+                + ", ativo=?  where id_produto=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -91,7 +93,8 @@ public class ProdutoDAO   {
         stmt.setDouble(6, produto.getValorUnitario());
         stmt.setDouble(7, produto.getValorVenda());
         stmt.setDouble(8,produto.getQtdAumento());
-        stmt.setString(9, produto.getIdProduto());
+        stmt.setBoolean(9, produto.isStatus());
+        stmt.setString(10, produto.getIdProduto());
 
         stmt.execute();
         stmt.close();
@@ -99,7 +102,7 @@ public class ProdutoDAO   {
 
 //    @Override
     public ArrayList<Produto> listAll() throws SQLException {
-        String sql = "select * from produto";
+        String sql = "select * from produto where ativo = true";
               
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -118,6 +121,8 @@ public class ProdutoDAO   {
             produto.setValorVenda(res.getDouble("valor_venda"));
             produto.setNome(res.getString("nome"));
             produto.setQtdAumento(res.getDouble("valor_aumento"));
+            produto.setStatus(res.getBoolean("ativo"));
+
             
             minhaLista.add(produto);
         }

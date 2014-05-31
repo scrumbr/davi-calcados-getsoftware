@@ -388,13 +388,16 @@ public class ViewProdutoGUI extends javax.swing.JFrame {
         int opt = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o registro ?", "Excluir",JOptionPane.YES_NO_OPTION);
         if(opt == JOptionPane.YES_OPTION){
             try {
-                ProdutoBO.delete(produto.getIdProduto());
+              //  ProdutoBO.delete(produto.getIdProduto());
+                produto.setStatus(false);
+                ProdutoBO.update(produto);
                 listPro.setEnabled(true);
                 listPro.dadosTabela();
                 listPro.atualizaLinhaSelecionada();
                 listPro.tabelaVazia();
-                this.dispose();
                 JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!", "Sucesso", 1);
+                       this.dispose();
+
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro!", "Erro", 0);
                 this.dispose();

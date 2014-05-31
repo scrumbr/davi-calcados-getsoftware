@@ -11,7 +11,6 @@ import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformCpf;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import br.com.getsoftware.davicalcados.util.TransformTelefone;
-import br.com.getsoftware.davicalcados.util.TransformMoeda;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;

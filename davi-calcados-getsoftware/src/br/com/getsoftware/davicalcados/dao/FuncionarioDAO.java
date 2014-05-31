@@ -48,14 +48,14 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         Endereco end = new Endereco();
         funcionario.setAtivo(res.getBoolean("ativo"));
         funcionario.setSexo(res.getString("sexo"));
-        funcionario.setContrato(TransformDate.transformDate(res.getString("contrato")));
+        funcionario.setContrato((res.getString("contrato")));
         funcionario.setCpf(TransformCpf.transformCpf(res.getString("cpf")));
-        funcionario.setDataNascimento(TransformDate.transformDate(res.getString("data_nascimento")));
+        funcionario.setDataNascimento((res.getString("data_nascimento")));
         funcionario.setEmail(res.getString("email"));
         funcionario.setIdFuncionario(res.getLong("id_funcionario"));
         funcionario.setNome(res.getString("nome"));
         if(res.getString("recisao") != null){
-        funcionario.setRecisao(TransformDate.transformDate(res.getString("recisao")));
+        funcionario.setRecisao((res.getString("recisao")));
         }
         funcionario.setRg(res.getString("rg"));
         funcionario.setSalario(res.getDouble("salario"));
@@ -143,7 +143,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
 
     @Override
     public ArrayList<Funcionario> listAll() throws SQLException {
-        String sql = "select * from funcionario";
+        String sql = "select * from funcionario where ativo = true";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 

@@ -71,14 +71,11 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jFtel1 = new javax.swing.JFormattedTextField();
         jFtel2 = new javax.swing.JFormattedTextField();
         jFcpf = new javax.swing.JFormattedTextField();
         jFcontrato = new javax.swing.JFormattedTextField();
         jFrecisao = new javax.swing.JFormattedTextField();
-        jRativo = new javax.swing.JRadioButton();
-        jRinativo = new javax.swing.JRadioButton();
         jLabel19 = new javax.swing.JLabel();
         jTidade = new javax.swing.JTextField();
         jFdataNascimento = new javax.swing.JFormattedTextField();
@@ -195,9 +192,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Contrato");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel12.setText("Status");
-
         jFtel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFtel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -272,25 +266,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jFrecisao.setEnabled(false);
         jFrecisao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        buttonGroup1.add(jRativo);
-        jRativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRativo.setSelected(true);
-        jRativo.setText("Ativo");
-        jRativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRativoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRinativo);
-        jRinativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRinativo.setText("Inativo");
-        jRinativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRinativoActionPerformed(evt);
-            }
-        });
-
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Idade");
 
@@ -346,7 +321,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
 
         buttonGroup2.add(jRmasc);
         jRmasc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRmasc.setText("M");
+        jRmasc.setText("Masculino");
         jRmasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRmascActionPerformed(evt);
@@ -355,7 +330,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
 
         buttonGroup2.add(jRfem);
         jRfem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRfem.setText("F");
+        jRfem.setText("Feminino");
         jRfem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRfemActionPerformed(evt);
@@ -377,7 +352,9 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                             .addComponent(jTidade))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(60, 60, 60))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,26 +362,20 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel10))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRativo)
-                                            .addComponent(jLabel12))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRinativo))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel22)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(jRmasc)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jRfem)))))))
-                        .addGap(8, 8, 8))
+                                                .addComponent(jRfem)
+                                                .addGap(34, 34, 34))))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -426,7 +397,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel8))
-                                .addGap(0, 297, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
@@ -435,10 +406,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFdataNascimento, jTid});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFcontrato, jTidade});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRativo, jRmasc});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRfem, jRinativo});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,41 +441,40 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRmasc)
-                        .addComponent(jRfem))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFcontrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRativo)
-                                .addComponent(jRinativo))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jFrecisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 11, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFcontrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFrecisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRmasc)
+                            .addComponent(jRfem))))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFcontrato, jFcpf, jFdataNascimento, jFrecisao, jFtel1, jFtel2, jTemail, jTid, jTidade, jTnome, jTrg, jTsalario});
@@ -639,7 +605,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
+                            .addComponent(jFcep, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTrua, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -720,7 +686,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(464, Short.MAX_VALUE)
+                .addContainerGap(476, Short.MAX_VALUE)
                 .addComponent(jBsalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jBcancel)
@@ -779,14 +745,14 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -872,10 +838,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         }else if (jFcontrato.getText().equals("  /  /    ")) {
              JOptionPane.showMessageDialog(null, "Campo 'CONTRATO' está vazio!", "Atenção", 2);
             jFcontrato.requestFocus();
-        } else if (jFrecisao.getText().equals("  /  /    ") && jRinativo.isSelected()) {
-             JOptionPane.showMessageDialog(null, "Campo 'RECISÃO' está vazio!", "Atenção", 2);
-            jFrecisao.requestFocus();
-        } else if (jTsalario.getText().isEmpty()) {
+        }else if (jTsalario.getText().isEmpty()) {
              JOptionPane.showMessageDialog(null, "Campo 'SALÁRIO' está vazio!", "Atenção", 2);
             jTsalario.requestFocus();
         } else if (jTcidade.getText().isEmpty()) {
@@ -910,11 +873,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         funcionario.setEmail(jTemail.getText());
         funcionario.setSexo(sexo);
         funcionario.setNome(jTnome.getText());
-        if(jRinativo.isSelected()==false){
-            funcionario.setRecisao(null);
-        }else{
-            funcionario.setRecisao(TransformDate.transformDate(jFrecisao.getText()));
-        }
+        funcionario.setRecisao(null);
         funcionario.setRg(jTrg.getText());
         funcionario.setSalario(Double.valueOf(jTsalario.getText()));
         funcionario.setTelefone(TransformTelefone.transformTelefone(jFtel1.getText()));
@@ -983,21 +942,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private void jCestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCestadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCestadoActionPerformed
-
-    private void jRinativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinativoActionPerformed
-        if(jRinativo.isSelected()){
-            jFrecisao.setEnabled(true);
-            status = false;
-        }
-    }//GEN-LAST:event_jRinativoActionPerformed
-
-    private void jRativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRativoActionPerformed
-        if(jRativo.isSelected()){
-            jFrecisao.setEnabled(false);
-            jFrecisao.setText(null);
-            status = true;
-        }
-    }//GEN-LAST:event_jRativoActionPerformed
 
     private void jRmascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRmascActionPerformed
        sexo = "M";
@@ -1207,7 +1151,6 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1231,9 +1174,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRativo;
     private javax.swing.JRadioButton jRfem;
-    private javax.swing.JRadioButton jRinativo;
     private javax.swing.JRadioButton jRmasc;
     private javax.swing.JTextField jTbairro;
     private javax.swing.JTextField jTcidade;
@@ -1270,7 +1211,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jFcontrato.setText(null);
         jFrecisao.setText(null);
         jTsalario.setText(null);
-        jRativo.setSelected(true);
+       // jRativo.setSelected(true);
         jTcidade.setText(null);
         jTbairro.setText(null);
         jCestado.setSelectedIndex(0);
@@ -1282,13 +1223,13 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
         jRfem.setSelected(false);
     }   
     
-    public boolean status() {
-        if (jRativo.isSelected()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean status() {
+//        if (jRativo.isSelected()) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
     
      public boolean verificarCampos() {
         if(!jFcpf.getText().equals("   .   .   -  ") || !jTnome.getText().isEmpty() || !jFdataNascimento.getText().equals("  /  /    ") 

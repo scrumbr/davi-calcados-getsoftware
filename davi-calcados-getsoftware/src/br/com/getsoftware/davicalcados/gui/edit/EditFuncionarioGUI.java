@@ -71,14 +71,11 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jFtel1 = new javax.swing.JFormattedTextField();
         jFtel2 = new javax.swing.JFormattedTextField();
         jFcpf = new javax.swing.JFormattedTextField();
         jFcontrato = new javax.swing.JFormattedTextField();
         jFrecisao = new javax.swing.JFormattedTextField();
-        jRativo = new javax.swing.JRadioButton();
-        jRinativo = new javax.swing.JRadioButton();
         jLabel19 = new javax.swing.JLabel();
         jTidade = new javax.swing.JTextField();
         jFdataNascimento = new javax.swing.JFormattedTextField();
@@ -168,9 +165,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Contrato");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel12.setText("Status");
-
         jFtel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFtel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -203,7 +197,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         }
         jFcontrato.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jFrecisao.setEditable(false);
         jFrecisao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         try {
             jFrecisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -211,25 +204,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFrecisao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        buttonGroup1.add(jRativo);
-        jRativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRativo.setSelected(true);
-        jRativo.setText("Ativo");
-        jRativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRativoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRinativo);
-        jRinativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRinativo.setText("Inativo");
-        jRinativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRinativoActionPerformed(evt);
-            }
-        });
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Idade");
@@ -262,7 +236,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
         buttonGroup2.add(jRfem);
         jRfem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRfem.setText("F");
+        jRfem.setText("Feminino");
         jRfem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRfemActionPerformed(evt);
@@ -274,7 +248,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
 
         buttonGroup2.add(jRmasc);
         jRmasc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRmasc.setText("M");
+        jRmasc.setText("Masculino");
         jRmasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRmascActionPerformed(evt);
@@ -305,23 +279,17 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(103, 103, 103))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jRativo)
-                                            .addComponent(jLabel12))
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jRinativo))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel22)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jRmasc)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel22)
+                                            .addComponent(jRmasc))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jRfem))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +311,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel20))
-                                .addGap(0, 263, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jTnome))))
                 .addContainerGap())
         );
@@ -382,28 +350,19 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRmasc)
-                            .addComponent(jRfem))
-                        .addGap(3, 3, 3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jFtel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jFtel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel22))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -417,13 +376,13 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel6)
-                                .addComponent(jLabel12))
+                                .addComponent(jLabel22))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRativo)
-                                    .addComponent(jRinativo))
-                                .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRfem)
+                                .addComponent(jRmasc))
+                            .addGap(1, 1, 1))))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -521,7 +480,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
-                                .addGap(0, 175, Short.MAX_VALUE))
+                                .addGap(0, 177, Short.MAX_VALUE))
                             .addComponent(jTcomplemento, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
@@ -588,7 +547,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(430, Short.MAX_VALUE)
+                .addContainerGap(432, Short.MAX_VALUE)
                 .addComponent(jBsalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jBcancel)
@@ -700,9 +659,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         }else if (jFcontrato.getText().equals("  /  /    ")) {
              JOptionPane.showMessageDialog(null, "Campo 'CONTRATO' está vazio!", "Atenção", 2);
             jFcontrato.requestFocus();
-        } else if (jFrecisao.getText().equals("  /  /    ") && jRinativo.isSelected()) {
-             JOptionPane.showMessageDialog(null, "Campo 'RECISÃO' está vazio!", "Atenção", 2);
-            jFrecisao.requestFocus();
         } else if (jTsalario.getText().isEmpty()) {
              JOptionPane.showMessageDialog(null, "Campo 'SALÁRIO' está vazio!", "Atenção", 2);
             jTsalario.requestFocus();
@@ -760,21 +716,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private void jRmascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRmascActionPerformed
         sexo = "M";
     }//GEN-LAST:event_jRmascActionPerformed
-
-    private void jRativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRativoActionPerformed
-        if(jRativo.isSelected()){
-            jFrecisao.setEnabled(false);
-            jFrecisao.setText(null);
-            status = true;
-        }
-    }//GEN-LAST:event_jRativoActionPerformed
-
-    private void jRinativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinativoActionPerformed
-       if(jRinativo.isSelected()){
-            jFrecisao.setEditable(true);
-            status = false;
-        }        
-    }//GEN-LAST:event_jRinativoActionPerformed
 
     private void jTrgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTrgKeyTyped
          String caracteres="0987654321";
@@ -845,7 +786,6 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -868,9 +808,7 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRativo;
     private javax.swing.JRadioButton jRfem;
-    private javax.swing.JRadioButton jRinativo;
     private javax.swing.JRadioButton jRmasc;
     private javax.swing.JTextField jTbairro;
     private javax.swing.JTextField jTcidade;
@@ -889,8 +827,8 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
         
         Endereco end = new Endereco();
         funcionario.setAtivo(status);
-        jRativo.setSelected(status);
-        jRinativo.setSelected(status);
+//        jRativo.setSelected(status);
+//        jRinativo.setSelected(status);
         funcionario.setContrato(TransformDate.transformDate(jFcontrato.getText()));
         funcionario.setCpf(TransformCpf.transformCpf(jFcpf.getText()));
         funcionario.setDataNascimento(TransformDate.transformDate(jFdataNascimento.getText()));
@@ -924,12 +862,12 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
     }
     
     public void refreshCampos() {
-        funcionario.setAtivo(status);
-        if(funcionario.isAtivo()){
-            jRativo.setSelected(true);
-        }else{
-            jRinativo.setSelected(true);
-        }
+//        funcionario.setAtivo(status);
+//        if(funcionario.isAtivo()){
+//            jRativo.setSelected(true);
+//        }else{
+//            jRinativo.setSelected(true);
+//        }
         if(funcionario.getSexo().equals("M")){
             jRmasc.setSelected(true);
             jRfem.setSelected(false);
@@ -937,9 +875,9 @@ public class EditFuncionarioGUI extends javax.swing.JFrame {
              jRmasc.setSelected(false);
              jRfem.setSelected(true);
         }
-        jFcontrato.setText(funcionario.getContrato());
+        jFcontrato.setText(TransformDate.transformDate(funcionario.getContrato()));
         jFcpf.setText(funcionario.getCpf());
-        jFdataNascimento.setText(funcionario.getDataNascimento());
+        jFdataNascimento.setText(TransformDate.transformDate(funcionario.getDataNascimento()));
         jTemail.setText(funcionario.getEmail());
         jTid.setText("" + funcionario.getIdFuncionario());
         jTnome.setText(funcionario.getNome());
