@@ -37,7 +37,7 @@ select * from contas_pagar where status = true order by data_pagamento;
 delete from contas_pagar;
 select * from saida;
 
-
+insert into usuario(ativo, username, nivel, senha) values(true, "Junieudes",1,"123123");
 
 
 

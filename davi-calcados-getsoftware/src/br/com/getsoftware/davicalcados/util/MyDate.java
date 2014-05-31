@@ -24,17 +24,7 @@ public class MyDate {
         return diaAtual;
 
     }
-    
-//    public static String getMes() {
-//        String mes = "0";
-//        if(data.getDate()>9){
-//            mes = "";
-//        }
-//        String mesAtual = mes+data.getMonth();
-//         
-//        return mesAtual;
-//
-//    }
+ 
      public static String getMesNumero(){
         String mes = null;
          if(data.getMonth()== 0){
@@ -125,9 +115,5 @@ public class MyDate {
 
     public static String dataFormatada() {        
         return getDia() + "/" + getMesNumero()+ "/" + getAno();
-    }
-
-    public static void main(String[]args){
-        System.out.println(dataFormatada());
     }
 }

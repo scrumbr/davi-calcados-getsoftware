@@ -621,7 +621,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         venda.setListaIdProduto(listIdProdutos);
         venda.setValorTotal(Double.valueOf(jLtotal.getText()));
         this.setEnabled(false);
-        this.dispose();
+//        this.dispose();
         new FormaDePagamento(venda, this).setVisible(true);
        }
     }//GEN-LAST:event_jBfinalizarActionPerformed
