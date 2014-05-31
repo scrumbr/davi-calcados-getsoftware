@@ -6,9 +6,10 @@
 
 package br.com.getsoftware.davicalcados.gui.acesso;
 
-import br.com.getsoftware.davicalcados.bo.GenericSQLBO;
+import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
+import static br.com.getsoftware.davicalcados.util.CriaBanco.criaBancoETabelas;
 import br.com.getsoftware.davicalcados.util.SetIcon;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -136,6 +137,11 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel3.setText("CPF:");
 
         jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel4.setText("Senha:");
@@ -221,37 +227,28 @@ public class LoginGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//       new TelaMenuGUI().setVisible(true);
-//       this.dispose();
-       
+        
        if(jFCpf.getText().equals("   .   .   -  ")){
-         JOptionPane.showMessageDialog(null, "Campo 'Login' está vazio!", "Atenção", 2);
+         JOptionPane.showMessageDialog(null, "Campo 'CPF' está vazio!", "Atenção", 2);
          jFCpf.requestFocus();
        }else if(jPasswordField1.getText().isEmpty()){
          JOptionPane.showMessageDialog(null, "Campo 'Senha' está vazio!", "Atenção", 2);
          jPasswordField1.requestFocus();
        }else{
            try {
-               GenericSQLBO.genericQuery("select u.id_usuario, u.username, u.senha, u.nivel, u.ativo, f.cpf from usuario as u, funcionario as f where id_usuario = id_funcionario "
-                       + "and f.cpf = '"+jFCpf.getText()+"' and u.senha = '"+jPasswordField1.getText()+"' and u.ativo = true;");
                
-               if(GenericSQLBO.genericResultSet().first()==false){
-                    JOptionPane.showMessageDialog(null, " Usuario não cadastrado");
+               Usuario user = UsuarioBO.validate(jFCpf.getText(), jPasswordField1.getText());
+               
+               if(user == null){
+                    JOptionPane.showMessageDialog(null, " Usuario não encontrado, tente novamente!");
                     jFCpf.setText("");
                     jPasswordField1.setText("");
                     jFCpf.requestFocus();
                }else{
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(GenericSQLBO.genericResultSet().getLong("u.id_usuario"));
-                    usuario.setUserName(GenericSQLBO.genericResultSet().getString("u.username"));
-                    usuario.setNivel(GenericSQLBO.genericResultSet().getInt("u.nivel"));
-                    usuario.setSenha(GenericSQLBO.genericResultSet().getString("u.senha"));
-
-                    UsuarioLogado.usuarioLogado = usuario;
-                    
-                    JOptionPane.showMessageDialog(null, "Usuario ' " +GenericSQLBO.genericResultSet().getString("u.username") + " ' Logado com Sucesso ");
+                    UsuarioLogado.usuarioLogado = user;
+                    JOptionPane.showMessageDialog(null, "Usuario ' " +user.getUserName()+ " ' Logado com Sucesso ");
                     new TelaMenuGUI().setVisible(true);
-                    
+//                    
                     this.dispose();
                }
                
@@ -266,12 +263,16 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jFCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFCpfActionPerformed
-        // TODO add your handling code here:
+       jPasswordField1.requestFocus();
     }//GEN-LAST:event_jFCpfActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
+        criaBancoETabelas();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        jButton1ActionPerformed(evt);
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -27,6 +27,17 @@ public class UsuarioBO {
         }
         return usuario;
     }
+    
+      public static Usuario validate(String cpf, String senha) throws SQLException {
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario usuario = null;
+        try {
+            usuario = dao.validate(cpf, senha);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não localizou o registro\n" + e, "erro", 0);
+        }
+        return usuario;
+    }
 
     public static void save(Usuario usuario) throws SQLException {
         UsuarioDAO dao = new UsuarioDAO();
