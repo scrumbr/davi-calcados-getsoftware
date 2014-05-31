@@ -45,8 +45,8 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jFDataAte = new com.toedter.calendar.JDateChooser();
-        jFDataDe = new com.toedter.calendar.JDateChooser();
+        jDDatade = new com.toedter.calendar.JDateChooser();
+        jDDateate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -108,10 +108,6 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jFDataAte.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-
-        jFDataDe.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,12 +116,12 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDDatade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDDateate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -137,13 +133,13 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(jFDataAte, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jFDataDe, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                        .addComponent(jLabel3))
+                    .addComponent(jDDatade, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDDateate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -162,7 +158,7 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
            validaCapos();
            
             String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, "
-                    + "usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ (transformDate(dataAtual(jFDataDe.getDate()))) +"'" + "AND" + "'" + (transformDate(dataAtual(jFDataAte.getDate())))+ "'";
+                    + "usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ (transformDate(dataAtual(jDDatade.getDate()))) +"'" + "AND" + "'" + (transformDate(dataAtual(jDDateate.getDate())))+ "'";
             try {
                 GenericReport entraRel = new GenericReport(consulta, "EntradaReport.jasper");
             } catch (FormatoSQLException ex) {
@@ -208,8 +204,8 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jFDataAte;
-    private com.toedter.calendar.JDateChooser jFDataDe;
+    private com.toedter.calendar.JDateChooser jDDatade;
+    private com.toedter.calendar.JDateChooser jDDateate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -219,9 +215,9 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
 
 
 public void validaCapos(){
-    if(jFDataDe.getDate() == null){
+    if(jDDatade.getDate() == null){
       JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data de:'", "Atenção", 2);
-    }else if(jFDataAte.getDate() == null){
+    }else if(jDDateate.getDate() == null){
       JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data até:'", "Atenção", 2);
     }
 }
