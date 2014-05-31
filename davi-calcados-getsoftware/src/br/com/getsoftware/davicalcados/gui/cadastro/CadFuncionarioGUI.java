@@ -47,7 +47,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
      }
      private ListFuncionariosGUI listFunc;
      public CadFuncionarioGUI(ListFuncionariosGUI listFunc) throws SQLException{
-         this();
+          this();
          this.listFunc = listFunc;            
      }
     

@@ -5,10 +5,10 @@
  */
 package br.com.getsoftware.davicalcados.dao;
 
-import br.com.getsoftware.davicalcados.bo.FuncionarioBO;
 import br.com.getsoftware.davicalcados.connection.Conexao;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
+import static br.com.getsoftware.davicalcados.util.TransformCpf.transformCpf;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,6 +42,31 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
             usuario.setNivel(res.getInt("nivel"));
             usuario.setSenha(res.getString("senha"));
             usuario.setUserName(res.getString("username"));
+        }
+        res.close();
+        stmt.close();
+
+        return usuario;
+    }
+    
+    
+    public Usuario validate(String cpf, String senha) throws SQLException {
+
+        String sql = "select f.cpf, u.senha, u.ativo,  u.id_usuario,  u.nivel,  u.username "
+                + " from usuario u, funcionario f where u.id_usuario = f.id_funcionario "
+                + " and f.cpf = '"+(cpf)+"' and u.senha = '" + senha+"'";
+        
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+        ResultSet res = stmt.executeQuery();
+
+        Usuario usuario = null;
+        if (res.next()) {
+            usuario = new Usuario();
+            usuario.setActive(res.getBoolean("u.ativo"));
+            usuario.setIdUsuario(res.getLong("u.id_usuario"));
+            usuario.setNivel(res.getInt("u.nivel"));
+            usuario.setSenha(res.getString("u.senha"));
+            usuario.setUserName(res.getString("u.username"));
         }
         res.close();
         stmt.close();

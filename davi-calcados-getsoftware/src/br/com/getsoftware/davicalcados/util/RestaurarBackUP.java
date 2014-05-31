@@ -28,15 +28,6 @@ public class RestaurarBackUP {
 
         if (result == JFileChooser.OPEN_DIALOG) {
 
-//                File bkp;
-//                bkp = JFC_Backup.getSelectedFile();
-//                String arq = bkp.getPath();
-//                System.out.println("bd " + bd);
-//                System.out.println("arq " + arq);
-//                String[] cmd = new String[3];
-//                cmd[0] = "cmd.exe";
-//                cmd[1] = "/C";
-//                cmd[2] = "mysql -u root -p 123456 -h localhost " + bd + " < " + arq;
             String arquivo = "" + telaRestore.getSelectedFile().getPath();
             System.out.println(arquivo);
                 
