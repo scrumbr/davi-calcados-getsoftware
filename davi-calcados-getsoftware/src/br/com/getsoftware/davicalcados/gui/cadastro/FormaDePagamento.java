@@ -11,8 +11,6 @@ import br.com.getsoftware.davicalcados.bo.VendaBO;
 import br.com.getsoftware.davicalcados.entity.ProdutoVendido;
 import br.com.getsoftware.davicalcados.entity.Venda;
 import br.com.getsoftware.davicalcados.util.TransformMoeda;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +26,8 @@ public class FormaDePagamento extends javax.swing.JFrame {
         initComponents();
         bloqueaCampos();
         campoNaoAlterados();
+         jTvalor.setText(""+500);
+        jTvalorVenda.setText(""+500);
     }
     private CadVendaGUI cadVenda;
     private Venda venda;
@@ -71,6 +71,12 @@ public class FormaDePagamento extends javax.swing.JFrame {
         jTvalorVenda = new javax.swing.JTextField();
         jCparcela = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jBcancelar = new javax.swing.JButton();
         jBfinalizar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -114,6 +120,7 @@ public class FormaDePagamento extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Troco");
 
+        jTvalor.setEditable(false);
         jTvalor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTvalor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTvalor.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -132,6 +139,22 @@ public class FormaDePagamento extends javax.swing.JFrame {
 
         jTdesconto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTdesconto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTdesconto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTdescontoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTdescontoFocusLost(evt);
+            }
+        });
+        jTdesconto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTdescontoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTdescontoKeyTyped(evt);
+            }
+        });
 
         jTentrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTentrada.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -139,17 +162,35 @@ public class FormaDePagamento extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTentradaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTentradaKeyTyped(evt);
+            }
         });
 
         jTecebido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTecebido.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTecebido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTecebidoFocusLost(evt);
+            }
+        });
+        jTecebido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTecebidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTecebidoKeyTyped(evt);
+            }
+        });
 
+        jTtroco.setEditable(false);
         jTtroco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTtroco.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("VALOR TOTAL DA VENDA");
 
+        jTvalorVenda.setEditable(false);
         jTvalorVenda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTvalorVenda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
@@ -159,40 +200,84 @@ public class FormaDePagamento extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Nº de parcelas");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("R$");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("R$");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("R$");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("R$");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("R$");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("R$");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTvalorVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel9)
-                    .addComponent(jTtroco)
-                    .addComponent(jTecebido)
-                    .addComponent(jTentrada)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jTvalor)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jTdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jCparcela, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jCpagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jCparcela, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jCpagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTvalor))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTvalorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTentrada, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTtroco, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTecebido, jTentrada, jTtroco, jTvalor, jTvalorVenda});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -202,32 +287,44 @@ public class FormaDePagamento extends javax.swing.JFrame {
                 .addComponent(jCpagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(5, 5, 5)
-                .addComponent(jTvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTvalor, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCparcela)
-                    .addComponent(jTdesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTdesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(jCparcela))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTentrada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTentrada, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTtroco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTtroco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTvalorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTvalorVenda)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -303,7 +400,7 @@ public class FormaDePagamento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBcancelar)
                     .addComponent(jBfinalizar))
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcancelar, jBfinalizar});
@@ -317,11 +414,11 @@ public class FormaDePagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jTvalorKeyReleased
 
     private void jTvalorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTvalorFocusGained
-        jTvalor.setText(TransformMoeda.trasnformMoeda(jTvalor.getText()));
+//        jTvalor.setText(TransformMoeda.trasnformMoeda(jTvalor.getText()));
     }//GEN-LAST:event_jTvalorFocusGained
 
     private void jTvalorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTvalorFocusLost
-        jTvalor.setText(TransformMoeda.trasnformMoeda(jTvalor.getText()));
+//        jTvalor.setText(TransformMoeda.trasnformMoeda(jTvalor.getText()));
     }//GEN-LAST:event_jTvalorFocusLost
 
     private void jCpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCpagamentoActionPerformed
@@ -343,38 +440,34 @@ public class FormaDePagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jCpagamentoActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-           dispose();
+           this.dispose();
            cadVenda.setEnabled(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
-        this.dispose();
+        this.formWindowClosing(null);
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
        
-//        if (jTdesconto.getText().isEmpty()) {
-//
-//        }
-//        else if (jTecebido.getText().isEmpty()) {
-//            
-//        }
-//        else if (jTentrada.getText().isEmpty()) {
-//
-//        }
-//        else if (jTtroco.getText().isEmpty()) {
-//
-//        }
-//        else if (jTvalor.getText().isEmpty()) {
-//
-//        }
-//        else if (jTvalorVenda.getText().isEmpty()) {
-//
-//        }
-         if (jCparcela.getSelectedIndex() == 0) {
+        
+         if (jCpagamento.getSelectedIndex() == 0) {
              JOptionPane.showMessageDialog(null, "Deve-se selecioar uma forma de pagamento.", "Atenção!", 2);
-             jCparcela.requestFocus();
+             jCpagamento.requestFocus();
          }
+         else if (jCpagamento.getSelectedIndex() == 1) {
+              
+          }
+         else if (jCpagamento.getSelectedIndex() == 2) {
+              
+          }
+         else if (jCpagamento.getSelectedIndex() == 3) {
+              
+          }
+         else if (jCpagamento.getSelectedIndex() == 4) {
+              
+          }
+         
         else{
              try {
                  VendaBO.save(venda);
@@ -394,8 +487,86 @@ public class FormaDePagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBfinalizarActionPerformed
 
     private void jTentradaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTentradaKeyReleased
-        // TODO add your handling code here:
+         if(jTentrada.getText() != null || !jTentrada.getText().isEmpty() ){
+            if(Float.valueOf(jTvalor.getText()) > Float.valueOf(jTentrada.getText())){
+               jTvalorVenda.setText(""+(Float.valueOf(jTvalor.getText()) - Float.valueOf(jTentrada.getText())));
+            }else{
+                jTentrada.setText("0");
+              JOptionPane.showMessageDialog(rootPane, "O valor do entrada é maior que o valor da venda, mude !", "Atenção!", 2);
+               
+            }
+       }
+        
     }//GEN-LAST:event_jTentradaKeyReleased
+
+    private void jTdescontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTdescontoKeyTyped
+       String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }if(jTdesconto.getText() == null || jTdesconto.getText().isEmpty() ){
+           jTdesconto.setText("0");
+       }
+    }//GEN-LAST:event_jTdescontoKeyTyped
+
+    private void jTdescontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTdescontoKeyReleased
+       if(jTdesconto.getText() != null || !jTdesconto.getText().isEmpty() ){
+            if(Float.valueOf(jTvalor.getText()) > Float.valueOf(jTdesconto.getText())){
+               jTvalorVenda.setText(""+(Float.valueOf(jTvalor.getText()) - Float.valueOf(jTdesconto.getText())));
+            }else{
+                jTdesconto.setText("0");
+              JOptionPane.showMessageDialog(rootPane, "O valor do desconto não pode ser maior que o valor da venda!", "Atenção!", 2);
+               
+            }
+       }
+        
+    }//GEN-LAST:event_jTdescontoKeyReleased
+
+    private void jTdescontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTdescontoFocusGained
+        jTdesconto.setText("");
+    }//GEN-LAST:event_jTdescontoFocusGained
+
+    private void jTdescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTdescontoFocusLost
+        if(jTdesconto.getText() == null || jTdesconto.getText().isEmpty() ){
+           
+       }
+    }//GEN-LAST:event_jTdescontoFocusLost
+
+    private void jTentradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTentradaKeyTyped
+        String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }if(jTentrada.getText() == null || jTentrada.getText().isEmpty() ){
+           jTentrada.setText("0");
+       }
+    }//GEN-LAST:event_jTentradaKeyTyped
+
+    private void jTecebidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTecebidoKeyTyped
+         String caracteres="0987654321.";
+       if(!caracteres.contains(evt.getKeyChar()+"")){
+       evt.consume();
+       }if(jTecebido.getText() == null || jTecebido.getText().isEmpty() ){
+           jTecebido.setText("0");
+       }
+    }//GEN-LAST:event_jTecebidoKeyTyped
+
+    private void jTecebidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTecebidoKeyReleased
+         
+        
+    }//GEN-LAST:event_jTecebidoKeyReleased
+
+    private void jTecebidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTecebidoFocusLost
+        if(jTecebido.getText() != null || !jTecebido.getText().isEmpty() ){
+            if(Float.valueOf(jTecebido.getText()) >= Float.valueOf(jTvalorVenda.getText())){
+                 
+               jTtroco.setText(""+(Float.valueOf(jTecebido.getText()) - Float.valueOf(jTvalorVenda.getText())));
+            }else{
+                jTdesconto.setText("0");
+              JOptionPane.showMessageDialog(rootPane, "O valor recebido é menor que o valor total da compra", "Atenção!", 2);
+               
+            }
+       }
+        
+    }//GEN-LAST:event_jTecebidoFocusLost
 
     /**
      * @param args the command line arguments
@@ -438,6 +609,12 @@ public class FormaDePagamento extends javax.swing.JFrame {
     private javax.swing.JComboBox jCpagamento;
     private javax.swing.JComboBox jCparcela;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -503,7 +680,7 @@ public class FormaDePagamento extends javax.swing.JFrame {
         jTecebido.setText(null);
         jTentrada.setText(null);
         jTtroco.setText(null);
-        jTvalorVenda.setText(null);
+        jTvalorVenda.setText(jTvalor.getText());
         jCparcela.setSelectedIndex(0);
     }
 }
