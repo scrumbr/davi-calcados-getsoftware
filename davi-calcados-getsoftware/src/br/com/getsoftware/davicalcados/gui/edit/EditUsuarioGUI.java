@@ -339,11 +339,7 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
             jTSenha.setText(null);
             jTConfirmeSenha.setText(null);
             jTSenha.requestFocus();
-        } else {
-        
-        
-        
-        
+        } else {       
         try {
                 refreshUsuario();
                 UsuarioBO.update(usuario); 

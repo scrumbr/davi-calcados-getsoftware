@@ -24,7 +24,7 @@ public class Funcionario {
     private String contrato;
     private String recisao;
     private Endereco endereco;
-    private Boolean ativo;
+    private Boolean ativo = true;
 
     public Long getIdFuncionario() {
         return idFuncionario;

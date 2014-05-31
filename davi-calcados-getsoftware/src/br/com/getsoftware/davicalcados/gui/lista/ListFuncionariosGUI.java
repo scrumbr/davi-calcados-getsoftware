@@ -11,8 +11,10 @@ import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.entity.Saida;
 import br.com.getsoftware.davicalcados.entity.Usuario;
+import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
+import br.com.getsoftware.davicalcados.gui.acesso.ValidaAdminGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
@@ -52,7 +54,9 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
       public ListFuncionariosGUI(TelaMenuGUI telaMenu) throws SQLException{
       this();
       this.telaMenu = telaMenu;
+      
     }
+     
 
     public void atualizaLinhaSelecionada() {
         linhaSelecionada = 0;
@@ -451,13 +455,22 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o Funcionário " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
-                FuncionarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                //FuncionarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+               funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+               funcionario.setAtivo(false);
+               Usuario usuario;
+                usuario = UsuarioBO.getById(Integer.valueOf(funcionario.getIdFuncionario().intValue()));
+                usuario.setActive(false);
+                UsuarioBO.update(usuario);
+               FuncionarioBO.update(funcionario);
                 dadosTabela();
                 atualizaLinhaSelecionada();
                 tabelaVazia();
                 JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!", "Sucesso", 1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar excluir o funcionário", "Erro", 0);
+            } catch (Exception ex) {
+                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBexcluirActionPerformed
@@ -607,30 +620,14 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             consulta = "select * from funcionario where telefone like";
        }        
         try {
-            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%'","FuncionarioTesteReport.jasper");
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa.getText() + "%' and ativo = true;","FuncionarioTesteReport.jasper");
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }
     }//GEN-LAST:event_jBGerarRelatorioActionPerformed
 
     private void jBSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalarioActionPerformed
-        int opc = JOptionPane.showConfirmDialog(null, "Deseja confirmar o pagamento de salário do funcionario: " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Pagar Salario", JOptionPane.YES_NO_OPTION);
-        if (opc == JOptionPane.YES_OPTION) {
-             try {
-                 funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                 gerarSaida();
-                 JOptionPane.showMessageDialog(null, "Funcionário pago com sucesso!", "Sucesso", 1);
-                 GenericReport c = new GenericReport("select * from funcionario where id_funcionario = " + funcionario.getIdFuncionario(),"ReciboFuncionarioReport.jasper");
-                  
-             } catch (FormatoSQLException ex) {
-                 Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
-             } catch (SQLException ex) {
-                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        }
+      validarEfetuarPagamento(UsuarioLogado.usuarioLogado);
     }//GEN-LAST:event_jBSalarioActionPerformed
 
     /**
@@ -780,4 +777,32 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             saida.setIdUsuario((long) 1);
             SaidaBO.save(saida);
      }
+
+    public void validarEfetuarPagamento(Usuario user) {
+         if(user.getNivel() != 1){
+           this.setEnabled(false);
+           new ValidaAdminGUI(this).setVisible(true);
+           
+       }else{       
+        int opc = JOptionPane.showConfirmDialog(null, "Deseja confirmar o pagamento de salário do funcionario: " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Pagar Salario", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+             try {
+                 funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                 gerarSaida();
+                 JOptionPane.showMessageDialog(null, "Funcionário pago com sucesso!", "Sucesso", 1);
+                 GenericReport c = new GenericReport("select * from funcionario where id_funcionario = " + funcionario.getIdFuncionario(),"ReciboFuncionarioReport.jasper");
+                  
+             } catch (FormatoSQLException ex) {
+                 Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (SQLException ex) {
+                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+        }
+        
+       }
+        
+    }
 }

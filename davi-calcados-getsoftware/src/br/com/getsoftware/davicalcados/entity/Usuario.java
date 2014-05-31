@@ -15,7 +15,7 @@ public class Usuario {
     private String userName;
     private String senha;
     private Integer nivel;
-    private Boolean active;
+    private Boolean active = true;
     private String cpfFuncionario;
 
     public String getCpfFuncionario() {

@@ -253,8 +253,11 @@ public class ListUsuariosGUI extends javax.swing.JFrame {
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o usuario " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
-                UsuarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                dadosTabela();
+                //UsuarioBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                 Usuario usuario = UsuarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+               usuario.setActive(false);
+               UsuarioBO.update(usuario);                
+                 dadosTabela();
                 atualizaLinhaSelecionada();
                 tabelaVazia();
                 JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!", "Sucesso", 1);

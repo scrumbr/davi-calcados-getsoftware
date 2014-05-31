@@ -488,8 +488,8 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private void jBVisualiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVisualiarActionPerformed
          this.setEnabled(false);
         try {
-            Produto cliente = ProdutoBO.getById((jTable1.getValueAt(linhaSelecionada, 0).toString()));
-            new ViewProdutoGUI(this, cliente).setVisible(true);
+            Produto produto = ProdutoBO.getById((jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            new ViewProdutoGUI(this, produto).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível selecionar o funcionário", "Erro", 0);
         }
@@ -497,11 +497,13 @@ public class ListProdutosGUI extends javax.swing.JFrame {
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         
-        
         int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o produto " + jTable1.getValueAt(linhaSelecionada, 2) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
-                ProdutoBO.delete(jTable1.getValueAt(linhaSelecionada, 0).toString());               
+               // ProdutoBO.delete(jTable1.getValueAt(linhaSelecionada, 0).toString());               
+               Produto produto = ProdutoBO.getById((jTable1.getValueAt(linhaSelecionada, 0).toString()));
+                produto.setStatus(false);
+                ProdutoBO.update(produto);
                 dadosTabela();
                 atualizaLinhaSelecionada();
                 tabelaVazia();
@@ -561,7 +563,7 @@ public class ListProdutosGUI extends javax.swing.JFrame {
             consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and p.id_produto like";
        }    
         try {
-            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa3.getText() + "%'","ProdutoTesteReport.jasper");
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa3.getText() + "%' and ativo = true;","ProdutoTesteReport.jasper");
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }

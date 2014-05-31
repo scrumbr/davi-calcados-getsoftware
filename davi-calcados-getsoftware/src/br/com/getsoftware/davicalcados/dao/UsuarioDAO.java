@@ -84,7 +84,7 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
 
     @Override
     public ArrayList<Usuario> listAll() throws SQLException {
-        String sql = "select u.id_usuario, u.username, u.senha, u.nivel, u.ativo, f.cpf from usuario as u, funcionario as f where id_usuario = id_funcionario";
+        String sql = "select u.id_usuario, u.username, u.senha, u.nivel, u.ativo, f.cpf from usuario as u, funcionario as f where id_usuario = id_funcionario and u.ativo = true";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 

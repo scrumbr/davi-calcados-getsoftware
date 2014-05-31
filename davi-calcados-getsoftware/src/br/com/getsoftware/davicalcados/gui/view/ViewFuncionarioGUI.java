@@ -9,7 +9,10 @@ import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.util.MyDate;
+import br.com.getsoftware.davicalcados.util.TransformDate;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -60,11 +63,6 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
         jLcpf = new javax.swing.JLabel();
         jLnome = new javax.swing.JLabel();
         jLid = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jRativo = new javax.swing.JRadioButton();
-        jRinativo = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jRfem = new javax.swing.JRadioButton();
         jRmasc = new javax.swing.JRadioButton();
@@ -158,30 +156,8 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
         jLid.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLid.setText("12321");
 
-        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel42.setText("Status");
-
-        jRativo.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRativo);
-        jRativo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jRativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRativoActionPerformed(evt);
-            }
-        });
-
-        jRinativo.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRinativo);
-        jRinativo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel8.setText("Ativo");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel9.setText("Inativo");
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel10.setText("M");
+        jLabel10.setText("Masculino");
 
         jRfem.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(jRfem);
@@ -195,7 +171,7 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
         jLabel44.setText("Sexo");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel11.setText("F");
+        jLabel11.setText("Feminino");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,46 +193,35 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
                         .addGap(59, 59, 59)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLnome))
+                                .addComponent(jLidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRmasc)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRfem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLidade))
+                                        .addComponent(jLnome))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLrg)))
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jRativo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRinativo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel9))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jRmasc)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRfem)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jLrg)
+                                        .addGap(77, 77, 77)
+                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLcpf)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,32 +233,24 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLnome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLcpf)
-                        .addComponent(jLabel7)
-                        .addComponent(jLrg)
-                        .addComponent(jLabel44))
-                    .addComponent(jRmasc)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRfem)
-                            .addComponent(jLabel10)))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLcpf)
+                    .addComponent(jLabel7)
+                    .addComponent(jLrg)
+                    .addComponent(jLabel44))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRativo, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRinativo, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jLnasc)
-                        .addComponent(jLabel5)
-                        .addComponent(jLidade)
-                        .addComponent(jLabel42)
-                        .addComponent(jLabel8)))
+                    .addComponent(jRfem)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jRmasc)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLnasc)
+                            .addComponent(jLabel5)
+                            .addComponent(jLidade)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -710,15 +667,13 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLeditarMousePressed
 
-    private void jRativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRativoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRativoActionPerformed
-
     private void jLexcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLexcluirMouseClicked
         int opt = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o registro ?", "Excluir",JOptionPane.YES_NO_OPTION);
         if(opt == JOptionPane.YES_OPTION){
             try {
-                FuncionarioBO.delete(Integer.valueOf(""+funcionario.getIdFuncionario()));
+                //FuncionarioBO.delete(Integer.valueOf(""+funcionario.getIdFuncionario()));
+                funcionario.setAtivo(false);
+                FuncionarioBO.update(funcionario);
                 listFunc.setEnabled(true);
                 listFunc.dadosTabela();
                 listFunc.atualizaLinhaSelecionada();
@@ -728,6 +683,8 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível excluir o registro!", "Erro", 0);
                 this.dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(ViewFuncionarioGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jLexcluirMouseClicked
@@ -796,15 +753,12 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLbairro;
     private javax.swing.JLabel jLcep;
     private javax.swing.JLabel jLcidade;
@@ -833,20 +787,18 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRativo;
     private javax.swing.JRadioButton jRfem;
-    private javax.swing.JRadioButton jRinativo;
     private javax.swing.JRadioButton jRmasc;
     // End of variables declaration//GEN-END:variables
  
     public void refreshCampos() {
-        if (funcionario.isAtivo()) {
-            jRativo.setSelected(true);
-            jRinativo.setEnabled(false);
-        } else {
-            jRinativo.setSelected(true);
-            jRativo.setEnabled(false);
-        }
+//        if (funcionario.isAtivo()) {
+//            jRativo.setSelected(true);
+//            jRinativo.setEnabled(false);
+//        } else {
+//            jRinativo.setSelected(true);
+//            jRativo.setEnabled(false);
+//        }
         
         if (funcionario.getSexo().equals("M")) {
             jRmasc.setSelected(true);
@@ -855,13 +807,13 @@ public class ViewFuncionarioGUI extends javax.swing.JFrame {
             jRfem.setSelected(true);
             jRmasc.setEnabled(false);
         }
-        jLcontrato.setText(funcionario.getContrato());
+        jLcontrato.setText(TransformDate.transformDate(funcionario.getContrato()));
         jLcpf.setText(funcionario.getCpf());
-        jLnasc.setText(funcionario.getDataNascimento());
+        jLnasc.setText(TransformDate.transformDate(funcionario.getDataNascimento()));
         jLemail.setText(funcionario.getEmail());
         jLid.setText("" + funcionario.getIdFuncionario());
         jLnome.setText(funcionario.getNome());
-        jLrecisao.setText(funcionario.getRecisao());
+        jLrecisao.setText(TransformDate.transformDate(funcionario.getRecisao()));
         jLrg.setText(funcionario.getRg());
         jLsalario.setText("" + funcionario.getSalario());
         jLtel.setText(funcionario.getTelefone());
