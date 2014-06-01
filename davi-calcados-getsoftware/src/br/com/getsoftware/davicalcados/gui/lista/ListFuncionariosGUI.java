@@ -23,7 +23,6 @@ import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
 import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import java.awt.Color;
-import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
