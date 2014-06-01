@@ -86,9 +86,9 @@ constraint pk_fornecedor primary key fornecedor(id_fornecedor)
 );
 
 CREATE TABLE PRODUTO(
-		id_produto varchar(255) not null,
+	id_produto varchar(255) not null,
         id_fornecedor bigint not null,
-		nome varchar(255) not null,
+	nome varchar(255) not null,
         descricao longtext,
         quantidade int not null,
         quantidade_minima int not null,
@@ -154,14 +154,15 @@ create table plano_compras(
 );
 
 create table venda(
-	id bigint auto_increment,
+    id bigint auto_increment,
     id_funcionario bigint,
     id_cliente bigint,
-	data date not null,
-	parcela int,
+    data date not null,
+    parcela int,
     total Double not null,
 constraint pk_venda primary key venda(id),
-constraint fk_venda_funcionario foreign key venda(id_funcionario) references funcionario(id_funcionario)
+constraint fk_venda_funcionario foreign key venda(id_funcionario) references funcionario(id_funcionario),
+constraint fk_venda_cliente foreign key venda(id_cliente) references cliente(id_cliente)
 );
 
 create table produtos_vendidos(
@@ -176,6 +177,7 @@ constraint fk_venda_produto_vendido foreign key produtos_vendidos(id_produto) re
 create table contas_pagar(
 	id_contas_pagar bigint auto_increment,
 	data_pagamento date not null,
+         data_quitado date,
 	valor numeric(9,2) not null,
 	status boolean not null,
 	descricao longtext,
@@ -190,28 +192,3 @@ create table contas_receber(
 	descricao longtext,
 constraint pk_contas_receber primary key contas_receber(id_contas_receber)
 );
-
-create table contas_pagar(
-	id bigint auto_increment,
-	data_pagamento date not null,
-        valor numeric(9,2) not null,
-	status boolean not null,
-	descricao longtext,
-constraint pk_contas_pagar primary key contas_pagar(id)
-);
-
-alter table contas_pagar add column data_quitado date;
-
-create table contas_receber(
-	id bigint auto_increment,
-	data_pagamento date not null,
-        valor numeric(9,2) not null,
-	status boolean not null,
-	descricao longtext,
-constraint pk_contas_receber primary key contas_receber(id)
-);
-
-
-
-
-

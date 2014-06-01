@@ -6,8 +6,6 @@
 
 package br.com.getsoftware.davicalcados.gui.acesso;
 
-import br.com.getsoftware.davicalcados.entity.Produto;
-import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadClienteGUI;
@@ -28,8 +26,6 @@ import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import br.com.getsoftware.davicalcados.relatorio.MovimentacaoCaixaGUI;
 import br.com.getsoftware.davicalcados.relatorio.SaidaRelatorioGUI;
 import br.com.getsoftware.davicalcados.util.BackUP;
-import br.com.getsoftware.davicalcados.util.MyDate;
-import br.com.getsoftware.davicalcados.util.MyHours;
 import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Toolkit;
