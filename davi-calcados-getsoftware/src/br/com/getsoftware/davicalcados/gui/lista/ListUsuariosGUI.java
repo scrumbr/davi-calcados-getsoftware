@@ -340,8 +340,6 @@ public void tabelaVazia(){
 
             DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
             modelo.setNumRows(0);
-           
-            
             
             for (int i = 0; i < listUsuarios.size(); i++) {
                 modelo.addRow(new Object[]{
@@ -349,8 +347,19 @@ public void tabelaVazia(){
                     listUsuarios.get(i).getUserName(),
                     TransformCpf.transformCpf(listUsuarios.get(i).getCpfFuncionario()),
                     listUsuarios.get(i).getSenha(),
-                    listUsuarios.get(i).getNivel() == 1 ? "ADMINISTRADOR" : "FUNCIONARIO" ,});
+                    nomearNivel(listUsuarios.get(i).getNivel()),});
+                    //listUsuarios.get(i).getNivel() == 1 ? "ADMINISTRADOR" : "FUNCIONARIO" ,});
             }
         }
 
+    public String nomearNivel(Integer nivel){
+        if(nivel == 1){
+            return "ADMINISTRADOR";
+        }else if(nivel == 2){
+            return "GERENTE";
+        }else{
+            return "FUNCIONARIO";
+        }
+    }
 }
+

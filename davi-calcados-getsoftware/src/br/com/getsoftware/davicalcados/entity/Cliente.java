@@ -27,7 +27,6 @@ public class Cliente {
     private String dataVenda;
     private String dataUltimCompra;
     private String preferencia;
-    private Long numeroBoleto;
     private Boolean status = true;
     private Double renda;
     private Double credito;
@@ -174,14 +173,6 @@ public class Cliente {
 
     public void setPreferencia(String preferencia) {
         this.preferencia = preferencia;
-    }
-
-    public Long getNumeroBoleto() {
-        return numeroBoleto;
-    }
-
-    public void setNumeroBoleto(Long numeroBoleto) {
-        this.numeroBoleto = numeroBoleto;
     }
 
     public Boolean isStatus() {

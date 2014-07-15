@@ -229,6 +229,8 @@ public class CaixaGUI extends javax.swing.JFrame {
 
         jBcadEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/entrada.png"))); // NOI18N
         jBcadEntrada.setText("CadEntrada");
+        jBcadEntrada.setToolTipText("Cadastrar uma entrada");
+        jBcadEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcadEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcadEntradaActionPerformed(evt);
@@ -237,14 +239,18 @@ public class CaixaGUI extends javax.swing.JFrame {
 
         jBcadSaida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/saida.png"))); // NOI18N
         jBcadSaida.setText("CadSaída");
+        jBcadSaida.setToolTipText("Cadastrar uma saida");
+        jBcadSaida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcadSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcadSaidaActionPerformed(evt);
             }
         });
 
-        jBvenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Cash-register-icon (1).png"))); // NOI18N
+        jBvenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/contasReceber-24.png"))); // NOI18N
         jBvenda.setText("Efetuar venda");
+        jBvenda.setToolTipText("Efetuar uma venda");
+        jBvenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBvenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBvendaActionPerformed(evt);
@@ -253,6 +259,7 @@ public class CaixaGUI extends javax.swing.JFrame {
 
         jBreceberPagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-kmymoney-icon.png"))); // NOI18N
         jBreceberPagamento.setText("Rec Pgto");
+        jBreceberPagamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBreceberPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBreceberPagamentoActionPerformed(evt);

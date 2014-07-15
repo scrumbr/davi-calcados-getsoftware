@@ -556,14 +556,14 @@ public class ListProdutosGUI extends javax.swing.JFrame {
     private void jBGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelatorioActionPerformed
        String consulta = "";
        if(jRFornecedor.isSelected()){
-           consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and f.nome like";
+           consulta = "select p.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and f.nome like";
        }else if(jRnome3.isSelected()){
-           consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and p.nome like";
+           consulta = "select p.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and p.nome like";
        }else if(jRadioButton1.isSelected()){
-            consulta = "select P.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and p.id_produto like";
+            consulta = "select p.id_produto, p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome as fornecedor from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and p.id_produto like";
        }    
         try {
-            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa3.getText() + "%' and ativo = true;","ProdutoTesteReport.jasper");
+            GenericReport c = new GenericReport(consulta + "'" +jTpesquisa3.getText() + "%'","ProdutoTesteReport.jasper");
         } catch (FormatoSQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatorio!", "ERRO", 1);
         }

@@ -207,6 +207,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
         jBremover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/shop-cart-exclude-icon.png"))); // NOI18N
         jBremover.setText("ajustar");
+        jBremover.setToolTipText("Ajustar quantidade de itens do produto selecionado");
+        jBremover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBremover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBremoverActionPerformed(evt);
@@ -218,6 +220,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
         jBinserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/shop-cart-add-icon.png"))); // NOI18N
         jBinserir.setText("inserir");
+        jBinserir.setToolTipText("Inserir produto na lista de compras");
+        jBinserir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBinserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBinserirActionPerformed(evt);
@@ -225,6 +229,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         });
 
         jBaddProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Start-Menu-Search-icon.png"))); // NOI18N
+        jBaddProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBaddProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBaddProdutoActionPerformed(evt);
@@ -285,6 +290,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jLabel2.setText("Produto");
 
         jBaddProduto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Start-Menu-Search-icon.png"))); // NOI18N
+        jBaddProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBaddProduto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBaddProduto1ActionPerformed(evt);
@@ -293,6 +299,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
         jBcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cancelar-32.png"))); // NOI18N
         jBcancelar.setText("Cancelar");
+        jBcancelar.setToolTipText("Cancelar venda");
+        jBcancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcancelarActionPerformed(evt);
@@ -421,6 +429,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcancelar, jBinserir, jBremover});
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -456,6 +465,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jBfinalizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBfinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"))); // NOI18N
         jBfinalizar.setText("FINALIZAR VENDA");
+        jBfinalizar.setToolTipText("Definir a forma de pagamento");
+        jBfinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBfinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBfinalizarActionPerformed(evt);

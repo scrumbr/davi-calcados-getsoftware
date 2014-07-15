@@ -200,6 +200,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 
         jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBsalvar.setText("Salvar");
+        jBsalvar.setToolTipText("Salvar saída");
+        jBsalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBsalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBsalvarActionPerformed(evt);
@@ -208,6 +210,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 
         jBcancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBcancel.setText("Cancelar");
+        jBcancel.setToolTipText("Cancelar cadastramento de saída");
+        jBcancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcancelActionPerformed(evt);
@@ -215,6 +219,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         });
 
         jCusuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o funcionário" }));
+        jCusuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCusuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCusuariosActionPerformed(evt);
@@ -226,6 +231,8 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jButton1.setText("Confirmar");
+        jButton1.setToolTipText("Confirmar saída");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -354,7 +361,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
 //          saida.setIdSaida();
             saida.setIdUsuario(idUsuarios.get(jCusuarios.getSelectedIndex()-1));
             saida.setValorSaida(Double.valueOf(jTvalor.getText()));
-          
+           
             try {          
                 SaidaBO.save(saida);
                 caixa.dadosTabela();

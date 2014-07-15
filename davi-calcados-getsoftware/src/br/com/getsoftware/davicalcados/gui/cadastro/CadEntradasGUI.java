@@ -176,6 +176,8 @@ public class CadEntradasGUI extends javax.swing.JFrame {
 
         jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBsalvar.setText("Salvar");
+        jBsalvar.setToolTipText("Salvar entrada");
+        jBsalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBsalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBsalvarActionPerformed(evt);
@@ -184,6 +186,8 @@ public class CadEntradasGUI extends javax.swing.JFrame {
 
         jBcancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBcancel.setText("Cancelar");
+        jBcancel.setToolTipText("Cancelar cadastramento de entrada");
+        jBcancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcancelActionPerformed(evt);
@@ -191,6 +195,12 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         });
 
         jCusuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o funcionário" }));
+        jCusuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCusuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCusuariosActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Funcionário / Usuário");
@@ -363,6 +373,10 @@ public class CadEntradasGUI extends javax.swing.JFrame {
        evt.consume();
        }
     }//GEN-LAST:event_jTvalorKeyTyped
+
+    private void jCusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCusuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCusuariosActionPerformed
 
     /**
      * @param args the command line arguments

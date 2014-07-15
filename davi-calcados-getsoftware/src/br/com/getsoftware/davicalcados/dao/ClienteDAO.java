@@ -53,7 +53,6 @@ import java.util.ArrayList;
         cliente.setTelefone2(TransformTelefone.transformTelefone(res.getString("telefone2")));
         cliente.setEmail(res.getString("email"));
         cliente.setPreferencia(res.getString("preferencia"));
-        cliente.setNumeroBoleto(res.getLong("numero_boleto"));
         cliente.setStatus(res.getBoolean("ativo"));
         cliente.setRenda(res.getDouble("renda"));
         cliente.setCredito(res.getDouble("credito"));
@@ -76,8 +75,8 @@ import java.util.ArrayList;
     public void save(Cliente cliente) throws SQLException {
         String sql = "insert into cliente(nome,profissao,sexo,data_nascimento,estado_civil,cpf,"
                 + " rg,telefone,telefone2, email,preferencia,"
-                + "numero_boleto,ativo,rua,numero,complemento,bairro,cidade,CEP,estado,renda,credito) "
-                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+                + "ativo,rua,numero,complemento,bairro,cidade,CEP,estado,renda,credito) "
+                + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 
@@ -92,18 +91,17 @@ import java.util.ArrayList;
         stmt.setString(9, cliente.getTelefone2());
         stmt.setString(10, cliente.getEmail());
         stmt.setString(11, cliente.getPreferencia());
-        stmt.setLong(12, cliente.getNumeroBoleto());
-        stmt.setBoolean(13, cliente.isStatus());
+        stmt.setBoolean(12, cliente.isStatus());
             
-        stmt.setString(14, cliente.getEndereco().getRua());
-        stmt.setString(15, cliente.getEndereco().getNumero());
-        stmt.setString(16, cliente.getEndereco().getComplemento());
-        stmt.setString(17, cliente.getEndereco().getBairro());
-        stmt.setString(18, cliente.getEndereco().getCidade());
-        stmt.setString(19, cliente.getEndereco().getCEP());
-        stmt.setString(20, cliente.getEndereco().getEstado());
-        stmt.setDouble(21, cliente.getRenda());
-        stmt.setDouble(22, cliente.getCredito());
+        stmt.setString(13, cliente.getEndereco().getRua());
+        stmt.setString(14, cliente.getEndereco().getNumero());
+        stmt.setString(15, cliente.getEndereco().getComplemento());
+        stmt.setString(16, cliente.getEndereco().getBairro());
+        stmt.setString(17, cliente.getEndereco().getCidade());
+        stmt.setString(18, cliente.getEndereco().getCEP());
+        stmt.setString(19, cliente.getEndereco().getEstado());
+        stmt.setDouble(20, cliente.getRenda());
+        stmt.setDouble(21, cliente.getCredito());
 
         stmt.execute();
         stmt.close();
@@ -112,7 +110,7 @@ import java.util.ArrayList;
     @Override
     public void update(Cliente cliente) throws SQLException {
         String sql = "update cliente set nome=?,profissao=?,sexo=?,data_nascimento=?,estado_civil=?,cpf=?, "
-                + "rg=?,telefone=?,telefone2=?, email=?,preferencia=?,numero_boleto=?,"
+                + "rg=?,telefone=?,telefone2=?, email=?,preferencia=?,"
                 + "ativo=?, rua=?,numero=?,complemento=?,bairro=?,cidade=?,CEP=?,estado=?,renda=?,credito=?"
                 + " where id_cliente=?";
 
@@ -129,19 +127,18 @@ import java.util.ArrayList;
         stmt.setString(9, cliente.getTelefone2());
         stmt.setString(10, cliente.getEmail());
         stmt.setString(11, cliente.getPreferencia());
-        stmt.setLong(12, cliente.getNumeroBoleto());
-        stmt.setBoolean(13, cliente.isStatus());
+        stmt.setBoolean(12, cliente.isStatus());
         
-        stmt.setString(14, cliente.getEndereco().getRua());
-        stmt.setString(15, cliente.getEndereco().getNumero());
-        stmt.setString(16, cliente.getEndereco().getComplemento());
-        stmt.setString(17, cliente.getEndereco().getBairro());
-        stmt.setString(18, cliente.getEndereco().getCidade());
-        stmt.setString(19, cliente.getEndereco().getCEP());
-        stmt.setString(20, cliente.getEndereco().getEstado());
-        stmt.setDouble(21, cliente.getRenda());
-        stmt.setDouble(22, cliente.getCredito());
-        stmt.setLong(23, cliente.getIdCiente());
+        stmt.setString(13, cliente.getEndereco().getRua());
+        stmt.setString(14, cliente.getEndereco().getNumero());
+        stmt.setString(15, cliente.getEndereco().getComplemento());
+        stmt.setString(16, cliente.getEndereco().getBairro());
+        stmt.setString(17, cliente.getEndereco().getCidade());
+        stmt.setString(18, cliente.getEndereco().getCEP());
+        stmt.setString(19, cliente.getEndereco().getEstado());
+        stmt.setDouble(20, cliente.getRenda());
+        stmt.setDouble(21, cliente.getCredito());
+        stmt.setLong(22, cliente.getIdCiente());
 
 
         stmt.execute();
@@ -172,7 +169,6 @@ import java.util.ArrayList;
         cliente.setTelefone2(TransformTelefone.transformTelefone(res.getString("telefone2")));
         cliente.setEmail(res.getString("email"));
         cliente.setPreferencia(res.getString("preferencia"));
-        cliente.setNumeroBoleto(res.getLong("numero_boleto"));
         cliente.setStatus(res.getBoolean("ativo"));
         cliente.setRenda(res.getDouble("renda"));
         cliente.setCredito(res.getDouble("credito"));
