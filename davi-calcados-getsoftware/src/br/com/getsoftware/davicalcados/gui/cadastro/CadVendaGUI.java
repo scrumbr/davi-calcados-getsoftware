@@ -464,7 +464,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
         jBfinalizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBfinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"))); // NOI18N
-        jBfinalizar.setText("FINALIZAR VENDA");
+        jBfinalizar.setText("   FORMA DE PAGAMENTO");
         jBfinalizar.setToolTipText("Definir a forma de pagamento");
         jBfinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBfinalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -497,7 +497,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBfinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
@@ -595,7 +595,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
-         if(jFcliente.getText() == null || jFcliente.getText().isEmpty()){
+       if(jFcliente.getText() == null || jFcliente.getText().isEmpty()){
            JOptionPane.showMessageDialog(null, "Campo 'Cliente' é obrigatório!", "Atenção", 2);
            jFcliente.requestFocus();
        }
@@ -609,15 +609,17 @@ public class CadVendaGUI extends javax.swing.JFrame {
         venda.setIdCliente(cliente.getIdCiente());
         venda.setIdFuncionario(Integer.valueOf(usuarioLogado.getIdUsuario()+""));
         venda.setData(DataAtual.dataAtual());
-        ArrayList<String> listIdProdutos = new ArrayList();
+        
+        ArrayList<ItensCarrinho> listProdutos = new ArrayList();
+        
         for (int i = 0; i < itensCarrinho.size(); i++) {
-            listIdProdutos.add(itensCarrinho.get(i).getIdProduto());
+            listProdutos.add(itensCarrinho.get(i));
         }
-        venda.setListaIdProduto(listIdProdutos);
+        venda.setListaProduto(listProdutos);
         venda.setValorTotal(Double.valueOf(jLtotal.getText()));
         this.setEnabled(false);
 //        this.dispose();
-        new FormaDePagamento(venda, this).setVisible(true);
+        new FormaDePagamento(true, venda, this).setVisible(true);
        }
     }//GEN-LAST:event_jBfinalizarActionPerformed
 

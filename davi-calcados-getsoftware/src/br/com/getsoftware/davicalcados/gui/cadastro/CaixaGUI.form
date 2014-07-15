@@ -368,7 +368,7 @@
         <Component class="javax.swing.JButton" name="jBvenda">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/contasReceber-24.png"/>
+              <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Cash-register-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Efetuar venda"/>
             <Property name="toolTipText" type="java.lang.String" value="Efetuar uma venda"/>

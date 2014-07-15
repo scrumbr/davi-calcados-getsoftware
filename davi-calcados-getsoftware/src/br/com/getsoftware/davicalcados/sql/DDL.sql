@@ -165,10 +165,11 @@ constraint fk_venda_funcionario foreign key venda(id_funcionario) references fun
 constraint fk_venda_cliente foreign key venda(id_cliente) references cliente(id_cliente)
 );
 
-create table produtos_vendidos(
-	id bigint auto_increment,
+create table produto_vendido(
+    id bigint auto_increment,
     id_venda bigint,
-    id_produto varchar(255) ,
+    id_produto varchar(255) not null,
+    quantidade int,
 constraint pk_venda primary key produtos_vendidos(id),
 constraint fk_venda_produto foreign key produtos_vendidos(id_venda) references venda(id),
 constraint fk_venda_produto_vendido foreign key produtos_vendidos(id_produto) references produto(id_produto)

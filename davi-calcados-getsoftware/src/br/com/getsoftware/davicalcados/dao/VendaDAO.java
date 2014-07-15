@@ -8,6 +8,7 @@ package br.com.getsoftware.davicalcados.dao;
 import br.com.getsoftware.davicalcados.connection.Conexao;
 import br.com.getsoftware.davicalcados.entity.Venda;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
+import br.com.getsoftware.davicalcados.util.TransformDate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +42,7 @@ public class VendaDAO implements InterfaceCRUD<Venda> {
 //            venda.setDescricao(sql);
             venda.setIdCliente(res.getLong("id_cliente"));
             venda.setIdFuncionario(res.getInt("id_funcionario"));
-            venda.setIdVenda(res.getInt("id"));
+            venda.setIdVenda(res.getLong("id"));
             venda.setValorTotal(res.getDouble("total"));
             venda.setData(res.getString("data"));
             venda.setParcela(res.getInt("parcela"));
@@ -62,7 +63,7 @@ public class VendaDAO implements InterfaceCRUD<Venda> {
 
         stmt.setInt(1, venda.getIdFuncionario());
         stmt.setLong(2, venda.getIdCliente());
-        stmt.setString(3, venda.getData());
+        stmt.setString(3, TransformDate.transformDate(venda.getData()));
         stmt.setInt(4, venda.getParcela());
         stmt.setDouble(5, venda.getValorTotal());
 
@@ -79,10 +80,10 @@ public class VendaDAO implements InterfaceCRUD<Venda> {
 
         stmt.setInt(1, venda.getIdFuncionario());
         stmt.setLong(2, venda.getIdCliente());
-        stmt.setString(3, venda.getData());
+        stmt.setString(3, TransformDate.transformDate(venda.getData()));
         stmt.setInt(4, venda.getParcela());
         stmt.setDouble(5, venda.getValorTotal());
-        stmt.setInt(6, venda.getIdVenda());
+        stmt.setLong(6, venda.getIdVenda());
 
         stmt.execute();
         stmt.close();
@@ -102,7 +103,7 @@ public class VendaDAO implements InterfaceCRUD<Venda> {
 
             venda.setIdCliente(res.getLong("id_cliente"));
             venda.setIdFuncionario(res.getInt("id_funcionario"));
-            venda.setIdVenda(res.getInt("id"));
+            venda.setIdVenda(res.getLong("id"));
             venda.setValorTotal(res.getDouble("total"));
             venda.setData(res.getString("data"));
             venda.setParcela(res.getInt("parcela"));

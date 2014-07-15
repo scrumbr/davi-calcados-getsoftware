@@ -1111,8 +1111,11 @@ public class EditClienteGUI extends javax.swing.JFrame {
         jFTelefone2.setText(cliente.getTelefone2());
         jTemail.setText(cliente.getEmail());
         jTPreferencias.setText(cliente.getPreferencia());
-        int ano = Integer.valueOf(jFDataNascimento.getText().substring(jFDataNascimento.getText().length() - 4, jFDataNascimento.getText().length()));
-        jTIdade.setText("" + (MyDate.getAno() - ano));
+        
+        if(!jFDataNascimento.getText().equals("  /  /    ")){
+          Integer ano = Integer.valueOf(jFDataNascimento.getText().substring(jFDataNascimento.getText().length() - 4, jFDataNascimento.getText().length()));
+          jTIdade.setText("" + (MyDate.getAno() - ano));  
+        }
 
         jTRua.setText(cliente.getEndereco().getRua());
         jTNumero.setText("" + cliente.getEndereco().getNumero());

@@ -39,9 +39,9 @@
                       <Component id="jScrollPane1" pref="610" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jBfinalizar" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -566,7 +566,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FINALIZAR VENDA"/>
+        <Property name="text" type="java.lang.String" value="   FORMA DE PAGAMENTO"/>
         <Property name="toolTipText" type="java.lang.String" value="Definir a forma de pagamento"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor em Forma de M&#xe3;o"/>

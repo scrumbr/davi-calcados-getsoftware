@@ -22,4 +22,13 @@ public class LastID {
             return (GenericSQLBO.genericResultSet().getInt(atributo) + 1);
         }
     }
+    
+     public static Long lastId(String atributo, String tabela) throws SQLException{
+        GenericSQLBO.genericQuery("select "+atributo+" from "+tabela+" order by "+atributo+" desc limit 1");
+        if (GenericSQLBO.genericResultSet().last() == false) {
+            return Long.valueOf(1);
+        } else {
+            return (GenericSQLBO.genericResultSet().getLong(atributo));
+        }
+    }
 }

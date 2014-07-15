@@ -87,7 +87,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(1, funcionario.getNome());
         stmt.setString(2, funcionario.getSexo());
         stmt.setString(3, funcionario.getDataNascimento());
-        stmt.setString(4, funcionario.getCpf());
+        stmt.setString(4, TransformCpf.transformCpf(funcionario.getCpf()));
         stmt.setString(5, funcionario.getRg());
         stmt.setString(6, funcionario.getTelefone());
         stmt.setString(7, funcionario.getTelefone2());
@@ -119,7 +119,7 @@ public class FuncionarioDAO implements InterfaceCRUD<Funcionario> {
         stmt.setString(1, funcionario.getNome());
         stmt.setString(2, funcionario.getSexo());
         stmt.setString(3, funcionario.getDataNascimento());
-        stmt.setString(4, funcionario.getCpf());
+        stmt.setString(4, TransformCpf.transformCpf(funcionario.getCpf()));
         stmt.setString(5, funcionario.getRg());
         stmt.setString(6, funcionario.getTelefone());
         stmt.setString(7, funcionario.getTelefone2());
