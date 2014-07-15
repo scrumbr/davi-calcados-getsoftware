@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE index PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 2.0//EN" "http://java.sun.com/products/javahelp/index_2_0.dtd">
+<index version="2.0">
+    <indexitem text="Cadastro">
+        <indexitem text="Cliente" target="cadCliente"/>
+        <indexitem text="Produto" target="cadProduto"/>
+        <indexitem text="Fornecedor" target="cadFornecedor"/>
+        <indexitem text="Funcionario" target="cadFuncionario"/>
+    </indexitem>
+    <indexitem text="Serviços">
+        <indexitem text="Plano de Compras" target="planoCompras"/>
+        <indexitem text="Contas á pagar" target="contasPagar"/>
+        <indexitem text="Contas á receber" target="contasReceber"/>
+    </indexitem>
+    
+    
+    <indexitem text="Caixa">
+         <indexitem text="Cliente" target="appwithhelp.cadCliente"/>
+        <indexitem text="Produto" target="appwithhelp.cadFornecedor"/>
+        <indexitem text="Fornecedor" target="cadFuncionario"/>
+        <indexitem text="Funcionario" target="cadFuncionario"/>       
+    </indexitem>
+  
+</index>
