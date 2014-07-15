@@ -34,6 +34,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/cadCliente.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CADASTRO"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMFuncionario">
@@ -42,6 +45,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/funcionario-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de cadastro de funcion&#xe1;rio"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMFuncionarioActionPerformed"/>
@@ -55,6 +62,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/cliente-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de cadastro de cliente"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMClienteActionPerformed"/>
@@ -68,6 +79,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/fornecedor-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Fornecedor"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de cadastro de fornecedor"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
@@ -81,6 +96,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/CadProduto-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Produto"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de cadastro de produto"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMProdutoActionPerformed"/>
@@ -96,6 +115,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Service.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SERVI&#xc7;OS"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator16">
@@ -106,6 +128,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/planoCompras-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Plano de Compras"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de plano de compras"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem16ActionPerformed"/>
@@ -119,6 +145,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/contaspagar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Contas &#xe1; pagar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela Contas &#xe1; pagar"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem19ActionPerformed"/>
@@ -132,6 +162,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/contaReceber.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Contas &#xe1; receber"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de contas &#xe1; receber"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem20ActionPerformed"/>
@@ -147,6 +181,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/kkkkkk.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CAIXA"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMCaixaMouseClicked"/>
@@ -158,6 +195,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/ConsultarNovo-4.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CONSULTAR"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMlistFuncionarios">
@@ -166,6 +206,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/PesquisarFuncionario-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Funcion&#xe1;rios"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de listagem de funcionario"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMlistFuncionariosActionPerformed"/>
@@ -179,6 +223,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarCliente-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Clientes"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de listagem de clientes"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem10ActionPerformed"/>
@@ -192,6 +240,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Fornecedor"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de listagem de fornecedor"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem11ActionPerformed"/>
@@ -205,6 +257,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Produtos"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de listagem de produtos"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem12ActionPerformed"/>
@@ -217,7 +273,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/usu-16.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Lista de Usuarios"/>
+                <Property name="text" type="java.lang.String" value="Lista de Usu&#xe1;rios"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir tela de listagem de usu&#xe1;rios"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMListaDeUsuariosActionPerformed"/>
@@ -231,6 +291,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/relatorio-48.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="RELAT&#xd3;RIOS"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
@@ -238,7 +301,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relatorio de Clientes"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Clientes"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de clientes"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem17ActionPerformed"/>
@@ -251,7 +318,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relatorio de Fornecedores"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Fornecedores"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de fornecedores"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem18ActionPerformed"/>
@@ -264,7 +335,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relatorio de Funcionarios"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Funcionarios"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de funcionarios"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem21ActionPerformed"/>
@@ -277,7 +352,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relatorio de Produtos"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Produtos"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de produtos"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem22ActionPerformed"/>
@@ -290,7 +369,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relarorio de Plano de Compras"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Plano de Compras"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de compras"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem25ActionPerformed"/>
@@ -303,7 +386,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relatorio de Entradas"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Entradas"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem26">
@@ -312,6 +395,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/total-icon.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Total"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de entradas"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem26ActionPerformed"/>
@@ -325,6 +412,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/date-icon.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Por Data"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de entradas por data"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem27ActionPerformed"/>
@@ -339,7 +430,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/pdf.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Relatorio de Sa&#xed;das"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Sa&#xed;das"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem28">
@@ -348,6 +439,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/total-icon.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Total"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de sa&#xed;das"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem28ActionPerformed"/>
@@ -361,6 +456,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/date-icon.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Por Data"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios de sa&#xed;das por data"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem29ActionPerformed"/>
@@ -384,6 +483,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/total-icon.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Total"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios da movimenta&#xe7;&#xe3;o do caixa"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem24ActionPerformed"/>
@@ -395,6 +498,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/date-icon.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="por data"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Gerar relat&#xf3;rios da movimenta&#xe7;&#xe3;o do caixa por data"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem30ActionPerformed"/>
@@ -412,6 +519,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/util-48.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ULTILIT&#xc1;RIOS"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
@@ -420,6 +530,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/BlocoDeNotas-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Bloco de Notas"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir bloco de notas"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -433,6 +547,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/calculadora-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Calculadora"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir calculadora"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
@@ -446,6 +564,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Calendar-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Calend&#xe1;rio"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir calend&#xe1;rio"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem14ActionPerformed"/>
@@ -459,6 +581,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/autoadesivas-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Notas Autoadesivas"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir notas autoadesivas"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
@@ -480,6 +606,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Facebook-16.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Facebook"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Abrir facebook"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem15MouseClicked"/>
@@ -494,6 +624,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/google-16.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Google"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Abrir google"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
@@ -507,6 +641,10 @@
                       <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/spc-brasil.jpg"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="SPC Brasil"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Abrir site do SPC brasil"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
@@ -526,6 +664,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Backup-Seagate.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="BACKUP"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
@@ -534,6 +675,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Blue-Backup-B-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Realizar backup"/>
+                <Property name="toolTipText" type="java.lang.String" value="Realizar backup do sistema"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
@@ -547,6 +692,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/restaurar-Backup-B-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Restaurar backup"/>
+                <Property name="toolTipText" type="java.lang.String" value="Restaurar backup no sistema"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -557,6 +706,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/sobre-48.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="AJUDA"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem31">
@@ -565,6 +717,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/ajuda-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ajuda"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir ajuda do sistema"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem31ActionPerformed"/>
@@ -578,6 +734,10 @@
                   <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Folders-OS-Info-Metro-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir informa&#xe7;&#xf5;es sobre o sistema"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -588,6 +748,9 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Action-exit-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SAIR"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMSairMouseClicked"/>

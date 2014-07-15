@@ -102,7 +102,7 @@ public class ProdutoDAO   {
 
 //    @Override
     public ArrayList<Produto> listAll() throws SQLException {
-        String sql = "select * from produto where ativo = true";
+        String sql = "select * from produto";
               
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 

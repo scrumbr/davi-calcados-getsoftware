@@ -56,7 +56,7 @@ $$ DELIMITER ;
 
  
 -- ----------------------------------------------------------------------------------
--- ************ TRIGGER'S DA TABELA CAIXA COM EVENTOS DA TABELA ENTRADA *************
+-- ************ TRIGGER'S DA TABELA CAIXA COM EVENTOS DA TABELA SAIDA *************
 -- ----------------------------------------------------------------------------------
 /*
  * trigger criada para alimentar a tabela caixa com os valores inseridos na tabela saida

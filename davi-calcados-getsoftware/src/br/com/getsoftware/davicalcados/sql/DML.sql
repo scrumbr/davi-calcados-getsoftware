@@ -1,24 +1,26 @@
 
 select * from produto;
 
-select p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor;
+select p.nome, p.descricao, p.quantidade, p.quantidade_minima, p.valor_unitario, p.valor_venda, p.valor_aumento, f.nome from produto as p, fornecedor as f where p.id_fornecedor = f.id_fornecedor and ativo = true;
 select * from entrada;
 
 select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN '2014/05/11' AND '2014/05/13';
 select  s.id_saida, s.descricao_saida, s.valor_saida, s.data_saida, u.username from saida as s, usuario as u where s.id_usuario = u.id_usuario and data_saida BETWEEN '2014/05/11' AND '2014/05/13';
 
 SELECT * FROM entrada WHERE data_entrada BETWEEN '2014/05/11' AND '2014/05/15' ; 
-
+select u.id_usuario,u.username, u.senha, f.cpf from usuario as u, funcionario as f where id_usuario = id_funcionario;;
 
 insert into entrada (id_usuario, descricao_entrada, valor_entrada, data_entrada) values(1,"Recebimento de parcela", 50.00,'2014/05/15');
 insert into entrada (id_usuario, descricao_saida, valor_saida, data_saida) values(1,"Conta de Energia", 50.00,'2014/05/15');
 
 
 insert into cliente(nome,profissao,sexo,data_nascimento, estado_civil, cpf, rg, telefone,telefone2,email,preferencia,numero_boleto,ativo,rua,numero,complemento,
-bairro,cidade,cep,estado,renda,credito) values("Maria Florentina", "Recepcionista", "Feminino", '1980/12/08', "Solteiro", "09878628320", "123456789", "(88)9660-4515",
-"(88)3422-1407","rodolfo.abreu@gmail.com","Sem Preferencia", 123456, true, "Rua tomas de aquino", 123,"Casa","Santa Barbara", "Ibicuitinga", "62940-000", "CE", 1500,700);
+bairro,cidade,cep,estado,renda,credito) values("Andrey Gois", "Bigu", "Masculino", '1980/12/08', "Solteiro", "09878628320", "123456789", "8896604515",
+"8834221407","rodolfo.abreu@gmail.com","Sem Preferencia", 123456, true, "Rua tomas de aquino", 123,"Casa","Santa Barbara", "Ibicuitinga", "62940-000", "CE", 1500,700);
 
-select * from contas_pagar;
+select * from funcionario;
+
+update funcionario set ativo = true where ativo = false;
 
 create table contas_pagar(
 	id_contas_pagar bigint auto_increment,
@@ -37,14 +39,14 @@ select * from contas_pagar where status = true order by data_pagamento;
 delete from contas_pagar;
 select * from saida;
 
-insert into usuario(ativo, username, nivel, senha) values(true, "Junieudes",1,"123123");
+
+update funcionario set cpf="111.111.111-11" where id_funcionario = 1;
 
 
 
+select count(id_cliente) from cliente;
 
 
-
-
-
-
-
+insert into cliente(nome,profissao,sexo,data_nascimento, estado_civil, cpf, rg, telefone,telefone2,email,preferencia,numero_boleto,ativo,rua,numero,complemento,
+bairro,cidade,cep,estado,renda,credito) values("Andrey Gois", "Bigu", "Masculino", '1980/12/08', "Solteiro", "09878628320", "123456789", "8896604515",
+"8834221407","rodolfo.abreu@gmail.com","Sem Preferencia", 123456, true, "Rua tomas de aquino", 123,"Casa","Santa Barbara", "Ibicuitinga", "62940-000", "CE", 1500,700);

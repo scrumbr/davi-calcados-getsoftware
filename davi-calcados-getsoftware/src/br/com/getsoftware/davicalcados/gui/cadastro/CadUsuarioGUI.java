@@ -45,15 +45,7 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jTcpf.setText(funcionario.getCpf());
     }
     
-    public Boolean atualizaStatusUsuario() {
-        if (funcionario.isAtivo() == true) {
-            jRativo.setSelected(true);
-            return true;
-        } else {
-            jRintivo.setSelected(false);
-            return false;
-        }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,10 +65,7 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jTusuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jCnivel = new javax.swing.JComboBox();
-        jRativo = new javax.swing.JRadioButton();
-        jRintivo = new javax.swing.JRadioButton();
         jPconfirmarSenha = new javax.swing.JPasswordField();
         jPsenha = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
@@ -107,96 +96,118 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Dados do Usuario"));
-        jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Identificador");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(15, 16, 79, 15);
 
         jTid.setEditable(false);
         jTid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel1.add(jTid);
-        jTid.setBounds(15, 37, 115, 23);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(15, 162, 38, 15);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nível");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(187, 113, 28, 15);
 
         jTusuario.setEditable(false);
         jTusuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTusuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jTusuario);
-        jTusuario.setBounds(15, 85, 328, 22);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Nome do usuário");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(15, 66, 103, 15);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Confirmar senha");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(187, 162, 100, 15);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Status");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(225, 18, 41, 15);
 
         jCnivel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jCnivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-Nível de acesso-", "Administrador", "Gerente", "Funcionário" }));
-        jPanel1.add(jCnivel);
-        jCnivel.setBounds(187, 134, 156, 22);
-
-        buttonGroup1.add(jRativo);
-        jRativo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRativo.setSelected(true);
-        jRativo.setText("Ativo");
-        jRativo.setEnabled(false);
-        jPanel1.add(jRativo);
-        jRativo.setBounds(225, 35, 53, 25);
-
-        buttonGroup1.add(jRintivo);
-        jRintivo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jRintivo.setText("Inativo");
-        jRintivo.setEnabled(false);
-        jPanel1.add(jRintivo);
-        jRintivo.setBounds(280, 35, 63, 25);
 
         jPconfirmarSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPconfirmarSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jPconfirmarSenha);
-        jPconfirmarSenha.setBounds(190, 180, 156, 22);
 
         jPsenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPsenha.setAutoscrolls(false);
         jPsenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jPsenha);
-        jPsenha.setBounds(20, 180, 154, 22);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("CPF");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(15, 113, 22, 15);
 
         jTcpf.setEditable(false);
         jTcpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTcpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jTcpf);
-        jTcpf.setBounds(15, 134, 154, 22);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel4))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jTusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel7)
+                .addGap(150, 150, 150)
+                .addComponent(jLabel3))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jTcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jCnivel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addGap(132, 132, 132)
+                .addComponent(jLabel5))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jPsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jPconfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(6, 6, 6)
+                .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel4)
+                .addGap(4, 4, 4)
+                .addComponent(jTusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCnivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPconfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Opções"));
 
         jBsalvar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBsalvar.setText("Salvar");
+        jBsalvar.setToolTipText("Salvar o usuário");
+        jBsalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBsalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBsalvar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jBsalvar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -209,6 +220,8 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         jBcancelar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBcancelar.setText("Sair");
+        jBcancelar.setToolTipText("Cancelar o cadastramento do usuário");
+        jBcancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBcancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jBcancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -219,12 +232,10 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBsalvar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBsalvar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBcancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jBcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBcancelar, jBsalvar});
@@ -234,9 +245,9 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBsalvar)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBcancelar)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBcancelar, jBsalvar});
@@ -279,13 +290,13 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(500, 340));
+        setSize(new java.awt.Dimension(500, 319));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -316,7 +327,7 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
 
             try {
                 Usuario user = new Usuario();
-                user.setActive(atualizaStatusUsuario());
+               // user.setActive(atualizaStatusUsuario());
                 user.setIdUsuario(funcionario.getIdFuncionario());
                 user.setNivel(jCnivel.getSelectedIndex());
                 user.setSenha(jPsenha.getText()); 
@@ -378,7 +389,6 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -387,8 +397,6 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPconfirmarSenha;
     private javax.swing.JPasswordField jPsenha;
-    private javax.swing.JRadioButton jRativo;
-    private javax.swing.JRadioButton jRintivo;
     private javax.swing.JTextField jTcpf;
     private javax.swing.JTextField jTid;
     private javax.swing.JTextField jTusuario;

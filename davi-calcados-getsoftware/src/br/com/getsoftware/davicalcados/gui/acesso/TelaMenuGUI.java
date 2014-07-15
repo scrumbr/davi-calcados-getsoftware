@@ -32,9 +32,12 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -53,11 +56,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
        // jLData.setText(MyDate.getDataAtual());
         //jLHora.setText(MyHours.getHoraAtual());
         
-         if(UsuarioLogado.usuarioLogado.getNivel() == 1){
-         jMServicos.setEnabled(false);
-        }else if(UsuarioLogado.usuarioLogado.getNivel() == 3){
-         jMCaixa.setEnabled(false);
-     } 
+         if(UsuarioLogado.usuarioLogado.getNivel() != 1){
+         jMListaDeUsuarios.setEnabled(false);
+        }
     }
    
 
@@ -203,9 +204,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cadCliente.png"))); // NOI18N
         jMenu3.setText("CADASTRO");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/funcionario-16.png"))); // NOI18N
         jMFuncionario.setText("Funcionário");
+        jMFuncionario.setToolTipText("Abrir tela de cadastro de funcionário");
+        jMFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMFuncionarioActionPerformed(evt);
@@ -216,6 +220,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cliente-16.png"))); // NOI18N
         jMCliente.setText("Cliente");
+        jMCliente.setToolTipText("Abrir tela de cadastro de cliente");
+        jMCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMClienteActionPerformed(evt);
@@ -226,6 +232,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/fornecedor-16.png"))); // NOI18N
         jMenuItem4.setText("Fornecedor");
+        jMenuItem4.setToolTipText("Abrir tela de cadastro de fornecedor");
+        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -236,6 +244,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/CadProduto-16.png"))); // NOI18N
         jMProduto.setText("Produto");
+        jMProduto.setToolTipText("Abrir tela de cadastro de produto");
+        jMProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMProdutoActionPerformed(evt);
@@ -248,10 +258,13 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMServicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Service.png"))); // NOI18N
         jMServicos.setText("SERVIÇOS");
+        jMServicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMServicos.add(jSeparator16);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/planoCompras-16.png"))); // NOI18N
         jMenuItem16.setText("Plano de Compras");
+        jMenuItem16.setToolTipText("Abrir tela de plano de compras");
+        jMenuItem16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -262,6 +275,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/contaspagar.png"))); // NOI18N
         jMenuItem19.setText("Contas á pagar");
+        jMenuItem19.setToolTipText("Abrir tela Contas á pagar");
+        jMenuItem19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
@@ -272,6 +287,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/contaReceber.png"))); // NOI18N
         jMenuItem20.setText("Contas á receber");
+        jMenuItem20.setToolTipText("Abrir tela de contas á receber");
+        jMenuItem20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem20ActionPerformed(evt);
@@ -284,6 +301,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/kkkkkk.png"))); // NOI18N
         jMCaixa.setText("CAIXA");
+        jMCaixa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMCaixaMouseClicked(evt);
@@ -293,9 +311,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/ConsultarNovo-4.png"))); // NOI18N
         jMenu5.setText("CONSULTAR");
+        jMenu5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMlistFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/PesquisarFuncionario-16.png"))); // NOI18N
         jMlistFuncionarios.setText("Lista de Funcionários");
+        jMlistFuncionarios.setToolTipText("Abrir tela de listagem de funcionario");
+        jMlistFuncionarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMlistFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMlistFuncionariosActionPerformed(evt);
@@ -306,6 +327,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarCliente-16.png"))); // NOI18N
         jMenuItem10.setText("Lista de Clientes");
+        jMenuItem10.setToolTipText("Abrir tela de listagem de clientes");
+        jMenuItem10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
@@ -316,6 +339,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarProduto-16.png"))); // NOI18N
         jMenuItem11.setText("Lista de Fornecedor");
+        jMenuItem11.setToolTipText("Abrir tela de listagem de fornecedor");
+        jMenuItem11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -326,6 +351,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pesquisarFornecedor-16.png"))); // NOI18N
         jMenuItem12.setText("Lista de Produtos");
+        jMenuItem12.setToolTipText("Abrir tela de listagem de produtos");
+        jMenuItem12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -335,7 +362,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu5.add(jSeparator31);
 
         jMListaDeUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/usu-16.png"))); // NOI18N
-        jMListaDeUsuarios.setText("Lista de Usuarios");
+        jMListaDeUsuarios.setText("Lista de Usuários");
+        jMListaDeUsuarios.setToolTipText("Abrir tela de listagem de usuários");
+        jMListaDeUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMListaDeUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMListaDeUsuariosActionPerformed(evt);
@@ -347,9 +376,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/relatorio-48.png"))); // NOI18N
         jMenu6.setText("RELATÓRIOS");
+        jMenu6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenuItem17.setText("Relatorio de Clientes");
+        jMenuItem17.setText("Relatório de Clientes");
+        jMenuItem17.setToolTipText("Gerar relatórios de clientes");
+        jMenuItem17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
@@ -359,7 +391,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu6.add(jSeparator19);
 
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenuItem18.setText("Relatorio de Fornecedores");
+        jMenuItem18.setText("Relatório de Fornecedores");
+        jMenuItem18.setToolTipText("Gerar relatórios de fornecedores");
+        jMenuItem18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem18ActionPerformed(evt);
@@ -369,7 +403,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu6.add(jSeparator22);
 
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenuItem21.setText("Relatorio de Funcionarios");
+        jMenuItem21.setText("Relatório de Funcionarios");
+        jMenuItem21.setToolTipText("Gerar relatórios de funcionarios");
+        jMenuItem21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
@@ -379,7 +415,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu6.add(jSeparator23);
 
         jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenuItem22.setText("Relatorio de Produtos");
+        jMenuItem22.setText("Relatório de Produtos");
+        jMenuItem22.setToolTipText("Gerar relatórios de produtos");
+        jMenuItem22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
@@ -389,7 +427,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu6.add(jSeparator24);
 
         jMenuItem25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenuItem25.setText("Relarorio de Plano de Compras");
+        jMenuItem25.setText("Relatório de Plano de Compras");
+        jMenuItem25.setToolTipText("Gerar relatórios de compras");
+        jMenuItem25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem25ActionPerformed(evt);
@@ -399,10 +439,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu6.add(jSeparator25);
 
         jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenu10.setText("Relatorio de Entradas");
+        jMenu10.setText("Relatório de Entradas");
 
         jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/total-icon.png"))); // NOI18N
         jMenuItem26.setText("Total");
+        jMenuItem26.setToolTipText("Gerar relatórios de entradas");
+        jMenuItem26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem26ActionPerformed(evt);
@@ -413,6 +455,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/date-icon.png"))); // NOI18N
         jMenuItem27.setText("Por Data");
+        jMenuItem27.setToolTipText("Gerar relatórios de entradas por data");
+        jMenuItem27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem27ActionPerformed(evt);
@@ -424,10 +468,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenu6.add(jSeparator26);
 
         jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf.png"))); // NOI18N
-        jMenu11.setText("Relatorio de Saídas");
+        jMenu11.setText("Relatório de Saídas");
 
         jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/total-icon.png"))); // NOI18N
         jMenuItem28.setText("Total");
+        jMenuItem28.setToolTipText("Gerar relatórios de saídas");
+        jMenuItem28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem28ActionPerformed(evt);
@@ -438,6 +484,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/date-icon.png"))); // NOI18N
         jMenuItem29.setText("Por Data");
+        jMenuItem29.setToolTipText("Gerar relatórios de saídas por data");
+        jMenuItem29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem29ActionPerformed(evt);
@@ -453,6 +501,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/total-icon.png"))); // NOI18N
         jMenuItem24.setText("Total");
+        jMenuItem24.setToolTipText("Gerar relatórios da movimentação do caixa");
+        jMenuItem24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem24ActionPerformed(evt);
@@ -462,6 +512,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/date-icon.png"))); // NOI18N
         jMenuItem30.setText("por data");
+        jMenuItem30.setToolTipText("Gerar relatórios da movimentação do caixa por data");
+        jMenuItem30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem30ActionPerformed(evt);
@@ -476,9 +528,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/util-48.png"))); // NOI18N
         jMenu2.setText("ULTILITÁRIOS");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/BlocoDeNotas-16.png"))); // NOI18N
         jMenuItem1.setText("Bloco de Notas");
+        jMenuItem1.setToolTipText("Abrir bloco de notas");
+        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -489,6 +544,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/calculadora-16.png"))); // NOI18N
         jMenuItem2.setText("Calculadora");
+        jMenuItem2.setToolTipText("Abrir calculadora");
+        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -499,6 +556,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Calendar-16.png"))); // NOI18N
         jMenuItem14.setText("Calendário");
+        jMenuItem14.setToolTipText("Abrir calendário");
+        jMenuItem14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -509,6 +568,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/autoadesivas-16.png"))); // NOI18N
         jMenuItem5.setText("Notas Autoadesivas");
+        jMenuItem5.setToolTipText("Abrir notas autoadesivas");
+        jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -522,6 +583,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Facebook-16.png"))); // NOI18N
         jMenuItem15.setText("Facebook");
+        jMenuItem15.setToolTipText("Abrir facebook");
+        jMenuItem15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuItem15MouseClicked(evt);
@@ -537,6 +600,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/google-16.png"))); // NOI18N
         jMenuItem7.setText("Google");
+        jMenuItem7.setToolTipText("Abrir google");
+        jMenuItem7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -547,6 +612,8 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/spc-brasil.jpg"))); // NOI18N
         jMenuItem8.setText("SPC Brasil");
+        jMenuItem8.setToolTipText("Abrir site do SPC brasil");
+        jMenuItem8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -562,9 +629,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Backup-Seagate.png"))); // NOI18N
         jMenu8.setText("BACKUP");
+        jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Blue-Backup-B-icon.png"))); // NOI18N
         jMenuItem6.setText("Realizar backup");
+        jMenuItem6.setToolTipText("Realizar backup do sistema");
+        jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -575,15 +645,20 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/restaurar-Backup-B-icon.png"))); // NOI18N
         jMenuItem9.setText("Restaurar backup");
+        jMenuItem9.setToolTipText("Restaurar backup no sistema");
+        jMenuItem9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu8.add(jMenuItem9);
 
         jMenuBar2.add(jMenu8);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/sobre-48.png"))); // NOI18N
         jMenu4.setText("AJUDA");
+        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/ajuda-16.png"))); // NOI18N
         jMenuItem31.setText("Ajuda");
+        jMenuItem31.setToolTipText("Abrir ajuda do sistema");
+        jMenuItem31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem31ActionPerformed(evt);
@@ -594,12 +669,15 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
         jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Folders-OS-Info-Metro-icon.png"))); // NOI18N
         jMenuItem23.setText("Sobre");
+        jMenuItem23.setToolTipText("Abrir informações sobre o sistema");
+        jMenuItem23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.add(jMenuItem23);
 
         jMenuBar2.add(jMenu4);
 
         jMSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Action-exit-icon.png"))); // NOI18N
         jMSair.setText("SAIR");
+        jMSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMSairMouseClicked(evt);
@@ -688,7 +766,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
          try {        
-            Runtime.getRuntime().exec("cmd.exe /C start Stikynot.exe");
+            Runtime.getRuntime().exec("cmd.exe /C start stikynot.exe");
         } catch (IOException ex) {
             Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -944,7 +1022,7 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMListaDeUsuariosActionPerformed
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
-        // TODO add your handling code here:
+        openHelp();
     }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     /**
@@ -1069,4 +1147,29 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     // End of variables declaration//GEN-END:variables
+
+    
+    private HelpSet hs;
+    private HelpBroker hb;
+    private URL hsURL;
+    
+    public void openHelp() {
+
+        String pathToHs = "/appwithhelp/docs/appwithhelp-hs.xml";
+        try {
+            URL hsURL = getClass().getResource(pathToHs);
+            hs = new HelpSet(null, hsURL);
+        } catch (Exception ee) {
+            return;
+        }
+
+        hb = hs.createHelpBroker();
+        hb.setDisplayed(true);
+
+    }
+
+
+
+
+
 }

@@ -45,8 +45,8 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jDDatade = new com.toedter.calendar.JDateChooser();
-        jDDateate = new com.toedter.calendar.JDateChooser();
+        jFDateDe = new javax.swing.JFormattedTextField();
+        jFDateAte = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -108,6 +108,10 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jFDateDe.setText("jFormattedTextField1");
+
+        jFDateAte.setText("jFormattedTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,11 +121,11 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDDatade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jFDateDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDDateate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFDateAte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -133,13 +137,12 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3))
-                    .addComponent(jDDatade, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDDateate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jFDateDe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFDateAte, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -155,15 +158,15 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-           validaCapos();
-           
-            String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, "
-                    + "usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ (transformDate(dataAtual(jDDatade.getDate()))) +"'" + "AND" + "'" + (transformDate(dataAtual(jDDateate.getDate())))+ "'";
-            try {
-                GenericReport entraRel = new GenericReport(consulta, "EntradaReport.jasper");
-            } catch (FormatoSQLException ex) {
-                Logger.getLogger(EntradaRelatorioGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//           validaCapos();
+//           
+//            String consulta = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, "
+//                    + "usuario as u where e.id_usuario = u.id_usuario and data_entrada BETWEEN " + "'"+ (transformDate(dataAtual(jDDateDe.getDate()))) +"'" + "AND" + "'" + (transformDate(dataAtual(jDDateAte.getDate())))+ "'";
+//            try {
+//                GenericReport entraRel = new GenericReport(consulta, "EntradaReport.jasper");
+//            } catch (FormatoSQLException ex) {
+//                Logger.getLogger(EntradaRelatorioGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -204,8 +207,8 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDDatade;
-    private com.toedter.calendar.JDateChooser jDDateate;
+    private javax.swing.JFormattedTextField jFDateAte;
+    private javax.swing.JFormattedTextField jFDateDe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -214,13 +217,11 @@ public class EntradaRelatorioGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-public void validaCapos(){
-    if(jDDatade.getDate() == null){
-      JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data de:'", "Atenção", 2);
-    }else if(jDDateate.getDate() == null){
-      JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data até:'", "Atenção", 2);
-    }
-}
-
-
+//public void validaCapos(){
+//    if(jDDateDe.getDate() == null){
+//      JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data de:'", "Atenção", 2);
+//    }else if(jDDateAte.getDate() == null){
+//      JOptionPane.showMessageDialog(null, "Digite uma data válida no campo 'Data até:'", "Atenção", 2);
+//    }
+//}
 }

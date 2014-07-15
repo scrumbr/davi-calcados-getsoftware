@@ -75,8 +75,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
         jLProfissao = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLEstadoCivil = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLBoleto = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLPreferencias = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -175,11 +173,11 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLexcluir)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLeditar)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLclose)
-                .addGap(61, 61, 61))
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,12 +260,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
         jLEstadoCivil.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLEstadoCivil.setText("Solteiro");
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel22.setText("N° Boleto");
-
-        jLBoleto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLBoleto.setText("12982");
-
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setText("Preferências");
 
@@ -308,10 +300,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLProfissao))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLBoleto))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLcpf)))
@@ -344,26 +332,27 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                                         .addComponent(jRfem)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 208, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLRenda)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jLabel24)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLCredito))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLnome, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLnome, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLPreferencias, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLRenda)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLCredito)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,8 +396,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                         .addComponent(jLEstadoCivil)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jLBoleto)
                     .addComponent(jLabel21)
                     .addComponent(jLRenda)
                     .addComponent(jLabel24)
@@ -606,13 +593,14 @@ public class ViewClienteGUI extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -639,12 +627,11 @@ public class ViewClienteGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(718, 556));
+        setSize(new java.awt.Dimension(644, 556));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLeditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLeditarMouseClicked
-        
         this.setEnabled(false);
         try {
             new EditClienteGUI(listCli, cliente).setVisible(true);
@@ -652,7 +639,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
             Logger.getLogger(ViewClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
-       
     }//GEN-LAST:event_jLeditarMouseClicked
 
     private void jLeditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLeditarMouseEntered
@@ -755,7 +741,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLBoleto;
     private javax.swing.JLabel jLCredito;
     private javax.swing.JLabel jLEstadoCivil;
     private javax.swing.JLabel jLPreferencias;
@@ -774,7 +759,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
@@ -816,7 +800,6 @@ public class ViewClienteGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public void refreshCampos() {
-    
 //        if (cliente.isStatus()==true) {
 //            jRativo.setSelected(true);
 //            jRinativo.setEnabled(false);
@@ -824,7 +807,6 @@ public void refreshCampos() {
 //            jRinativo.setSelected(true);
 //            jRativo.setEnabled(false);
 //        }
-        
         if (cliente.getSexo().equals("M")) {
             jRmasc.setSelected(true);
             jRfem.setEnabled(false);
@@ -832,7 +814,6 @@ public void refreshCampos() {
             jRfem.setSelected(true);
             jRmasc.setEnabled(false);
         }
-        
         jLid.setText("" + cliente.getIdCiente());
         jLnome.setText(cliente.getNome());
         jLProfissao.setText(cliente.getProfissao());
@@ -844,13 +825,13 @@ public void refreshCampos() {
         jLtel.setText(cliente.getTelefone());
         jLtel2.setText(cliente.getTelefone2());        
         jLPreferencias.setText(cliente.getPreferencia());
-        jLBoleto.setText(""+cliente.getNumeroBoleto());
         jLRenda.setText(""+cliente.getRenda());
         jLCredito.setText(""+cliente.getCredito());
         
-        
         int ano = Integer.valueOf(jLnasc.getText().substring(jLnasc.getText().length() - 4, jLnasc.getText().length()));
         jLidade.setText("" + (MyDate.getAno() - ano));
+        
+        
         jLbairro.setText(cliente.getEndereco().getBairro());
         jLcep.setText(cliente.getEndereco().getCEP());
         jLcidade.setText(cliente.getEndereco().getCidade());

@@ -7,7 +7,7 @@ package br.com.getsoftware.davicalcados.entity;
 
 /**
  *
- * @author Junior Oliveira
+ * @author Andrey Gois
  */
 public class Caixa {
 
@@ -18,7 +18,7 @@ public class Caixa {
     private String descricao;
     private String data;
     private String hora;
-    private String usuario;
+    private String funcionario;
     private Double valor;
 
     public Long getIdCaixa() {
@@ -70,11 +70,11 @@ public class Caixa {
     }
 
     public String getIdUsuario() {
-        return usuario;
+        return funcionario;
     }
 
     public void setUsuario(String idUsuario) {
-        this.usuario = idUsuario;
+        this.funcionario = idUsuario;
     }
 
     public Double getValor() {

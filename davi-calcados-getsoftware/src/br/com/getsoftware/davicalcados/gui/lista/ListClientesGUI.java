@@ -15,13 +15,11 @@ import br.com.getsoftware.davicalcados.gui.view.ViewClienteGUI;
 import br.com.getsoftware.davicalcados.relatorio.GenericReport;
 import java.awt.Color;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -468,7 +466,7 @@ public class ListClientesGUI extends javax.swing.JFrame {
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
              
-        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza ue deseja excluir o cliente " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Excluir Registro", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             try {
                 //ClienteBO.delete(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));

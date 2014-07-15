@@ -118,6 +118,8 @@ public class CadContasPagar extends javax.swing.JFrame {
 
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Apps-preferences-web-browser-adblock-icon.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
+        jBCancelar.setToolTipText("Cancelar cadastramento de conta á pagar");
+        jBCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCancelarActionPerformed(evt);
@@ -126,6 +128,8 @@ public class CadContasPagar extends javax.swing.JFrame {
 
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBSalvar.setText("Salvar");
+        jBSalvar.setToolTipText("Salvar conta á pagar");
+        jBSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalvarActionPerformed(evt);

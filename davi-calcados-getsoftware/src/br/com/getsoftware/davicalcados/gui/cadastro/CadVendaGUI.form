@@ -296,6 +296,10 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/shop-cart-exclude-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ajustar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ajustar quantidade de itens do produto selecionado"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBremoverActionPerformed"/>
@@ -315,6 +319,10 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/shop-cart-add-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="inserir"/>
+            <Property name="toolTipText" type="java.lang.String" value="Inserir produto na lista de compras"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBinserirActionPerformed"/>
@@ -324,6 +332,9 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Start-Menu-Search-icon.png"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -420,6 +431,9 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/Start-Menu-Search-icon.png"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBaddProduto1ActionPerformed"/>
@@ -431,6 +445,10 @@
               <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/cancelar-32.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cancelar venda"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcancelarActionPerformed"/>
@@ -483,6 +501,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="C&#xd3;DIGO" type="java.lang.Object"/>
@@ -546,6 +567,10 @@
           <Image iconType="3" name="/br/com/getsoftware/davicalcados/icons/App-Catalog-icon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="FINALIZAR VENDA"/>
+        <Property name="toolTipText" type="java.lang.String" value="Definir a forma de pagamento"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor em Forma de M&#xe3;o"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBfinalizarActionPerformed"/>
