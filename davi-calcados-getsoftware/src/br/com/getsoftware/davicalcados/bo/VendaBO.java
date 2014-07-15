@@ -30,12 +30,10 @@ public class VendaBO {
 
     public static void save(Venda venda) throws SQLException, Exception {
         VendaDAO dao = new VendaDAO();
-        try {
+        
             validator(venda);
             dao.save(venda);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Não foi possível salvar o registro\n" + e, "erro", 0);
-        }
+        
     }
 
     public static void update(Venda venda) throws SQLException, Exception {

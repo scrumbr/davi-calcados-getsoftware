@@ -9,7 +9,6 @@ package br.com.getsoftware.davicalcados.gui.acesso;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
-import static br.com.getsoftware.davicalcados.util.CriaBanco.criaBancoETabelas;
 import br.com.getsoftware.davicalcados.util.SetIcon;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -271,7 +270,7 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFCpfActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        criaBancoETabelas();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed

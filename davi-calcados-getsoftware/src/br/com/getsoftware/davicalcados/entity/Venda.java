@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.getsoftware.davicalcados.entity;
 
+import br.com.getsoftware.davicalcados.gui.cadastro.ItensCarrinho;
 import java.util.List;
 
 /**
@@ -13,19 +13,21 @@ import java.util.List;
  * @author Junior Oliveira
  */
 public class Venda {
-    private Integer idVenda;
+
+    private Long idVenda;
     private Integer idFuncionario;
     private Long idCliente;
-    private List<String> listaIdProduto;
+    private List<ItensCarrinho> listaProduto;
     private Double valorTotal;
     private String data;
     private int parcela;
+    private int quantidadeItens;
 
-    public Integer getIdVenda() {
+    public Long getIdVenda() {
         return idVenda;
     }
 
-    public void setIdVenda(Integer idVenda) {
+    public void setIdVenda(Long idVenda) {
         this.idVenda = idVenda;
     }
 
@@ -45,12 +47,12 @@ public class Venda {
         this.idCliente = idCliente;
     }
 
-    public List<String> getListaIdProduto() {
-        return listaIdProduto;
+    public List<ItensCarrinho> getListaProduto() {
+        return listaProduto;
     }
 
-    public void setListaIdProduto(List<String> listaIdProduto) {
-        this.listaIdProduto = listaIdProduto;
+    public void setListaProduto(List<ItensCarrinho> listaProduto) {
+        this.listaProduto = listaProduto;
     }
 
     public Double getValorTotal() {
@@ -75,5 +77,13 @@ public class Venda {
 
     public void setParcela(int parcela) {
         this.parcela = parcela;
+    }
+
+    public int getQuantidadeItens() {
+        return quantidadeItens;
+    }
+
+    public void setQuantidadeItens(int quantidadeItens) {
+        this.quantidadeItens = quantidadeItens;
     }
 }

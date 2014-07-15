@@ -247,7 +247,7 @@ public class CaixaGUI extends javax.swing.JFrame {
             }
         });
 
-        jBvenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/contasReceber-24.png"))); // NOI18N
+        jBvenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Cash-register-icon.png"))); // NOI18N
         jBvenda.setText("Efetuar venda");
         jBvenda.setToolTipText("Efetuar uma venda");
         jBvenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

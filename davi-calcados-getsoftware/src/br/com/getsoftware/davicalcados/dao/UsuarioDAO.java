@@ -8,6 +8,7 @@ package br.com.getsoftware.davicalcados.dao;
 import br.com.getsoftware.davicalcados.connection.Conexao;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.myinterface.InterfaceCRUD;
+import br.com.getsoftware.davicalcados.util.TransformCpf;
 import static br.com.getsoftware.davicalcados.util.TransformCpf.transformCpf;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,7 +55,7 @@ public class UsuarioDAO implements InterfaceCRUD<Usuario> {
 
         String sql = "select f.cpf, u.senha, u.ativo,  u.id_usuario,  u.nivel,  u.username "
                 + " from usuario u, funcionario f where u.id_usuario = f.id_funcionario "
-                + " and f.cpf = '"+(cpf)+"' and u.senha = '" + senha+"'";
+                + " and f.cpf = '"+TransformCpf.transformCpf(cpf)+"' and u.senha = '" + senha+"'";
         
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         ResultSet res = stmt.executeQuery();
