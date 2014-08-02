@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.getsoftware.davicalcados.gui.cadastro;
 
 import br.com.getsoftware.davicalcados.bo.ProdutoBO;
@@ -29,7 +28,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
      * Creates new form CadVendaGUI1
      */
     private final ArrayList<ItensCarrinho> itensCarrinho = new ArrayList<>();
-    
+
     public CadVendaGUI() {
         initComponents();
         atualizaLinhaSelecionada();
@@ -37,25 +36,26 @@ public class CadVendaGUI extends javax.swing.JFrame {
         jLdata.setText(DataAtual.dataAtual());
         jLuser.setText(usuarioLogado.getUserName());
     }
-    
+
     private Produto produto;
+
     public Produto getProduto() {
         return produto;
-        
+
     }
 
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-    
+
     public CadVendaGUI(Produto produto) {
         this();
         initComponents();
         this.produto = produto;
-         setarValoresProduto();
-         atualizaLinhaSelecionada();
-         jFid.requestFocus();
-         
+        setarValoresProduto();
+        atualizaLinhaSelecionada();
+        jFid.requestFocus();
+
     }
 
     public Cliente getCliente() {
@@ -73,31 +73,33 @@ public class CadVendaGUI extends javax.swing.JFrame {
     public void setCaixa(CaixaGUI caixa) {
         this.caixa = caixa;
     }
-    public void setarValoresProduto(){
+
+    public void setarValoresProduto() {
         jFproduto.setText(produto.getNome());
-        jFid.setText(""+produto.getIdProduto());
+        jFid.setText("" + produto.getIdProduto());
         jFvalor.setText("" + produto.getValorVenda());
-        
-          ItensCarrinho itens = new ItensCarrinho();
-          itens.setIdProduto(produto.getIdProduto());
-          itens.setNome(produto.getNome());
-          itens.setQuantidadeRealDoEstoque(produto.getQuantidade());
-            boolean encontreiOItem = false;
-            for (int i = 0; i < itensCarrinho.size(); i++) {
-                if (itensCarrinho.get(i).equals(itens)) {
-                    jFestoque.setText("" + (produto.getQuantidade() - itensCarrinho.get(i).getQuantidade()));
-                    encontreiOItem = true;
-                    break;
-                }
+
+        ItensCarrinho itens = new ItensCarrinho();
+        itens.setIdProduto(produto.getIdProduto());
+        itens.setNome(produto.getNome());
+        itens.setQuantidadeRealDoEstoque(produto.getQuantidade());
+        boolean encontreiOItem = false;
+        for (int i = 0; i < itensCarrinho.size(); i++) {
+            if (itensCarrinho.get(i).equals(itens)) {
+                jFestoque.setText("" + (produto.getQuantidade() - itensCarrinho.get(i).getQuantidade()));
+                encontreiOItem = true;
+                break;
             }
-            if(!encontreiOItem){
-               jFestoque.setText("" + (produto.getQuantidade())); 
-            }
+        }
+        if (!encontreiOItem) {
+            jFestoque.setText("" + (produto.getQuantidade()));
+        }
         jFquantidade.requestFocus();
 
     }
-     
+
     private Cliente cliente;
+
     public CadVendaGUI(Cliente cliente) {
         this();
         initComponents();
@@ -107,10 +109,12 @@ public class CadVendaGUI extends javax.swing.JFrame {
 //        jFid.requestFocus();
 
     }
-    public void setarValoresClient(){
-         jFcliente.setText(cliente.getNome());
+
+    public void setarValoresClient() {
+        jFcliente.setText(cliente.getNome());
     }
     private CaixaGUI caixa;
+
     public CadVendaGUI(CaixaGUI caixa) {
         this();
         this.caixa = caixa;
@@ -118,10 +122,12 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }
 
     private int linhaSelecionada;
+
     public void atualizaLinhaSelecionada() {
         linhaSelecionada = -1;
         jTable1.getSelectionModel().setSelectionInterval(linhaSelecionada, linhaSelecionada);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -528,17 +534,17 @@ public class CadVendaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBremoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBremoverActionPerformed
-       if (Integer.valueOf(jFestoque.getText()) < Integer.valueOf(jFquantidade.getText())) {
+        if (Integer.valueOf(jFestoque.getText()) < Integer.valueOf(jFquantidade.getText())) {
             JOptionPane.showMessageDialog(null, "Quantidade inválida!\nA quantidade no carrinho é superior a quantidade disponível.", "Atenção!", 2);
             jFquantidade.setText(null);
             jFquantidade.requestFocus();
-        }else{
-        removerCarrinho();
-        mostraItensCarrinho();
-        atualizaLinhaSelecionada();
-        limparCapos();
-           calcularTotalGeral();
-       }
+        } else {
+            removerCarrinho();
+            mostraItensCarrinho();
+            atualizaLinhaSelecionada();
+            limparCapos();
+            calcularTotalGeral();
+        }
     }//GEN-LAST:event_jBremoverActionPerformed
 
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirActionPerformed
@@ -551,6 +557,10 @@ public class CadVendaGUI extends javax.swing.JFrame {
             jFquantidade.requestFocus();
         } else if (Integer.valueOf(jFestoque.getText()) < Integer.valueOf(jFquantidade.getText())) {
             JOptionPane.showMessageDialog(null, "Quantidade inválida!\nA quantidade no carrinho é superior a quantidade disponível.", "Atenção!", 2);
+            jFquantidade.setText(null);
+            jFquantidade.requestFocus();
+        } else if (Integer.valueOf(jFquantidade.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "Quantidade inválida!\nA quantidade deve ser um número maior que zero!", "Atenção!", 2);
             jFquantidade.setText(null);
             jFquantidade.requestFocus();
         } else {
@@ -582,49 +592,47 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         linhaSelecionada = jTable1.getSelectedRow();
-        
-        if(linhaSelecionada != -1){
-        jFid.setText(jTable1.getValueAt(linhaSelecionada, 0).toString());
-        jFproduto.setText(jTable1.getValueAt(linhaSelecionada, 1).toString());
-        jFestoque.setText(jTable1.getValueAt(linhaSelecionada, 2).toString());
-        jFquantidade.setText(jTable1.getValueAt(linhaSelecionada, 3).toString());
-        jFvalor.setText(jTable1.getValueAt(linhaSelecionada, 4).toString());
-        
+
+        if (linhaSelecionada != -1) {
+            jFid.setText(jTable1.getValueAt(linhaSelecionada, 0).toString());
+            jFproduto.setText(jTable1.getValueAt(linhaSelecionada, 1).toString());
+            jFestoque.setText(jTable1.getValueAt(linhaSelecionada, 2).toString());
+            jFquantidade.setText(jTable1.getValueAt(linhaSelecionada, 3).toString());
+            jFvalor.setText(jTable1.getValueAt(linhaSelecionada, 4).toString());
+
         }
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
-       if(jFcliente.getText() == null || jFcliente.getText().isEmpty()){
-           JOptionPane.showMessageDialog(null, "Campo 'Cliente' é obrigatório!", "Atenção", 2);
-           jFcliente.requestFocus();
-       }
-       else if(itensCarrinho.isEmpty()){
-           JOptionPane.showMessageDialog(null, "A lista de compra está vazia!!", "Atenção", 2);
-           jBaddProduto.requestFocus();
-       }
-        else{
-        Venda venda = new Venda();
-        
-        venda.setIdCliente(cliente.getIdCiente());
-        venda.setIdFuncionario(Integer.valueOf(usuarioLogado.getIdUsuario()+""));
-        venda.setData(DataAtual.dataAtual());
-        
-        ArrayList<ItensCarrinho> listProdutos = new ArrayList();
-        
-        for (int i = 0; i < itensCarrinho.size(); i++) {
-            listProdutos.add(itensCarrinho.get(i));
-        }
-        venda.setListaProduto(listProdutos);
-        venda.setValorTotal(Double.valueOf(jLtotal.getText()));
-        this.setEnabled(false);
+        if (jFcliente.getText() == null || jFcliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo 'Cliente' é obrigatório!", "Atenção", 2);
+            jFcliente.requestFocus();
+        } else if (itensCarrinho.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A lista de compra está vazia!!", "Atenção", 2);
+            jBaddProduto.requestFocus();
+        } else {
+            Venda venda = new Venda();
+
+            venda.setIdCliente(cliente.getIdCiente());
+            venda.setIdFuncionario(Integer.valueOf(usuarioLogado.getIdUsuario() + ""));
+            venda.setData(DataAtual.dataAtual());
+
+            ArrayList<ItensCarrinho> listProdutos = new ArrayList();
+
+            for (int i = 0; i < itensCarrinho.size(); i++) {
+                listProdutos.add(itensCarrinho.get(i));
+            }
+            venda.setListaProduto(listProdutos);
+            venda.setValorTotal(Double.valueOf(jLtotal.getText()));
+            this.setEnabled(false);
 //        this.dispose();
-        new FormaDePagamento(true, venda, this).setVisible(true);
-       }
+            new FormaDePagamento(true, venda, this).setVisible(true);
+        }
     }//GEN-LAST:event_jBfinalizarActionPerformed
 
     private void jFquantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFquantidadeKeyReleased
-         
+
     }//GEN-LAST:event_jFquantidadeKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -644,54 +652,55 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
         caixa.setEnabled(true);
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jBcancelarActionPerformed
 
-    public void jFidActionPerformed(){
+    public void jFidActionPerformed() {
         jFidActionPerformed(null);
     }
-    
+
     private void jFidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFidActionPerformed
         String cod = (jFid.getText());
         try {
             produto = ProdutoBO.getById(cod);
-            if(produto == null){
-                 int opc = JOptionPane.showConfirmDialog(null, "Produto não encontrado!\n\nDeseja cadastrá-lo gora ?","Atenção",JOptionPane.YES_NO_OPTION);
-                 if(opc == JOptionPane.YES_OPTION){
-                     this.setEnabled(false);
-                     new CadProdutoGUI(this).setVisible(true);
-                 }else{
-                     limparCapos();
-                 }
-            }else{
+            if (produto == null) {
+                int opc = JOptionPane.showConfirmDialog(null, "Produto não encontrado!\n\nDeseja cadastrá-lo gora ?", "Atenção", JOptionPane.YES_NO_OPTION);
+                if (opc == JOptionPane.YES_OPTION) {
+                    this.setEnabled(false);
+                    new CadProdutoGUI(this).setVisible(true);
+                } else {
+                    limparCapos();
+                }
+            } else {
                 setarValoresProduto();
 //                jFquantidade.requestFocus();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o produto","Erro",0);
+            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o produto", "Erro", 0);
             this.dispose();
         }
     }//GEN-LAST:event_jFidActionPerformed
 
     private void jFidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFidFocusGained
-        if(jFid.getText() == null || jFid.getText().isEmpty()){
+        if (jFid.getText() == null || jFid.getText().isEmpty()) {
             limparCapos();
         }
     }//GEN-LAST:event_jFidFocusGained
 
     private void jFidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFidFocusLost
-        if(jFid.getText() == null || jFid.getText().isEmpty()){
+        if (jFid.getText() == null || jFid.getText().isEmpty()) {
             limparCapos();
         }
     }//GEN-LAST:event_jFidFocusLost
 
-    public void limparCapos(){
+    public void limparCapos() {
         jFquantidade.setText(null);
         jFproduto.setText(null);
         jFid.setText(null);
         jFvalor.setText(null);
         jFestoque.setText(null);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -781,7 +790,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     }
 
-      public void removerCarrinho() {
+    public void removerCarrinho() {
         ItensCarrinho itens = new ItensCarrinho();
         itens.setIdProduto((jTable1.getValueAt(linhaSelecionada, 0).toString()));
         itens.setNome(jTable1.getValueAt(linhaSelecionada, 1).toString());
@@ -789,7 +798,7 @@ public class CadVendaGUI extends javax.swing.JFrame {
         itens.setValorVenda(Double.valueOf(jTable1.getValueAt(linhaSelecionada, 3).toString()));
 
         for (int i = 0; i < itensCarrinho.size(); i++) {
-             if (itensCarrinho.get(i).equals(itens)) {
+            if (itensCarrinho.get(i).equals(itens)) {
                 itensCarrinho.get(i).setQuantidade(Integer.valueOf(jFquantidade.getText()));
                 break;
             }
@@ -797,9 +806,8 @@ public class CadVendaGUI extends javax.swing.JFrame {
 
     }
 
-      
-    public void mostraItensCarrinho(){
-        
+    public void mostraItensCarrinho() {
+
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -814,11 +822,12 @@ public class CadVendaGUI extends javax.swing.JFrame {
             });
         }
     }
-    public void calcularTotalGeral(){
+
+    public void calcularTotalGeral() {
         Double total = 0.00;
         for (int i = 0; i < itensCarrinho.size(); i++) {
-             total = total + itensCarrinho.get(i).getTotal();
+            total = total + itensCarrinho.get(i).getTotal();
         }
-        jLtotal.setText(""+total);
+        jLtotal.setText("" + total);
     }
 }

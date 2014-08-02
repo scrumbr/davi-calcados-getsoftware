@@ -39,7 +39,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     public CadSaidaGUI() throws SQLException, FormatoSQLException {
         initComponents();
         jFdata.setText(MyDate.dataFormatada());
-        jTid.setText("" + LastID.atualizaId("id_saida", "saida"));
+        jTid.setText("" + LastID.proximoId("id_saida", "saida"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
 //        for (int i = 0; i < usuariosSuport.size(); i++) {
@@ -54,7 +54,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         this();
         jFdata.setText(MyDate.dataFormatada());
         jButton1.setVisible(false);
-        jTid.setText("" + LastID.atualizaId("id_saida", "saida"));
+        jTid.setText("" + LastID.proximoId("id_saida", "saida"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
        
@@ -368,7 +368,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar a saida!", "Sucesso", 1);
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova saida?", "Nova saida", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
-                    jTid.setText(""+LastID.atualizaId("id_saida", "saida"));
+                    jTid.setText(""+LastID.proximoId("id_saida", "saida"));
                     jTvalor.setText(null);
                     jFdata.setText(MyDate.dataFormatada());
                     jCusuarios.setSelectedIndex(0);

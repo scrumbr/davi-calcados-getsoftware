@@ -31,7 +31,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
 
      public CadClienteGUI() throws SQLException {
         initComponents();
-        jTid.setText(""+LastID.atualizaId("id_cliente", "cliente"));
+        jTid.setText(""+LastID.proximoId("id_cliente", "cliente"));
         LimpaMascaras();
     }
     
@@ -1066,7 +1066,7 @@ public class CadClienteGUI extends javax.swing.JFrame {
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo cliente ?", "Novo cliente", JOptionPane.YES_NO_OPTION);
                 if (escolha == 0) {
                     LimpaCampos();
-                    jTid.setText("" + LastID.atualizaId("id_cliente", "cliente"));
+                    jTid.setText("" + LastID.proximoId("id_cliente", "cliente"));
                 } else {
                     if(telaMenu != null){
                     telaMenu.setEnabled(true);
