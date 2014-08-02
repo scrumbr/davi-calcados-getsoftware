@@ -187,9 +187,12 @@ constraint pk_contas_pagar primary key contas_pagar(id_contas_pagar)
 
 create table contas_receber(
 	id_contas_receber bigint auto_increment,
+	id_venda bigint, 
 	data_pagamento date not null,
+	data_quitado date,
 	valor numeric(9,2) not null,
 	status boolean not null,
 	descricao longtext,
-constraint pk_contas_receber primary key contas_receber(id_contas_receber)
+constraint pk_contas_receber primary key contas_receber(id_contas_receber),
+constraint fk_venda_parcelada foreign key contas_receber(id_venda) references venda(id)
 );

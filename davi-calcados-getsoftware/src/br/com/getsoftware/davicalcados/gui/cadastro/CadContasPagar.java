@@ -27,7 +27,7 @@ public class CadContasPagar extends javax.swing.JFrame {
     private ListContasPagarGUI contasPagar;
     public CadContasPagar() throws SQLException {
         initComponents();
-         jTId.setText(""+LastID.atualizaId("id_contas_pagar", "contas_pagar"));
+         jTId.setText(""+LastID.proximoId("id_contas_pagar", "contas_pagar"));
     }
 
     public CadContasPagar(ListContasPagarGUI contasPagar) throws SQLException{
@@ -273,7 +273,7 @@ public class CadContasPagar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar uma conta á pagar!", "Sucesso", 1);
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova conta?", "Nova Conta", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
-                    jTId.setText(""+LastID.atualizaId("id_contas_pagar", "contas_pagar"));
+                    jTId.setText(""+LastID.proximoId("id_contas_pagar", "contas_pagar"));
                     jTValor.setText(null);
                     jFData.setText("");
                     jTdescricao.setText(null);

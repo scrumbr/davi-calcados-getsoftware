@@ -29,7 +29,7 @@ public class CadPlanoComprasGUI extends javax.swing.JFrame {
     private ListPlanoComprasGUI planoDeCompras;
     public CadPlanoComprasGUI() throws SQLException {
         initComponents();
-        jTId.setText(""+LastID.atualizaId("id_plano_compras", "plano_compras"));
+        jTId.setText(""+LastID.proximoId("id_plano_compras", "plano_compras"));
        jLData.setText(MyDate.dataFormatada());
     }
     public CadPlanoComprasGUI(ListPlanoComprasGUI planoCompras) throws SQLException{
@@ -245,7 +245,7 @@ public class CadPlanoComprasGUI extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Sucesso ao salvar o item!", "Sucesso", 1);
                  int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma novo item?", "Nova item", JOptionPane.YES_NO_OPTION);
                  if(opt == JOptionPane.YES_OPTION){
-                    jTId.setText(""+LastID.atualizaId("id_plano_compras", "plano_compras"));
+                    jTId.setText(""+LastID.proximoId("id_plano_compras", "plano_compras"));
                     limpaCampos();
                 }else{
                     planoDeCompras.setEnabled(true);

@@ -35,7 +35,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
     
     public CadFuncionarioGUI() throws SQLException {
         initComponents();
-        jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));        
+        jTid.setText(""+LastID.proximoId("id_funcionario", "funcionario"));        
         LimpaMascaras();
              
     }
@@ -1029,7 +1029,7 @@ public class CadFuncionarioGUI extends javax.swing.JFrame {
              int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo funcionario ?", "Novo funcionario", JOptionPane.YES_NO_OPTION);
                 if(escolha == 0) {
                     limpaCampos();
-                   jTid.setText(""+LastID.atualizaId("id_funcionario", "funcionario"));
+                   jTid.setText(""+LastID.proximoId("id_funcionario", "funcionario"));
                 } else {
                     if(telaMenu != null){
                         telaMenu.setEnabled(true);

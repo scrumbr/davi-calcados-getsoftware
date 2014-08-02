@@ -32,7 +32,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
      public CadEntradasGUI() throws SQLException {
         initComponents();
         jFdata.setText(MyDate.dataFormatada());
-        jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
+        jTid.setText(""+LastID.proximoId("id_entrada", "entrada"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
 //        for (int i = 0; i < usuariosSuport.size(); i++) {
@@ -44,7 +44,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         public CadEntradasGUI(CaixaGUI caixa) throws SQLException {
         this();
         jFdata.setText(MyDate.dataFormatada());
-        jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
+        jTid.setText(""+LastID.proximoId("id_entrada", "entrada"));
         usuariosSuport = UsuarioBO.listAll();
         idUsuarios = new ArrayList<>();
         for (int i = 0; i < usuariosSuport.size(); i++) {
@@ -328,7 +328,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Sucesso ao salvar a entrada!", "Sucesso", 1);
                 int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova entada?", "Nova entrada", JOptionPane.YES_NO_OPTION);
                 if(opt == JOptionPane.YES_OPTION){
-                    jTid.setText(""+LastID.atualizaId("id_entrada", "entrada"));
+                    jTid.setText(""+LastID.proximoId("id_entrada", "entrada"));
                     jTvalor.setText(null);
                     jFdata.setText(MyDate.dataFormatada());
                     jCusuarios.setSelectedIndex(0);

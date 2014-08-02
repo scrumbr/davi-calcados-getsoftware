@@ -32,7 +32,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
     
     public CadFornecedorGUI() throws SQLException {
         initComponents();
-       jTextField1.setText(""+LastID.atualizaId("id_fornecedor", "fornecedor"));
+       jTextField1.setText(""+LastID.proximoId("id_fornecedor", "fornecedor"));
        jFCnpj.setEditable(false);
        jLObrigatorioCnpj.setVisible(false);
        LimpaMascaras();
@@ -910,7 +910,7 @@ public class CadFornecedorGUI extends javax.swing.JFrame {
                 int escolha = JOptionPane.showConfirmDialog(null, "Deseja cadastrar um novo fornecedor ?", "Novo fornecedor", JOptionPane.YES_NO_OPTION);
                 if (escolha == 0) {
                     limpaCampos();
-                    jTextField1.setText("" + LastID.atualizaId("id_fornecedor", "fornecedor"));
+                    jTextField1.setText("" + LastID.proximoId("id_fornecedor", "fornecedor"));
                 } else {
                     if (telaMenu != null) {
                         telaMenu.setEnabled(true);
