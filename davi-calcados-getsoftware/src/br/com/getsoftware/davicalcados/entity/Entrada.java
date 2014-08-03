@@ -16,7 +16,16 @@ public class Entrada {
     private String descricaoEntrada;
     private Double valorEntrada;
     private String dataEntrada;
+    private String nomeUsuario;
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+    
     public Long getIdUsuario() {
         return idUsuario;
     }

@@ -70,7 +70,7 @@ import java.util.ArrayList;
 
     @Override
     public void update(Entrada entrada) throws SQLException {
-        String sql = "update entrada set id_usuario, descricao_entrada, valor_entrada, data_entrada "
+        String sql = "update entrada set id_usuario = ?, descricao_entrada=?, valor_entrada=?, data_entrada=? "
                 + " where id_entrada=?";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
@@ -87,7 +87,33 @@ import java.util.ArrayList;
 
     @Override
     public ArrayList<Entrada> listAll() throws SQLException {
-        String sql = "select * from entrada";
+        //String sql = "select * from entrada";
+        String sql = "select  e.id_entrada, e.descricao_entrada, e.valor_entrada, e.data_entrada, u.username from entrada as e, usuario as u where e.id_usuario = u.id_usuario;";
+        
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        ResultSet res = stmt.executeQuery();
+
+        ArrayList<Entrada> minhaLista = new ArrayList<>();
+        while (res.next()) {
+            Entrada entrada = new Entrada();
+
+            entrada.setIdUsuario(Long.valueOf(res.getString("u.id_usuario")));
+            entrada.setNomeUsuario(res.getString("u.username"));
+            entrada.setDescricaoEntrada((res.getString("e.descricao_entrada")));
+            entrada.setValorEntrada(Double.valueOf(res.getString("e.valor_entrada")));
+            entrada.setDataEntrada((res.getString("e.data_entrada")));
+            entrada.setIdEntrada(Long.valueOf(res.getString("e.id_entrada")));
+
+            minhaLista.add(entrada);
+        }
+        res.close();
+        stmt.close();
+        return minhaLista;
+    }
+    
+     public ArrayList<Entrada> listAllDate(String de, String ate) throws SQLException {
+        String sql = "SELECT * FROM entrada WHERE data_entrada BETWEEN '"+de+"' AND '"+ate+"'";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
 

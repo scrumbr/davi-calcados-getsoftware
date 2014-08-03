@@ -61,6 +61,19 @@ public class SaidaBO {
         return minhaLista;
     }
     
+    
+     public static ArrayList<Saida> listAllDate(String de, String ate) throws SQLException {
+        SaidaDAO dao = new SaidaDAO();
+        ArrayList<Saida> minhaLista = null;
+        try {
+            minhaLista = dao.listAllDate(de, ate);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar os registros\n" + e, "erro", 0);
+        }
+
+        return minhaLista;
+    }
+    
     public static void delete(int id) throws SQLException {
         SaidaDAO dao = new SaidaDAO();
         try {

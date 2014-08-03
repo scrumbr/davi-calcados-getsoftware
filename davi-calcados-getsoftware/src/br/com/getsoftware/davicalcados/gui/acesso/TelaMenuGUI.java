@@ -17,9 +17,11 @@ import br.com.getsoftware.davicalcados.gui.cadastro.CaixaGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListClientesGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListContasPagarGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListContasReceberGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListEntradasGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFornecedorGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListProdutosGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListSaidasGUI;
 import br.com.getsoftware.davicalcados.gui.lista.ListUsuariosGUI;
 import br.com.getsoftware.davicalcados.relatorio.EntradaRelatorioGUI;
 import br.com.getsoftware.davicalcados.relatorio.GenericReport;
@@ -36,8 +38,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
+//import javax.help.HelpBroker;
+//import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,6 +107,12 @@ public class TelaMenuGUI extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator31 = new javax.swing.JPopupMenu.Separator();
         jMListaDeUsuarios = new javax.swing.JMenuItem();
+        jSeparator33 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem32 = new javax.swing.JMenuItem();
+        jSeparator34 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jSeparator35 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem34 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jSeparator19 = new javax.swing.JPopupMenu.Separator();
@@ -371,6 +379,31 @@ public class TelaMenuGUI extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMListaDeUsuarios);
+        jMenu5.add(jSeparator33);
+
+        jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/coins-add-icon.png"))); // NOI18N
+        jMenuItem32.setText("Lista de Entradas");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem32);
+        jMenu5.add(jSeparator34);
+
+        jMenuItem33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/coins-delete-icon.png"))); // NOI18N
+        jMenuItem33.setText("Lista de Saídas");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem33);
+        jMenu5.add(jSeparator35);
+
+        jMenuItem34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/cash-register-icon (1).png"))); // NOI18N
+        jMenuItem34.setText("Lista de Movimentação do Caixa");
+        jMenu5.add(jMenuItem34);
 
         jMenuBar2.add(jMenu5);
 
@@ -1022,8 +1055,26 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMListaDeUsuariosActionPerformed
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
-        openHelp();
+        //openHelp();
     }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        this.setEnabled(false);
+        try {
+            new ListEntradasGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+       this.setEnabled(false);
+        try {
+            new ListSaidasGUI(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1106,6 +1157,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1140,6 +1194,9 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator30;
     private javax.swing.JPopupMenu.Separator jSeparator31;
     private javax.swing.JPopupMenu.Separator jSeparator32;
+    private javax.swing.JPopupMenu.Separator jSeparator33;
+    private javax.swing.JPopupMenu.Separator jSeparator34;
+    private javax.swing.JPopupMenu.Separator jSeparator35;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
@@ -1149,24 +1206,24 @@ public class TelaMenuGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
-    private HelpSet hs;
-    private HelpBroker hb;
-    private URL hsURL;
-    
-    public void openHelp() {
-
-        String pathToHs = "/appwithhelp/docs/appwithhelp-hs.xml";
-        try {
-            URL hsURL = getClass().getResource(pathToHs);
-            hs = new HelpSet(null, hsURL);
-        } catch (Exception ee) {
-            return;
-        }
-
-        hb = hs.createHelpBroker();
-        hb.setDisplayed(true);
-
-    }
+//    private HelpSet hs;
+//    private HelpBroker hb;
+//    private URL hsURL;
+//    
+//    public void openHelp() {
+//
+//        String pathToHs = "/appwithhelp/docs/appwithhelp-hs.xml";
+//        try {
+//            URL hsURL = getClass().getResource(pathToHs);
+//            hs = new HelpSet(null, hsURL);
+//        } catch (Exception ee) {
+//            return;
+//        }
+//
+//        hb = hs.createHelpBroker();
+//        hb.setDisplayed(true);
+//
+//    }
 
 
 

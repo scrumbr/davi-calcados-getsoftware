@@ -97,19 +97,12 @@ public class ListUsuariosGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "USUARIO", "LOGIN", "SENHA", "NIVEL"
+                "ID", "Descrição", "Usuário", "Valor", "Data"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -160,7 +153,7 @@ public class ListUsuariosGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-32.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/pdf-24.png"))); // NOI18N
         jButton1.setText("Gerar Relatorio");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -238,6 +231,7 @@ public class ListUsuariosGUI extends javax.swing.JFrame {
         
         try {
             usuario = UsuarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+            this.setEnabled(false);
             new EditUsuarioGUI(this, usuario).setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível abrir a tela de edição!", "Erro", 0);

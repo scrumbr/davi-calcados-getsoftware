@@ -7,9 +7,12 @@
 package br.com.getsoftware.davicalcados.gui.acesso;
 
 import br.com.getsoftware.davicalcados.bo.GenericSQLBO;
+import br.com.getsoftware.davicalcados.entity.Funcionario;
 import br.com.getsoftware.davicalcados.entity.Usuario;
+import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
 import br.com.getsoftware.davicalcados.gui.lista.ListFuncionariosGUI;
 import br.com.getsoftware.davicalcados.util.SetIcon;
+import br.com.getsoftware.davicalcados.util.TransformCpf;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,11 +31,12 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
         SetIcon.setIcon(this, "chaveLogo.png");
     }
     private ListFuncionariosGUI telaListFun;
-    
+    private Funcionario funcionario;
     public ValidaAdminGUI(ListFuncionariosGUI telaListFun){
         this();
         this.telaListFun = telaListFun;
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +59,7 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de Login");
+        setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -184,7 +189,7 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
 
-        setSize(new java.awt.Dimension(462, 315));
+        setSize(new java.awt.Dimension(446, 276));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,7 +204,7 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
        }else{
            try {
                GenericSQLBO.genericQuery("select u.id_usuario, u.username, u.senha, u.nivel, u.ativo, f.cpf from usuario as u, funcionario as f where id_usuario = id_funcionario "
-                       + "and f.cpf = '"+jFCpf.getText()+"' and u.senha = '"+jPasswordField1.getText()+"'");
+                       + "and f.cpf = '"+TransformCpf.transformCpf(jFCpf.getText())+"' and u.senha = '"+jPasswordField1.getText()+"'");
                
                if(GenericSQLBO.genericResultSet().first()==false){
                     JOptionPane.showMessageDialog(null, " Usuario não cadastrado");
@@ -208,12 +213,15 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
                     jFCpf.requestFocus();
                }else{
                    Usuario usuario = new Usuario();
+                    usuario.setIdUsuario(GenericSQLBO.genericResultSet().getLong("u.id_usuario"));
                     usuario.setUserName(GenericSQLBO.genericResultSet().getString("u.username"));
                     usuario.setNivel(GenericSQLBO.genericResultSet().getInt("u.nivel"));
                     usuario.setSenha(GenericSQLBO.genericResultSet().getString("u.senha"));
                    
+                    UsuarioLogado.usuarioValida = usuario;
+                   
                     if(usuario.getNivel() == 1){
-                        telaListFun.validarEfetuarPagamento(usuario);
+                         telaListFun.validarEfetuarPagamento(usuario);
                          this.formWindowClosing(null);
                     }else{
                         JOptionPane.showMessageDialog(null, "Este usuário não possui credenciais para efetuar o pagamento.", "ATENÇÂO", 2);
@@ -223,9 +231,12 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
                
            } catch (SQLException ex) {
                Logger.getLogger(ValidaAdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (Exception ex) {
+               Logger.getLogger(ValidaAdminGUI.class.getName()).log(Level.SEVERE, null, ex);
            }
        }
-      
+       
+  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jFCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFCpfActionPerformed
@@ -233,13 +244,13 @@ public class ValidaAdminGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFCpfActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       telaListFun.setEnabled(true);
+        telaListFun.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         telaListFun.setEnabled(true);
-          this.dispose();
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     /**

@@ -12,13 +12,13 @@ import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.ContasPagar;
 import br.com.getsoftware.davicalcados.entity.Saida;
 import br.com.getsoftware.davicalcados.entity.Usuario;
+import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
 import br.com.getsoftware.davicalcados.exception.FormatoSQLException;
 import br.com.getsoftware.davicalcados.gui.lista.ListContasPagarGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import br.com.getsoftware.davicalcados.util.TransformDate;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,12 +40,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         initComponents();
         jFdata.setText(MyDate.dataFormatada());
         jTid.setText("" + LastID.proximoId("id_saida", "saida"));
-        usuariosSuport = UsuarioBO.listAll();
-        idUsuarios = new ArrayList<>();
-//        for (int i = 0; i < usuariosSuport.size(); i++) {
-//            jCusuarios.addItem(usuariosSuport.get(i).getUserName());
-//            idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
-//        }
+       
     }
         private CaixaGUI caixa;
         private ListContasPagarGUI contasPagar;
@@ -55,13 +50,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jFdata.setText(MyDate.dataFormatada());
         jButton1.setVisible(false);
         jTid.setText("" + LastID.proximoId("id_saida", "saida"));
-        usuariosSuport = UsuarioBO.listAll();
-        idUsuarios = new ArrayList<>();
-       
-        for (int i = 0; i < usuariosSuport.size(); i++) {
-            jCusuarios.addItem(usuariosSuport.get(i).getUserName());
-            idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
-        }
+        jTUsuario.setText(UsuarioLogado.usuarioLogado.getUserName());
             this.caixa = caixa;
         }
       
@@ -69,13 +58,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             this();  
             this.contaPagar = contaPagar;
             this.contasPagar = contasPagar;
-            usuariosSuport = UsuarioBO.listAll();
-        idUsuarios = new ArrayList<>();
-       
-        for (int i = 0; i < usuariosSuport.size(); i++) {
-            jCusuarios.addItem(usuariosSuport.get(i).getUserName());
-            idUsuarios.add(usuariosSuport.get(i).getIdUsuario());
-        }
+            jTUsuario.setText(UsuarioLogado.usuarioLogado.getUserName());
             refreshCampos();            
         }
         
@@ -105,9 +88,9 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         jCparaAData = new javax.swing.JCheckBox();
         jBsalvar = new javax.swing.JButton();
         jBcancel = new javax.swing.JButton();
-        jCusuarios = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jTUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -218,14 +201,6 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             }
         });
 
-        jCusuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o funcionário" }));
-        jCusuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCusuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCusuariosActionPerformed(evt);
-            }
-        });
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Funcionário / Usuário");
 
@@ -238,6 +213,9 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jTUsuario.setEditable(false);
+        jTUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -268,10 +246,10 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel13)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jCusuarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel14)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTUsuario))
                 .addContainerGap())
         );
 
@@ -285,9 +263,9 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTid)
-                    .addComponent(jCusuarios))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -346,11 +324,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
         }else if(jFdata.getText().equals("  /  /    ")){
             JOptionPane.showMessageDialog(null, "Campo 'data' está em vazio!", "Atenção", 2);
             jFdata.requestFocus();
-        }else if(jCusuarios.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(null, "Campo 'funcionário' está em vazio!", "Atenção", 2);
-            jCusuarios.requestFocus();
-        }
-        else if(jTdescricao.getText().isEmpty() || jTdescricao.getText() == null){
+        }else if(jTdescricao.getText().isEmpty() || jTdescricao.getText() == null){
             JOptionPane.showMessageDialog(null, "Campo 'descrição' está em vazio!", "Atenção", 2);
             jTdescricao.requestFocus();
         }
@@ -359,7 +333,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             saida.setDataSaida(jFdata.getText());
             saida.setDescricao(jTdescricao.getText());
 //          saida.setIdSaida();
-            saida.setIdUsuario(idUsuarios.get(jCusuarios.getSelectedIndex()-1));
+            saida.setIdUsuario(UsuarioLogado.usuarioLogado.getIdUsuario());
             saida.setValorSaida(Double.valueOf(jTvalor.getText()));
            
             try {          
@@ -371,7 +345,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
                     jTid.setText(""+LastID.proximoId("id_saida", "saida"));
                     jTvalor.setText(null);
                     jFdata.setText(MyDate.dataFormatada());
-                    jCusuarios.setSelectedIndex(0);
+                    jTUsuario.setText(UsuarioLogado.usuarioLogado.getUserName());
                     jTdescricao.setText(null);
                 }else{
                     caixa.setEnabled(true);
@@ -422,19 +396,12 @@ public class CadSaidaGUI extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jTvalorKeyTyped
 
-    private void jCusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCusuariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCusuariosActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          if(jCusuarios.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(null, "Campo 'funcionário' está em vazio!", "Atenção", 2);
-            jCusuarios.requestFocus();
-        }else{     
+              
             Saida saida = new Saida();
             saida.setDataSaida(jFdata.getText());
             saida.setDescricao(jTdescricao.getText());
-            saida.setIdUsuario(idUsuarios.get(jCusuarios.getSelectedIndex()-1));
+            saida.setIdUsuario(UsuarioLogado.usuarioLogado.getIdUsuario());
             saida.setValorSaida(Double.valueOf(jTvalor.getText()));
             contaPagar.setDataQuitado(TransformDate.transformDate(jFdata.getText()));
             contaPagar.setStatus(true);
@@ -450,7 +417,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar a saida! 'CAIXA'", "Erro", 0);
             }
-          }
+          
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -500,7 +467,6 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBsalvar;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCparaAData;
-    private javax.swing.JComboBox jCusuarios;
     private javax.swing.JFormattedTextField jFdata;
     private javax.swing.JLabel jLMensagemTopo;
     private javax.swing.JLabel jLabel10;
@@ -512,6 +478,7 @@ public class CadSaidaGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTUsuario;
     private javax.swing.JTextArea jTdescricao;
     private javax.swing.JTextField jTid;
     private javax.swing.JTextField jTvalor;

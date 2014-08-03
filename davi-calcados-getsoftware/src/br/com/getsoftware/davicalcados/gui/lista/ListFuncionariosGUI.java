@@ -17,6 +17,7 @@ import br.com.getsoftware.davicalcados.gui.acesso.TelaMenuGUI;
 import br.com.getsoftware.davicalcados.gui.acesso.ValidaAdminGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.cadastro.CadUsuarioGUI;
+import br.com.getsoftware.davicalcados.gui.cadastro.PagarSalarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.EditFuncionarioGUI;
 import br.com.getsoftware.davicalcados.gui.edit.UpdateSenhaGUI;
 import br.com.getsoftware.davicalcados.gui.view.ViewFuncionarioGUI;
@@ -640,7 +641,11 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGerarRelatorioActionPerformed
 
     private void jBSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalarioActionPerformed
-      validarEfetuarPagamento(UsuarioLogado.usuarioLogado);
+        try {
+            validarEfetuarPagamento(UsuarioLogado.usuarioLogado);
+        } catch (Exception ex) {
+            Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBSalarioActionPerformed
 
     private void jBAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarSenhaActionPerformed
@@ -812,31 +817,45 @@ public class ListFuncionariosGUI extends javax.swing.JFrame {
             SaidaBO.save(saida);
      }
 
-    public void validarEfetuarPagamento(Usuario user) {
-         if(user.getNivel() != 1){
-           this.setEnabled(false);
-           new ValidaAdminGUI(this).setVisible(true);
-           
-       }else{       
-        int opc = JOptionPane.showConfirmDialog(null, "Deseja confirmar o pagamento de salário do funcionario: " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Pagar Salario", JOptionPane.YES_NO_OPTION);
-        if (opc == JOptionPane.YES_OPTION) {
-             try {
+//    public void validarEfetuarPagamento(Usuario user) {
+//         if(user.getNivel() != 1){
+//           this.setEnabled(false);
+//           new ValidaAdminGUI(this).setVisible(true);
+//           
+//       }else{       
+//        int opc = JOptionPane.showConfirmDialog(null, "Deseja confirmar o pagamento de salário do funcionario: " + jTable1.getValueAt(linhaSelecionada, 1) + " ?", "Pagar Salario", JOptionPane.YES_NO_OPTION);
+//        if (opc == JOptionPane.YES_OPTION) {
+//             try {
+//                 funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
+//                 gerarSaida();
+//                 JOptionPane.showMessageDialog(null, "Funcionário pago com sucesso!", "Sucesso", 1);
+//                 GenericReport c = new GenericReport("select * from funcionario where id_funcionario = " + funcionario.getIdFuncionario(),"ReciboFuncionarioReport.jasper");
+//                  
+//             } catch (FormatoSQLException ex) {
+//                 Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+//             } catch (SQLException ex) {
+//                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (Exception ex) {
+//                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//         
+//        }
+//        
+//       }
+//        
+//    }
+     
+     public void validarEfetuarPagamento(Usuario user) throws SQLException, Exception {
+         if(user.getNivel() == 1){
                  funcionario = FuncionarioBO.getById(Integer.valueOf(jTable1.getValueAt(linhaSelecionada, 0).toString()));
-                 gerarSaida();
-                 JOptionPane.showMessageDialog(null, "Funcionário pago com sucesso!", "Sucesso", 1);
-                 GenericReport c = new GenericReport("select * from funcionario where id_funcionario = " + funcionario.getIdFuncionario(),"ReciboFuncionarioReport.jasper");
-                  
-             } catch (FormatoSQLException ex) {
-                 Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
-             } catch (SQLException ex) {
-                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(ListFuncionariosGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        }
-        
-       }
-        
+                 this.setEnabled(false);
+                 new PagarSalarioGUI(this,funcionario).setVisible(true);
+//                 gerarSaida();
+//                 JOptionPane.showMessageDialog(null, "Funcionário pago com sucesso!", "Sucesso", 1);
+//                 GenericReport c = new GenericReport("select * from funcionario where id_funcionario = " + funcionario.getIdFuncionario(),"ReciboFuncionarioReport.jasper");
+          }else{ 
+             this.setEnabled(false);
+             new ValidaAdminGUI(this).setVisible(true);                
     }
+}
 }
