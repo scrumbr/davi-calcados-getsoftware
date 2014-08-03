@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 
-package br.com.getsoftware.davicalcados.gui.cadastro;
+package br.com.getsoftware.davicalcados.gui.edit;
 
+import br.com.getsoftware.davicalcados.gui.cadastro.*;
 import br.com.getsoftware.davicalcados.bo.EntradaBO;
+import br.com.getsoftware.davicalcados.bo.SaidaBO;
 import br.com.getsoftware.davicalcados.bo.UsuarioBO;
 import br.com.getsoftware.davicalcados.entity.Entrada;
+import br.com.getsoftware.davicalcados.entity.Saida;
 import br.com.getsoftware.davicalcados.entity.Usuario;
 import br.com.getsoftware.davicalcados.entity.UsuarioLogado;
+import br.com.getsoftware.davicalcados.gui.lista.ListEntradasGUI;
+import br.com.getsoftware.davicalcados.gui.lista.ListSaidasGUI;
 import br.com.getsoftware.davicalcados.util.LastID;
 import br.com.getsoftware.davicalcados.util.MyDate;
 import java.sql.SQLException;
@@ -23,27 +28,22 @@ import javax.swing.JOptionPane;
  *
  * @author Junior Oliveira
  */
-public class CadEntradasGUI extends javax.swing.JFrame {
+public class EditSaidasGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form CadEntradasGUI
      */
-    private ArrayList<Usuario>usuariosSuport;
-    private ArrayList<Long>idUsuarios;
-     public CadEntradasGUI() throws SQLException {
+     public EditSaidasGUI() throws SQLException {
         initComponents();
-        jFdata.setText(MyDate.dataFormatada());
-        jTid.setText(""+LastID.proximoId("id_entrada", "entrada"));
 
      }
-     private CaixaGUI caixa;
-        public CadEntradasGUI(CaixaGUI caixa) throws SQLException {
+     private ListSaidasGUI listSaida;
+     private Saida saida;
+        public EditSaidasGUI(ListSaidasGUI listSaida, Saida saida) throws SQLException {
         this();
-        jFdata.setText(MyDate.dataFormatada());
-        jTid.setText(""+LastID.proximoId("id_entrada", "entrada"));
-       jTUsuario.setText(UsuarioLogado.usuarioLogado.getUserName());
-        this.caixa = caixa;
-         
+        this.listSaida = listSaida;
+        this.saida = saida;
+        refreshCampos();
     }
 
     /**
@@ -68,11 +68,8 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTdescricao = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
-        jCparaAData = new javax.swing.JCheckBox();
         jBsalvar = new javax.swing.JButton();
         jBcancel = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        jTUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -86,16 +83,14 @@ public class CadEntradasGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro de Entradas");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Edição de Entrada");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +134,6 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Data da entrada");
 
-        jFdata.setEditable(false);
         try {
             jFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -155,15 +149,6 @@ public class CadEntradasGUI extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Descrição da entrada");
-
-        jCparaAData.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jCparaAData.setSelected(true);
-        jCparaAData.setText("Para esta data");
-        jCparaAData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCparaADataActionPerformed(evt);
-            }
-        });
 
         jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/getsoftware/davicalcados/icons/Actions-document-save-icon.png"))); // NOI18N
         jBsalvar.setText("Salvar");
@@ -185,43 +170,28 @@ public class CadEntradasGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("Funcionário / Usuário");
-
-        jTUsuario.setEditable(false);
-        jTUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10)
+                    .addComponent(jTid)
+                    .addComponent(jLabel11)
+                    .addComponent(jTvalor)
+                    .addComponent(jLabel12)
+                    .addComponent(jFdata, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel10)
-                        .addComponent(jTid)
-                        .addComponent(jLabel11)
-                        .addComponent(jTvalor)
-                        .addComponent(jLabel12)
-                        .addComponent(jFdata, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                    .addComponent(jCparaAData, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addComponent(jBsalvar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBcancel))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel13)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTUsuario))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jBsalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBcancel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel13)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -233,30 +203,24 @@ public class CadEntradasGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBsalvar)
-                        .addComponent(jBcancel))
-                    .addComponent(jCparaAData))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBsalvar)
+                    .addComponent(jBcancel))
                 .addContainerGap())
         );
 
@@ -299,28 +263,15 @@ public class CadEntradasGUI extends javax.swing.JFrame {
             jTdescricao.requestFocus();
         }
         else{
-            Entrada entrada = new Entrada();
-            entrada.setDataEntrada(jFdata.getText());
-            entrada.setDescricaoEntrada(jTdescricao.getText());
-            entrada.setIdUsuario(UsuarioLogado.usuarioLogado.getIdUsuario());
-            entrada.setValorEntrada(Double.valueOf(jTvalor.getText()));
+           
             try {
-                EntradaBO.save(entrada);
-                caixa.dadosTabela();
-                JOptionPane.showMessageDialog(null, "Sucesso ao salvar a entrada!", "Sucesso", 1);
-                int opt = JOptionPane.showConfirmDialog(null, "Deseja cadastrar uma nova entada?", "Nova entrada", JOptionPane.YES_NO_OPTION);
-                if(opt == JOptionPane.YES_OPTION){
-                    jTid.setText(""+LastID.proximoId("id_entrada", "entrada"));
-                    jTvalor.setText(null);
-                    jFdata.setText(MyDate.dataFormatada());
-                    jTdescricao.setText(null);
-                    jTUsuario.setText(UsuarioLogado.usuarioLogado.getUserName());
-                }else{
-                     caixa.setEnabled(true);
-                     caixa.dadosTabela();
-                     this.dispose();
-                   
-                }
+             refreshSaida();
+               SaidaBO.update(saida); 
+                listSaida.setEnabled(true);
+                this.dispose();
+                listSaida.dadosTabela();
+                listSaida.atualizaLinhaSelecionada();   
+                JOptionPane.showMessageDialog(null, "Sucesso ao atualizar o registro\n", "Sucesso", 1);
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar a entrada!", "Erro", 0);
@@ -330,22 +281,12 @@ public class CadEntradasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
-        caixa.setEnabled(true);
+        listSaida.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jBcancelActionPerformed
 
-    private void jCparaADataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCparaADataActionPerformed
-        if(jCparaAData.isSelected()){
-            jFdata.setText(MyDate.dataFormatada());
-            jFdata.setEditable(false);
-        }else{
-            jFdata.setText(null);
-            jFdata.setEditable(true);
-        }
-    }//GEN-LAST:event_jCparaADataActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        caixa.setEnabled(true);
+        listSaida.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -387,7 +328,7 @@ public class CadEntradasGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new CadEntradasGUI().setVisible(true);
+                    new EditSaidasGUI().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(CadEntradasGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -398,21 +339,38 @@ public class CadEntradasGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcancel;
     private javax.swing.JButton jBsalvar;
-    private javax.swing.JCheckBox jCparaAData;
     private javax.swing.JFormattedTextField jFdata;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTUsuario;
     private javax.swing.JTextArea jTdescricao;
     private javax.swing.JTextField jTid;
     private javax.swing.JTextField jTvalor;
     // End of variables declaration//GEN-END:variables
+
+
+
+public void refreshCampos(){
+    jTid.setText(""+saida.getIdSaida());
+    jTdescricao.setText(saida.getDescricao());
+    jTvalor.setText(""+saida.getValorSaida());
+    jFdata.setText(saida.getDataSaida()); 
+}
+
+public void refreshSaida(){
+    saida.setIdSaida(Long.valueOf(jTid.getText()));
+    saida.setDataSaida(jFdata.getText());
+    saida.setDescricao(jTdescricao.getText());
+    saida.setValorSaida(Double.valueOf(jTvalor.getText()));
+    saida.setIdUsuario(UsuarioLogado.usuarioLogado.getIdUsuario());
+}
+
+
+
 }

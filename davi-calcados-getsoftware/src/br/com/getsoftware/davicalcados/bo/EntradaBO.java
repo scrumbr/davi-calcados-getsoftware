@@ -60,6 +60,18 @@ public class EntradaBO {
         return minhaLista;
     }
     
+      public static ArrayList<Entrada> listAllDate(String de, String ate) throws SQLException {
+        EntradaDAO dao = new EntradaDAO();
+        ArrayList<Entrada> minhaLista = null;
+        try {
+            minhaLista = dao.listAllDate(de, ate);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível listar os registros\n" + e, "erro", 0);
+        }
+
+        return minhaLista;
+    }
+    
     public static void delete(int id) throws SQLException {
         EntradaDAO dao = new EntradaDAO();
         try {

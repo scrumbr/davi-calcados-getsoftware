@@ -107,6 +107,30 @@ public class SaidaDAO implements InterfaceCRUD<Saida> {
         stmt.close();
         return minhaLista;
     }
+    
+    public ArrayList<Saida> listAllDate(String de, String ate) throws SQLException {
+        String sql = "SELECT * FROM saida WHERE data_saida BETWEEN '"+de+"' AND '"+ate+"'";
+
+        PreparedStatement stmt = this.conexao.prepareStatement(sql);
+
+        ResultSet res = stmt.executeQuery();
+
+        ArrayList<Saida> minhaLista = new ArrayList<>();
+        while (res.next()) {
+            Saida saida = new Saida();
+
+            saida.setIdUsuario(Long.valueOf(res.getString("id_usuario")));
+            saida.setDescricao((res.getString("descricao_saida")));
+            saida.setValorSaida(Double.valueOf(res.getString("valor_saida")));
+            saida.setDataSaida((res.getString("data_saida")));
+            saida.setIdSaida(Long.valueOf(res.getString("id_saida")));
+
+            minhaLista.add(saida);
+        }
+        res.close();
+        stmt.close();
+        return minhaLista;
+    }
 
     @Override
     public void delete(Integer id) throws SQLException {

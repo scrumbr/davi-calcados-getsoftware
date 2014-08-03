@@ -14,7 +14,7 @@ public class UsuarioLogado {
     
     
     public static Usuario usuarioLogado = new Usuario();
-    
+    public static Usuario usuarioValida = new Usuario();
     
     
 }
